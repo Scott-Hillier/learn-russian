@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+python-multipart
+numpy
+soundfile
+certifi
+torch
+mlx-whisper
+pytest

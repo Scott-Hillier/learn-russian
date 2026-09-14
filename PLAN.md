@@ -1,0 +1,166 @@
+# Learn Russian: Local Speaking Practice Platform (Plan)
+
+## Goal
+A local web app that stands in for a speaking partner. It says Russian aloud, listens to you
+say it back, tells you which sounds were wrong, and can hold a simple spoken conversation.
+Everything runs on this Mac (M1, 8 GB RAM). A cloud LLM is an optional extra.
+
+## The core loop
+```
+ ┌─ 1. HEAR ──────┐   ┌─ 2. SPEAK ─────┐   ┌─ 3. ANALYSE ───────────────┐   ┌─ 4. FEEDBACK ────────┐
+ │ Native-quality │ → │ Record in the  │ → │ a) What words did you say? │ → │ Word + sound level   │
+ │ TTS, normal &  │   │ browser mic    │   │ b) What sounds did you     │   │ highlights, tips,    │
+ │ slow speed     │   │                │   │    actually make?          │   │ replay yours vs.     │
+ └────────────────┘   └────────────────┘   │ c) Compare to target       │   │ native, retry        │
+                                           └────────────────────────────┘   └──────────────────────┘
+```
+
+## Architecture
+| Layer | Choice | Why |
+|---|---|---|
+| Frontend | React + Vite + TypeScript, runs in the browser at `localhost` | Mic recording (MediaRecorder), waveform and pitch display, good UI for flashcards |
+| Backend | Python 3.11+ with FastAPI | All the speech models live in Python |
+| Storage | SQLite (via SQLModel) | Cards, review history, per-sound error stats |
+| Text-to-speech | **Silero TTS (ru)**, falling back to **Piper** or macOS `say` (Milena/Yuri voices) | Natural Russian voices that run on CPU; Silero accepts stress marks (`+`) so words are stressed correctly |
+| Speech-to-text | **mlx-whisper** (`small`/`medium`, Metal-accelerated) | Accurate Russian transcription on Apple Silicon |
+| Pronunciation analysis | **wav2vec2 phoneme model** (`facebook/wav2vec2-xlsr-53-espeak-cv-ft`) + **espeak-ng** for expected pronunciation | See below |
+| Conversation LLM | **Ollama** with a small local model (Qwen2.5-3B / Gemma-3-4B), fully offline | 8 GB RAM limits local models to about 3–4B parameters |
+| Launch | One `./start.sh` that starts backend and frontend and opens the browser | Simple local use |
+
+### Why Whisper alone isn't enough for pronunciation
+Whisper is built to guess the *intended* words. If you say "мишка" when you meant
+"мышка", it will often write "мышка" anyway and hide the mistake. So pronunciation checking
+uses two signals:
+1. **Whisper** checks word level: did you say the right words in the right order?
+2. **A phoneme recognizer** transcribes the *sounds* you actually made (IPA, no language-model
+   correction). **espeak-ng** turns the target text into its expected IPA, including Russian
+   vowel reduction (молоко → [məlɐˈko]) and soft/hard consonants. A Needleman–Wunsch
+   alignment of the two sequences shows each sound as correct, substituted, missing or
+   extra.
+
+Errors are mapped to tips aimed at English speakers, for example:
+- ы vs и
+- palatalised consonants (мат / мать)
+- unreduced unstressed о
+- rolled р
+- щ vs ш
+- final devoicing (хлеб → [xlʲep])
+
+### Stress and intonation (later phase)
+Word stress is the hardest thing to score automatically. Planned approach:
+1. Force-align your audio to the target phonemes.
+2. Measure each vowel's duration, loudness and pitch (via `parselmouth`/Praat).
+3. Flag when the loudest or longest vowel isn't the stressed one.
+4. Show your pitch contour over the native TTS contour for sentence intonation, e.g. the
+   rising pitch on yes/no questions.
+
+## Features / Modes
+1. **Word drill (flashcards + speaking).** Card shows the word with its stress mark and
+   meaning. You tap to hear it, record yourself, and get a score. Spaced repetition
+   (**FSRS** algorithm) sets the next review from both recall and pronunciation score.
+2. **Sentence trainer.** Learn a new sentence in steps:
+   - listen at normal and slow speed
+   - repeat it word by word
+   - repeat it in chunks
+   - say the full sentence
+   - shadow the native audio
+3. **Minimal pairs.** Short focused drills on the sounds you get wrong most (built from your
+   error stats), e.g. был/бил, брат/брать.
+4. **Conversation partner.** Push-to-talk voice chat. The LLM plays a scenario (café, directions, small talk) using
+   vocabulary for your level. Each reply comes with an optional correction panel covering
+   grammar and pronunciation flags, and useful new words can be added to your deck with
+   one click.
+5. **Progress dashboard.** Cards due, streak, accuracy over time, and your "problem sounds"
+   heatmap.
+6. **Content.**
+   - Seed deck of about 500 high-frequency words with stress marks and example sentences
+   - Import from Anki `.apkg` / CSV
+   - Add your own words (stress marks filled in automatically, e.g. with `russtress`, and
+     editable)
+
+## Project layout
+```
+learn-russian/
+├── start.sh
+├── backend/
+│   ├── app/
+│   │   ├── main.py              # FastAPI app & routes
+│   │   ├── speech/tts.py        # Silero/Piper/say wrapper + audio cache
+│   │   ├── speech/asr.py        # mlx-whisper transcription
+│   │   ├── speech/phonemes.py   # wav2vec2 phoneme recognition + espeak G2P
+│   │   ├── speech/scoring.py    # alignment, scores, error → tip mapping
+│   │   ├── speech/prosody.py    # stress/pitch analysis (later phase)
+│   │   ├── srs/fsrs.py          # spaced repetition scheduling
+│   │   ├── chat/llm.py          # Claude API / Ollama adapter
+│   │   └── db/models.py         # SQLModel tables
+│   ├── data/seed_deck.csv
+│   └── tests/
+└── frontend/
+    └── src/
+        ├── pages/  (Drill, Sentence, MinimalPairs, Conversation, Dashboard, Deck)
+        └── components/ (Recorder, Waveform, PitchChart, PhonemeDiff, CardView)
+```
+
+## Build phases
+Each phase ends with something usable.
+
+**Phase 1: Hear and say (foundation)**
+- Backend and frontend skeleton, `start.sh`
+- TTS endpoint with caching; browser recorder component
+- Whisper transcription and a word-level diff
+- Result: type or pick a word or sentence, hear it, say it, see which words were recognised
+
+**Phase 2: Pronunciation scoring**
+- espeak-ng G2P, wav2vec2 phoneme recognition, alignment
+- Per-sound colour-coded feedback, overall score and English-speaker tips
+- Side-by-side playback of your recording and the native audio
+- Test set: record known good and bad pronunciations to tune thresholds
+
+**Phase 3: Flashcards and SRS**
+- SQLite models, FSRS scheduling, seed deck, Anki/CSV import, deck editor
+- Word drill mode ties SRS and pronunciation scoring together
+
+**Phase 4: Sentence trainer and minimal pairs**
+- Chunked learning flow, slow playback, shadowing
+- Minimal-pair drills generated from per-sound error stats
+
+**Phase 5: Conversation partner**
+- LLM adapter (Claude API or Ollama), scenario prompts, level control
+- Voice loop: record → Whisper → LLM → TTS, plus the correction panel and "add to deck"
+
+**Phase 6: Stress, intonation and progress**
+- Prosody analysis and pitch-contour overlay
+- Progress dashboard
+
+## Constraints and honest caveats
+- **8 GB RAM.** Models are loaded lazily and unloaded when idle. Whisper `small` is the
+  default (`medium` is optional). A local LLM and Whisper together will be tight, which is
+  why Claude API is the recommended conversation backend.
+- **Automated scoring is less precise than a human tutor.** It reliably catches missing or
+  wrong sounds, ы/и confusion and hard/soft consonant errors. It is less reliable on subtle
+  vowel quality and on stress. Feedback will be framed as guidance rather than a verdict.
+- **TTS stress.** Silero stresses correctly when given stress marks. The seed deck includes
+  them, so native audio is correct.
+- **First run** downloads roughly 1.5–2 GB of models, then everything works offline
+  (except the Claude API, if chosen).
+
+## Decisions (2026-09-14)
+1. **Fully offline.** The conversation partner uses Ollama with a small local model
+   (Qwen2.5-3B or Gemma-3-4B). Scenarios stay tightly scoped and beginner-level so a small
+   model can cope. Nothing reaches the internet after the first model download.
+2. **Complete beginner.** Changes to the plan:
+   - Every Russian word shows **transliteration + English** (toggleable later).
+   - A new **Alphabet & Sounds** module comes before flashcards: all 33 letters, each with
+     native audio, a speak-and-check drill and example words.
+   - The starter deck is graded: greetings and survival phrases, then the top 500 words.
+   - Conversation scenarios are unlocked only after enough vocabulary is learned.
+3. **No Anki import.** Moved to "nice to have". CSV import and a manual deck editor stay.
+
+Revised order:
+1. Hear and say ✅ (done 2026-09-14)
+2. Pronunciation scoring
+3. Alphabet & Sounds
+4. Flashcards and SRS
+5. Sentence trainer and minimal pairs
+6. Conversation partner (Ollama)
+7. Stress, intonation and progress

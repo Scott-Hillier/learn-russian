@@ -1,0 +1,37 @@
+[
+  {"category": "Greetings", "text": "Прив+ет", "english": "Hi", "sounds_like": "pree-VYET"},
+  {"category": "Greetings", "text": "Здр+авствуйте", "english": "Hello (polite)", "sounds_like": "ZDRAST-vooy-tyeh", "note": "The first в is silent: say “zdrast”, not “zdravst”."},
+  {"category": "Greetings", "text": "Д+оброе +утро", "english": "Good morning", "sounds_like": "DOH-bruh-yeh OO-truh"},
+  {"category": "Greetings", "text": "Д+обрый день", "english": "Good afternoon", "sounds_like": "DOH-bry dyen'", "note": "ы is a sound English doesn't have: say “ee” with your tongue pulled back."},
+  {"category": "Greetings", "text": "Д+обрый в+ечер", "english": "Good evening", "sounds_like": "DOH-bry VYEH-cheer"},
+  {"category": "Greetings", "text": "Как дел+а?", "english": "How are you? (informal)", "sounds_like": "kahk dee-LAH"},
+  {"category": "Greetings", "text": "Хорош+о", "english": "Good / Okay", "sounds_like": "khuh-rah-SHOH", "note": "Only the stressed о sounds like “o”. The unstressed ones weaken to “ah”/“uh”."},
+  {"category": "Greetings", "text": "Как вас зов+ут?", "english": "What is your name?", "sounds_like": "kahk vahs zah-VOOT"},
+  {"category": "Greetings", "text": "Мен+я зов+ут +Анна", "english": "My name is Anna", "sounds_like": "mee-NYAH zah-VOOT AH-nuh"},
+  {"category": "Greetings", "text": "+Очень при+ятно", "english": "Nice to meet you", "sounds_like": "OH-cheen' pree-YAHT-nuh"},
+  {"category": "Greetings", "text": "До свид+ания", "english": "Goodbye", "sounds_like": "duh svee-DAH-nee-yuh"},
+
+  {"category": "Polite words", "text": "Спас+ибо", "english": "Thank you", "sounds_like": "spah-SEE-buh"},
+  {"category": "Polite words", "text": "Пож+алуйста", "english": "Please / You're welcome", "sounds_like": "pah-ZHAHL-stuh", "note": "In normal speech the й and у almost disappear: “pa-ZHAL-sta”."},
+  {"category": "Polite words", "text": "Извин+ите", "english": "Excuse me / Sorry", "sounds_like": "eez-vee-NEE-tyeh"},
+  {"category": "Polite words", "text": "Да", "english": "Yes", "sounds_like": "dah"},
+  {"category": "Polite words", "text": "Нет", "english": "No", "sounds_like": "nyet"},
+
+  {"category": "Survival", "text": "Я не поним+аю", "english": "I don't understand", "sounds_like": "yah nee puh-nee-MAH-yoo"},
+  {"category": "Survival", "text": "Повтор+ите, пож+алуйста", "english": "Please repeat that", "sounds_like": "puhf-tah-REE-tyeh, pah-ZHAHL-stuh"},
+  {"category": "Survival", "text": "М+едленнее, пож+алуйста", "english": "Slower, please", "sounds_like": "MYED-leen-nee-yeh, pah-ZHAHL-stuh"},
+  {"category": "Survival", "text": "Вы говор+ите по-англ+ийски?", "english": "Do you speak English?", "sounds_like": "vy guh-vah-REE-tyeh puh-ahn-GLEE-skee"},
+  {"category": "Survival", "text": "Я изуч+аю р+усский яз+ык", "english": "I'm learning Russian", "sounds_like": "yah ee-zoo-CHAH-yoo ROOS-kee yee-ZYK"},
+  {"category": "Survival", "text": "Ск+олько +это ст+оит?", "english": "How much does this cost?", "sounds_like": "SKOL'-kuh EH-tuh STOH-eet"},
+  {"category": "Survival", "text": "Где туал+ет?", "english": "Where is the toilet?", "sounds_like": "gdyeh too-ah-LYET"},
+  {"category": "Survival", "text": "Ещё раз", "english": "Once more", "sounds_like": "yee-SHCHYOH rahs", "note": "ё is always stressed. The final з is devoiced to “s”."},
+
+  {"category": "First words", "text": "Вод+а", "english": "Water", "sounds_like": "vah-DAH"},
+  {"category": "First words", "text": "Хлеб", "english": "Bread", "sounds_like": "khlyep", "note": "A final б sounds like “p”."},
+  {"category": "First words", "text": "Чай", "english": "Tea", "sounds_like": "chahy"},
+  {"category": "First words", "text": "К+офе", "english": "Coffee", "sounds_like": "KOH-fyeh"},
+  {"category": "First words", "text": "Молок+о", "english": "Milk", "sounds_like": "muh-lah-KOH"},
+  {"category": "First words", "text": "Дом", "english": "House / Home", "sounds_like": "dohm"},
+  {"category": "First words", "text": "Друг", "english": "Friend", "sounds_like": "drook"},
+  {"category": "First words", "text": "Сп+ать", "english": "To sleep", "sounds_like": "spaht'", "note": "ть is a “soft” t: touch your tongue to your teeth as if about to say “ee”."}
+]

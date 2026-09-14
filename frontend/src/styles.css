@@ -1,0 +1,144 @@
+:root {
+  --bg: #f6f4ef;
+  --panel: #ffffff;
+  --ink: #1f2430;
+  --muted: #6b7280;
+  --line: #e5e1d8;
+  --accent: #2f5bd3;
+  --accent-soft: #e8eefc;
+  --good: #1f9d55;
+  --close: #d99a00;
+  --bad: #d64545;
+  --missing: #9aa0aa;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #15171c;
+    --panel: #1e2128;
+    --ink: #e8e9ec;
+    --muted: #9aa0aa;
+    --line: #2d313a;
+    --accent: #7d9cff;
+    --accent-soft: #252c40;
+  }
+}
+
+* { box-sizing: border-box; }
+/* PT Sans ships with macOS and places combining stress accents correctly on Cyrillic. */
+.ru, [lang="ru"] { font-family: "PT Sans", Arial, sans-serif; }
+.stress { color: var(--accent); }
+.word .stress { color: inherit; }
+body { margin: 0; }
+button { font: inherit; color: inherit; cursor: pointer; }
+
+.layout { display: grid; grid-template-columns: 300px 1fr; min-height: 100vh; }
+
+.sidebar {
+  background: var(--panel);
+  border-right: 1px solid var(--line);
+  padding: 20px 14px;
+  overflow-y: auto;
+  max-height: 100vh;
+  position: sticky;
+  top: 0;
+}
+.sidebar h1 { font-size: 1.6rem; margin: 0 6px 16px; }
+.sidebar h1 small { display: block; font-size: 0.8rem; font-weight: 500; color: var(--muted); }
+.sidebar h2 {
+  font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--muted); margin: 18px 6px 6px;
+}
+.sidebar ul { list-style: none; margin: 0; padding: 0; }
+.sidebar li button {
+  width: 100%; text-align: left; border: 0; background: none; border-radius: 8px;
+  padding: 7px 10px; display: flex; flex-direction: column;
+}
+.sidebar li button:hover { background: var(--bg); }
+.sidebar li button.active { background: var(--accent-soft); }
+.sidebar li small { color: var(--muted); font-size: 0.78rem; }
+
+.custom { margin: 0 6px; }
+.custom input {
+  width: 100%; padding: 9px 11px; border-radius: 8px; border: 1px solid var(--line);
+  background: var(--bg); color: var(--ink); font-size: 0.95rem;
+}
+.custom small { color: var(--muted); font-size: 0.72rem; }
+
+main { padding: 32px 24px; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+footer { color: var(--muted); font-size: 0.78rem; text-align: center; margin-top: auto; }
+kbd {
+  border: 1px solid var(--line); border-radius: 4px; padding: 0 5px; font-size: 0.72rem;
+  background: var(--panel);
+}
+
+.banner {
+  background: var(--accent-soft); border-radius: 10px; padding: 10px 14px; width: 100%;
+  max-width: 720px; font-size: 0.9rem;
+}
+.banner.error { background: #fde8e8; color: #9b1c1c; }
+
+.card {
+  background: var(--panel); border: 1px solid var(--line); border-radius: 18px;
+  width: 100%; max-width: 720px; padding: 28px 32px; text-align: center;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.04);
+}
+.card-top { display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--muted); }
+.best { color: var(--good); font-weight: 600; }
+
+.target { font-size: 2.6rem; font-weight: 600; margin: 22px 0 6px; line-height: 1.25; }
+.word { margin: 0 0.18em; border-bottom: 4px solid transparent; }
+.word.correct { color: var(--good); border-color: var(--good); }
+.word.close { color: var(--close); border-color: var(--close); }
+.word.wrong { color: var(--bad); border-color: var(--bad); }
+.word.missing { color: var(--missing); border-bottom: 4px dashed var(--missing); }
+
+.translit { font-size: 1.15rem; color: var(--muted); }
+.sounds-like { margin-top: 6px; font-size: 0.95rem; }
+.english { margin-top: 10px; font-style: italic; }
+.note {
+  margin: 14px auto 0; background: var(--bg); border-radius: 10px; padding: 8px 12px;
+  font-size: 0.88rem; max-width: 520px;
+}
+
+.controls { display: flex; gap: 10px; justify-content: center; margin-top: 24px; flex-wrap: wrap; }
+.controls button, .nav button {
+  border: 1px solid var(--line); background: var(--panel); border-radius: 999px;
+  padding: 10px 18px;
+}
+.controls button:hover, .nav button:hover { border-color: var(--accent); }
+.controls .record { background: var(--accent); border-color: var(--accent); color: white; padding: 10px 26px; font-weight: 600; }
+.controls .record.on { background: var(--bad); border-color: var(--bad); animation: pulse 1.2s infinite; }
+.controls .record:disabled { opacity: 0.6; cursor: wait; }
+.controls.small { margin-top: 14px; }
+.controls.small button { padding: 6px 14px; font-size: 0.88rem; }
+
+@keyframes pulse { 50% { box-shadow: 0 0 0 8px rgba(214, 69, 69, 0.18); } }
+
+.meter { height: 6px; background: var(--bg); border-radius: 3px; margin: 16px auto 0; max-width: 260px; overflow: hidden; }
+.meter div { height: 100%; background: var(--good); transition: width 60ms linear; }
+.hint { color: var(--muted); font-size: 0.82rem; margin-top: 8px; }
+
+.result { margin-top: 22px; border-top: 1px solid var(--line); padding-top: 18px; text-align: left; }
+.score-row { display: flex; gap: 16px; align-items: center; }
+.score {
+  font-size: 1.5rem; font-weight: 700; width: 78px; height: 78px; border-radius: 50%;
+  display: grid; place-items: center; color: white; flex-shrink: 0;
+}
+.score.s0 { background: var(--bad); }
+.score.s1 { background: var(--close); }
+.score.s2 { background: var(--good); }
+.heard { color: var(--muted); margin-top: 4px; }
+.tips { margin: 14px 0 0; padding-left: 20px; }
+.tips li { margin: 4px 0; }
+
+.nav { display: flex; justify-content: space-between; margin-top: 26px; }
+
+@media (max-width: 760px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { position: static; max-height: 40vh; border-right: 0; border-bottom: 1px solid var(--line); }
+  .target { font-size: 2rem; }
+}
