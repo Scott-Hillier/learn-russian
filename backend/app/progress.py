@@ -1,50 +1,17 @@
-"""Local practice history (SQLite): every scored attempt and each letter's score within it."""
-import sqlite3
-import threading
+"""Practice history: every scored attempt and each letter's score within it."""
 import time
-from contextlib import contextmanager
 from pathlib import Path
 
-from . import config
+from .db import connect
 
 RECENT = 8           # letter mastery looks at this many most recent occurrences
 MASTERED_AVG = 0.8
 MASTERED_MIN = 3
 
-_lock = threading.Lock()
-
-SCHEMA = """
-CREATE TABLE IF NOT EXISTS attempts (
-    id INTEGER PRIMARY KEY,
-    created_at REAL NOT NULL,
-    source TEXT NOT NULL,
-    target TEXT NOT NULL,
-    score INTEGER NOT NULL
-);
-CREATE TABLE IF NOT EXISTS letter_scores (
-    attempt_id INTEGER NOT NULL REFERENCES attempts(id) ON DELETE CASCADE,
-    letter TEXT NOT NULL,
-    score REAL NOT NULL
-);
-CREATE INDEX IF NOT EXISTS letter_scores_letter ON letter_scores(letter);
-"""
-
-
-@contextmanager
-def _connect(path: Path | None = None):
-    with _lock:
-        conn = sqlite3.connect(path or config.PROGRESS_DB)
-        try:
-            conn.executescript(SCHEMA)
-            yield conn
-            conn.commit()
-        finally:
-            conn.close()
-
 
 def record_attempt(source: str, target: str, feedback: dict, path: Path | None = None) -> None:
     """Store an attempt's overall score and per-letter scores."""
-    with _connect(path) as conn:
+    with connect(path) as conn:
         cur = conn.execute("INSERT INTO attempts (created_at, source, target, score) VALUES (?, ?, ?, ?)",
                            (time.time(), source, target, feedback["score"]))
         rows = [(cur.lastrowid, l["char"].lower(), l["score"])
@@ -54,7 +21,7 @@ def record_attempt(source: str, target: str, feedback: dict, path: Path | None =
 
 def letter_mastery(path: Path | None = None) -> dict[str, dict]:
     """Per letter: number of scored occurrences, recent average (0–1) and a status."""
-    with _connect(path) as conn:
+    with connect(path) as conn:
         rows = conn.execute("SELECT letter, score FROM letter_scores ORDER BY attempt_id DESC").fetchall()
     recent: dict[str, list[float]] = {}
     counts: dict[str, int] = {}

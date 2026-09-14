@@ -23,6 +23,17 @@ has four steps:
 Letters turn amber once practised and green once you say them well consistently. Progress is
 saved locally in `backend/userdata/progress.db`.
 
+## Flashcards
+The **🃏 Flashcards** screen uses spaced repetition (FSRS) to review vocabulary *out loud*:
+- **Reviews:** you see the English and say the Russian from memory (`Space`), or press
+  `Enter` to reveal it. Your pronunciation score suggests a rating; press `1`–`4`
+  (Again / Hard / Good / Easy) to accept or override it.
+- **New cards** show the Russian, transliteration and audio first so you can repeat them.
+- **Decks:** *Starter words* (291 words in 12 units) and *Phrases* are built in. You can
+  create your own decks, add cards, or import a CSV (`russian,english[,notes]`, with `+`
+  before the stressed vowel).
+- **Settings:** set how many new cards to introduce per day in the sidebar.
+
 ## How to practise phrases
 1. Pick a phrase in the sidebar, or type your own. Mark stress with `+`, e.g. `молок+о`.
 2. **🔊 Listen** (`L`) or **🐢 Slow** (`S`).

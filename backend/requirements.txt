@@ -7,4 +7,5 @@ certifi
 torch
 mlx-whisper
 transformers
+fsrs
 pytest

@@ -8,6 +8,8 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
 from . import config, progress
+from .flashcards import store as flashcards
+from .routes_flashcards import router as flashcard_router
 from .speech.asr import asr
 from .speech.audio import decode_to_pcm16k, peak_level, trim_and_pad
 from .speech.compare import build_feedback
@@ -46,7 +48,9 @@ def _load_alphabet() -> dict:
 
 
 ALPHABET = _load_alphabet()
-SOURCES = {"phrase", "letter", "reading", "custom"}
+SOURCES = {"phrase", "letter", "reading", "custom", "flashcard"}
+flashcards.sync_builtin_decks(PHRASES)
+app.include_router(flashcard_router)
 
 
 @app.on_event("startup")

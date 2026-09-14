@@ -82,6 +82,27 @@ Errors are mapped to tips aimed at English speakers, for example:
 - **Content is checked by tests:** lesson words only use letters taught so far, and every
   multi-vowel word has a stress mark.
 
+### Implementation note (Phase 4): Flashcards
+- **Built-in decks:**
+  - **Starter words:** 291 high-frequency words in 12 themed units, all stress-marked.
+  - **Phrases:** the 32 survival phrases.
+  - Built-in cards are synced on startup without overwriting your edits. They can be
+    suspended but not deleted.
+- **Custom decks** support add, edit, suspend and delete, plus CSV/TSV import
+  (`russian,english[,notes]`). Words with more than one vowel and no stress mark are
+  flagged.
+- **Scheduling** uses FSRS via `py-fsrs`: default parameters, 90% desired retention, a
+  study day that starts at 4am, a new-card limit per day (default 10), and a 20-minute
+  learn-ahead window for learning cards.
+- **Study order:** due learning cards, then due reviews, then new cards, then learning cards
+  due soon.
+- **Speaking recall:** a review shows the English; you say the Russian from memory, and the
+  pronunciation score suggests a rating (≥85 Good, ≥55 Hard, otherwise Again). You can
+  override it. A new card shows everything first, so you can listen and repeat.
+- **Letter statistics:** flashcard attempts feed the per-letter scores too.
+- **Not yet:** example sentences are not in the starter deck. They come with the sentence
+  trainer in Phase 5.
+
 ### Stress and intonation (later phase)
 Word stress is the hardest thing to score automatically. Planned approach:
 1. Force-align your audio to the target phonemes.
@@ -196,7 +217,7 @@ Revised order:
 1. Hear and say ✅ (done 2026-09-14)
 2. Pronunciation scoring ✅ (done 2026-09-14; see the implementation note below)
 3. Alphabet & Sounds ✅ (done 2026-09-14; see the implementation note below)
-4. Flashcards and SRS
+4. Flashcards and SRS ✅ (done 2026-09-14; see the implementation note below)
 5. Sentence trainer and minimal pairs
 6. Conversation partner (Ollama)
 7. Stress, intonation and progress

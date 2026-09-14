@@ -2,7 +2,13 @@ import type { ReactNode } from "react";
 import type { Health } from "./api";
 import Stressed from "./Stressed";
 
-export type Mode = "alphabet" | "phrases";
+export type Mode = "alphabet" | "flashcards" | "phrases";
+
+const MODES: { id: Mode; label: string }[] = [
+  { id: "alphabet", label: "🔤 Letters & Sounds" },
+  { id: "flashcards", label: "🃏 Flashcards" },
+  { id: "phrases", label: "💬 Phrases" },
+];
 
 interface Props {
   mode: Mode;
@@ -20,12 +26,11 @@ export default function Layout({ mode, onMode, health, sidebar, children }: Prop
           <Stressed text="Говори́!" /> <small>Speak Russian</small>
         </h1>
         <nav className="modes">
-          <button className={mode === "alphabet" ? "active" : ""} onClick={() => onMode("alphabet")}>
-            🔤 Letters & Sounds
-          </button>
-          <button className={mode === "phrases" ? "active" : ""} onClick={() => onMode("phrases")}>
-            💬 Phrases
-          </button>
+          {MODES.map((m) => (
+            <button key={m.id} className={mode === m.id ? "active" : ""} onClick={() => onMode(m.id)}>
+              {m.label}
+            </button>
+          ))}
         </nav>
         {sidebar}
       </aside>

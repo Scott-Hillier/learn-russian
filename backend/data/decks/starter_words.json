@@ -1,0 +1,108 @@
+{
+  "slug": "starter-words",
+  "name": "Starter words",
+  "description": "About 300 high-frequency words in 12 themed units, in a sensible learning order.",
+  "units": [
+    {"title": "People", "cards": [
+      ["я", "I"], ["ты", "you (informal)"], ["вы", "you (polite / plural)"], ["он", "he"],
+      ["он+а", "she"], ["он+о", "it"], ["мы", "we"], ["он+и", "they"],
+      ["челов+ек", "person"], ["мужч+ина", "man"], ["ж+енщина", "woman"], ["ребёнок", "child"],
+      ["д+ети", "children"], ["друг", "friend"], ["подр+уга", "friend (female)"], ["семь+я", "family"],
+      ["м+ама", "mum"], ["п+апа", "dad"], ["мать", "mother"], ["от+ец", "father"],
+      ["брат", "brother"], ["сестр+а", "sister"], ["сын", "son"], ["дочь", "daughter"],
+      ["муж", "husband"], ["жен+а", "wife"], ["б+абушка", "grandmother"], ["д+едушка", "grandfather"]
+    ]},
+    {"title": "Question words & basics", "cards": [
+      ["кто", "who"], ["что", "what"], ["где", "where"], ["куд+а", "where to"],
+      ["когд+а", "when"], ["почем+у", "why"], ["как", "how"], ["ск+олько", "how many / how much"],
+      ["как+ой", "which / what kind of"], ["да", "yes"], ["нет", "no"], ["не", "not"],
+      ["и", "and"], ["а", "and / but (contrast)"], ["но", "but"], ["+или", "or"],
+      ["+это", "this is / it is"], ["тут", "here"], ["там", "there"], ["здесь", "here"],
+      ["вот", "here is"], ["т+оже", "also, too"], ["+очень", "very"], ["всё", "everything"],
+      ["вс+е", "everyone"], ["т+олько", "only"], ["уж+е", "already"], ["ещё", "still, more"],
+      ["сейч+ас", "now"], ["пот+ом", "later, then"]
+    ]},
+    {"title": "Everyday verbs", "cards": [
+      ["быть", "to be"], ["есть", "to eat; there is"], ["пить", "to drink"], ["жить", "to live"],
+      ["знать", "to know"], ["говор+ить", "to speak, to say"], ["поним+ать", "to understand"], ["хот+еть", "to want"],
+      ["мочь", "to be able to, can"], ["люб+ить", "to love, to like"], ["д+елать", "to do, to make"], ["идт+и", "to go (on foot)"],
+      ["+ехать", "to go (by transport)"], ["раб+отать", "to work"], ["чит+ать", "to read"], ["пис+ать", "to write"],
+      ["смотр+еть", "to watch, to look"], ["сл+ушать", "to listen"], ["в+идеть", "to see"], ["спать", "to sleep"],
+      ["д+умать", "to think"], ["дав+ать", "to give"], ["брать", "to take"], ["куп+ить", "to buy"],
+      ["игр+ать", "to play"], ["уч+ить", "to learn, to teach"], ["изуч+ать", "to study"], ["ст+оить", "to cost"],
+      ["ждать", "to wait"]
+    ]},
+    {"title": "Food & drink", "cards": [
+      ["вод+а", "water"], ["чай", "tea"], ["к+офе", "coffee"], ["молок+о", "milk"],
+      ["сок", "juice"], ["хлеб", "bread"], ["сыр", "cheese"], ["м+ясо", "meat"],
+      ["р+ыба", "fish"], ["яйц+о", "egg"], ["+овощи", "vegetables"], ["фр+укты", "fruit"],
+      ["+яблоко", "apple"], ["суп", "soup"], ["с+ахар", "sugar"], ["соль", "salt"],
+      ["вин+о", "wine"], ["п+иво", "beer"], ["з+автрак", "breakfast"], ["об+ед", "lunch"],
+      ["+ужин", "dinner"], ["ед+а", "food"], ["рестор+ан", "restaurant"], ["каф+е", "café"],
+      ["мен+ю", "menu"], ["счёт", "bill"]
+    ]},
+    {"title": "Numbers", "cards": [
+      ["ноль", "zero"], ["од+ин", "one"], ["два", "two"], ["три", "three"],
+      ["чет+ыре", "four"], ["пять", "five"], ["шесть", "six"], ["семь", "seven"],
+      ["в+осемь", "eight"], ["д+евять", "nine"], ["д+есять", "ten"], ["од+иннадцать", "eleven"],
+      ["двен+адцать", "twelve"], ["дв+адцать", "twenty"], ["тр+идцать", "thirty"], ["сто", "one hundred"],
+      ["т+ысяча", "one thousand"], ["п+ервый", "first"], ["втор+ой", "second"], ["тр+етий", "third"]
+    ]},
+    {"title": "Time", "cards": [
+      ["день", "day"], ["ночь", "night"], ["+утро", "morning"], ["в+ечер", "evening"],
+      ["нед+еля", "week"], ["м+есяц", "month"], ["год", "year"], ["час", "hour"],
+      ["мин+ута", "minute"], ["вр+емя", "time"], ["сег+одня", "today"], ["з+автра", "tomorrow"],
+      ["вчер+а", "yesterday"], ["всегд+а", "always"], ["иногд+а", "sometimes"], ["никогд+а", "never"],
+      ["р+ано", "early"], ["п+оздно", "late"], ["понед+ельник", "Monday"], ["вт+орник", "Tuesday"],
+      ["сред+а", "Wednesday"], ["четв+ерг", "Thursday"], ["п+ятница", "Friday"], ["субб+ота", "Saturday"],
+      ["воскрес+енье", "Sunday"]
+    ]},
+    {"title": "Places & travel", "cards": [
+      ["дом", "house, home"], ["кварт+ира", "flat, apartment"], ["г+ород", "city, town"], ["+улица", "street"],
+      ["магаз+ин", "shop"], ["р+ынок", "market"], ["банк", "bank"], ["апт+ека", "pharmacy"],
+      ["больн+ица", "hospital"], ["шк+ола", "school"], ["университ+ет", "university"], ["раб+ота", "work, job"],
+      ["оф+ис", "office"], ["парк", "park"], ["мост", "bridge"], ["вокз+ал", "railway station"],
+      ["аэроп+орт", "airport"], ["гост+иница", "hotel"], ["муз+ей", "museum"], ["те+атр", "theatre"],
+      ["метр+о", "metro, underground"], ["авт+обус", "bus"], ["маш+ина", "car"], ["п+оезд", "train"],
+      ["бил+ет", "ticket"], ["туал+ет", "toilet"], ["стран+а", "country"], ["Росс+ия", "Russia"],
+      ["Москв+а", "Moscow"]
+    ]},
+    {"title": "Describing things", "cards": [
+      ["хор+оший", "good"], ["плох+ой", "bad"], ["больш+ой", "big"], ["м+аленький", "small"],
+      ["н+овый", "new"], ["ст+арый", "old"], ["молод+ой", "young"], ["крас+ивый", "beautiful"],
+      ["интер+есный", "interesting"], ["тр+удный", "difficult"], ["лёгкий", "easy, light"], ["гор+ячий", "hot (to the touch)"],
+      ["хол+одный", "cold"], ["тёплый", "warm"], ["дорог+ой", "expensive; dear"], ["дешёвый", "cheap"],
+      ["б+ыстрый", "fast"], ["м+едленный", "slow"], ["р+усский", "Russian"], ["англ+ийский", "English"],
+      ["пр+авильный", "correct"], ["гл+авный", "main"], ["б+елый", "white"], ["чёрный", "black"],
+      ["кр+асный", "red"], ["с+иний", "blue"], ["зелёный", "green"]
+    ]},
+    {"title": "Useful words & feelings", "cards": [
+      ["хорош+о", "well, good, OK"], ["пл+охо", "badly"], ["мн+ого", "a lot, many"], ["м+ало", "a little, few"],
+      ["бл+изко", "near"], ["далек+о", "far"], ["пр+авда", "truth; true"], ["м+ожно", "it's allowed, may I"],
+      ["нельз+я", "it's not allowed"], ["н+адо", "(it's) necessary, need to"], ["н+ужно", "(it's) necessary"], ["кон+ечно", "of course"],
+      ["спас+ибо", "thank you"], ["пож+алуйста", "please; you're welcome"], ["извин+ите", "excuse me, sorry"], ["прив+ет", "hi"],
+      ["пок+а", "bye"], ["в+есело", "fun, cheerful"], ["гр+устно", "sad"], ["ск+учно", "boring"],
+      ["уст+ал", "tired (said by a man)"], ["рад", "glad (said by a man)"], ["люб+овь", "love"]
+    ]},
+    {"title": "Home & things", "cards": [
+      ["к+омната", "room"], ["к+ухня", "kitchen"], ["окн+о", "window"], ["дверь", "door"],
+      ["стол", "table"], ["стул", "chair"], ["кров+ать", "bed"], ["телеф+он", "phone"],
+      ["компь+ютер", "computer"], ["кн+ига", "book"], ["газ+ета", "newspaper"], ["р+учка", "pen"],
+      ["сл+ово", "word"], ["д+еньги", "money"], ["ключ", "key"], ["с+умка", "bag"],
+      ["од+ежда", "clothes"], ["вещь", "thing"], ["под+арок", "present, gift"], ["письм+о", "letter (mail)"]
+    ]},
+    {"title": "Body & health", "cards": [
+      ["голов+а", "head"], ["рук+а", "hand, arm"], ["ног+а", "leg, foot"], ["глаз", "eye"],
+      ["+ухо", "ear"], ["нос", "nose"], ["рот", "mouth"], ["зуб", "tooth"],
+      ["с+ердце", "heart"], ["врач", "doctor"], ["бол+ит", "(it) hurts"], ["здор+овый", "healthy"],
+      ["б+олен", "ill (said about a man)"], ["лек+арство", "medicine"]
+    ]},
+    {"title": "Nature & weather", "cards": [
+      ["пог+ода", "weather"], ["с+олнце", "sun"], ["дождь", "rain"], ["снег", "snow"],
+      ["в+етер", "wind"], ["н+ебо", "sky"], ["м+оре", "sea"], ["рек+а", "river"],
+      ["лес", "forest"], ["гор+а", "mountain"], ["д+ерево", "tree"], ["цвет+ок", "flower"],
+      ["соб+ака", "dog"], ["к+ошка", "cat (female)"], ["кот", "cat (male)"], ["пт+ица", "bird"],
+      ["зим+а", "winter"], ["весн+а", "spring"], ["л+ето", "summer"], ["+осень", "autumn"]
+    ]}
+  ]
+}

@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
 import { api, type Health } from "./api";
 import AlphabetView from "./AlphabetView";
+import FlashcardsView from "./FlashcardsView";
 import type { Mode } from "./Layout";
 import PhrasesView from "./PhrasesView";
 
 const MODE_KEY = "learn-russian:mode";
+const MODES: Mode[] = ["alphabet", "flashcards", "phrases"];
 
 function loadMode(): Mode {
   try {
-    return localStorage.getItem(MODE_KEY) === "phrases" ? "phrases" : "alphabet";
+    const stored = localStorage.getItem(MODE_KEY) as Mode | null;
+    return stored && MODES.includes(stored) ? stored : "alphabet";
   } catch {
     return "alphabet";
   }
@@ -43,5 +46,7 @@ export default function App() {
   }, []);
 
   const layout = { mode, onMode: changeMode, health };
-  return mode === "alphabet" ? <AlphabetView layout={layout} /> : <PhrasesView layout={layout} />;
+  if (mode === "flashcards") return <FlashcardsView layout={layout} />;
+  if (mode === "phrases") return <PhrasesView layout={layout} />;
+  return <AlphabetView layout={layout} />;
 }
