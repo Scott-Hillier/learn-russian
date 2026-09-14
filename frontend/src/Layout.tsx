@@ -2,11 +2,13 @@ import type { ReactNode } from "react";
 import type { Health } from "./api";
 import Stressed from "./Stressed";
 
-export type Mode = "alphabet" | "flashcards" | "phrases";
+export type Mode = "alphabet" | "flashcards" | "sentences" | "pairs" | "phrases";
 
 const MODES: { id: Mode; label: string }[] = [
   { id: "alphabet", label: "🔤 Letters & Sounds" },
   { id: "flashcards", label: "🃏 Flashcards" },
+  { id: "sentences", label: "🗣 Sentences" },
+  { id: "pairs", label: "👂 Sound pairs" },
   { id: "phrases", label: "💬 Phrases" },
 ];
 

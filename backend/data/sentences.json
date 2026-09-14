@@ -1,0 +1,88 @@
+{
+  "themes": [
+    {"title": "Introductions", "sentences": [
+      {"text": "Мен+я зов+ут | +Анна.", "english": "My name is Anna.",
+       "glosses": ["me", "(they) call", "Anna"]},
+      {"text": "Я из Лонд+она.", "english": "I'm from London.",
+       "glosses": ["I", "from", "London"]},
+      {"text": "Я изуч+аю | р+усский яз+ык.", "english": "I'm learning Russian.",
+       "glosses": ["I", "study", "Russian", "language"]},
+      {"text": "+Очень при+ятно | познак+омиться.", "english": "Very nice to meet you.",
+       "glosses": ["very", "pleasant", "to get acquainted"]},
+      {"text": "Как у вас | дел+а?", "english": "How are you? (polite)",
+       "glosses": ["how", "at", "you", "affairs"]},
+      {"text": "У мен+я всё хорош+о, | спас+ибо.", "english": "I'm fine, thank you.",
+       "glosses": ["at", "me", "everything", "good", "thanks"]}
+    ]},
+    {"title": "At the café", "sentences": [
+      {"text": "Я хоч+у | ч+ашку ч+ая.", "english": "I'd like a cup of tea.",
+       "glosses": ["I", "want", "cup", "of tea"]},
+      {"text": "Мне к+офе | с молок+ом, | пож+алуйста.", "english": "A coffee with milk for me, please.",
+       "glosses": ["to me", "coffee", "with", "milk", "please"]},
+      {"text": "Ск+олько +это ст+оит?", "english": "How much does this cost?",
+       "glosses": ["how much", "this", "costs"]},
+      {"text": "Счёт, пож+алуйста.", "english": "The bill, please.",
+       "glosses": ["bill", "please"]},
+      {"text": "+Это +очень вк+усно!", "english": "This is very tasty!",
+       "glosses": ["this", "very", "tasty"]},
+      {"text": "У вас есть | вод+а без г+аза?", "english": "Do you have still water?",
+       "glosses": ["at", "you", "there is", "water", "without", "gas"]}
+    ]},
+    {"title": "Getting around", "sentences": [
+      {"text": "Где метр+о?", "english": "Where is the metro?",
+       "glosses": ["where", "metro"]},
+      {"text": "Как пройт+и | к вокз+алу?", "english": "How do I get to the station?",
+       "glosses": ["how", "to get (on foot)", "to", "station"]},
+      {"text": "+Это далек+о?", "english": "Is it far?",
+       "glosses": ["this", "far"]},
+      {"text": "Мне н+ужно | в аэроп+орт.", "english": "I need to go to the airport.",
+       "glosses": ["to me", "necessary", "to", "airport"]},
+      {"text": "Остан+овите здесь, | пож+алуйста.", "english": "Stop here, please.",
+       "glosses": ["stop", "here", "please"]},
+      {"text": "Я не зн+аю, | где гост+иница.", "english": "I don't know where the hotel is.",
+       "glosses": ["I", "not", "know", "where", "hotel"]}
+    ]},
+    {"title": "Everyday life", "sentences": [
+      {"text": "Я жив+у | в больш+ом г+ороде.", "english": "I live in a big city.",
+       "glosses": ["I", "live", "in", "big", "city"]},
+      {"text": "Я раб+отаю | в оф+исе.", "english": "I work in an office.",
+       "glosses": ["I", "work", "in", "office"]},
+      {"text": "Сег+одня | хор+ошая пог+ода.", "english": "The weather is nice today.",
+       "glosses": ["today", "good", "weather"]},
+      {"text": "Я любл+ю | чит+ать кн+иги.", "english": "I love reading books.",
+       "glosses": ["I", "love", "to read", "books"]},
+      {"text": "Что ты д+елаешь?", "english": "What are you doing?",
+       "glosses": ["what", "you", "are doing"]},
+      {"text": "Я уст+ал | и хоч+у спать.", "english": "I'm tired and want to sleep. (said by a man)",
+       "glosses": ["I", "tired", "and", "want", "to sleep"]}
+    ]},
+    {"title": "Family & friends", "sentences": [
+      {"text": "У мен+я есть | брат и сестр+а.", "english": "I have a brother and a sister.",
+       "glosses": ["at", "me", "there is", "brother", "and", "sister"]},
+      {"text": "Мо+я м+ама | раб+отает врач+ом.", "english": "My mum works as a doctor.",
+       "glosses": ["my", "mum", "works", "as a doctor"]},
+      {"text": "Мо+ему с+ыну | пять лет.", "english": "My son is five years old.",
+       "glosses": ["to my", "son", "five", "years"]},
+      {"text": "Мы живём вм+есте.", "english": "We live together.",
+       "glosses": ["we", "live", "together"]},
+      {"text": "+Это мой друг | Ив+ан.", "english": "This is my friend Ivan.",
+       "glosses": ["this", "my", "friend", "Ivan"]},
+      {"text": "Как зов+ут | в+ашу дочь?", "english": "What is your daughter's name?",
+       "glosses": ["how", "(they) call", "your", "daughter"]}
+    ]},
+    {"title": "Asking for help", "sentences": [
+      {"text": "Я не поним+аю.", "english": "I don't understand.",
+       "glosses": ["I", "not", "understand"]},
+      {"text": "Говор+ите м+едленнее, | пож+алуйста.", "english": "Please speak more slowly.",
+       "glosses": ["speak", "more slowly", "please"]},
+      {"text": "Повтор+ите, | пож+алуйста.", "english": "Please repeat that.",
+       "glosses": ["repeat", "please"]},
+      {"text": "Что +это зн+ачит?", "english": "What does this mean?",
+       "glosses": ["what", "this", "means"]},
+      {"text": "Помог+ите, | пож+алуйста!", "english": "Please help me!",
+       "glosses": ["help", "please"]},
+      {"text": "У мен+я | бол+ит голов+а.", "english": "I have a headache.",
+       "glosses": ["at", "me", "hurts", "head"]}
+    ]}
+  ]
+}

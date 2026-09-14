@@ -92,11 +92,79 @@ def alphabet_items() -> None:
           f"≥85%: {sum(s >= 85 for s in scores)}/{len(scores)}")
 
 
+def contrast_letters(target: str, other: str) -> list[int]:
+    """Indices (in the stress-stripped target) of letters that differ from the other word."""
+    from difflib import SequenceMatcher
+    t, o = strip_stress(target).lower(), strip_stress(other).lower()
+    idx = []
+    for op, i1, i2, _, _ in SequenceMatcher(a=t, b=o, autojunk=False).get_opcodes():
+        if op in ("replace", "delete"):
+            idx += range(i1, i2)
+    return idx
+
+
+def minimal_pairs() -> None:
+    """For each pair, the contrast letter must score well for the right word and be flagged for the other."""
+    data = json.loads((config.DATA_DIR / "minimal_pairs.json").read_text(encoding="utf-8"))
+    voices = [("silero", "xenia"), ("silero", "aidar"), ("say", "Milena")]
+    ok_total = checks_total = 0
+    for group in data["groups"]:
+        for pair in group["pairs"]:
+            words = [pair["a"][0], pair["b"][0]]
+            for target, other in (words, words[::-1]):
+                idx = contrast_letters(target, other)
+                if not idx:  # e.g. мат vs мать: target has no letter to check
+                    continue
+                for kind, voice in voices:
+                    def contrast_score(spoken):
+                        audio = silero(spoken, voice) if kind == "silero" else say(strip_stress(spoken), voice)
+                        letters = scorer.score([target], audio)[0]["letters"]
+                        return min(letters[i]["score"] if letters[i]["score"] is not None else 1.0 for i in idx)
+                    same, cross = contrast_score(target), contrast_score(other)
+                    ok = same >= 0.99 and cross < 0.99
+                    ok_total += ok
+                    checks_total += 1
+                    if not ok:
+                        print(f"  ✗ {group['id']}: target {strip_stress(target)} [{voice}] "
+                              f"same={same:.2f} said-{strip_stress(other)}={cross:.2f}")
+    print(f"minimal pairs: {ok_total}/{checks_total} checks discriminate")
+
+
+def sentence_items() -> None:
+    """Full sentences, chunks and practice words (3+ letters) with two native voices."""
+    data = json.loads((config.DATA_DIR / "sentences.json").read_text(encoding="utf-8"))
+    groups: dict[str, list[str]] = {"sentences": [], "chunks": [], "words": []}
+    for theme in data["themes"]:
+        for s in theme["sentences"]:
+            groups["sentences"].append(" ".join(s["text"].replace("|", " ").split()))
+            chunks = [c.strip() for c in s["text"].split("|")]
+            if len(chunks) > 1:
+                groups["chunks"] += chunks
+            groups["words"] += [w for w in target_words(s["text"].replace("|", " ")) if len(strip_stress(w)) >= 3]
+    for name, texts in groups.items():
+        texts = list(dict.fromkeys(texts))
+        scores = []
+        for text in texts:
+            for spk in ("xenia", "aidar"):
+                s, flagged = score(text, silero(text, spk))
+                scores.append(s)
+                if s < 85:
+                    print(f"  {strip_stress(text)} [{spk}] {s}% flagged {flagged}")
+        print(f"{name}: {len(texts)} texts, mean {statistics.mean(scores):.1f}%  "
+              f"≥85%: {sum(s >= 85 for s in scores)}/{len(scores)}")
+
+
 def main() -> int:
     tts.load()
     scorer.load()
+    if "--sentences" in sys.argv:
+        sentence_items()
+        return 0
     if "--alphabet" in sys.argv:
         alphabet_items()
+        return 0
+    if "--pairs" in sys.argv:
+        minimal_pairs()
         return 0
     phrases = json.loads((config.DATA_DIR / "phrases.json").read_text(encoding="utf-8"))
 

@@ -17,20 +17,34 @@ def decode_to_pcm16k(data: bytes) -> np.ndarray:
     return np.frombuffer(proc.stdout, dtype=np.float32).copy()
 
 
-def trim_and_pad(audio: np.ndarray, pad_s: float = 0.3) -> np.ndarray:
-    """Trim leading/trailing silence, then pad a little so Whisper doesn't clip short words."""
-    if audio.size == 0:
-        return audio
-    frame = int(0.02 * SAMPLE_RATE)
-    n = audio.size // frame
+FRAME = int(0.02 * SAMPLE_RATE)
+
+
+def voiced_bounds(audio: np.ndarray) -> tuple[int, int] | None:
+    """Sample range from the first to the last frame loud enough to be speech."""
+    n = audio.size // FRAME
     if n == 0:
-        return audio
-    rms = np.sqrt(np.mean(audio[: n * frame].reshape(n, frame) ** 2, axis=1))
+        return None
+    rms = np.sqrt(np.mean(audio[: n * FRAME].reshape(n, FRAME) ** 2, axis=1))
     threshold = max(0.01, rms.max() * 0.08)
     voiced = np.where(rms > threshold)[0]
-    if voiced.size:
-        start = max(0, (voiced[0] - 5) * frame)
-        end = min(audio.size, (voiced[-1] + 6) * frame)
+    if not voiced.size:
+        return None
+    return int(voiced[0] * FRAME), int((voiced[-1] + 1) * FRAME)
+
+
+def voiced_duration(audio: np.ndarray) -> float:
+    """Seconds between the start and end of speech (pauses inside the utterance included)."""
+    bounds = voiced_bounds(audio)
+    return (bounds[1] - bounds[0]) / SAMPLE_RATE if bounds else 0.0
+
+
+def trim_and_pad(audio: np.ndarray, pad_s: float = 0.3) -> np.ndarray:
+    """Trim leading/trailing silence, then pad a little so Whisper doesn't clip short words."""
+    bounds = voiced_bounds(audio)
+    if bounds:
+        start = max(0, bounds[0] - 5 * FRAME)
+        end = min(audio.size, bounds[1] + 5 * FRAME)
         audio = audio[start:end]
     pad = np.zeros(int(pad_s * SAMPLE_RATE), dtype=np.float32)
     return np.concatenate([pad, audio, pad])

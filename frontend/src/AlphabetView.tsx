@@ -11,7 +11,7 @@ import {
 import Layout from "./Layout";
 import LetterCard from "./LetterCard";
 import LetterQuiz from "./LetterQuiz";
-import PracticeCard from "./PracticeCard";
+import Drill, { type DrillItem } from "./Drill";
 
 type LayoutProps = Omit<ComponentProps<typeof Layout>, "sidebar" | "children">;
 type Tab = "learn" | "say" | "read" | "quiz";
@@ -182,7 +182,7 @@ export default function AlphabetView({ layout }: { layout: LayoutProps }) {
           {tab === "read" && (
             <Drill
               key={`read-${lesson.id}`}
-              items={lesson.words.map((w) => ({ word: w, focus: lesson.letters }))}
+              items={lesson.words.map((w) => ({ phrase: toPhrase(w, "Reading practice"), focus: lesson.letters }))}
               source="reading"
               hideHints
               onResult={refreshMastery}
@@ -210,59 +210,15 @@ export default function AlphabetView({ layout }: { layout: LayoutProps }) {
   );
 }
 
-interface DrillItem {
-  word: WordItem;
-  focus: string[];
-}
-
 function sayItems(lesson: Lesson, letters: Map<string, AlphabetLetter>, only: string | null): DrillItem[] {
   const chosen = only ? [only] : lesson.letters;
-  return chosen.flatMap((c) => letters.get(c)!.examples.map((word) => ({ word, focus: [c] })));
-}
-
-interface DrillProps {
-  items: DrillItem[];
-  source: "letter" | "reading";
-  hideHints?: boolean;
-  banner?: React.ReactNode;
-  onResult: () => void;
-  onFinish: () => void;
-  finishLabel: string;
-}
-
-/** Steps through words one at a time with a PracticeCard. */
-function Drill({ items, source, hideHints, banner, onResult, onFinish, finishLabel }: DrillProps) {
-  const [index, setIndex] = useState(0);
-  const item = items[index];
-  const isLast = index === items.length - 1;
-  const phrase: Phrase = {
-    ...item.word,
-    id: index,
-    category: source === "letter" ? `Letter ${item.focus.join(", ")}` : "Reading practice",
-  };
-  return (
-    <>
-      {banner}
-      <PracticeCard
-        key={`${index}-${item.word.text}`}
-        phrase={phrase}
-        source={source}
-        focus={item.focus}
-        hideHints={hideHints}
-        position={`${index + 1} / ${items.length}`}
-        onPrev={index > 0 ? () => setIndex(index - 1) : undefined}
-        onNext={isLast ? undefined : () => setIndex(index + 1)}
-        onResult={onResult}
-      />
-      {isLast && (
-        <div className="lesson-next">
-          <button className="primary" onClick={onFinish}>
-            {finishLabel}
-          </button>
-        </div>
-      )}
-    </>
+  return chosen.flatMap((c) =>
+    letters.get(c)!.examples.map((word) => ({ phrase: toPhrase(word, `Letter ${c}`), focus: [c] })),
   );
+}
+
+function toPhrase(word: WordItem, category: string): Phrase {
+  return { ...word, id: 0, category };
 }
 
 interface TileProps {

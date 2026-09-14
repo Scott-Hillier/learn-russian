@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { api, type AttemptResult, type AttemptSource, type Phrase } from "./api";
+import { api, type AttemptResult, type AttemptSource, type Phrase, type Timing } from "./api";
 import Stressed from "./Stressed";
 import { useAudio } from "./useAudio";
 import { useRecorder } from "./useRecorder";
@@ -16,10 +16,22 @@ interface Props {
   hideHints?: boolean;
   /** e.g. "3 / 12", shown in the card header. */
   position?: string;
+  /** Compare speaking pace with the native voice. */
+  timing?: boolean;
   onResult?: (result: AttemptResult) => void;
 }
 
-export default function PracticeCard({ phrase, source, onPrev, onNext, focus, hideHints, position, onResult }: Props) {
+export default function PracticeCard({
+  phrase,
+  source,
+  onPrev,
+  onNext,
+  focus,
+  hideHints,
+  position,
+  timing,
+  onResult,
+}: Props) {
   const [result, setResult] = useState<AttemptResult | null>(null);
   const [checking, setChecking] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -43,7 +55,7 @@ export default function PracticeCard({ phrase, source, onPrev, onNext, focus, hi
       setChecking(true);
       setError(null);
       try {
-        const r = await api.attempt(phrase.text, blob, source);
+        const r = await api.attempt(phrase.text, blob, source, timing);
         setResult(r);
         setRevealed(true);
         setBest((b) => Math.max(b ?? 0, r.score));
@@ -56,7 +68,7 @@ export default function PracticeCard({ phrase, source, onPrev, onNext, focus, hi
         setChecking(false);
       }
     },
-    [phrase.text, source],
+    [phrase.text, source, timing],
   );
 
   const rec = useRecorder(onRecorded);
@@ -171,6 +183,7 @@ export default function PracticeCard({ phrase, source, onPrev, onNext, focus, hi
               <div className="heard">
                 I heard: <span lang="ru">{result.heard || "(nothing)"}</span>
               </div>
+              {result.timing && <TimingNote timing={result.timing} />}
               {focusScores.length > 0 && (
                 <div className="focus-scores">
                   {focusScores.map(({ letter, score }) => (
@@ -215,6 +228,23 @@ export default function PracticeCard({ phrase, source, onPrev, onNext, focus, hi
           </button>
         </div>
       )}
+    </div>
+  );
+}
+
+export function TimingNote({ timing }: { timing: Timing }) {
+  const { ratio } = timing;
+  const verdict =
+    ratio > 1.5
+      ? "much slower than native. That's fine while learning; speed up as it gets comfortable"
+      : ratio > 1.2
+        ? "a little slower than native"
+        : ratio >= 0.8
+          ? "close to native pace 👍"
+          : "faster than native. Slow down a little so every sound is clear";
+  return (
+    <div className="timing-note">
+      ⏱ {timing.yours.toFixed(1)}s vs native {timing.native.toFixed(1)}s: {verdict}.
     </div>
   );
 }

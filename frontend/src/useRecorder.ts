@@ -6,7 +6,7 @@ const SILENCE_STOP_MS = 1400; // auto-stop after this much silence once speech s
 const MAX_MS = 15000;
 
 /** Microphone recorder with a live level meter and auto-stop on silence. */
-export function useRecorder(onDone: (audio: Blob) => void) {
+export function useRecorder(onDone: (audio: Blob) => void, { autoStop = true }: { autoStop?: boolean } = {}) {
   const [recording, setRecording] = useState(false);
   const [level, setLevel] = useState(0);
   const [error, setError] = useState<string | null>(null);
@@ -64,7 +64,7 @@ export function useRecorder(onDone: (audio: Blob) => void) {
       peak = Math.max(peak, rms);
       if (rms > SPEECH_LEVEL) heardSpeech = true;
       if (rms > Math.max(SPEECH_LEVEL, peak * SILENCE_RATIO)) lastLoud = now;
-      if ((heardSpeech && now - lastLoud > SILENCE_STOP_MS) || now - startedAt > MAX_MS) {
+      if ((autoStop && heardSpeech && now - lastLoud > SILENCE_STOP_MS) || now - startedAt > MAX_MS) {
         stop();
         return;
       }
@@ -74,7 +74,7 @@ export function useRecorder(onDone: (audio: Blob) => void) {
     recorder.start();
     setRecording(true);
     rafRef.current = requestAnimationFrame(tick);
-  }, [stop]);
+  }, [stop, autoStop]);
 
   useEffect(
     () => () => {

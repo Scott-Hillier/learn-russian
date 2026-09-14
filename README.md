@@ -34,6 +34,24 @@ The **🃏 Flashcards** screen uses spaced repetition (FSRS) to review vocabular
   before the stressed vowel).
 - **Settings:** set how many new cards to introduce per day in the sidebar.
 
+## Sentences
+The **🗣 Sentences** screen teaches 36 everyday sentences in five steps:
+1. **Listen**, with a word-by-word translation.
+2. **Say the words.**
+3. **Say the chunks.**
+4. **Say the full sentence.** You also get feedback on your pace compared with the native
+   voice.
+5. **Shadow:** speak along with the native audio. Use headphones, otherwise the mic hears
+   the native voice.
+
+## Sound pairs
+The **👂 Sound pairs** screen drills pairs of words that differ by one sound (был/бил,
+мат/мать, дом/том…):
+- **Listen & choose** trains your ear.
+- **Say the pairs** checks you produce the difference.
+- **Ordering:** groups for the sounds you score lowest on elsewhere in the app are listed
+  first.
+
 ## How to practise phrases
 1. Pick a phrase in the sidebar, or type your own. Mark stress with `+`, e.g. `молок+о`.
 2. **🔊 Listen** (`L`) or **🐢 Slow** (`S`).

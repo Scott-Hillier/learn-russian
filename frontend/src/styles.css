@@ -357,3 +357,32 @@ code { background: var(--bg); border-radius: 4px; padding: 0 4px; font-size: 0.8
 .study-done { text-align: center; }
 @media (max-width: 760px) { .stat-row { grid-template-columns: repeat(2, 1fr); } .ratings { grid-template-columns: repeat(2, 1fr); } }
 .deck-tile .muted { font-size: 0.85rem; }
+.timing-note { font-size: 0.88rem; margin-top: 6px; }
+
+/* ---------- Sentences & sound pairs ---------- */
+.sentence-row { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+.sentence-row .pill { font-size: 0.7rem; padding: 1px 6px; }
+.section-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 22px 0 8px; }
+.gloss-grid { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.gloss {
+  border: 1px solid var(--line); background: var(--bg); border-radius: 12px; padding: 8px 12px;
+  display: flex; flex-direction: column; align-items: center; min-width: 76px;
+}
+.gloss:hover { border-color: var(--accent); }
+.gloss-ru { font-size: 1.25rem; font-weight: 600; }
+.gloss-en { font-size: 0.8rem; }
+.gloss .muted { font-size: 0.72rem; }
+.shadow-intro { text-align: left; background: var(--bg); border-radius: 10px; padding: 10px 14px; font-size: 0.9rem; margin: 12px 0 0; }
+.segmented { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; }
+.controls .segmented button { border: 0; border-radius: 0; padding: 10px 14px; }
+.controls .segmented button.active { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+.sidebar-note { color: var(--muted); font-size: 0.82rem; margin: 0 6px 10px; }
+.pair-table { display: flex; flex-direction: column; gap: 8px; }
+.pair-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.pair-word {
+  display: flex; align-items: baseline; gap: 10px; background: var(--panel); border: 1px solid var(--line);
+  border-radius: 12px; padding: 10px 14px; text-align: left;
+}
+.pair-word:hover { border-color: var(--accent); }
+.pair-ru { font-size: 1.4rem; font-weight: 600; }
+.pair-options .quiz-option { display: flex; flex-direction: column; gap: 2px; }

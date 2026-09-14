@@ -19,6 +19,14 @@ def record_attempt(source: str, target: str, feedback: dict, path: Path | None =
         conn.executemany("INSERT INTO letter_scores (attempt_id, letter, score) VALUES (?, ?, ?)", rows)
 
 
+def best_scores(source: str, path: Path | None = None) -> dict[str, int]:
+    """Best overall score per target text for one practice source."""
+    with connect(path) as conn:
+        rows = conn.execute("SELECT target, MAX(score) FROM attempts WHERE source = ? GROUP BY target",
+                            (source,)).fetchall()
+    return {target: best for target, best in rows}
+
+
 def letter_mastery(path: Path | None = None) -> dict[str, dict]:
     """Per letter: number of scored occurrences, recent average (0–1) and a status."""
     with connect(path) as conn:

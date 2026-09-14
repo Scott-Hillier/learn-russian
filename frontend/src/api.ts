@@ -66,7 +66,34 @@ export interface LetterMastery {
   status: "learning" | "mastered";
 }
 
-export type AttemptSource = "phrase" | "letter" | "reading" | "custom" | "flashcard";
+export type AttemptSource = "phrase" | "letter" | "reading" | "custom" | "flashcard" | "sentence" | "pair";
+
+export interface SentenceWord extends Described {
+  gloss: string;
+}
+
+export interface Sentence extends Described {
+  id: number;
+  theme: string;
+  english: string;
+  chunks: Described[];
+  words: SentenceWord[];
+}
+
+export interface PairWord extends Described {
+  english: string;
+}
+
+export interface PairGroup {
+  id: string;
+  title: string;
+  letters: string[];
+  explanation: string;
+  priority: number;
+  pairs: { a: PairWord; b: PairWord; speak: boolean }[];
+  your_average: number | null;
+  recommended: boolean;
+}
 
 export interface DeckCounts {
   total: number;
@@ -137,12 +164,19 @@ export interface WordResult {
   recognized: "correct" | "close" | "wrong" | "missing";
 }
 
+export interface Timing {
+  yours: number; // seconds of speech
+  native: number;
+  ratio: number; // yours / native
+}
+
 export interface AttemptResult {
   heard: string;
   words: WordResult[];
   extra: string[];
   score: number;
   tips: string[];
+  timing?: Timing | null;
 }
 
 export interface Health {
@@ -195,10 +229,15 @@ export const api = {
     send<{ new_per_day: number }>("/api/settings", "PUT", { new_per_day: newPerDay }),
   ttsUrl: (text: string, speed: "normal" | "slow") =>
     `/api/tts?text=${encodeURIComponent(text)}&speed=${speed}`,
-  attempt: (target: string, audio: Blob, source: AttemptSource) => {
+  sentences: () => fetch("/api/sentences").then((r) => json<Sentence[]>(r)),
+  minimalPairs: () => fetch("/api/minimal-pairs").then((r) => json<PairGroup[]>(r)),
+  bestScores: (source: AttemptSource) =>
+    fetch(`/api/progress/best?source=${source}`).then((r) => json<Record<string, number>>(r)),
+  attempt: (target: string, audio: Blob, source: AttemptSource, timing = false) => {
     const form = new FormData();
     form.append("target", target);
     form.append("source", source);
+    if (timing) form.append("timing", "true");
     form.append("audio", audio, "attempt");
     return fetch("/api/attempt", { method: "POST", body: form }).then((r) => json<AttemptResult>(r));
   },

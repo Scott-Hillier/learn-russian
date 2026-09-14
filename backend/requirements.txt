@@ -9,3 +9,4 @@ mlx-whisper
 transformers
 fsrs
 pytest
+httpx

@@ -103,6 +103,31 @@ Errors are mapped to tips aimed at English speakers, for example:
 - **Not yet:** example sentences are not in the starter deck. They come with the sentence
   trainer in Phase 5.
 
+### Implementation note (Phase 5): Sentences & sound pairs
+- **Sentence trainer:** 36 beginner sentences in 6 themes, each with a word-by-word
+  translation and chunk boundaries. Five steps:
+  1. Listen (click any word to hear it)
+  2. Words
+  3. Chunks
+  4. Full sentence
+  5. Shadow
+- **Word step skips very short words** (я, в, у). Earlier calibration showed isolated tiny
+  words score unreliably, so they're practised inside chunks instead.
+- **Pace feedback:** the full-sentence and shadowing steps compare your speaking length with
+  the native voice (`timing` on `/api/attempt`, measured from the first to last voiced frame).
+- **Shadowing:** after a countdown, the native audio plays while recording; recording stops
+  0.9 s after the audio ends. Headphones are needed, or the mic picks up the native voice.
+- **Sentence calibration** with native voices: full sentences 99.9%, chunks 99.7%,
+  words 98.8%.
+- **Sound pairs:** 9 contrast groups (ы/и, ь, х/к, р/л, ж/ш, б/п, д/т, г/к, з/с), each with
+  a listening quiz and a speaking drill. Groups are ordered by your weakest per-letter scores
+  (below 85%), then by importance for English speakers.
+- **Pair calibration** (native audio of one word scored against the other, three voices):
+  112 of 120 checks pass. The scorer can't hear the missing ь in брат/брать or полка/полька,
+  so those pairs are listening-only. мат/мать and угол/уголь do work.
+- **API smoke tests** (FastAPI TestClient, without loading models) now cover every route.
+  They were added after a decorator mix-up briefly broke `/api/attempt`.
+
 ### Stress and intonation (later phase)
 Word stress is the hardest thing to score automatically. Planned approach:
 1. Force-align your audio to the target phonemes.
@@ -218,6 +243,6 @@ Revised order:
 2. Pronunciation scoring ✅ (done 2026-09-14; see the implementation note below)
 3. Alphabet & Sounds ✅ (done 2026-09-14; see the implementation note below)
 4. Flashcards and SRS ✅ (done 2026-09-14; see the implementation note below)
-5. Sentence trainer and minimal pairs
+5. Sentence trainer and minimal pairs ✅ (done 2026-09-14; see the implementation note below)
 6. Conversation partner (Ollama)
 7. Stress, intonation and progress
