@@ -1,0 +1,82 @@
+{
+  "scenarios": [
+    {
+      "id": "cafe", "emoji": "☕", "title": "At the café",
+      "role": "a friendly waiter in a small café in Moscow",
+      "setting": "The learner is a customer. Help them order a drink and something to eat, tell them prices in roubles, and bring the bill when asked.",
+      "goals": ["Greet the waiter", "Order a drink", "Order something to eat", "Ask how much it costs", "Ask for the bill"],
+      "opening": {"text": "Здр+авствуйте! Что вы хот+ите?", "english": "Hello! What would you like?"},
+      "phrases": [
+        {"text": "Я хоч+у ч+ашку ч+ая.", "english": "I'd like a cup of tea."},
+        {"text": "Мне к+офе, пож+алуйста.", "english": "A coffee for me, please."},
+        {"text": "Ск+олько +это ст+оит?", "english": "How much does this cost?"},
+        {"text": "Счёт, пож+алуйста.", "english": "The bill, please."}
+      ]
+    },
+    {
+      "id": "meeting", "emoji": "👋", "title": "Meeting someone new",
+      "role": "a friendly Russian person the learner meets at a party",
+      "setting": "Get to know the learner: ask their name, where they are from, and what they do. Use the informal “ты”.",
+      "goals": ["Say hello", "Say your name", "Say where you're from", "Say you're learning Russian", "Say goodbye"],
+      "opening": {"text": "Прив+ет! Как теб+я зов+ут?", "english": "Hi! What's your name?"},
+      "phrases": [
+        {"text": "Я из Лонд+она.", "english": "I'm from London."},
+        {"text": "Я изуч+аю р+усский яз+ык.", "english": "I'm learning Russian."},
+        {"text": "+Очень при+ятно!", "english": "Nice to meet you!"},
+        {"text": "А теб+я?", "english": "And you? (what's your name)"}
+      ]
+    },
+    {
+      "id": "directions", "emoji": "🗺️", "title": "Asking for directions",
+      "role": "a helpful passer-by on a street in Moscow",
+      "setting": "The learner is lost and needs to find the metro, a café or a shop. Give very simple directions using left, right and straight on.",
+      "goals": ["Say “excuse me”", "Ask where the metro is", "Understand left / right / straight", "Say thank you"],
+      "opening": {"text": "Здр+авствуйте! Вам пом+очь?", "english": "Hello! Can I help you?"},
+      "phrases": [
+        {"text": "Извин+ите, где метр+о?", "english": "Excuse me, where is the metro?"},
+        {"text": "+Это далек+о?", "english": "Is it far?"},
+        {"text": "Нал+ево +или напр+аво?", "english": "Left or right?"},
+        {"text": "Спас+ибо больш+ое!", "english": "Thank you very much!"}
+      ]
+    },
+    {
+      "id": "market", "emoji": "🍎", "title": "At the market",
+      "role": "a cheerful seller at a fruit and vegetable stall",
+      "setting": "The learner wants to buy fruit or vegetables. Tell them prices per kilogram in roubles and help them pay.",
+      "goals": ["Say what you want to buy", "Ask the price", "Say how much you want", "Pay and say goodbye"],
+      "opening": {"text": "Д+обрый день! Что вы хот+ите куп+ить?", "english": "Good afternoon! What would you like to buy?"},
+      "phrases": [
+        {"text": "Ск+олько ст+оят +яблоки?", "english": "How much are the apples?"},
+        {"text": "Д+айте, пож+алуйста, килогр+амм.", "english": "A kilogram, please."},
+        {"text": "+Это всё.", "english": "That's all."},
+        {"text": "До свид+ания!", "english": "Goodbye!"}
+      ]
+    },
+    {
+      "id": "hotel", "emoji": "🏨", "title": "Hotel check-in",
+      "role": "a polite receptionist at a hotel",
+      "setting": "The learner is checking in. Ask for their name, give them a room number and floor, and answer simple questions about breakfast.",
+      "goals": ["Say you have a booking", "Give your name", "Ask when breakfast is", "Ask where your room is"],
+      "opening": {"text": "Д+обрый в+ечер! Чем мог+у пом+очь?", "english": "Good evening! How can I help?"},
+      "phrases": [
+        {"text": "У мен+я есть бронь.", "english": "I have a booking."},
+        {"text": "Когд+а з+автрак?", "english": "When is breakfast?"},
+        {"text": "Где мой н+омер?", "english": "Where is my room?"},
+        {"text": "Спас+ибо!", "english": "Thank you!"}
+      ]
+    },
+    {
+      "id": "chat", "emoji": "💬", "title": "Free chat",
+      "role": "a patient, friendly Russian tutor",
+      "setting": "Have a simple everyday conversation about the learner's day, family, food and hobbies. Use the informal “ты”.",
+      "goals": ["Say how you are", "Talk about your family", "Say what you like", "Ask a question back"],
+      "opening": {"text": "Прив+ет! Как дел+а?", "english": "Hi! How are you?"},
+      "phrases": [
+        {"text": "Хорош+о, спас+ибо. А у теб+я?", "english": "Good, thanks. And you?"},
+        {"text": "Я любл+ю м+узыку.", "english": "I love music."},
+        {"text": "У мен+я есть брат.", "english": "I have a brother."},
+        {"text": "Я не поним+аю.", "english": "I don't understand."}
+      ]
+    }
+  ]
+}

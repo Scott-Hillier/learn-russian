@@ -128,6 +128,42 @@ Errors are mapped to tips aimed at English speakers, for example:
 - **API smoke tests** (FastAPI TestClient, without loading models) now cover every route.
   They were added after a decorator mix-up briefly broke `/api/attempt`.
 
+### Implementation note (Phase 6): Conversation partner
+- **Model choice:** `gemma3:4b` on Ollama, compared against `qwen2.5:3b` with the speech models
+  also loaded.
+  - Qwen was faster but made false grammar corrections (e.g. "Меня зовут Джон" →
+    "Джоном"), once replied in English, and wrote garbled explanations.
+  - Gemma's role-play Russian was clearly better.
+- **Grammar check:** a separate call returns `analysis` and a minimally `corrected`
+  sentence, and the app decides "correct or not" by comparing words. Asking for a
+  yes/no verdict gave answers that contradicted the model's own analysis.
+  - With this design Gemma judged all 11 test sentences it finished correctly, including
+    с молоко → с молоком and мой мама → моя мама.
+  - Rewrites that change more than half the words are discarded as unreliable.
+- **No AI grammar explanations** are shown. Gemma's explanations were often wrong (it called
+  с молоком accusative), so the UI shows the corrected sentence with the changed words
+  highlighted.
+- **Scenarios:** 6 (café, meeting someone, directions, market, hotel, free chat). Each has
+  goals, an opening line and useful phrases. There are Beginner and Elementary levels.
+- **Each partner reply** has an English translation, audio (Silero stresses unmarked text
+  automatically), "practise saying this", "save to flashcards" (the *Conversation phrases*
+  deck), and two suggested replies. You can practise a suggestion with pronunciation scoring
+  before sending it.
+- **Speaking:** Whisper transcribes free speech. A "clarity" score (letters checked against
+  what was recognised) is shown but not saved to letter statistics, because it can't know
+  what you meant to say.
+- **Latency on this Mac:**
+  - Reply: about 7 s. The first message after a cold start takes about 15 s while the model
+    loads.
+  - Grammar check: about 8 s more. Ollama runs one request at a time, so the reply is
+    requested first.
+- **start.sh** starts `ollama serve` if it isn't running and pulls the model on first run.
+  Without Ollama the Conversation screen shows setup steps, and the rest of the app still
+  works.
+- **Limitations:** a 4B model sometimes produces slightly unnatural Russian (e.g. "Что вам с
+  чаем?") and can occasionally miss or invent a correction. The UI labels corrections as
+  AI suggestions.
+
 ### Stress and intonation (later phase)
 Word stress is the hardest thing to score automatically. Planned approach:
 1. Force-align your audio to the target phonemes.
@@ -244,5 +280,5 @@ Revised order:
 3. Alphabet & Sounds ✅ (done 2026-09-14; see the implementation note below)
 4. Flashcards and SRS ✅ (done 2026-09-14; see the implementation note below)
 5. Sentence trainer and minimal pairs ✅ (done 2026-09-14; see the implementation note below)
-6. Conversation partner (Ollama)
+6. Conversation partner (Ollama) ✅ (done 2026-09-14; see the implementation note below)
 7. Stress, intonation and progress

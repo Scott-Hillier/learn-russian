@@ -17,6 +17,10 @@ WHISPER_MODEL = os.environ.get("WHISPER_MODEL", "mlx-community/whisper-large-v3-
 # Russian letter-level CTC model used for pronunciation scoring
 PRONUNCIATION_MODEL = os.environ.get("PRONUNCIATION_MODEL", "bond005/wav2vec2-large-ru-golos")
 
+# Local LLM for the conversation partner (Ollama)
+OLLAMA_URL = os.environ.get("OLLAMA_URL", "http://127.0.0.1:11434")
+CHAT_MODEL = os.environ.get("CHAT_MODEL", "gemma3:4b")
+
 # Silero TTS (Russian). Speakers: aidar, baya, kseniya, xenia, eugene
 SILERO_URL = "https://models.silero.ai/models/tts/ru/v4_ru.pt"
 SILERO_PATH = MODELS_DIR / "silero_v4_ru.pt"

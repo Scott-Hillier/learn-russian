@@ -386,3 +386,44 @@ code { background: var(--bg); border-radius: 4px; padding: 0 4px; font-size: 0.8
 .pair-word:hover { border-color: var(--accent); }
 .pair-ru { font-size: 1.4rem; font-weight: 600; }
 .pair-options .quiz-option { display: flex; flex-direction: column; gap: 2px; }
+
+/* ---------- Conversation ---------- */
+.setting select { padding: 5px 8px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); }
+.setup-card { text-align: left; }
+.setup-card li { margin: 8px 0; }
+.setup-card li.done { color: var(--good); }
+.chat-page { width: 100%; max-width: 760px; display: flex; flex-direction: column; gap: 10px; min-height: calc(100vh - 110px); }
+.chat-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.phrasebook { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 8px 12px; }
+.phrasebook summary { cursor: pointer; font-weight: 600; font-size: 0.9rem; }
+.phrasebook .chips { margin-top: 8px; }
+.chat-log { flex: 1; display: flex; flex-direction: column; gap: 10px; padding: 6px 0; }
+.bubble-row { display: flex; }
+.bubble-row.learner { justify-content: flex-end; }
+.bubble { max-width: 78%; border-radius: 16px; padding: 10px 14px; }
+.bubble.partner { background: var(--panel); border: 1px solid var(--line); border-bottom-left-radius: 4px; }
+.bubble.learner { background: var(--accent-soft); border-bottom-right-radius: 4px; }
+.bubble-text { font-size: 1.2rem; font-family: "PT Sans", Arial, sans-serif; }
+.bubble-english { color: var(--muted); font-size: 0.88rem; margin-top: 2px; }
+.bubble-actions { display: flex; gap: 2px; margin-top: 4px; }
+.bubble-actions button { border: 0; background: none; padding: 2px 5px; border-radius: 6px; font-size: 0.95rem; }
+.bubble-actions button:hover { background: var(--bg); }
+.bubble-note { font-size: 0.82rem; margin-top: 4px; }
+.bubble-note .pill { font-size: 0.72rem; }
+.correction { color: var(--ink); }
+.correction .changed { color: var(--good); font-weight: 700; text-decoration: underline; }
+.typing { display: flex; gap: 4px; align-items: center; padding: 14px 16px; }
+.typing span { width: 7px; height: 7px; border-radius: 50%; background: var(--muted); animation: blink 1.2s infinite; }
+.typing span:nth-child(2) { animation-delay: 0.2s; }
+.typing span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes blink { 0%, 80%, 100% { opacity: 0.25; } 40% { opacity: 1; } }
+.suggestions { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 0.9rem; }
+.suggestions .chip { font-size: 1rem; }
+.practice-panel { background: var(--panel); border: 1px solid var(--accent); border-radius: 14px; padding: 10px 14px; text-align: center; }
+.practice-text { font-size: 1.5rem; font-weight: 600; }
+.practice-panel .controls { align-items: center; }
+.chat-input { display: flex; gap: 8px; position: sticky; bottom: 0; background: var(--bg); padding: 8px 0 0; }
+.chat-input input { flex: 1; padding: 11px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--panel); color: var(--ink); font-size: 1rem; }
+.chat-input .mic { width: 46px; border-radius: 50%; border: 0; background: var(--accent); color: var(--on-accent); font-size: 1.1rem; }
+.chat-input .mic.on { background: var(--bad); animation: pulse 1.2s infinite; }
+.chat-head .link { white-space: nowrap; }

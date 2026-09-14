@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { api, type Health } from "./api";
 import AlphabetView from "./AlphabetView";
+import ConversationView from "./ConversationView";
 import FlashcardsView from "./FlashcardsView";
 import type { Mode } from "./Layout";
 import PairsView from "./PairsView";
@@ -8,7 +9,7 @@ import PhrasesView from "./PhrasesView";
 import SentencesView from "./SentencesView";
 
 const MODE_KEY = "learn-russian:mode";
-const MODES: Mode[] = ["alphabet", "flashcards", "sentences", "pairs", "phrases"];
+const MODES: Mode[] = ["alphabet", "flashcards", "sentences", "pairs", "conversation", "phrases"];
 
 function loadMode(): Mode {
   try {
@@ -51,6 +52,7 @@ export default function App() {
   if (mode === "flashcards") return <FlashcardsView layout={layout} />;
   if (mode === "sentences") return <SentencesView layout={layout} />;
   if (mode === "pairs") return <PairsView layout={layout} />;
+  if (mode === "conversation") return <ConversationView layout={layout} />;
   if (mode === "phrases") return <PhrasesView layout={layout} />;
   return <AlphabetView layout={layout} />;
 }

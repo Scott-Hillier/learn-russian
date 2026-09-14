@@ -11,6 +11,7 @@ from fastapi.staticfiles import StaticFiles
 
 from . import config, progress
 from .flashcards import store as flashcards
+from .routes_chat import router as chat_router
 from .routes_flashcards import router as flashcard_router
 from .speech.asr import asr
 from .speech.audio import decode_to_pcm16k, peak_level, trim_and_pad, voiced_duration
@@ -101,6 +102,7 @@ MINIMAL_PAIRS = _load_minimal_pairs()
 SOURCES = {"phrase", "letter", "reading", "custom", "flashcard", "sentence", "pair"}
 flashcards.sync_builtin_decks(PHRASES)
 app.include_router(flashcard_router)
+app.include_router(chat_router)
 
 
 @app.get("/api/health")

@@ -52,6 +52,21 @@ The **👂 Sound pairs** screen drills pairs of words that differ by one sound (
 - **Ordering:** groups for the sounds you score lowest on elsewhere in the app are listed
   first.
 
+## Conversation partner
+The **🤖 Conversation** screen is a role-play partner that runs locally with
+[Ollama](https://ollama.com) and `gemma3:4b`. Scenarios: café, meeting someone, asking
+directions, market, hotel, free chat.
+- **Talking:** speak (`Space`) or type in Russian. The partner replies in simple Russian
+  with an English translation and audio.
+- **Corrections:** your sentences are checked, and corrections show the changed words
+  highlighted. They are AI suggestions and can occasionally be wrong.
+- **Suggested replies:** pick one, practise saying it with pronunciation scoring, then send it.
+- **Saving:** ⭐ saves a phrase to the *Conversation phrases* flashcard deck.
+
+Setup: `brew install ollama`. `./start.sh` then starts Ollama and downloads the model
+(about 3 GB) on first run. Replies take about 7 seconds on an 8 GB M1. Use
+`CHAT_MODEL=...` to try another Ollama model.
+
 ## How to practise phrases
 1. Pick a phrase in the sidebar, or type your own. Mark stress with `+`, e.g. `молок+о`.
 2. **🔊 Listen** (`L`) or **🐢 Slow** (`S`).

@@ -95,6 +95,39 @@ export interface PairGroup {
   recommended: boolean;
 }
 
+export interface Scenario {
+  id: string;
+  emoji: string;
+  title: string;
+  role: string;
+  goals: string[];
+  opening: WordItem;
+  phrases: WordItem[];
+}
+
+export interface ChatStatus {
+  running: boolean;
+  model: string;
+  installed: boolean;
+}
+
+export interface ChatReply {
+  reply: string;
+  translation: string;
+  suggestions: { russian: string; english: string }[];
+}
+
+export interface ChatCheck {
+  status: "correct" | "corrected" | "skipped";
+  corrected: string;
+  diff: { text: string; kind: "same" | "changed" | "removed" }[];
+}
+
+export interface ChatTranscript {
+  text: string;
+  clarity: AttemptResult | null;
+}
+
 export interface DeckCounts {
   total: number;
   new: number;
@@ -229,6 +262,16 @@ export const api = {
     send<{ new_per_day: number }>("/api/settings", "PUT", { new_per_day: newPerDay }),
   ttsUrl: (text: string, speed: "normal" | "slow") =>
     `/api/tts?text=${encodeURIComponent(text)}&speed=${speed}`,
+  chatStatus: () => fetch("/api/chat/status").then((r) => json<ChatStatus>(r)),
+  scenarios: () => fetch("/api/chat/scenarios").then((r) => json<Scenario[]>(r)),
+  chatReply: (scenarioId: string, history: { role: "partner" | "learner"; text: string }[], level: string) =>
+    send<ChatReply>("/api/chat/reply", "POST", { scenario_id: scenarioId, history, level }),
+  chatCheck: (text: string) => send<ChatCheck>("/api/chat/check", "POST", { text }),
+  chatTranscribe: (audio: Blob) => {
+    const form = new FormData();
+    form.append("audio", audio, "speech");
+    return fetch("/api/chat/transcribe", { method: "POST", body: form }).then((r) => json<ChatTranscript>(r));
+  },
   sentences: () => fetch("/api/sentences").then((r) => json<Sentence[]>(r)),
   minimalPairs: () => fetch("/api/minimal-pairs").then((r) => json<PairGroup[]>(r)),
   bestScores: (source: AttemptSource) =>
