@@ -1,81 +1,93 @@
-"""Word-level comparison between the target phrase and what Whisper heard."""
-from dataclasses import asdict, dataclass
+"""Combine word recognition (Whisper) and letter-level pronunciation scores into feedback."""
 from difflib import SequenceMatcher
 
-from ..text import display_stress, normalize_words
+from ..text import display_stress, normalize_words, strip_stress, target_words
+from .tips import letter_tip
 
 CLOSE_RATIO = 0.75
+WORD_GOOD = 85
+WORD_CLOSE = 55
 
 
-@dataclass
-class WordResult:
-    target: str          # target word as displayed (with stress accent)
-    heard: str | None    # what was recognised in its place
-    status: str          # correct | close | wrong | missing
-
-
-def _display_words(target: str) -> list[str]:
-    """Split the target into display words, one per normalised word (hyphenated words split)."""
-    out = []
-    for raw in target.replace("-", " - ").split():
-        if raw == "-":
-            continue
-        if normalize_words(raw):
-            out.append(display_stress(raw).strip(".,!?;:«»\"…"))
-    return out
-
-
-def compare(target: str, heard: str) -> dict:
-    t_norm = normalize_words(target)
+def recognise_words(target: str, heard: str) -> tuple[list[dict], list[str]]:
+    """Align target words with the transcript. Returns per-word {heard, recognized} and extra words."""
+    t_norm = [" ".join(normalize_words(w)) for w in target_words(target)]
     h_norm = normalize_words(heard)
-    t_disp = _display_words(target)
-    if len(t_disp) != len(t_norm):  # defensive: fall back to normalised words for display
-        t_disp = t_norm
-
-    words: list[WordResult] = []
+    words: list[dict] = []
     extra: list[str] = []
     for op, i1, i2, j1, j2 in SequenceMatcher(a=t_norm, b=h_norm, autojunk=False).get_opcodes():
         if op == "equal":
-            words += [WordResult(t_disp[i], h_norm[j], "correct") for i, j in zip(range(i1, i2), range(j1, j2))]
+            words += [{"heard": h_norm[j], "recognized": "correct"} for j in range(j1, j2)]
         elif op == "delete":
-            words += [WordResult(t_disp[i], None, "missing") for i in range(i1, i2)]
+            words += [{"heard": None, "recognized": "missing"} for _ in range(i1, i2)]
         elif op == "insert":
             extra += h_norm[j1:j2]
-        else:  # replace: pair up words in order, leftovers are missing/extra
+        else:  # replace: pair words in order; leftovers are missing / extra
             for k in range(max(i2 - i1, j2 - j1)):
                 i, j = i1 + k, j1 + k
                 if i < i2 and j < j2:
                     ratio = SequenceMatcher(a=t_norm[i], b=h_norm[j]).ratio()
-                    words.append(WordResult(t_disp[i], h_norm[j], "close" if ratio >= CLOSE_RATIO else "wrong"))
+                    words.append({"heard": h_norm[j], "recognized": "close" if ratio >= CLOSE_RATIO else "wrong"})
                 elif i < i2:
-                    words.append(WordResult(t_disp[i], None, "missing"))
+                    words.append({"heard": None, "recognized": "missing"})
                 else:
                     extra.append(h_norm[j])
-
-    points = {"correct": 1.0, "close": 0.6, "wrong": 0.0, "missing": 0.0}
-    raw = sum(points[w.status] for w in words) / max(1, len(words))
-    score = max(0.0, raw - 0.15 * len(extra))
-    return {
-        "words": [asdict(w) for w in words],
-        "extra": extra,
-        "score": round(score * 100),
-        "tips": _tips(words, extra, heard),
-    }
+    return words, extra
 
 
-def _tips(words: list[WordResult], extra: list[str], heard: str) -> list[str]:
-    if not heard.strip():
-        return ["I didn't catch anything. Check your mic level and speak a little louder and closer."]
-    tips = []
+def build_feedback(target: str, heard: str, pronunciation: list[dict] | None) -> dict:
+    raw_words = target_words(target)
+    recognition, extra = recognise_words(target, heard)
+    nothing_heard = not heard.strip() and pronunciation is None
+
+    words = []
+    for i, raw in enumerate(raw_words):
+        rec = recognition[i]
+        if pronunciation:
+            p = pronunciation[i]
+            score, letters = p["score"], p["letters"]
+        else:  # no acoustic scoring available: fall back to recognition only
+            score = {"correct": 100, "close": 60}.get(rec["recognized"], 0)
+            letters = [{"char": c, "stressed": False, "status": "unscored", "heard_as": None}
+                       for c in strip_stress(raw)]
+        if nothing_heard:
+            status = "missing"
+        elif score >= WORD_GOOD:
+            status = "good"
+        elif score >= WORD_CLOSE:
+            status = "close"
+        else:
+            status = "missing" if rec["recognized"] == "missing" and score < 30 else "wrong"
+        words.append({"text": raw, "display": display_stress(raw), "score": score, "status": status,
+                      "letters": letters, **rec})
+
+    weights = [max(1, sum(l["status"] in ("good", "close", "wrong") for l in w["letters"])) for w in words]
+    overall = round(sum(w["score"] * n for w, n in zip(words, weights)) / max(1, sum(weights)))
+    if nothing_heard:
+        overall = 0
+    return {"heard": heard, "score": overall, "words": words, "extra": extra,
+            "tips": _tips(words, extra, nothing_heard)}
+
+
+def _tips(words: list[dict], extra: list[str], nothing_heard: bool) -> list[str]:
+    if nothing_heard:
+        return ["I didn't catch anything. Check your mic level, then speak a little louder and closer."]
+    # Priority: missing words, then specific advice for wrong sounds, then generic/"almost" tips.
+    tips: list[tuple[int, str]] = []
+    seen: set[str] = set()
     for w in words:
-        if w.status == "close":
-            tips.append(f"“{w.target}” was almost right (heard “{w.heard}”). Listen to it slowly and copy the vowels.")
-        elif w.status == "wrong":
-            tips.append(f"“{w.target}” sounded like “{w.heard}”. Play the slow version and try just that word.")
-        elif w.status == "missing":
-            tips.append(f"I didn't hear “{w.target}”. Make sure every word is spoken clearly.")
+        plain = strip_stress(w["text"])
+        if w["status"] == "missing":
+            tips.append((0, f"I didn't hear “{plain}”. Make sure every word is spoken clearly."))
+            continue
+        for l in w["letters"]:
+            if l["status"] not in ("wrong", "close") or l["char"].lower() in seen:
+                continue
+            seen.add(l["char"].lower())
+            text, specific = letter_tip(plain, l)
+            tips.append(((1 if l["status"] == "wrong" else 3) + (0 if specific else 1), text))
     if extra:
-        tips.append(f"I heard extra words: {' '.join(extra)}.")
+        tips.append((5, f"I also heard extra words: {' '.join(extra)}."))
     if not tips:
-        tips.append("Every word was recognised. Nice! Try the normal speed and match the rhythm.")
-    return tips[:4]
+        return ["Every sound was clear. Great job! Now try matching the native speed and rhythm."]
+    return [t for _, t in sorted(tips, key=lambda t: t[0])][:4]

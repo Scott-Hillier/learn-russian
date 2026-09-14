@@ -12,6 +12,9 @@ FRONTEND_DIST = ROOT_DIR / "frontend" / "dist"
 # Whisper model (mlx-community repos). "whisper-small-mlx" uses less RAM; turbo is more accurate.
 WHISPER_MODEL = os.environ.get("WHISPER_MODEL", "mlx-community/whisper-large-v3-turbo")
 
+# Russian letter-level CTC model used for pronunciation scoring
+PRONUNCIATION_MODEL = os.environ.get("PRONUNCIATION_MODEL", "bond005/wav2vec2-large-ru-golos")
+
 # Silero TTS (Russian). Speakers: aidar, baya, kseniya, xenia, eugene
 SILERO_URL = "https://models.silero.ai/models/tts/ru/v4_ru.pt"
 SILERO_PATH = MODELS_DIR / "silero_v4_ru.pt"

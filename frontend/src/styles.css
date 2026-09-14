@@ -90,11 +90,41 @@ kbd {
 .best { color: var(--good); font-weight: 600; }
 
 .target { font-size: 2.6rem; font-weight: 600; margin: 22px 0 6px; line-height: 1.25; }
-.word { margin: 0 0.18em; border-bottom: 4px solid transparent; }
-.word.correct { color: var(--good); border-color: var(--good); }
-.word.close { color: var(--close); border-color: var(--close); }
-.word.wrong { color: var(--bad); border-color: var(--bad); }
-.word.missing { color: var(--missing); border-bottom: 4px dashed var(--missing); }
+.word {
+  font: inherit; background: none; border: 0; border-bottom: 4px solid transparent;
+  margin: 0 0.12em; padding: 0 0.06em; border-radius: 6px 6px 0 0;
+}
+.word:hover, .word.selected { background: var(--bg); }
+.word.good { border-color: var(--good); }
+.word.close { border-color: var(--close); }
+.word.wrong { border-color: var(--bad); }
+.word.missing { border-bottom: 4px dashed var(--missing); opacity: 0.6; }
+
+.letter.good { color: var(--good); }
+.letter.close { color: var(--close); }
+.letter.wrong { color: var(--bad); text-decoration: underline wavy; text-underline-offset: 0.18em; }
+.letter.silent { opacity: 0.35; }
+.word.missing .letter { color: var(--missing); }
+
+.legend { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 14px; font-size: 0.82rem; font-weight: 600; }
+.legend .letter.wrong { text-decoration: none; }
+.legend .letter.silent { opacity: 0.5; }
+.muted { color: var(--muted); font-weight: normal; }
+
+.word-detail {
+  margin-top: 14px; background: var(--bg); border-radius: 12px; padding: 12px 16px;
+}
+.word-detail-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.word-detail-head button {
+  border: 1px solid var(--line); background: var(--panel); border-radius: 999px; padding: 4px 10px;
+}
+.word-big { font-size: 1.8rem; font-weight: 600; }
+.word-detail ul { margin: 8px 0 0; padding-left: 20px; }
+.word-detail p { margin: 8px 0 0; }
+.pill { font-size: 0.8rem; font-weight: 700; border-radius: 999px; padding: 2px 9px; color: white; }
+.pill.good { background: var(--good); }
+.pill.close { background: var(--close); }
+.pill.wrong, .pill.missing { background: var(--bad); }
 
 .translit { font-size: 1.15rem; color: var(--muted); }
 .sounds-like { margin-top: 6px; font-size: 0.95rem; }
@@ -128,9 +158,9 @@ kbd {
   font-size: 1.5rem; font-weight: 700; width: 78px; height: 78px; border-radius: 50%;
   display: grid; place-items: center; color: white; flex-shrink: 0;
 }
-.score.s0 { background: var(--bad); }
-.score.s1 { background: var(--close); }
-.score.s2 { background: var(--good); }
+.score.wrong { background: var(--bad); }
+.score.close { background: var(--close); }
+.score.good { background: var(--good); }
 .heard { color: var(--muted); margin-top: 4px; }
 .tips { margin: 14px 0 0; padding-left: 20px; }
 .tips li { margin: 4px 0; }

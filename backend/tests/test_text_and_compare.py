@@ -1,5 +1,5 @@
-from app.speech.compare import compare
-from app.text import display_stress, normalize_words, transliterate
+from app.speech.compare import build_feedback, recognise_words
+from app.text import display_stress, normalize_words, target_words, transliterate
 
 
 def test_display_stress():
@@ -13,24 +13,36 @@ def test_transliterate():
     assert transliterate("Мен+я зов+ут") == "Menyá zovút"
 
 
-def test_normalize():
+def test_normalize_and_target_words():
     assert normalize_words("Вы говор+ите по-англ+ийски?") == ["вы", "говорите", "по", "английски"]
     assert normalize_words("Ещё!") == ["еще"]
+    assert target_words("Вы говор+ите по-англ+ийски?") == ["Вы", "говор+ите", "по", "англ+ийски"]
 
 
-def test_compare_perfect():
-    r = compare("Я не поним+аю", "Я не понимаю.")
-    assert r["score"] == 100
-    assert [w["status"] for w in r["words"]] == ["correct"] * 3
+def test_recognise_words():
+    words, extra = recognise_words("Я не поним+аю", "Я понимаю")
+    assert [w["recognized"] for w in words] == ["correct", "missing", "correct"]
+    words, _ = recognise_words("Спас+ибо", "Спасиба")
+    assert words[0]["recognized"] == "close"
+    _, extra = recognise_words("Прив+ет", "Привет привет")
+    assert extra == ["привет"]
 
 
-def test_compare_missing_and_close():
-    r = compare("Я не поним+аю", "Я понимаю")
-    assert [w["status"] for w in r["words"]] == ["correct", "missing", "correct"]
-    r = compare("Спас+ибо", "Спасиба")
-    assert r["words"][0]["status"] == "close"
+def _letters(word, statuses, heard=None):
+    return [{"char": c, "stressed": False, "status": s, "heard_as": heard if s != "good" else None}
+            for c, s in zip(word, statuses)]
 
 
-def test_compare_nothing_heard():
-    r = compare("Прив+ет", "")
+def test_feedback_uses_pronunciation_scores():
+    pron = [{"text": "М+ышка", "display": "", "score": 80,
+             "letters": _letters("Мышка", ["good", "wrong", "good", "good", "good"], heard="и")}]
+    r = build_feedback("М+ышка", "мишка", pron)
+    assert r["score"] == 80 and r["words"][0]["status"] == "close"
+    assert "ы" in r["tips"][0] and "и" in r["tips"][0]
+
+
+def test_feedback_without_acoustic_model_or_audio():
+    r = build_feedback("Прив+ет", "", None)
     assert r["score"] == 0 and r["words"][0]["status"] == "missing"
+    r = build_feedback("Прив+ет", "привет", None)
+    assert r["score"] == 100 and r["words"][0]["status"] == "good"

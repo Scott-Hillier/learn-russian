@@ -28,7 +28,7 @@ export default function App() {
         .health()
         .then((h) => {
           setHealth(h);
-          if (!h.asr_loaded) timer = window.setTimeout(poll, 2000);
+          if (!h.ready) timer = window.setTimeout(poll, 2000);
         })
         .catch(() => (timer = window.setTimeout(poll, 3000)));
     poll();
@@ -93,7 +93,7 @@ export default function App() {
 
       <main>
         {loadError && <div className="banner error">{loadError}</div>}
-        {health && !health.asr_loaded && (
+        {health && !health.ready && (
           <div className="banner">Loading speech models… (first start can take a minute)</div>
         )}
         {current && (

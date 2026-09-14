@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
-const SPEECH_LEVEL = 0.06; // RMS above this counts as speaking
+const SPEECH_LEVEL = 0.02; // RMS above this counts as speaking
+const SILENCE_RATIO = 0.2; // below this fraction of the loudest level so far counts as silence
 const SILENCE_STOP_MS = 1400; // auto-stop after this much silence once speech started
 const MAX_MS = 15000;
 
@@ -53,16 +54,16 @@ export function useRecorder(onDone: (audio: Blob) => void) {
     const startedAt = performance.now();
     let heardSpeech = false;
     let lastLoud = startedAt;
+    let peak = 0;
 
     const tick = () => {
       analyser.getFloatTimeDomainData(buf);
       const rms = Math.sqrt(buf.reduce((s, v) => s + v * v, 0) / buf.length);
       setLevel(Math.min(1, rms * 6));
       const now = performance.now();
-      if (rms > SPEECH_LEVEL) {
-        heardSpeech = true;
-        lastLoud = now;
-      }
+      peak = Math.max(peak, rms);
+      if (rms > SPEECH_LEVEL) heardSpeech = true;
+      if (rms > Math.max(SPEECH_LEVEL, peak * SILENCE_RATIO)) lastLoud = now;
       if ((heardSpeech && now - lastLoud > SILENCE_STOP_MS) || now - startedAt > MAX_MS) {
         stop();
         return;

@@ -6,4 +6,5 @@ soundfile
 certifi
 torch
 mlx-whisper
+transformers
 pytest

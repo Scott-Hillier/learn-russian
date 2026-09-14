@@ -74,6 +74,16 @@ def _translit_word(word: str) -> str:
     return "".join(out)
 
 
+def target_words(text: str) -> list[str]:
+    """Split text into words, keeping '+' stress marks and letters only (hyphenated words split)."""
+    words = []
+    for raw in re.split(r"[\s\-‐–—]+", text):
+        word = "".join(ch for ch in raw if ch.isalpha() or ch == "+")
+        if strip_stress(word):
+            words.append(word)
+    return words
+
+
 def normalize_words(text: str) -> list[str]:
     """Lowercase, drop stress marks and punctuation, treat ё as е, split hyphenated words."""
     text = strip_stress(text).lower().replace("ё", "е")

@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { api, type AttemptResult, type Phrase } from "./api";
 import Stressed from "./Stressed";
 import { useRecorder } from "./useRecorder";
+import { Letters, WordDetail } from "./WordFeedback";
 
 interface Props {
   phrase: Phrase;
@@ -16,6 +17,7 @@ export default function PracticeCard({ phrase, onPrev, onNext, showNav }: Props)
   const [error, setError] = useState<string | null>(null);
   const [myAudioUrl, setMyAudioUrl] = useState<string | null>(null);
   const [best, setBest] = useState<number | null>(null);
+  const [selected, setSelected] = useState<number | null>(null);
   const audioRef = useRef<HTMLAudioElement>(new Audio());
 
   const play = useCallback((src: string) => {
@@ -25,10 +27,11 @@ export default function PracticeCard({ phrase, onPrev, onNext, showNav }: Props)
     a.play().catch(() => setError("Couldn't play audio."));
   }, []);
 
-  const listen = useCallback(
-    (speed: "normal" | "slow") => play(api.ttsUrl(phrase.text, speed)),
-    [phrase.text, play],
+  const listenTo = useCallback(
+    (text: string, speed: "normal" | "slow") => play(api.ttsUrl(text, speed)),
+    [play],
   );
+  const listen = useCallback((speed: "normal" | "slow") => listenTo(phrase.text, speed), [phrase.text, listenTo]);
 
   const onRecorded = useCallback(
     async (blob: Blob) => {
@@ -42,6 +45,8 @@ export default function PracticeCard({ phrase, onPrev, onNext, showNav }: Props)
         const r = await api.attempt(phrase.text, blob);
         setResult(r);
         setBest((b) => Math.max(b ?? 0, r.score));
+        const worst = r.words.reduce((w, cur, i) => (cur.score < r.words[w].score ? i : w), 0);
+        setSelected(r.words.length && r.words[worst].status !== "good" ? worst : null);
       } catch (e) {
         setError((e as Error).message);
       } finally {
@@ -81,7 +86,7 @@ export default function PracticeCard({ phrase, onPrev, onNext, showNav }: Props)
   useEffect(() => () => audioRef.current.pause(), []);
 
   const statusWord = (score: number) =>
-    score >= 90 ? "Excellent!" : score >= 70 ? "Good. Almost there" : score >= 40 ? "Keep going" : "Let's try again";
+    score >= 85 ? "Excellent!" : score >= 55 ? "Good. Almost there" : score >= 30 ? "Keep going" : "Let's try again";
 
   return (
     <div className="card">
@@ -93,9 +98,14 @@ export default function PracticeCard({ phrase, onPrev, onNext, showNav }: Props)
       <div className="target" lang="ru">
         {result
           ? result.words.map((w, i) => (
-              <span key={i} className={`word ${w.status}`} title={w.heard ? `heard: ${w.heard}` : "not heard"}>
-                <Stressed text={w.target} />
-              </span>
+              <button
+                key={i}
+                className={`word ${w.status}${selected === i ? " selected" : ""}`}
+                onClick={() => setSelected(selected === i ? null : i)}
+                title="Show details for this word"
+              >
+                <Letters letters={w.letters} />
+              </button>
             ))
           : <Stressed text={phrase.display} />}
       </div>
@@ -134,7 +144,9 @@ export default function PracticeCard({ phrase, onPrev, onNext, showNav }: Props)
       {result && (
         <div className="result">
           <div className="score-row">
-            <div className={`score s${Math.floor(result.score / 34)}`}>{result.score}%</div>
+            <div className={`score ${result.score >= 85 ? "good" : result.score >= 55 ? "close" : "wrong"}`}>
+              {result.score}%
+            </div>
             <div>
               <strong>{statusWord(result.score)}</strong>
               <div className="heard">
@@ -142,6 +154,16 @@ export default function PracticeCard({ phrase, onPrev, onNext, showNav }: Props)
               </div>
             </div>
           </div>
+          <div className="legend">
+            <span className="letter good">clear</span>
+            <span className="letter close">almost</span>
+            <span className="letter wrong">needs work</span>
+            <span className="letter silent">silent</span>
+            <span className="muted">· click a word for details</span>
+          </div>
+          {selected !== null && result.words[selected] && (
+            <WordDetail word={result.words[selected]} onListen={listenTo} />
+          )}
           <ul className="tips">
             {result.tips.map((t, i) => (
               <li key={i}>{t}</li>

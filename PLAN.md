@@ -46,6 +46,21 @@ Errors are mapped to tips aimed at English speakers, for example:
 - щ vs ш
 - final devoicing (хлеб → [xlʲep])
 
+### Implementation note (Phase 2): what changed from the original design
+- **Phoneme model dropped.** Tested on native Russian, the multilingual phoneme recognizer
+  (`wav2vec2-xlsr-53-espeak-cv-ft`) missed most palatalisation and heard "мать" as "b a t".
+  It was too noisy to score learners fairly.
+- **Replaced with a Russian letter-level CTC model** (`bond005/wav2vec2-large-ru-golos`).
+  The target spelling is force-aligned to the audio, and each letter gets a
+  goodness-of-pronunciation score plus a "sounded like" letter.
+- **espeak-ng not needed.** Russian pronunciation rules are applied as accepted variants
+  instead: vowel reduction, devoicing, silent letters and exceptions.
+- **Benefit:** errors are shown on the actual letters, which suits a beginner better than IPA.
+- **Calibration:** native 99.8%, 9/10 deliberate mistakes caught, English-accent voice 78%
+  (see README).
+- **Limitation:** vowel *quality* in unstressed syllables and word stress aren't judged,
+  because the model maps sounds to spelling. Stress is left for the prosody phase.
+
 ### Stress and intonation (later phase)
 Word stress is the hardest thing to score automatically. Planned approach:
 1. Force-align your audio to the target phonemes.
@@ -158,7 +173,7 @@ Each phase ends with something usable.
 
 Revised order:
 1. Hear and say ✅ (done 2026-09-14)
-2. Pronunciation scoring
+2. Pronunciation scoring ✅ (done 2026-09-14; see the implementation note below)
 3. Alphabet & Sounds
 4. Flashcards and SRS
 5. Sentence trainer and minimal pairs

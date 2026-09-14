@@ -10,11 +10,28 @@ export interface Phrase {
   note?: string;
 }
 
-export type WordStatus = "correct" | "close" | "wrong" | "missing";
+export type LetterStatus = "good" | "close" | "wrong" | "silent" | "unscored";
+
+export interface LetterResult {
+  char: string;
+  stressed: boolean;
+  status: LetterStatus;
+  heard_as: string | null;
+}
+
+export interface WordResult {
+  text: string; // with '+' stress marks
+  display: string;
+  score: number;
+  status: "good" | "close" | "wrong" | "missing";
+  letters: LetterResult[];
+  heard: string | null; // what speech recognition heard in this word's place
+  recognized: "correct" | "close" | "wrong" | "missing";
+}
 
 export interface AttemptResult {
   heard: string;
-  words: { target: string; heard: string | null; status: WordStatus }[];
+  words: WordResult[];
   extra: string[];
   score: number;
   tips: string[];
@@ -24,6 +41,8 @@ export interface Health {
   tts: string;
   asr_loaded: boolean;
   asr_model: string;
+  pronunciation_loaded: boolean;
+  ready: boolean;
 }
 
 async function json<T>(res: Response): Promise<T> {
