@@ -12,8 +12,19 @@ the speech models (about 3 GB). After that the app works fully offline.
 
 Requirements: macOS on Apple Silicon, Python 3.10+, Node 18+, `ffmpeg` (`brew install ffmpeg`).
 
-## How to practise
-1. Pick a phrase in the sidebar, or type your own. Mark stress with `+`, e.g. `мол+око`.
+## Letters & Sounds (start here if you're new)
+The **🔤 Letters & Sounds** screen teaches all 33 Cyrillic letters in 6 lessons. Each lesson
+has four steps:
+1. **Learn** each letter: its sound, English lookalike warnings and example words, all with audio.
+2. **Say the letters** in real words, with a score for that letter.
+3. **Read words** without transliteration, then say them.
+4. **Quiz** on letter sounds.
+
+Letters turn amber once practised and green once you say them well consistently. Progress is
+saved locally in `backend/userdata/progress.db`.
+
+## How to practise phrases
+1. Pick a phrase in the sidebar, or type your own. Mark stress with `+`, e.g. `молок+о`.
 2. **🔊 Listen** (`L`) or **🐢 Slow** (`S`).
 3. **🎙 Say it** (`Space`). Recording stops when you pause.
 4. Each letter turns green (clear), amber (almost) or red (needs work). Faded letters are

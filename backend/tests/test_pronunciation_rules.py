@@ -34,6 +34,11 @@ def test_silent_letters():
     assert analyse_word("+Анна")[2].silent  # doubled consonant
 
 
+def test_i_after_always_hard_consonants():
+    assert "ы" in analyse_word("цирк")[1].alts
+    assert "ы" not in analyse_word("мир")[1].alts
+
+
 def test_exceptions():
     assert "ш" in analyse_word("что")[0].alts
     assert "в" in analyse_word("сег+одня")[2].alts

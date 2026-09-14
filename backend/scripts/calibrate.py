@@ -71,9 +71,33 @@ def score(target: str, audio) -> tuple[int, list[str]]:
     return round(total), flagged
 
 
+def alphabet_items() -> None:
+    data = json.loads((config.DATA_DIR / "alphabet.json").read_text(encoding="utf-8"))
+    # Only real words are scored in the app; isolated syllables are listen-only because the model
+    # is unreliable on them (native TTS syllables averaged well below words).
+    texts = []
+    for letter in data["letters"]:
+        texts += [ex["text"] for ex in letter["examples"]]
+    for lesson in data["lessons"]:
+        texts += [w["text"] for w in lesson["words"]]
+    texts = list(dict.fromkeys(texts))
+    scores = []
+    for text in texts:
+        for spk in ("xenia", "aidar"):
+            s, flagged = score(text, silero(text, spk))
+            scores.append(s)
+            if s < 85:
+                print(f"  {strip_stress(text)} [{spk}] {s}% flagged {flagged}")
+    print(f"alphabet items: {len(texts)} texts, mean {statistics.mean(scores):.1f}%  "
+          f"≥85%: {sum(s >= 85 for s in scores)}/{len(scores)}")
+
+
 def main() -> int:
     tts.load()
     scorer.load()
+    if "--alphabet" in sys.argv:
+        alphabet_items()
+        return 0
     phrases = json.loads((config.DATA_DIR / "phrases.json").read_text(encoding="utf-8"))
 
     print("== Native speech ==")

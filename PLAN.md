@@ -61,6 +61,27 @@ Errors are mapped to tips aimed at English speakers, for example:
 - **Limitation:** vowel *quality* in unstressed syllables and word stress aren't judged,
   because the model maps sounds to spelling. Stress is left for the prosody phase.
 
+### Implementation note (Phase 3): Letters & Sounds
+- **Six lessons** covering all 33 letters:
+  1. familiar letters
+  2. false friends
+  3. new shapes with familiar sounds
+  4. soft vowels
+  5. tricky sounds
+  6. the two signs
+- **Four steps per lesson:** Learn (letter cards), Say the letters (drill words), Read words
+  (transliteration hidden until attempted), Quiz (the letter's sound, with English
+  lookalikes as distractors).
+- **Syllables are listen-only.** Calibration showed the pronunciation model is unreliable on
+  isolated syllables ("ма", "у"), even from native voices. Drill words from each letter's
+  examples and the lesson words average 98.5% with native voices.
+- **Progress** is saved in SQLite (`backend/userdata/progress.db`, git-ignored). Every scored
+  attempt stores per-letter scores, including attempts from the Phrases screen. A letter is
+  "mastered" once it has at least 3 occurrences averaging 80% or more over its last 8. This
+  per-letter data will feed minimal pairs and the problem-sounds dashboard later.
+- **Content is checked by tests:** lesson words only use letters taught so far, and every
+  multi-vowel word has a stress mark.
+
 ### Stress and intonation (later phase)
 Word stress is the hardest thing to score automatically. Planned approach:
 1. Force-align your audio to the target phonemes.
@@ -174,7 +195,7 @@ Each phase ends with something usable.
 Revised order:
 1. Hear and say ✅ (done 2026-09-14)
 2. Pronunciation scoring ✅ (done 2026-09-14; see the implementation note below)
-3. Alphabet & Sounds
+3. Alphabet & Sounds ✅ (done 2026-09-14; see the implementation note below)
 4. Flashcards and SRS
 5. Sentence trainer and minimal pairs
 6. Conversation partner (Ollama)

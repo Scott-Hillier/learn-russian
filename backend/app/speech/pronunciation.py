@@ -83,6 +83,8 @@ def analyse_word(raw: str) -> list[Letter]:
                 l.alts.add("ь")  # -ия is said like -ья
         if c in "еэ":
             l.alts.add("э" if c == "е" else "е")
+        if c == "и" and i > 0 and letters[i - 1].norm in "жшц":
+            l.alts.add("ы")  # ж, ш, ц are always hard: жизнь, цирк → "жызнь", "цырк"
         j = i + 1
         while j < len(letters) and letters[j].norm in "ьъ":
             j += 1
@@ -231,14 +233,16 @@ class PronunciationScorer:
             letter_out, scores = [], []
             for li, l in enumerate(letters):
                 if (wi, li) not in results or l.silent:
-                    status, heard = ("silent" if l.silent else "unscored"), None
+                    status, heard, value = ("silent" if l.silent else "unscored"), None, None
                 else:
                     share, heard = results[(wi, li)]
                     status = "good" if share >= GOOD else "close" if share >= CLOSE else "wrong"
-                    scores.append(min(1.0, share / GOOD))
+                    value = round(min(1.0, share / GOOD), 3)
+                    scores.append(value)
                     if status == "good":
                         heard = None
-                letter_out.append({"char": l.char, "stressed": l.stressed, "status": status, "heard_as": heard})
+                letter_out.append({"char": l.char, "stressed": l.stressed, "status": status,
+                                   "heard_as": heard, "score": value})
             out.append({
                 "text": raw,
                 "display": display_stress(raw),

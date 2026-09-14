@@ -1,36 +1,37 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { api, type AttemptResult, type Phrase } from "./api";
+import { api, type AttemptResult, type AttemptSource, type Phrase } from "./api";
 import Stressed from "./Stressed";
+import { useAudio } from "./useAudio";
 import { useRecorder } from "./useRecorder";
 import { Letters, WordDetail } from "./WordFeedback";
 
 interface Props {
   phrase: Phrase;
-  onPrev: () => void;
-  onNext: () => void;
-  showNav: boolean;
+  source: AttemptSource;
+  onPrev?: () => void;
+  onNext?: () => void;
+  /** Letters being practised: their scores are highlighted in the result. */
+  focus?: string[];
+  /** Reading challenge: hide transliteration and pronunciation hints until revealed or attempted. */
+  hideHints?: boolean;
+  /** e.g. "3 / 12", shown in the card header. */
+  position?: string;
+  onResult?: (result: AttemptResult) => void;
 }
 
-export default function PracticeCard({ phrase, onPrev, onNext, showNav }: Props) {
+export default function PracticeCard({ phrase, source, onPrev, onNext, focus, hideHints, position, onResult }: Props) {
   const [result, setResult] = useState<AttemptResult | null>(null);
   const [checking, setChecking] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [myAudioUrl, setMyAudioUrl] = useState<string | null>(null);
   const [best, setBest] = useState<number | null>(null);
   const [selected, setSelected] = useState<number | null>(null);
-  const audioRef = useRef<HTMLAudioElement>(new Audio());
+  const [revealed, setRevealed] = useState(!hideHints);
+  const audio = useAudio(setError);
+  const onResultRef = useRef(onResult);
+  onResultRef.current = onResult;
 
-  const play = useCallback((src: string) => {
-    const a = audioRef.current;
-    a.pause();
-    a.src = src;
-    a.play().catch(() => setError("Couldn't play audio."));
-  }, []);
-
-  const listenTo = useCallback(
-    (text: string, speed: "normal" | "slow") => play(api.ttsUrl(text, speed)),
-    [play],
-  );
+  const listenTo = useCallback((text: string, speed: "normal" | "slow") => audio.play(api.ttsUrl(text, speed)), [audio]);
   const listen = useCallback((speed: "normal" | "slow") => listenTo(phrase.text, speed), [phrase.text, listenTo]);
 
   const onRecorded = useCallback(
@@ -42,18 +43,20 @@ export default function PracticeCard({ phrase, onPrev, onNext, showNav }: Props)
       setChecking(true);
       setError(null);
       try {
-        const r = await api.attempt(phrase.text, blob);
+        const r = await api.attempt(phrase.text, blob, source);
         setResult(r);
+        setRevealed(true);
         setBest((b) => Math.max(b ?? 0, r.score));
         const worst = r.words.reduce((w, cur, i) => (cur.score < r.words[w].score ? i : w), 0);
         setSelected(r.words.length && r.words[worst].status !== "good" ? worst : null);
+        onResultRef.current?.(r);
       } catch (e) {
         setError((e as Error).message);
       } finally {
         setChecking(false);
       }
     },
-    [phrase.text],
+    [phrase.text, source],
   );
 
   const rec = useRecorder(onRecorded);
@@ -61,11 +64,11 @@ export default function PracticeCard({ phrase, onPrev, onNext, showNav }: Props)
   const toggleRecord = useCallback(() => {
     if (rec.recording) rec.stop();
     else if (!checking) {
-      audioRef.current.pause();
+      audio.stop();
       setResult(null);
       rec.start();
     }
-  }, [rec, checking]);
+  }, [rec, checking, audio]);
 
   // Keyboard shortcuts (ignored while typing in an input).
   useEffect(() => {
@@ -76,47 +79,63 @@ export default function PracticeCard({ phrase, onPrev, onNext, showNav }: Props)
         toggleRecord();
       } else if (e.key === "l") listen("normal");
       else if (e.key === "s") listen("slow");
-      else if (e.key === "ArrowRight" && showNav) onNext();
-      else if (e.key === "ArrowLeft" && showNav) onPrev();
+      else if (e.key === "ArrowRight") onNext?.();
+      else if (e.key === "ArrowLeft") onPrev?.();
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [toggleRecord, listen, onNext, onPrev, showNav]);
-
-  useEffect(() => () => audioRef.current.pause(), []);
+  }, [toggleRecord, listen, onNext, onPrev]);
 
   const statusWord = (score: number) =>
     score >= 85 ? "Excellent!" : score >= 55 ? "Good. Almost there" : score >= 30 ? "Keep going" : "Let's try again";
 
+  const focusScores = result && focus ? focusLetterScores(result, focus) : [];
+
   return (
     <div className="card">
       <div className="card-top">
-        <span className="category">{phrase.category}</span>
+        <span className="category">
+          {phrase.category}
+          {position && <> · {position}</>}
+        </span>
         {best !== null && <span className="best">Best: {best}%</span>}
       </div>
 
       <div className="target" lang="ru">
-        {result
-          ? result.words.map((w, i) => (
-              <button
-                key={i}
-                className={`word ${w.status}${selected === i ? " selected" : ""}`}
-                onClick={() => setSelected(selected === i ? null : i)}
-                title="Show details for this word"
-              >
-                <Letters letters={w.letters} />
-              </button>
-            ))
-          : <Stressed text={phrase.display} />}
+        {result ? (
+          result.words.map((w, i) => (
+            <button
+              key={i}
+              className={`word ${w.status}${selected === i ? " selected" : ""}`}
+              onClick={() => setSelected(selected === i ? null : i)}
+              title="Show details for this word"
+            >
+              <Letters letters={w.letters} />
+            </button>
+          ))
+        ) : (
+          <Stressed text={phrase.display} />
+        )}
       </div>
-      <div className="translit">{phrase.translit}</div>
-      {phrase.sounds_like && (
-        <div className="sounds-like">
-          sounds like <strong>{phrase.sounds_like}</strong>
+      {revealed ? (
+        <>
+          <div className="translit">{phrase.translit}</div>
+          {phrase.sounds_like && (
+            <div className="sounds-like">
+              sounds like <strong>{phrase.sounds_like}</strong>
+            </div>
+          )}
+          {phrase.english && <div className="english">“{phrase.english}”</div>}
+          {phrase.note && <div className="note">💡 {phrase.note}</div>}
+        </>
+      ) : (
+        <div className="reading-challenge">
+          Read it yourself, then say it.{" "}
+          <button className="link" onClick={() => setRevealed(true)}>
+            Show hint
+          </button>
         </div>
       )}
-      {phrase.english && <div className="english">“{phrase.english}”</div>}
-      {phrase.note && <div className="note">💡 {phrase.note}</div>}
 
       <div className="controls">
         <button onClick={() => listen("normal")} title="Listen (L)">
@@ -152,6 +171,15 @@ export default function PracticeCard({ phrase, onPrev, onNext, showNav }: Props)
               <div className="heard">
                 I heard: <span lang="ru">{result.heard || "(nothing)"}</span>
               </div>
+              {focusScores.length > 0 && (
+                <div className="focus-scores">
+                  {focusScores.map(({ letter, score }) => (
+                    <span key={letter} className={`pill ${score >= 0.85 ? "good" : score >= 0.55 ? "close" : "wrong"}`}>
+                      <span lang="ru">{letter}</span> {Math.round(score * 100)}%
+                    </span>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
           <div className="legend">
@@ -170,19 +198,36 @@ export default function PracticeCard({ phrase, onPrev, onNext, showNav }: Props)
             ))}
           </ul>
           <div className="controls small">
-            {myAudioUrl && <button onClick={() => play(myAudioUrl)}>▶ My recording</button>}
+            {myAudioUrl && <button onClick={() => audio.play(myAudioUrl)}>▶ My recording</button>}
             <button onClick={() => listen("normal")}>▶ Native</button>
-            {showNav && <button onClick={onNext}>Next phrase →</button>}
+            {onNext && <button onClick={onNext}>Next →</button>}
           </div>
         </div>
       )}
 
-      {showNav && (
+      {(onPrev || onNext) && (
         <div className="nav">
-          <button onClick={onPrev}>← Previous</button>
-          <button onClick={onNext}>Next →</button>
+          <button onClick={onPrev} disabled={!onPrev}>
+            ← Previous
+          </button>
+          <button onClick={onNext} disabled={!onNext}>
+            Next →
+          </button>
         </div>
       )}
     </div>
   );
+}
+
+/** Average score of each focus letter (case-insensitive) across the attempt. */
+function focusLetterScores(result: AttemptResult, focus: string[]) {
+  return focus
+    .map((letter) => {
+      const scores = result.words
+        .flatMap((w) => w.letters)
+        .filter((l) => l.char.toLowerCase() === letter.toLowerCase() && l.score !== null)
+        .map((l) => l.score as number);
+      return { letter: letter.toLowerCase(), score: scores.length ? scores.reduce((a, b) => a + b) / scores.length : -1 };
+    })
+    .filter((s) => s.score >= 0);
 }

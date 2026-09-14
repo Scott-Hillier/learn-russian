@@ -7,7 +7,7 @@ from fastapi import FastAPI, File, Form, HTTPException, Query, UploadFile
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
-from . import config
+from . import config, progress
 from .speech.asr import asr
 from .speech.audio import decode_to_pcm16k, peak_level, trim_and_pad
 from .speech.compare import build_feedback
@@ -32,6 +32,21 @@ def _load_phrases() -> list[dict]:
 
 
 PHRASES = _load_phrases()
+
+
+def _load_alphabet() -> dict:
+    data = json.loads((config.DATA_DIR / "alphabet.json").read_text(encoding="utf-8"))
+    for letter in data["letters"]:
+        letter["name_display"] = display_stress(letter["name"])
+        letter["examples"] = [{**ex, **_describe(ex["text"])} for ex in letter["examples"]]
+        letter["syllables"] = [_describe(s) for s in letter["syllables"]]
+    for lesson in data["lessons"]:
+        lesson["words"] = [{**w, **_describe(w["text"])} for w in lesson["words"]]
+    return data
+
+
+ALPHABET = _load_alphabet()
+SOURCES = {"phrase", "letter", "reading", "custom"}
 
 
 @app.on_event("startup")
@@ -59,6 +74,16 @@ def phrases():
     return PHRASES
 
 
+@app.get("/api/alphabet")
+def alphabet():
+    return ALPHABET
+
+
+@app.get("/api/progress/letters")
+def letters_progress():
+    return progress.letter_mastery()
+
+
 @app.get("/api/describe")
 def describe(text: str = Query(..., max_length=500)):
     return _describe(text)
@@ -83,7 +108,8 @@ def _score_pronunciation(words: list[str], pcm) -> list[dict] | None:
 
 
 @app.post("/api/attempt")
-async def attempt(target: str = Form(..., max_length=500), audio: UploadFile = File(...)):
+async def attempt(target: str = Form(..., max_length=500), audio: UploadFile = File(...),
+                  source: str = Form("phrase")):
     words = target_words(target)
     if not words:
         raise HTTPException(400, "Target text has no Russian words.")
@@ -99,7 +125,13 @@ async def attempt(target: str = Form(..., max_length=500), audio: UploadFile = F
         asyncio.to_thread(asr.transcribe, pcm),
         asyncio.to_thread(_score_pronunciation, words, pcm),
     )
-    return build_feedback(target, heard, pronunciation)
+    feedback = build_feedback(target, heard, pronunciation)
+    if pronunciation is not None:
+        try:
+            progress.record_attempt(source if source in SOURCES else "phrase", target, feedback)
+        except Exception:
+            log.exception("Could not save attempt to progress database")
+    return feedback
 
 
 if config.FRONTEND_DIST.exists():

@@ -1,0 +1,1255 @@
+{
+  "letters": [
+    {
+      "upper": "А",
+      "lower": "а",
+      "name": "а",
+      "latin": "a",
+      "kind": "vowel",
+      "sound": "“a” as in “father”",
+      "syllables": [
+        "а",
+        "ма",
+        "та"
+      ],
+      "examples": [
+        {
+          "text": "м+ама",
+          "english": "mum"
+        },
+        {
+          "text": "там",
+          "english": "there"
+        },
+        {
+          "text": "к+арта",
+          "english": "map"
+        }
+      ]
+    },
+    {
+      "upper": "Б",
+      "lower": "б",
+      "name": "бэ",
+      "latin": "b",
+      "kind": "consonant",
+      "sound": "“b” as in “bat”",
+      "tip": "At the end of a word it sounds like “p”: хлеб → “khlyep”.",
+      "syllables": [
+        "ба",
+        "бо",
+        "бу"
+      ],
+      "examples": [
+        {
+          "text": "б+анк",
+          "english": "bank"
+        },
+        {
+          "text": "хлеб",
+          "english": "bread"
+        },
+        {
+          "text": "б+абушка",
+          "english": "grandmother"
+        }
+      ]
+    },
+    {
+      "upper": "В",
+      "lower": "в",
+      "name": "вэ",
+      "latin": "v",
+      "kind": "consonant",
+      "sound": "“v” as in “van”",
+      "false_friend": "Looks like an English B, but sounds like V.",
+      "confusable": [
+        "b"
+      ],
+      "syllables": [
+        "ва",
+        "во",
+        "ву"
+      ],
+      "examples": [
+        {
+          "text": "вот",
+          "english": "here is"
+        },
+        {
+          "text": "вод+а",
+          "english": "water"
+        },
+        {
+          "text": "вр+емя",
+          "english": "time"
+        }
+      ]
+    },
+    {
+      "upper": "Г",
+      "lower": "г",
+      "name": "гэ",
+      "latin": "g",
+      "kind": "consonant",
+      "sound": "“g” as in “go” (always hard, never like “gem”)",
+      "syllables": [
+        "га",
+        "го",
+        "гу"
+      ],
+      "examples": [
+        {
+          "text": "газ+ета",
+          "english": "newspaper"
+        },
+        {
+          "text": "друг",
+          "english": "friend"
+        },
+        {
+          "text": "г+ород",
+          "english": "city"
+        }
+      ]
+    },
+    {
+      "upper": "Д",
+      "lower": "д",
+      "name": "дэ",
+      "latin": "d",
+      "kind": "consonant",
+      "sound": "“d” as in “dog”, with the tongue touching the teeth",
+      "syllables": [
+        "да",
+        "до",
+        "ду"
+      ],
+      "examples": [
+        {
+          "text": "дом",
+          "english": "house"
+        },
+        {
+          "text": "д+ома",
+          "english": "at home"
+        },
+        {
+          "text": "д+ерево",
+          "english": "tree"
+        }
+      ]
+    },
+    {
+      "upper": "Е",
+      "lower": "е",
+      "name": "е",
+      "latin": "ye",
+      "kind": "vowel",
+      "sound": "“ye” as in “yes”",
+      "false_friend": "Looks like an English E, but at the start of a word it sounds like “ye”.",
+      "confusable": [
+        "e"
+      ],
+      "tip": "After a consonant, е makes that consonant soft: нет → “nyet”.",
+      "syllables": [
+        "е",
+        "ме",
+        "те"
+      ],
+      "examples": [
+        {
+          "text": "нет",
+          "english": "no"
+        },
+        {
+          "text": "метр+о",
+          "english": "metro"
+        },
+        {
+          "text": "лес",
+          "english": "forest"
+        }
+      ]
+    },
+    {
+      "upper": "Ё",
+      "lower": "ё",
+      "name": "ё",
+      "latin": "yo",
+      "kind": "vowel",
+      "sound": "“yo” as in “yoghurt”",
+      "tip": "ё is always stressed. Russians often write it as е without the dots.",
+      "syllables": [
+        "ё",
+        "лё",
+        "тё"
+      ],
+      "examples": [
+        {
+          "text": "ёлка",
+          "english": "fir tree"
+        },
+        {
+          "text": "тётя",
+          "english": "aunt"
+        },
+        {
+          "text": "ещё",
+          "english": "more, still"
+        }
+      ]
+    },
+    {
+      "upper": "Ж",
+      "lower": "ж",
+      "name": "жэ",
+      "latin": "zh",
+      "kind": "consonant",
+      "sound": "“zh”, like the “s” in “pleasure”",
+      "tip": "ж is always hard: pull your tongue back. After ж, и sounds like ы.",
+      "syllables": [
+        "жа",
+        "жо",
+        "жу"
+      ],
+      "examples": [
+        {
+          "text": "жук",
+          "english": "beetle"
+        },
+        {
+          "text": "журн+ал",
+          "english": "magazine"
+        },
+        {
+          "text": "жен+а",
+          "english": "wife"
+        }
+      ]
+    },
+    {
+      "upper": "З",
+      "lower": "з",
+      "name": "зэ",
+      "latin": "z",
+      "kind": "consonant",
+      "sound": "“z” as in “zoo”",
+      "false_friend": "Looks like the number 3.",
+      "syllables": [
+        "за",
+        "зо",
+        "зу"
+      ],
+      "examples": [
+        {
+          "text": "зим+а",
+          "english": "winter"
+        },
+        {
+          "text": "глаз",
+          "english": "eye"
+        },
+        {
+          "text": "з+автра",
+          "english": "tomorrow"
+        }
+      ]
+    },
+    {
+      "upper": "И",
+      "lower": "и",
+      "name": "и",
+      "latin": "ee",
+      "kind": "vowel",
+      "sound": "“ee” as in “see”",
+      "false_friend": "Looks like a backwards N, but it is a vowel.",
+      "confusable": [
+        "n"
+      ],
+      "syllables": [
+        "ми",
+        "ни",
+        "ти"
+      ],
+      "examples": [
+        {
+          "text": "лим+он",
+          "english": "lemon"
+        },
+        {
+          "text": "и",
+          "english": "and"
+        },
+        {
+          "text": "кин+о",
+          "english": "cinema"
+        }
+      ]
+    },
+    {
+      "upper": "Й",
+      "lower": "й",
+      "name": "и кр+аткое",
+      "latin": "y",
+      "kind": "consonant",
+      "sound": "a short “y” glide, as in “boy”",
+      "tip": "Its name means “short и”. It usually follows a vowel.",
+      "syllables": [
+        "ай",
+        "ой",
+        "уй"
+      ],
+      "examples": [
+        {
+          "text": "мой",
+          "english": "my"
+        },
+        {
+          "text": "чай",
+          "english": "tea"
+        },
+        {
+          "text": "м+айка",
+          "english": "T-shirt"
+        }
+      ]
+    },
+    {
+      "upper": "К",
+      "lower": "к",
+      "name": "ка",
+      "latin": "k",
+      "kind": "consonant",
+      "sound": "“k” as in “kite”, without a puff of air",
+      "syllables": [
+        "ка",
+        "ко",
+        "ку"
+      ],
+      "examples": [
+        {
+          "text": "кот",
+          "english": "cat"
+        },
+        {
+          "text": "так",
+          "english": "so, like this"
+        },
+        {
+          "text": "кн+ига",
+          "english": "book"
+        }
+      ]
+    },
+    {
+      "upper": "Л",
+      "lower": "л",
+      "name": "эль",
+      "latin": "l",
+      "kind": "consonant",
+      "sound": "a “dark” l as in “full”",
+      "tip": "Before е, ё, и, ю, я or ь it becomes a light, soft l, as in “million”.",
+      "syllables": [
+        "ла",
+        "ло",
+        "лу"
+      ],
+      "examples": [
+        {
+          "text": "л+ампа",
+          "english": "lamp"
+        },
+        {
+          "text": "пол",
+          "english": "floor"
+        },
+        {
+          "text": "л+ето",
+          "english": "summer"
+        }
+      ]
+    },
+    {
+      "upper": "М",
+      "lower": "м",
+      "name": "эм",
+      "latin": "m",
+      "kind": "consonant",
+      "sound": "“m” as in “mum”",
+      "syllables": [
+        "ма",
+        "мо",
+        "му"
+      ],
+      "examples": [
+        {
+          "text": "м+ама",
+          "english": "mum"
+        },
+        {
+          "text": "мост",
+          "english": "bridge"
+        },
+        {
+          "text": "молок+о",
+          "english": "milk"
+        }
+      ]
+    },
+    {
+      "upper": "Н",
+      "lower": "н",
+      "name": "эн",
+      "latin": "n",
+      "kind": "consonant",
+      "sound": "“n” as in “no”",
+      "false_friend": "Looks like an English H, but sounds like N.",
+      "confusable": [
+        "h"
+      ],
+      "syllables": [
+        "на",
+        "но",
+        "ну"
+      ],
+      "examples": [
+        {
+          "text": "нос",
+          "english": "nose"
+        },
+        {
+          "text": "нет",
+          "english": "no"
+        },
+        {
+          "text": "ночь",
+          "english": "night"
+        }
+      ]
+    },
+    {
+      "upper": "О",
+      "lower": "о",
+      "name": "о",
+      "latin": "o",
+      "kind": "vowel",
+      "sound": "“o” as in “more” (when stressed)",
+      "tip": "When not stressed, о weakens to an “ah” or “uh” sound: молоко → “muh-lah-KOH”.",
+      "syllables": [
+        "о",
+        "мо",
+        "то"
+      ],
+      "examples": [
+        {
+          "text": "кот",
+          "english": "cat"
+        },
+        {
+          "text": "+окна",
+          "english": "windows"
+        },
+        {
+          "text": "дом",
+          "english": "house"
+        }
+      ]
+    },
+    {
+      "upper": "П",
+      "lower": "п",
+      "name": "пэ",
+      "latin": "p",
+      "kind": "consonant",
+      "sound": "“p” as in “pot”, without a puff of air",
+      "syllables": [
+        "па",
+        "по",
+        "пу"
+      ],
+      "examples": [
+        {
+          "text": "п+апа",
+          "english": "dad"
+        },
+        {
+          "text": "парк",
+          "english": "park"
+        },
+        {
+          "text": "пр+авда",
+          "english": "truth"
+        }
+      ]
+    },
+    {
+      "upper": "Р",
+      "lower": "р",
+      "name": "эр",
+      "latin": "r",
+      "kind": "consonant",
+      "sound": "a tapped or rolled “r”",
+      "false_friend": "Looks like an English P, but sounds like a rolled R.",
+      "confusable": [
+        "p"
+      ],
+      "tip": "Flick the tip of your tongue against the ridge behind your top teeth, like the “tt” in American “butter”.",
+      "syllables": [
+        "ра",
+        "ро",
+        "ру"
+      ],
+      "examples": [
+        {
+          "text": "рук+а",
+          "english": "hand"
+        },
+        {
+          "text": "рестор+ан",
+          "english": "restaurant"
+        },
+        {
+          "text": "р+адио",
+          "english": "radio"
+        }
+      ]
+    },
+    {
+      "upper": "С",
+      "lower": "с",
+      "name": "эс",
+      "latin": "s",
+      "kind": "consonant",
+      "sound": "“s” as in “sun”",
+      "false_friend": "Looks like an English C, but always sounds like S.",
+      "confusable": [
+        "k"
+      ],
+      "syllables": [
+        "са",
+        "со",
+        "су"
+      ],
+      "examples": [
+        {
+          "text": "сок",
+          "english": "juice"
+        },
+        {
+          "text": "сестр+а",
+          "english": "sister"
+        },
+        {
+          "text": "сл+ово",
+          "english": "word"
+        }
+      ]
+    },
+    {
+      "upper": "Т",
+      "lower": "т",
+      "name": "тэ",
+      "latin": "t",
+      "kind": "consonant",
+      "sound": "“t” as in “top”, with the tongue touching the teeth",
+      "syllables": [
+        "та",
+        "то",
+        "ту"
+      ],
+      "examples": [
+        {
+          "text": "там",
+          "english": "there"
+        },
+        {
+          "text": "торт",
+          "english": "cake"
+        },
+        {
+          "text": "т+уфли",
+          "english": "shoes"
+        }
+      ]
+    },
+    {
+      "upper": "У",
+      "lower": "у",
+      "name": "у",
+      "latin": "oo",
+      "kind": "vowel",
+      "sound": "“oo” as in “food”, with rounded lips",
+      "false_friend": "Looks like an English y, but sounds like “oo”.",
+      "confusable": [
+        "y"
+      ],
+      "syllables": [
+        "у",
+        "му",
+        "ту"
+      ],
+      "examples": [
+        {
+          "text": "+утро",
+          "english": "morning"
+        },
+        {
+          "text": "суп",
+          "english": "soup"
+        },
+        {
+          "text": "+ужин",
+          "english": "dinner"
+        }
+      ]
+    },
+    {
+      "upper": "Ф",
+      "lower": "ф",
+      "name": "эф",
+      "latin": "f",
+      "kind": "consonant",
+      "sound": "“f” as in “fun”",
+      "syllables": [
+        "фа",
+        "фо",
+        "фу"
+      ],
+      "examples": [
+        {
+          "text": "ф+ото",
+          "english": "photo"
+        },
+        {
+          "text": "каф+е",
+          "english": "café"
+        },
+        {
+          "text": "фильм",
+          "english": "film"
+        }
+      ]
+    },
+    {
+      "upper": "Х",
+      "lower": "х",
+      "name": "ха",
+      "latin": "kh",
+      "kind": "consonant",
+      "sound": "a raspy “kh”, like Scottish “loch”",
+      "false_friend": "Looks like an English X, but sounds like a raspy “kh”.",
+      "confusable": [
+        "x"
+      ],
+      "syllables": [
+        "ха",
+        "хо",
+        "ху"
+      ],
+      "examples": [
+        {
+          "text": "+ухо",
+          "english": "ear"
+        },
+        {
+          "text": "м+уха",
+          "english": "fly"
+        },
+        {
+          "text": "хорош+о",
+          "english": "good"
+        }
+      ]
+    },
+    {
+      "upper": "Ц",
+      "lower": "ц",
+      "name": "цэ",
+      "latin": "ts",
+      "kind": "consonant",
+      "sound": "“ts” as in “cats”, said as one sound",
+      "syllables": [
+        "ца",
+        "цо",
+        "цу"
+      ],
+      "examples": [
+        {
+          "text": "цирк",
+          "english": "circus"
+        },
+        {
+          "text": "+улица",
+          "english": "street"
+        },
+        {
+          "text": "цвет+ы",
+          "english": "flowers"
+        }
+      ]
+    },
+    {
+      "upper": "Ч",
+      "lower": "ч",
+      "name": "че",
+      "latin": "ch",
+      "kind": "consonant",
+      "sound": "a soft “ch” as in “cheese”",
+      "false_friend": "Looks like the number 4.",
+      "syllables": [
+        "ча",
+        "чу",
+        "чи"
+      ],
+      "examples": [
+        {
+          "text": "чай",
+          "english": "tea"
+        },
+        {
+          "text": "час",
+          "english": "hour"
+        },
+        {
+          "text": "челов+ек",
+          "english": "person"
+        }
+      ]
+    },
+    {
+      "upper": "Ш",
+      "lower": "ш",
+      "name": "ша",
+      "latin": "sh",
+      "kind": "consonant",
+      "sound": "a hard “sh”, with the tongue pulled back",
+      "syllables": [
+        "ша",
+        "шо",
+        "шу"
+      ],
+      "examples": [
+        {
+          "text": "шк+ола",
+          "english": "school"
+        },
+        {
+          "text": "ш+апка",
+          "english": "hat"
+        },
+        {
+          "text": "ш+уба",
+          "english": "fur coat"
+        }
+      ]
+    },
+    {
+      "upper": "Щ",
+      "lower": "щ",
+      "name": "ща",
+      "latin": "shch",
+      "kind": "consonant",
+      "sound": "a long, soft “shsh”",
+      "tip": "Compared with ш, raise your tongue higher and further forward, and hold the sound a little longer.",
+      "syllables": [
+        "ща",
+        "щу",
+        "щи"
+      ],
+      "examples": [
+        {
+          "text": "щи",
+          "english": "cabbage soup"
+        },
+        {
+          "text": "борщ",
+          "english": "borscht"
+        },
+        {
+          "text": "+овощи",
+          "english": "vegetables"
+        }
+      ]
+    },
+    {
+      "upper": "Ъ",
+      "lower": "ъ",
+      "name": "твёрдый знак",
+      "latin": "hard sign",
+      "kind": "sign",
+      "sound": "no sound of its own",
+      "tip": "The hard sign keeps the consonant before it hard and adds a tiny break before the next vowel: подъезд → “pad-YEZD”.",
+      "syllables": [
+        "сел",
+        "съел"
+      ],
+      "examples": [
+        {
+          "text": "подъ+езд",
+          "english": "entrance (of a building)"
+        },
+        {
+          "text": "съесть",
+          "english": "to eat up"
+        },
+        {
+          "text": "объясн+ить",
+          "english": "to explain"
+        }
+      ]
+    },
+    {
+      "upper": "Ы",
+      "lower": "ы",
+      "name": "ы",
+      "latin": "y (ɨ)",
+      "kind": "vowel",
+      "sound": "no English equivalent: between “i” in “bit” and “oo”",
+      "tip": "Say “ee”, then pull your whole tongue back without rounding your lips.",
+      "syllables": [
+        "ы",
+        "мы",
+        "ты"
+      ],
+      "examples": [
+        {
+          "text": "мы",
+          "english": "we"
+        },
+        {
+          "text": "сыр",
+          "english": "cheese"
+        },
+        {
+          "text": "р+ыба",
+          "english": "fish"
+        }
+      ]
+    },
+    {
+      "upper": "Ь",
+      "lower": "ь",
+      "name": "м+ягкий знак",
+      "latin": "soft sign",
+      "kind": "sign",
+      "sound": "no sound of its own",
+      "tip": "The soft sign makes the consonant before it soft: finish that consonant with the middle of your tongue raised, like a tiny “y”.",
+      "syllables": [
+        "мат",
+        "мать"
+      ],
+      "examples": [
+        {
+          "text": "мать",
+          "english": "mother"
+        },
+        {
+          "text": "день",
+          "english": "day"
+        },
+        {
+          "text": "соль",
+          "english": "salt"
+        }
+      ]
+    },
+    {
+      "upper": "Э",
+      "lower": "э",
+      "name": "э",
+      "latin": "e",
+      "kind": "vowel",
+      "sound": "“e” as in “bet”",
+      "syllables": [
+        "э",
+        "+это"
+      ],
+      "examples": [
+        {
+          "text": "+это",
+          "english": "this is"
+        },
+        {
+          "text": "эт+аж",
+          "english": "floor, storey"
+        },
+        {
+          "text": "экр+ан",
+          "english": "screen"
+        }
+      ]
+    },
+    {
+      "upper": "Ю",
+      "lower": "ю",
+      "name": "ю",
+      "latin": "yu",
+      "kind": "vowel",
+      "sound": "“yu” as in “you”",
+      "syllables": [
+        "ю",
+        "лю",
+        "ню"
+      ],
+      "examples": [
+        {
+          "text": "юг",
+          "english": "south"
+        },
+        {
+          "text": "+юбка",
+          "english": "skirt"
+        },
+        {
+          "text": "л+юди",
+          "english": "people"
+        }
+      ]
+    },
+    {
+      "upper": "Я",
+      "lower": "я",
+      "name": "я",
+      "latin": "ya",
+      "kind": "vowel",
+      "sound": "“ya” as in “yard”",
+      "false_friend": "Looks like a backwards R, but it is the vowel “ya”.",
+      "confusable": [
+        "r"
+      ],
+      "syllables": [
+        "я",
+        "мя",
+        "ля"
+      ],
+      "examples": [
+        {
+          "text": "я",
+          "english": "I"
+        },
+        {
+          "text": "+яблоко",
+          "english": "apple"
+        },
+        {
+          "text": "м+ясо",
+          "english": "meat"
+        }
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": 1,
+      "title": "Familiar friends",
+      "intro": "These five letters look and sound almost like English. You can already read real words with them!",
+      "letters": [
+        "А",
+        "К",
+        "М",
+        "О",
+        "Т"
+      ],
+      "words": [
+        {
+          "text": "м+ама",
+          "english": "mum"
+        },
+        {
+          "text": "кот",
+          "english": "cat"
+        },
+        {
+          "text": "там",
+          "english": "there"
+        },
+        {
+          "text": "так",
+          "english": "so, like this"
+        },
+        {
+          "text": "+атом",
+          "english": "atom"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "False friends",
+      "intro": "These letters look like English letters but make different sounds. This is the trickiest part of reading Cyrillic.",
+      "letters": [
+        "В",
+        "Е",
+        "Н",
+        "Р",
+        "С",
+        "У",
+        "Х"
+      ],
+      "words": [
+        {
+          "text": "вот",
+          "english": "here is"
+        },
+        {
+          "text": "нет",
+          "english": "no"
+        },
+        {
+          "text": "сок",
+          "english": "juice"
+        },
+        {
+          "text": "нос",
+          "english": "nose"
+        },
+        {
+          "text": "рук+а",
+          "english": "hand"
+        },
+        {
+          "text": "+утро",
+          "english": "morning"
+        },
+        {
+          "text": "м+уха",
+          "english": "fly"
+        },
+        {
+          "text": "метр+о",
+          "english": "metro"
+        },
+        {
+          "text": "рестор+ан",
+          "english": "restaurant"
+        },
+        {
+          "text": "Москв+а",
+          "english": "Moscow"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "New shapes, familiar sounds",
+      "intro": "These letters look new, but their sounds exist in English.",
+      "letters": [
+        "Б",
+        "Г",
+        "Д",
+        "З",
+        "И",
+        "Л",
+        "П",
+        "Ф",
+        "Э"
+      ],
+      "words": [
+        {
+          "text": "дом",
+          "english": "house"
+        },
+        {
+          "text": "суп",
+          "english": "soup"
+        },
+        {
+          "text": "парк",
+          "english": "park"
+        },
+        {
+          "text": "хлеб",
+          "english": "bread"
+        },
+        {
+          "text": "п+апа",
+          "english": "dad"
+        },
+        {
+          "text": "лим+он",
+          "english": "lemon"
+        },
+        {
+          "text": "ф+ото",
+          "english": "photo"
+        },
+        {
+          "text": "+это",
+          "english": "this is"
+        },
+        {
+          "text": "зим+а",
+          "english": "winter"
+        },
+        {
+          "text": "газ+ета",
+          "english": "newspaper"
+        },
+        {
+          "text": "раб+ота",
+          "english": "work"
+        },
+        {
+          "text": "друг",
+          "english": "friend"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Soft vowels",
+      "intro": "Я, Ю and Ё add a “y” sound in front of a vowel (Е too, from lesson 2). Й is a short “y”.",
+      "letters": [
+        "Ё",
+        "Ю",
+        "Я",
+        "Й"
+      ],
+      "words": [
+        {
+          "text": "я",
+          "english": "I"
+        },
+        {
+          "text": "мой",
+          "english": "my"
+        },
+        {
+          "text": "мо+я",
+          "english": "my (feminine)"
+        },
+        {
+          "text": "юг",
+          "english": "south"
+        },
+        {
+          "text": "ёлка",
+          "english": "fir tree"
+        },
+        {
+          "text": "тётя",
+          "english": "aunt"
+        },
+        {
+          "text": "+юбка",
+          "english": "skirt"
+        },
+        {
+          "text": "+яблоко",
+          "english": "apple"
+        },
+        {
+          "text": "м+ясо",
+          "english": "meat"
+        },
+        {
+          "text": "л+юди",
+          "english": "people"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Tricky sounds",
+      "intro": "Sounds English doesn't quite have. Take these slowly and use the slow audio.",
+      "letters": [
+        "Ж",
+        "Ц",
+        "Ч",
+        "Ш",
+        "Щ",
+        "Ы"
+      ],
+      "words": [
+        {
+          "text": "мы",
+          "english": "we"
+        },
+        {
+          "text": "ты",
+          "english": "you (informal)"
+        },
+        {
+          "text": "сыр",
+          "english": "cheese"
+        },
+        {
+          "text": "р+ыба",
+          "english": "fish"
+        },
+        {
+          "text": "чай",
+          "english": "tea"
+        },
+        {
+          "text": "шк+ола",
+          "english": "school"
+        },
+        {
+          "text": "жук",
+          "english": "beetle"
+        },
+        {
+          "text": "цирк",
+          "english": "circus"
+        },
+        {
+          "text": "+улица",
+          "english": "street"
+        },
+        {
+          "text": "борщ",
+          "english": "borscht"
+        },
+        {
+          "text": "хорош+о",
+          "english": "good"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "The signs",
+      "intro": "Ь and Ъ have no sound of their own. They change how the letters around them are pronounced.",
+      "letters": [
+        "Ь",
+        "Ъ"
+      ],
+      "words": [
+        {
+          "text": "мать",
+          "english": "mother"
+        },
+        {
+          "text": "день",
+          "english": "day"
+        },
+        {
+          "text": "соль",
+          "english": "salt"
+        },
+        {
+          "text": "брат",
+          "english": "brother"
+        },
+        {
+          "text": "брать",
+          "english": "to take"
+        },
+        {
+          "text": "семь+я",
+          "english": "family"
+        },
+        {
+          "text": "слов+арь",
+          "english": "dictionary"
+        },
+        {
+          "text": "подъ+езд",
+          "english": "entrance"
+        }
+      ]
+    }
+  ]
+}

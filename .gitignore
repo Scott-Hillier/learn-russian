@@ -1,6 +1,7 @@
 backend/.venv/
 backend/models/
 backend/cache/
+backend/userdata/
 __pycache__/
 .pytest_cache/
 frontend/node_modules/

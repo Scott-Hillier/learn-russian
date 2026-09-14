@@ -8,6 +8,8 @@ MODELS_DIR = BACKEND_DIR / "models"
 CACHE_DIR = BACKEND_DIR / "cache"
 TTS_CACHE_DIR = CACHE_DIR / "tts"
 FRONTEND_DIST = ROOT_DIR / "frontend" / "dist"
+USER_DATA_DIR = BACKEND_DIR / "userdata"  # your practice history (not committed)
+PROGRESS_DB = Path(os.environ.get("PROGRESS_DB", USER_DATA_DIR / "progress.db"))
 
 # Whisper model (mlx-community repos). "whisper-small-mlx" uses less RAM; turbo is more accurate.
 WHISPER_MODEL = os.environ.get("WHISPER_MODEL", "mlx-community/whisper-large-v3-turbo")
@@ -21,5 +23,5 @@ SILERO_PATH = MODELS_DIR / "silero_v4_ru.pt"
 TTS_SPEAKER = os.environ.get("TTS_SPEAKER", "xenia")
 TTS_SAMPLE_RATE = 48000
 
-for d in (MODELS_DIR, TTS_CACHE_DIR):
+for d in (MODELS_DIR, TTS_CACHE_DIR, USER_DATA_DIR):
     d.mkdir(parents=True, exist_ok=True)
