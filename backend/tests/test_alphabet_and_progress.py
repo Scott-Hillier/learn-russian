@@ -60,3 +60,17 @@ def test_progress_mastery(tmp_path):
     assert m["м"] == {"count": 3, "average": 1.0, "status": "mastered"}
     assert m["ы"]["status"] == "learning"
     assert "в" not in m
+
+
+def test_progress_summary(tmp_path):
+    db = tmp_path / "s.db"
+    fb = {"score": 80, "words": [{"letters": [{"char": "ы", "score": 0.4}, {"char": "м", "score": 1.0}]}]}
+    for _ in range(3):
+        progress.record_attempt("phrase", "мы", fb, path=db)
+    progress.record_attempt("sentence", "Где метр+о?", {"score": 100, "words": []}, path=db)
+    s = progress.summary(days=7, path=db)
+    assert s["totals"]["attempts"] == 4 and s["totals"]["streak_days"] == 1 and s["totals"]["average_score"] == 85
+    assert len(s["daily"]) == 7 and s["daily"][-1]["attempts"] == 4 and s["daily"][-1]["average_score"] == 85
+    assert s["by_source"] == {"phrase": 3, "sentence": 1}
+    assert [p["letter"] for p in s["problem_letters"]] == ["ы"]
+    assert s["flashcards"] == {"learned": 0, "learning": 0, "new": 0}

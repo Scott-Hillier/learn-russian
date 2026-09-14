@@ -210,6 +210,16 @@ export interface AttemptResult {
   score: number;
   tips: string[];
   timing?: Timing | null;
+  intonation?: { native: (number | null)[]; yours: (number | null)[]; marks: { position: number; label: string }[] } | null;
+}
+
+export interface ProgressSummary {
+  totals: { attempts: number; reviews: number; active_days: number; streak_days: number; average_score: number | null };
+  daily: { date: string; attempts: number; reviews: number; average_score: number | null }[];
+  by_source: Record<string, number>;
+  letters: Record<string, LetterMastery>;
+  problem_letters: (LetterMastery & { letter: string })[];
+  flashcards: { learned: number; learning: number; new: number };
 }
 
 export interface Health {
@@ -276,11 +286,13 @@ export const api = {
   minimalPairs: () => fetch("/api/minimal-pairs").then((r) => json<PairGroup[]>(r)),
   bestScores: (source: AttemptSource) =>
     fetch(`/api/progress/best?source=${source}`).then((r) => json<Record<string, number>>(r)),
-  attempt: (target: string, audio: Blob, source: AttemptSource, timing = false) => {
+  progressSummary: () => fetch("/api/progress/summary").then((r) => json<ProgressSummary>(r)),
+  attempt: (target: string, audio: Blob, source: AttemptSource, timing = false, intonation = false) => {
     const form = new FormData();
     form.append("target", target);
     form.append("source", source);
     if (timing) form.append("timing", "true");
+    if (intonation) form.append("intonation", "true");
     form.append("audio", audio, "attempt");
     return fetch("/api/attempt", { method: "POST", body: form }).then((r) => json<AttemptResult>(r));
   },

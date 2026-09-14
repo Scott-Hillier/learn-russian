@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import type { Health } from "./api";
 import Stressed from "./Stressed";
 
-export type Mode = "alphabet" | "flashcards" | "sentences" | "pairs" | "conversation" | "phrases";
+export type Mode = "alphabet" | "flashcards" | "sentences" | "pairs" | "conversation" | "phrases" | "progress";
 
 const MODES: { id: Mode; label: string }[] = [
   { id: "alphabet", label: "🔤 Letters & Sounds" },
@@ -11,6 +11,7 @@ const MODES: { id: Mode; label: string }[] = [
   { id: "pairs", label: "👂 Sound pairs" },
   { id: "conversation", label: "🤖 Conversation" },
   { id: "phrases", label: "💬 Phrases" },
+  { id: "progress", label: "📈 Progress" },
 ];
 
 interface Props {

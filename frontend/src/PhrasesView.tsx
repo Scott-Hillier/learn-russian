@@ -79,6 +79,7 @@ export default function PhrasesView({ layout }: { layout: LayoutProps }) {
           key={`${current.id}-${current.text}`}
           phrase={current}
           source={current.id >= 0 ? "phrase" : "custom"}
+          intonation
           onPrev={current.id >= 0 ? () => go(-1) : undefined}
           onNext={current.id >= 0 ? () => go(1) : undefined}
         />

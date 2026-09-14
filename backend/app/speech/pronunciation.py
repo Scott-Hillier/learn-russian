@@ -23,6 +23,7 @@ from ..text import display_stress
 
 log = logging.getLogger(__name__)
 
+FRAME_SECONDS = 0.02  # wav2vec2 emits one frame per 320 samples at 16 kHz
 GOOD = 0.5   # letter probability share at or above this is pronounced well
 CLOSE = 0.15  # between CLOSE and GOOD is "almost"
 
@@ -213,9 +214,12 @@ class PronunciationScorer:
         first_letter = self._vocab["а"]  # letters а…я are the contiguous tail of the vocab
         letter_mass = probs[:, first_letter:].sum(-1) + 1e-9
         results: dict[tuple[int, int], tuple[float, str | None]] = {}
+        centers: dict[tuple[int, int], float] = {}  # seconds: where each letter was aligned in the audio
         for k, owner in enumerate(owners):
             if owner is None:
                 continue
+            if frames is not None and frames[k]:
+                centers[owner] = round((float(np.mean(frames[k])) + 0.5) * FRAME_SECONDS, 3)
             letter = analysed[owner[0]][owner[1]]
             ok_ids = [self._vocab[c] for c in {letter.norm} | letter.alts if c in self._vocab]
             if frames is None or not frames[k]:
@@ -242,7 +246,7 @@ class PronunciationScorer:
                     if status == "good":
                         heard = None
                 letter_out.append({"char": l.char, "stressed": l.stressed, "status": status,
-                                   "heard_as": heard, "score": value})
+                                   "heard_as": heard, "score": value, "t": centers.get((wi, li))})
             out.append({
                 "text": raw,
                 "display": display_stress(raw),

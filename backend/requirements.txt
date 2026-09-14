@@ -8,5 +8,6 @@ torch
 mlx-whisper
 transformers
 fsrs
+praat-parselmouth
 pytest
 httpx

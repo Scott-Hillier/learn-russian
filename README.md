@@ -67,6 +67,16 @@ Setup: `brew install ollama`. `./start.sh` then starts Ollama and downloads the 
 (about 3 GB) on first run. Replies take about 7 seconds on an 8 GB M1. Use
 `CHAT_MODEL=...` to try another Ollama model.
 
+## Progress & intonation
+- **📈 Progress** shows your streak, daily practice, pronunciation score over time, a
+  heatmap of how clearly you say each letter, and the sounds to work on next.
+- **Intonation chart:** after saying a phrase or a full sentence you see your pitch contour
+  over the native voice's, with stressed syllables marked. Match the rises and falls, e.g.
+  the rise at the end of "Как дела?".
+- **Word stress** isn't graded automatically. It was tested and found unreliable (see
+  `backend/scripts/stress_experiment.py`), so use the stress marks, the slow audio and the
+  intonation chart.
+
 ## How to practise phrases
 1. Pick a phrase in the sidebar, or type your own. Mark stress with `+`, e.g. `молок+о`.
 2. **🔊 Listen** (`L`) or **🐢 Slow** (`S`).
@@ -97,7 +107,7 @@ Calibration against synthetic speech (`cd backend && .venv/bin/python -m scripts
 
 Known weak spots:
 - A missing soft sign at the end of a word (спать → "спат") is often not detected.
-- Word stress isn't checked yet (Phase 7).
+- Word stress isn't graded automatically (tested and found unreliable; see the Progress & intonation section).
 
 ## Configuration (environment variables)
 | Variable | Default | Notes |

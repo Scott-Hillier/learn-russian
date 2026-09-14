@@ -3,6 +3,7 @@ import { api, type AttemptResult, type AttemptSource, type Phrase, type Timing }
 import Stressed from "./Stressed";
 import { useAudio } from "./useAudio";
 import { useRecorder } from "./useRecorder";
+import { IntonationChart } from "./charts";
 import { Letters, WordDetail } from "./WordFeedback";
 
 interface Props {
@@ -18,6 +19,8 @@ interface Props {
   position?: string;
   /** Compare speaking pace with the native voice. */
   timing?: boolean;
+  /** Show the pitch contour against the native voice. */
+  intonation?: boolean;
   onResult?: (result: AttemptResult) => void;
 }
 
@@ -30,6 +33,7 @@ export default function PracticeCard({
   hideHints,
   position,
   timing,
+  intonation,
   onResult,
 }: Props) {
   const [result, setResult] = useState<AttemptResult | null>(null);
@@ -55,7 +59,7 @@ export default function PracticeCard({
       setChecking(true);
       setError(null);
       try {
-        const r = await api.attempt(phrase.text, blob, source, timing);
+        const r = await api.attempt(phrase.text, blob, source, timing, intonation);
         setResult(r);
         setRevealed(true);
         setBest((b) => Math.max(b ?? 0, r.score));
@@ -68,7 +72,7 @@ export default function PracticeCard({
         setChecking(false);
       }
     },
-    [phrase.text, source, timing],
+    [phrase.text, source, timing, intonation],
   );
 
   const rec = useRecorder(onRecorded);
@@ -204,6 +208,11 @@ export default function PracticeCard({
           </div>
           {selected !== null && result.words[selected] && (
             <WordDetail word={result.words[selected]} onListen={listenTo} />
+          )}
+          {result.intonation && (
+            <div className="intonation-wrap">
+              <IntonationChart {...result.intonation} />
+            </div>
           )}
           <ul className="tips">
             {result.tips.map((t, i) => (

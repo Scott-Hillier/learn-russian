@@ -200,6 +200,7 @@ function SentenceTrainer({ sentence, onResult, onNextSentence }: TrainerProps) {
             phrase={asPhrase(sentence, "Full sentence", sentence.english)}
             source="sentence"
             timing
+            intonation
             onResult={onResult}
           />
           <div className="lesson-next">

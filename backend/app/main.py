@@ -4,6 +4,7 @@ import json
 import logging
 import re
 import threading
+from functools import lru_cache
 
 from fastapi import FastAPI, File, Form, HTTPException, Query, UploadFile
 from fastapi.responses import FileResponse
@@ -15,6 +16,7 @@ from .routes_chat import router as chat_router
 from .routes_flashcards import router as flashcard_router
 from .speech.asr import asr
 from .speech.audio import decode_to_pcm16k, peak_level, trim_and_pad, voiced_duration
+from .speech import prosody
 from .speech.compare import build_feedback
 from .speech.pronunciation import scorer
 from .speech.tts import tts
@@ -126,6 +128,11 @@ def letters_progress():
     return progress.letter_mastery()
 
 
+@app.get("/api/progress/summary")
+def progress_summary():
+    return progress.summary()
+
+
 @app.get("/api/progress/best")
 def best_scores(source: str):
     return progress.best_scores(source)
@@ -174,6 +181,28 @@ def _score_pronunciation(words: list[str], pcm) -> list[dict] | None:
         return None
 
 
+@lru_cache(maxsize=256)
+def _native_intonation(target: str) -> dict | None:
+    """Native (normal speed) pitch contour and stressed-syllable positions for a target text."""
+    native = trim_and_pad(decode_to_pcm16k(tts.synthesize(target, "normal").read_bytes()))
+    contour = prosody.pitch_contour(native)
+    if contour is None:
+        return None
+    return {"contour": contour["values"], "marks": prosody.stress_marks(scorer.score(target_words(target), native), contour)}
+
+
+def _intonation(target: str, pcm) -> dict | None:
+    try:
+        native = _native_intonation(target)
+        yours = prosody.pitch_contour(pcm)
+    except Exception:
+        log.exception("Could not measure intonation")
+        return None
+    if native is None or yours is None:
+        return None
+    return {"native": native["contour"], "yours": yours["values"], "marks": native["marks"]}
+
+
 def _timing(target: str, pcm) -> dict | None:
     """Compare the learner's speaking duration with the native (normal speed) voice."""
     try:
@@ -189,7 +218,7 @@ def _timing(target: str, pcm) -> dict | None:
 
 @app.post("/api/attempt")
 async def attempt(target: str = Form(..., max_length=500), audio: UploadFile = File(...),
-                  source: str = Form("phrase"), timing: bool = Form(False)):
+                  source: str = Form("phrase"), timing: bool = Form(False), intonation: bool = Form(False)):
     words = target_words(target)
     if not any(re.search("[а-яё]", w.lower()) for w in words):
         raise HTTPException(400, "Target text has no Russian words.")
@@ -208,6 +237,8 @@ async def attempt(target: str = Form(..., max_length=500), audio: UploadFile = F
     feedback = build_feedback(target, heard, pronunciation)
     if timing:
         feedback["timing"] = await asyncio.to_thread(_timing, target, raw_pcm)
+    if intonation:
+        feedback["intonation"] = await asyncio.to_thread(_intonation, target, pcm)
     if pronunciation is not None:
         try:
             progress.record_attempt(source if source in SOURCES else "phrase", target, feedback)

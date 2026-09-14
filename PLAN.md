@@ -164,7 +164,36 @@ Errors are mapped to tips aimed at English speakers, for example:
   чаем?") and can occasionally miss or invent a correction. The UI labels corrections as
   AI suggestions.
 
-### Stress and intonation (later phase)
+### Implementation note (Phase 7): Stress, intonation & progress
+- **Automatic stress verdicts were tested and rejected.** The script is
+  `scripts/stress_experiment.py`; the test set was 211 Starter words from two Silero voices,
+  each with correct stress and with the stress deliberately moved (Silero follows `+` marks).
+
+  | Method | Moved stress caught (at ≥90% of correct words left alone) |
+  |---|---|
+  | Per-vowel duration / loudness / pitch from the letter alignment | ~42% |
+  | Comparison with the native voice's prominence pattern | 25% |
+  | Syllable-nucleus (intensity peak) detection | ~42%, and it missed syllables in 18% of recordings |
+
+  Telling a learner "wrong stress" while catching under half of real errors and wrongly
+  flagging about 1 in 11 correct words would do more harm than good.
+- **Instead, an intonation chart.** On Phrases and the full-sentence step, your pitch contour
+  (Praat via parselmouth, in semitones relative to your own median pitch, normalised in time)
+  is drawn over the native voice's. The native stressed syllables are marked, using the
+  pronunciation model's letter alignment. Native results are cached per phrase.
+- **📈 Progress dashboard** (`/api/progress/summary`):
+  - streak and active days, speaking attempts, average score, flashcards learned, letters practised
+  - 30-day stacked columns of speaking attempts and flashcard reviews
+  - a separate daily score line (a second chart rather than a second axis)
+  - a table view of the daily numbers
+  - a 33-letter heatmap on a single-hue sequential ramp, reversed on dark surfaces so strong
+    letters stay prominent
+  - "sounds to work on" (3+ attempts, below 85%), linking to Sound pairs or Letter lessons
+  - where you've practised
+- **Chart colours** were checked with the dataviz palette validator (categorical blue and
+  orange, light and dark, against the app's own surfaces; all checks pass).
+
+### Stress and intonation (original design, for reference)
 Word stress is the hardest thing to score automatically. Planned approach:
 1. Force-align your audio to the target phonemes.
 2. Measure each vowel's duration, loudness and pitch (via `parselmouth`/Praat).
@@ -281,4 +310,4 @@ Revised order:
 4. Flashcards and SRS ✅ (done 2026-09-14; see the implementation note below)
 5. Sentence trainer and minimal pairs ✅ (done 2026-09-14; see the implementation note below)
 6. Conversation partner (Ollama) ✅ (done 2026-09-14; see the implementation note below)
-7. Stress, intonation and progress
+7. Stress, intonation and progress ✅ (done 2026-09-14; see the implementation note below)
