@@ -12,6 +12,7 @@ import Layout from "./Layout";
 import LetterCard from "./LetterCard";
 import LetterQuiz from "./LetterQuiz";
 import Drill, { type DrillItem } from "./Drill";
+import { useHotkeys } from "./useHotkeys";
 
 type LayoutProps = Omit<ComponentProps<typeof Layout>, "sidebar" | "children">;
 type Tab = "learn" | "say" | "read" | "quiz";
@@ -34,7 +35,7 @@ export default function AlphabetView({ layout }: { layout: LayoutProps }) {
   const [lessonId, setLessonId] = useState<number | null>(null); // null = overview
   const [tab, setTab] = useState<Tab>("learn");
   const [letter, setLetter] = useState<string | null>(null);
-  const [drillFocus, setDrillFocus] = useState<string | null>(null); // practise a single letter
+  const [practising, setPractising] = useState(false); // saying the current letter's words, still within Learn
   const [loadError, setLoadError] = useState<string | null>(null);
 
   const refreshMastery = useCallback(() => {
@@ -58,8 +59,30 @@ export default function AlphabetView({ layout }: { layout: LayoutProps }) {
     setLessonId(id);
     setTab(tabId);
     setLetter(letterUpper ?? target?.letters[0] ?? null);
-    setDrillFocus(null);
+    setPractising(false);
   };
+
+  const showLetter = (c: string) => {
+    setLetter(c);
+    setPractising(false);
+  };
+
+  // After a letter (or its practice): the next letter, or once all are learned, the lesson's next step.
+  const isLastLetter = lesson !== null && letterIndex === lesson.letters.length - 1;
+  const nextAfterLetter = () => {
+    if (!lesson) return;
+    if (isLastLetter) {
+      setPractising(false);
+      setTab("say");
+    } else showLetter(lesson.letters[letterIndex + 1]);
+  };
+  const nextAfterLetterLabel = isLastLetter ? "Next: say the letters →" : "Next letter →";
+
+  useHotkeys((key) => {
+    if (!practising || key !== "escape") return false;
+    setPractising(false);
+    return true;
+  });
 
   const sidebar = data && (
     <>
@@ -118,7 +141,7 @@ export default function AlphabetView({ layout }: { layout: LayoutProps }) {
                   className={tab === t.id ? "active" : ""}
                   onClick={() => {
                     setTab(t.id);
-                    setDrillFocus(null);
+                    setPractising(false);
                   }}
                 >
                   {t.label}
@@ -136,25 +159,39 @@ export default function AlphabetView({ layout }: { layout: LayoutProps }) {
                     letter={letters.get(c)!}
                     mastery={mastery}
                     active={letter === c}
-                    onClick={() => setLetter(c)}
+                    onClick={() => showLetter(c)}
                   />
                 ))}
               </div>
-              {letter && letters.get(letter) && (
+              {letter && letters.get(letter) && practising && (
+                <Drill
+                  key={`practise-${letter}`}
+                  items={sayItems(lesson, letters, letter)}
+                  source="letter"
+                  onResult={refreshMastery}
+                  banner={
+                    <div className="drill-banner">
+                      Practising words with <strong lang="ru">{letter}</strong> ·{" "}
+                      <button className="link" onClick={() => setPractising(false)}>
+                        ← back to the letter
+                      </button>{" "}
+                      <kbd>Esc</kbd>
+                    </div>
+                  }
+                  onFinish={nextAfterLetter}
+                  finishLabel={nextAfterLetterLabel}
+                />
+              )}
+              {letter && letters.get(letter) && !practising && (
                 <LetterCard
                   key={letter}
                   letter={letters.get(letter)!}
                   mastery={mastery[letter.toLowerCase()]}
                   position={`${letterIndex + 1} / ${lesson.letters.length}`}
-                  onPrev={letterIndex > 0 ? () => setLetter(lesson.letters[letterIndex - 1]) : undefined}
-                  onNext={() =>
-                    letterIndex < lesson.letters.length - 1 ? setLetter(lesson.letters[letterIndex + 1]) : setTab("say")
-                  }
-                  nextLabel={letterIndex < lesson.letters.length - 1 ? "Next letter →" : "Next: say the letters →"}
-                  onPractise={() => {
-                    setDrillFocus(letter);
-                    setTab("say");
-                  }}
+                  onPrev={letterIndex > 0 ? () => showLetter(lesson.letters[letterIndex - 1]) : undefined}
+                  onNext={nextAfterLetter}
+                  nextLabel={nextAfterLetterLabel}
+                  onPractise={() => setPractising(true)}
                 />
               )}
             </>
@@ -162,20 +199,10 @@ export default function AlphabetView({ layout }: { layout: LayoutProps }) {
 
           {tab === "say" && (
             <Drill
-              key={`say-${lesson.id}-${drillFocus}`}
-              items={sayItems(lesson, letters, drillFocus)}
+              key={`say-${lesson.id}`}
+              items={sayItems(lesson, letters)}
               source="letter"
               onResult={refreshMastery}
-              banner={
-                drillFocus ? (
-                  <div className="drill-banner">
-                    Practising <strong lang="ru">{drillFocus}</strong> only ·{" "}
-                    <button className="link" onClick={() => setDrillFocus(null)}>
-                      practise all letters in this lesson
-                    </button>
-                  </div>
-                ) : null
-              }
               onFinish={() => setTab("read")}
               finishLabel="Next: read words →"
             />
@@ -212,7 +239,7 @@ export default function AlphabetView({ layout }: { layout: LayoutProps }) {
   );
 }
 
-function sayItems(lesson: Lesson, letters: Map<string, AlphabetLetter>, only: string | null): DrillItem[] {
+function sayItems(lesson: Lesson, letters: Map<string, AlphabetLetter>, only?: string): DrillItem[] {
   const chosen = only ? [only] : lesson.letters;
   return chosen.flatMap((c) =>
     letters.get(c)!.examples.map((word) => ({ phrase: toPhrase(word, `Letter ${c}`), focus: [c] })),
