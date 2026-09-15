@@ -18,10 +18,16 @@ def decode_to_pcm16k(data: bytes) -> np.ndarray:
 
 
 FRAME = int(0.02 * SAMPLE_RATE)
+MERGE_GAP_FRAMES = 12    # quiet stretches up to 240 ms (e.g. a stop consonant's closure) stay inside the speech
+MIN_SPEECH_FRAMES = 5    # a loud stretch shorter than 100 ms, set apart from the speech, is a click
 
 
 def voiced_bounds(audio: np.ndarray) -> tuple[int, int] | None:
-    """Sample range from the first to the last frame loud enough to be speech."""
+    """Sample range from the start to the end of speech.
+
+    Short isolated bursts before or after the speech, such as the key press that started or stopped the
+    recording, are left out.
+    """
     n = audio.size // FRAME
     if n == 0:
         return None
@@ -30,7 +36,16 @@ def voiced_bounds(audio: np.ndarray) -> tuple[int, int] | None:
     voiced = np.where(rms > threshold)[0]
     if not voiced.size:
         return None
-    return int(voiced[0] * FRAME), int((voiced[-1] + 1) * FRAME)
+
+    runs: list[list[int]] = [[voiced[0], voiced[0], 1]]  # [first frame, last frame, voiced frame count]
+    for f in voiced[1:]:
+        if f - runs[-1][1] <= MERGE_GAP_FRAMES:
+            runs[-1][1] = f
+            runs[-1][2] += 1
+        else:
+            runs.append([f, f, 1])
+    speech = [r for r in runs if r[2] >= MIN_SPEECH_FRAMES] or runs
+    return int(speech[0][0] * FRAME), int((speech[-1][1] + 1) * FRAME)
 
 
 def voiced_duration(audio: np.ndarray) -> float:

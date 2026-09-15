@@ -10,6 +10,10 @@ TTS_CACHE_DIR = CACHE_DIR / "tts"
 FRONTEND_DIST = ROOT_DIR / "frontend" / "dist"
 USER_DATA_DIR = BACKEND_DIR / "userdata"  # your practice history (not committed)
 PROGRESS_DB = Path(os.environ.get("PROGRESS_DB", USER_DATA_DIR / "progress.db"))
+# SAVE_RECORDINGS=1 keeps your most recent attempts (audio + feedback) here, to check how scoring treats your voice
+SAVE_RECORDINGS = os.environ.get("SAVE_RECORDINGS") == "1"
+RECORDINGS_DIR = USER_DATA_DIR / "recordings"
+RECORDINGS_KEPT = 60
 
 # Whisper model (mlx-community repos). "whisper-small-mlx" uses less RAM; turbo is more accurate.
 WHISPER_MODEL = os.environ.get("WHISPER_MODEL", "mlx-community/whisper-large-v3-turbo")

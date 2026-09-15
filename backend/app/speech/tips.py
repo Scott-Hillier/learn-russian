@@ -21,6 +21,20 @@ SOUND_TIPS: dict[tuple[str, str | None], str] = {
     ("е", None): "е is “ye” (or “e” after a consonant) as in “yet”.",
     ("э", None): "э is an open “e” as in “bet”.",
 }
+# English b, d, g at the start of a word are barely voiced, so Russian ears hear п, т, к. Russian voiced
+# stops buzz before the lips or tongue release; a short hum in front gets the voice going early.
+SOUND_TIPS.update({
+    ("б", "п"): "б is voiced: your voice must already buzz before your lips open, or it sounds like п. "
+                "Hum a short “m” straight into it (“m-ба”), then shorten the hum.",
+    ("д", "т"): "д is voiced: your voice must already buzz before your tongue releases, or it sounds like т. "
+                "Hum a short “n” straight into it (“n-дом”), then shorten the hum.",
+    ("г", "к"): "г is voiced: your voice must already buzz before the back of your tongue releases, or it sounds "
+                "like к. Hum a short “ng” straight into it, then shorten the hum.",
+    ("з", "с"): "з is a buzzing “z”, not “s”. Keep your voice on for the whole sound (a hand on your throat "
+                "should feel it).",
+    ("ж", "ш"): "ж is a buzzing ш. Keep your voice on for the whole sound, like the “s” in “pleasure”.",
+    ("в", "ф"): "в is a buzzing “v”, not “f”. Keep your voice on while your top teeth touch your lower lip.",
+})
 FULL_VOWEL_TIPS = {"у", "ю", "я", "е", "э", "о", "а"}
 UNSTRESSED_VOWEL = ("Unstressed vowels are short and weak in Russian. Say the stressed syllable strongly, "
                     "keep this one brief, and copy the slow audio.")

@@ -46,3 +46,11 @@ def test_feedback_without_acoustic_model_or_audio():
     assert r["score"] == 0 and r["words"][0]["status"] == "missing"
     r = build_feedback("Прив+ет", "привет", None)
     assert r["score"] == 100 and r["words"][0]["status"] == "good"
+
+
+def test_devoiced_consonant_gets_voicing_advice():
+    from app.speech.tips import letter_tip
+    text, specific = letter_tip("дом", {"char": "д", "stressed": False, "heard_as": "т"})
+    assert specific and "voiced" in text and "sounded like “т”" in text
+    text, _ = letter_tip("дом", {"char": "д", "stressed": False, "heard_as": None})
+    assert "wasn't clear" in text

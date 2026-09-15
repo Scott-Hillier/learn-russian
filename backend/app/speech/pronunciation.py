@@ -26,6 +26,9 @@ log = logging.getLogger(__name__)
 FRAME_SECONDS = 0.02  # wav2vec2 emits one frame per 320 samples at 16 kHz
 GOOD = 0.5   # letter probability share at or above this is pronounced well
 CLOSE = 0.15  # between CLOSE and GOOD is "almost"
+# Below this average letter probability (the rest is "no letter" / silence) the model didn't hear any clear
+# letter where this one should be, so naming the strongest competitor would be a guess from noise.
+MIN_HEARD_MASS = 0.5
 
 VOWELS = set("аеёиоуыэюя")
 VOICED_TO_VOICELESS = {"б": "п", "в": "ф", "г": "к", "д": "т", "ж": "ш", "з": "с"}
@@ -229,7 +232,8 @@ class PronunciationScorer:
             share = float(probs[fr][:, ok_ids].sum() / letter_mass[fr].sum())
             competitors = probs[fr][:, first_letter:].sum(0)
             competitors[[i - first_letter for i in ok_ids]] = 0
-            heard = self._inv[int(competitors.argmax()) + first_letter]
+            clear = float(letter_mass[fr].mean()) >= MIN_HEARD_MASS
+            heard = self._inv[int(competitors.argmax()) + first_letter] if clear else None
             results[owner] = (share, heard)
 
         out = []

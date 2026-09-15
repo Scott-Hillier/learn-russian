@@ -5,7 +5,7 @@ import numpy as np
 
 from app import config, progress
 from app.flashcards import needs_stress_mark
-from app.speech.audio import SAMPLE_RATE, voiced_duration
+from app.speech.audio import SAMPLE_RATE, voiced_bounds, voiced_duration
 from app.text import strip_stress, target_words
 
 SENTENCES = json.loads((config.DATA_DIR / "sentences.json").read_text(encoding="utf-8"))
@@ -53,6 +53,23 @@ def test_voiced_duration_ignores_leading_and_trailing_silence():
     audio = np.concatenate([silence, tone, silence, tone, silence])
     assert abs(voiced_duration(audio) - 2.5) < 0.05
     assert voiced_duration(np.zeros(1000, dtype=np.float32)) == 0.0
+
+
+def test_voiced_bounds_skip_key_clicks():
+    rng = np.random.default_rng(0)
+    tone = 0.3 * np.sin(np.linspace(0, 2 * np.pi * 220, SAMPLE_RATE)).astype(np.float32)  # 1 s of "speech"
+    click = np.zeros(int(0.03 * SAMPLE_RATE), dtype=np.float32)
+    click[:80] = 0.6 * rng.standard_normal(80)
+    gap = np.zeros(int(0.4 * SAMPLE_RATE), dtype=np.float32)
+    # Space pressed to start, speech, Space pressed to stop.
+    audio = np.concatenate([gap, click, gap, tone, gap, click, gap])
+    start, end = voiced_bounds(audio)
+    assert abs(start / SAMPLE_RATE - 0.83) < 0.03 and abs(end / SAMPLE_RATE - 1.83) < 0.03
+    # A stop consonant's short silence inside a word doesn't split off its release.
+    release = np.concatenate([tone[: SAMPLE_RATE // 2], gap[: int(0.15 * SAMPLE_RATE)], click])
+    assert abs(voiced_bounds(release)[1] / SAMPLE_RATE - (0.5 + 0.15 + 0.01)) < 0.03
+    # A single short sound is still speech when there's nothing longer.
+    assert voiced_bounds(np.concatenate([gap, click, gap])) is not None
 
 
 def test_best_scores(tmp_path):

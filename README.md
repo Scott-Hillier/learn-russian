@@ -127,6 +127,15 @@ Calibration against synthetic speech (`cd backend && .venv/bin/python -m scripts
 Known weak spots:
 - A missing soft sign at the end of a word (спать → "спат") is often not detected.
 - Word stress isn't graded automatically (tested and found unreliable; see the Progress & intonation section).
+- Each letter is judged on the short moment where the model heard it, so scores are close to all-or-nothing.
+  When the model heard no clear letter there, feedback says the sound "wasn't clear" instead of guessing
+  what it sounded like.
+- "д sounded like т" (and б→п, г→к) at the start of a word is usually real: English b/d/g are barely voiced
+  there, and Russian hears them as п/т/к. The tip explains how to voice them.
+- Short clicks before or after speech (e.g. pressing `Space` to start or stop) are trimmed off before scoring.
+
+To check how scoring treats your own voice, start the app with `SAVE_RECORDINGS=1 ./start.sh`. Your last 60
+attempts (audio and feedback) are then kept in `backend/userdata/recordings/` (not committed).
 
 ## Configuration (environment variables)
 | Variable | Default | Notes |
