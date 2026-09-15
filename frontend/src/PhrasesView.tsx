@@ -38,8 +38,13 @@ export default function PhrasesView({ layout }: { layout: LayoutProps }) {
     e.preventDefault();
     const text = custom.trim();
     if (!text) return;
-    const d = await api.describe(text);
-    setCurrent({ ...d, id: -1, category: "Custom", english: "" });
+    try {
+      const d = await api.describe(text);
+      setCurrent({ ...d, id: -1, category: "Custom", english: "" });
+      setLoadError(null);
+    } catch (err) {
+      setLoadError((err as Error).message);
+    }
   };
 
   const sidebar = (

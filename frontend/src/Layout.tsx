@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 import type { Health } from "./api";
 import Stressed from "./Stressed";
 
@@ -23,9 +23,24 @@ interface Props {
 }
 
 export default function Layout({ mode, onMode, health, sidebar, children }: Props) {
+  const sidebarRef = useRef<HTMLElement>(null);
+  const lastActive = useRef<Element | null>(null);
+
+  // Keep the selected item visible in the sidebar list as Next/Back moves through it.
+  useEffect(() => {
+    const aside = sidebarRef.current;
+    const active = aside?.querySelector("ul .active");
+    if (!aside || !active || active === lastActive.current) return;
+    lastActive.current = active;
+    const a = active.getBoundingClientRect();
+    const box = aside.getBoundingClientRect();
+    if (a.top < box.top) aside.scrollTop -= box.top - a.top + 12;
+    else if (a.bottom > box.bottom) aside.scrollTop += a.bottom - box.bottom + 12;
+  });
+
   return (
     <div className="layout">
-      <aside className="sidebar">
+      <aside className="sidebar" ref={sidebarRef}>
         <h1>
           <Stressed text="Говори́!" /> <small>Speak Russian</small>
         </h1>
@@ -46,8 +61,6 @@ export default function Layout({ mode, onMode, health, sidebar, children }: Prop
         {children}
         <footer>
           {health ? `Voice: ${health.tts} · Recognition: ${health.asr_model.split("/").pop()}` : "Connecting…"}
-          {" · "}Shortcuts: <kbd>L</kbd> listen <kbd>S</kbd> slow <kbd>Space</kbd> record <kbd>←</kbd>
-          <kbd>→</kbd> next/previous
         </footer>
       </main>
     </div>

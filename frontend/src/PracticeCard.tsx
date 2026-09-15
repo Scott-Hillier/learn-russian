@@ -1,7 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import ActionBar, { AutoPlayToggle } from "./ActionBar";
 import { api, type AttemptResult, type AttemptSource, type Phrase, type Timing } from "./api";
+import { usePref } from "./prefs";
 import Stressed from "./Stressed";
 import { useAudio } from "./useAudio";
+import { useHotkeys } from "./useHotkeys";
 import { useRecorder } from "./useRecorder";
 import { IntonationChart } from "./charts";
 import { Letters, WordDetail } from "./WordFeedback";
@@ -11,6 +14,8 @@ interface Props {
   source: AttemptSource;
   onPrev?: () => void;
   onNext?: () => void;
+  /** Label of the next button, e.g. "Next: quiz →". */
+  nextLabel?: string;
   /** Letters being practised: their scores are highlighted in the result. */
   focus?: string[];
   /** Reading challenge: hide transliteration and pronunciation hints until revealed or attempted. */
@@ -29,6 +34,7 @@ export default function PracticeCard({
   source,
   onPrev,
   onNext,
+  nextLabel = "Next →",
   focus,
   hideHints,
   position,
@@ -36,6 +42,8 @@ export default function PracticeCard({
   intonation,
   onResult,
 }: Props) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [autoPlay] = usePref("autoplay", true);
   const [result, setResult] = useState<AttemptResult | null>(null);
   const [checking, setChecking] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -86,21 +94,25 @@ export default function PracticeCard({
     }
   }, [rec, checking, audio]);
 
-  // Keyboard shortcuts (ignored while typing in an input).
+  // Each item mounts a fresh card: bring it back into view and play it, unless it's a reading challenge.
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if ((e.target as HTMLElement).tagName === "INPUT") return;
-      if (e.code === "Space") {
-        e.preventDefault();
-        toggleRecord();
-      } else if (e.key === "l") listen("normal");
-      else if (e.key === "s") listen("slow");
-      else if (e.key === "ArrowRight") onNext?.();
-      else if (e.key === "ArrowLeft") onPrev?.();
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [toggleRecord, listen, onNext, onPrev]);
+    if (cardRef.current && cardRef.current.getBoundingClientRect().top < 0) window.scrollTo({ top: 0 });
+    if (autoPlay && !hideHints) audio.play(api.ttsUrl(phrase.text, "normal"), { quiet: true });
+    // Only on mount: toggling auto-play shouldn't replay the current item.
+  }, []);
+
+  useHotkeys((key) => {
+    if (key === "space") toggleRecord();
+    else if (key === "l") listen("normal");
+    else if (key === "s") listen("slow");
+    else if (key === "p" && myAudioUrl) audio.play(myAudioUrl);
+    else if (rec.recording && key === "enter") rec.stop();
+    else if (rec.recording) return false;
+    else if ((key === "enter" || key === "arrowright") && onNext) onNext();
+    else if (key === "arrowleft" && onPrev) onPrev();
+    else return false;
+    return true;
+  });
 
   const statusWord = (score: number) =>
     score >= 85 ? "Excellent!" : score >= 55 ? "Good. Almost there" : score >= 30 ? "Keep going" : "Let's try again";
@@ -108,7 +120,7 @@ export default function PracticeCard({
   const focusScores = result && focus ? focusLetterScores(result, focus) : [];
 
   return (
-    <div className="card">
+    <div className="card" ref={cardRef}>
       <div className="card-top">
         <span className="category">
           {phrase.category}
@@ -153,28 +165,8 @@ export default function PracticeCard({
         </div>
       )}
 
-      <div className="controls">
-        <button onClick={() => listen("normal")} title="Listen (L)">
-          🔊 Listen
-        </button>
-        <button onClick={() => listen("slow")} title="Listen slowly (S)">
-          🐢 Slow
-        </button>
-        <button
-          className={`record ${rec.recording ? "on" : ""}`}
-          onClick={toggleRecord}
-          disabled={checking}
-          title="Record (Space)"
-        >
-          {rec.recording ? "■ Stop" : checking ? "Checking…" : "🎙 Say it"}
-        </button>
-      </div>
-
-      <div className="meter" aria-hidden>
-        <div style={{ width: `${rec.level * 100}%` }} />
-      </div>
-      {rec.recording && <div className="hint">Listening… stops automatically when you pause.</div>}
       {(rec.error || error) && <div className="banner error">{rec.error || error}</div>}
+      {checking && <div className="hint">Checking your pronunciation…</div>}
 
       {result && (
         <div className="result">
@@ -209,34 +201,76 @@ export default function PracticeCard({
           {selected !== null && result.words[selected] && (
             <WordDetail word={result.words[selected]} onListen={listenTo} />
           )}
+          {result.tips.length > 0 && (
+            <ul className="tips">
+              {result.tips.map((t, i) => (
+                <li key={i}>{t}</li>
+              ))}
+            </ul>
+          )}
           {result.intonation && (
             <div className="intonation-wrap">
               <IntonationChart {...result.intonation} />
             </div>
           )}
-          <ul className="tips">
-            {result.tips.map((t, i) => (
-              <li key={i}>{t}</li>
-            ))}
-          </ul>
-          <div className="controls small">
-            {myAudioUrl && <button onClick={() => audio.play(myAudioUrl)}>▶ My recording</button>}
-            <button onClick={() => listen("normal")}>▶ Native</button>
-            {onNext && <button onClick={onNext}>Next →</button>}
-          </div>
         </div>
       )}
 
-      {(onPrev || onNext) && (
-        <div className="nav">
-          <button onClick={onPrev} disabled={!onPrev}>
-            ← Previous
-          </button>
-          <button onClick={onNext} disabled={!onNext}>
-            Next →
-          </button>
-        </div>
-      )}
+      <ActionBar
+        level={rec.level}
+        left={
+          (onPrev || onNext) && (
+            <button onClick={onPrev} disabled={!onPrev} title="Previous (←)">
+              ← Back
+            </button>
+          )
+        }
+        center={
+          <>
+            <button onClick={() => listen("normal")} title="Listen (L)">
+              🔊 Listen
+            </button>
+            <button onClick={() => listen("slow")} title="Listen slowly (S)">
+              🐢 Slow
+            </button>
+            <button
+              className={`record ${rec.recording ? "on" : ""}`}
+              onClick={toggleRecord}
+              disabled={checking}
+              title="Record (Space)"
+            >
+              {rec.recording ? "■ Stop" : checking ? "Checking…" : result ? "🎙 Again" : "🎙 Say it"}
+            </button>
+            <button onClick={() => myAudioUrl && audio.play(myAudioUrl)} disabled={!myAudioUrl} title="Play your recording (P)">
+              ▶ You
+            </button>
+          </>
+        }
+        right={
+          onNext && (
+            <button className={result ? "primary" : ""} onClick={onNext} title="Next (Enter)">
+              {nextLabel}
+            </button>
+          )
+        }
+        hint={
+          rec.recording ? (
+            "Listening… stops automatically when you pause, or press Space."
+          ) : (
+            <>
+              <kbd>Space</kbd> record · <kbd>L</kbd> listen · <kbd>S</kbd> slow · <kbd>P</kbd> your recording
+              {onNext && (
+                <>
+                  {" "}
+                  · <kbd>Enter</kbd> next
+                </>
+              )}
+              {" · "}
+              <AutoPlayToggle />
+            </>
+          )
+        }
+      />
     </div>
   );
 }

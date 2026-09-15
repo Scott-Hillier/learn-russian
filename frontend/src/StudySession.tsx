@@ -1,7 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
+import ActionBar from "./ActionBar";
 import { api, type AttemptResult, type RatingName, type StudyNext } from "./api";
 import Stressed from "./Stressed";
 import { useAudio } from "./useAudio";
+import { useHotkeys } from "./useHotkeys";
 import { useRecorder } from "./useRecorder";
 import { Letters } from "./WordFeedback";
 
@@ -113,22 +115,22 @@ export default function StudySession({ deckId, deckName, onReviewed, onExit }: P
     [card, audio],
   );
 
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if ((e.target as HTMLElement).tagName === "INPUT" || !card) return;
-      if (e.code === "Space") {
-        e.preventDefault();
-        toggleRecord();
-      } else if (e.key === "Enter" && !revealed) {
-        setRevealed(true);
-      } else if (revealed && ["1", "2", "3", "4"].includes(e.key)) {
-        rate(Number(e.key) as 1 | 2 | 3 | 4);
-      } else if (revealed && e.key === "l") listen("normal");
-      else if (revealed && e.key === "s") listen("slow");
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [card, revealed, toggleRecord, rate, listen]);
+  const suggested = result ? suggestRating(result.score) : null;
+
+  useHotkeys((key) => {
+    if (next === null && key === "enter") onExit();
+    else if (!card) return false;
+    else if (key === "space") toggleRecord();
+    else if (rec.recording) return false;
+    else if (key === "enter" && !revealed) setRevealed(true);
+    else if (key === "enter") rate(suggested ?? 3);
+    else if (revealed && ["1", "2", "3", "4"].includes(key)) rate(Number(key) as 1 | 2 | 3 | 4);
+    else if (revealed && key === "l") listen("normal");
+    else if (revealed && key === "s") listen("slow");
+    else if (key === "p" && myAudio) audio.play(myAudio);
+    else return false;
+    return true;
+  });
 
   if (next === undefined) return <div className="card">Loading…</div>;
 
@@ -153,16 +155,22 @@ export default function StudySession({ deckId, deckName, onReviewed, onExit }: P
         ) : (
           <p>All due cards are done and today's new cards have been introduced. Come back later!</p>
         )}
-        <div className="controls">
-          <button className="record" onClick={onExit}>
-            Back
-          </button>
-        </div>
+        <ActionBar
+          right={
+            <button className="primary" onClick={onExit}>
+              Back to decks
+            </button>
+          }
+          hint={
+            <>
+              <kbd>Enter</kbd> back
+            </>
+          }
+        />
       </div>
     );
   }
 
-  const suggested = result ? suggestRating(result.score) : null;
   const isNew = next.kind === "new";
 
   return (
@@ -187,15 +195,23 @@ export default function StudySession({ deckId, deckName, onReviewed, onExit }: P
             <div className="prompt-label">How do you say this in Russian?</div>
             <div className="prompt-english">{card!.english}</div>
             {card!.notes && <div className="muted">{card!.notes}</div>}
-            <div className="controls">
-              <button className={`record ${rec.recording ? "on" : ""}`} onClick={toggleRecord} disabled={checking}>
-                {rec.recording ? "■ Stop" : checking ? "Checking…" : "🎙 Say it"}
-              </button>
-              <button onClick={() => setRevealed(true)}>Show answer</button>
-            </div>
-            <div className="hint">
-              Say it out loud from memory (<kbd>Space</kbd>), or <kbd>Enter</kbd> to reveal if you don't remember.
-            </div>
+            <ActionBar
+              level={rec.level}
+              center={
+                <>
+                  <button className={`record ${rec.recording ? "on" : ""}`} onClick={toggleRecord} disabled={checking}>
+                    {rec.recording ? "■ Stop" : checking ? "Checking…" : "🎙 Say it"}
+                  </button>
+                  <button onClick={() => setRevealed(true)}>Show answer</button>
+                </>
+              }
+              hint={
+                <>
+                  Say it out loud from memory (<kbd>Space</kbd>), or <kbd>Enter</kbd> to show the answer if you don't
+                  remember.
+                </>
+              }
+            />
           </>
         ) : (
           <>
@@ -237,31 +253,41 @@ export default function StudySession({ deckId, deckName, onReviewed, onExit }: P
               </div>
             )}
 
-            <div className="ratings">
-              {RATINGS.map((r) => (
-                <button
-                  key={r.value}
-                  className={`rating ${r.name}${suggested === r.value ? " suggested" : ""}`}
-                  onClick={() => rate(r.value)}
-                  disabled={busy}
-                >
-                  <kbd>{r.value}</kbd> {r.label}
-                  <small>{next.intervals[r.name]}</small>
-                </button>
-              ))}
-            </div>
-            {suggested && (
-              <div className="hint">
-                Suggested from your pronunciation: <strong>{RATINGS[suggested - 1].label}</strong>. Pick a different
-                one if you didn't actually remember it.
+            <ActionBar
+              level={rec.level}
+              hint={
+                suggested ? (
+                  <>
+                    Suggested from your pronunciation: <strong>{RATINGS[suggested - 1].label}</strong> (
+                    <kbd>Enter</kbd>). Pick another if you didn't actually remember it.
+                  </>
+                ) : (
+                  <>
+                    <kbd>1</kbd>–<kbd>4</kbd> rate · <kbd>Enter</kbd> good · <kbd>Space</kbd> record · <kbd>L</kbd>{" "}
+                    listen
+                  </>
+                )
+              }
+            >
+              <div className="ratings">
+                {RATINGS.map((r) => (
+                  <button
+                    key={r.value}
+                    className={`rating ${r.name}${suggested === r.value ? " suggested" : ""}`}
+                    onClick={() => rate(r.value)}
+                    disabled={busy}
+                  >
+                    <span>
+                      <kbd>{r.value}</kbd> {r.label}
+                    </span>
+                    <small>{next.intervals[r.name]}</small>
+                  </button>
+                ))}
               </div>
-            )}
+            </ActionBar>
           </>
         )}
 
-        <div className="meter" aria-hidden>
-          <div style={{ width: `${rec.level * 100}%` }} />
-        </div>
         {(rec.error || error) && <div className="banner error">{rec.error || error}</div>}
       </div>
     </div>

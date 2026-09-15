@@ -3,6 +3,7 @@ import { api, type AttemptResult, type ChatCheck, type ChatStatus, type Scenario
 import Layout from "./Layout";
 import Stressed, { stressToDisplay } from "./Stressed";
 import { useAudio } from "./useAudio";
+import { useHotkeys } from "./useHotkeys";
 import { useRecorder } from "./useRecorder";
 import { Letters } from "./WordFeedback";
 
@@ -233,16 +234,10 @@ function Chat({ scenario, messages, setMessages, level, showEnglish, autoPlay, o
     }
   };
 
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if ((e.target as HTMLElement).tagName === "INPUT" || (e.target as HTMLElement).tagName === "SELECT") return;
-      if (e.code === "Space") {
-        e.preventDefault();
-        toggleRecord();
-      }
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+  useHotkeys((key) => {
+    if (key !== "space") return false;
+    toggleRecord();
+    return true;
   });
 
   const save = async (m: Message) => {

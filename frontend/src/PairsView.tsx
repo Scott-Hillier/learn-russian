@@ -1,9 +1,11 @@
 import { useCallback, useEffect, useMemo, useState, type ComponentProps } from "react";
+import ActionBar from "./ActionBar";
 import { api, type PairGroup, type PairWord, type Phrase } from "./api";
 import Drill, { type DrillItem } from "./Drill";
 import Layout from "./Layout";
 import Stressed from "./Stressed";
 import { useAudio } from "./useAudio";
+import { useHotkeys } from "./useHotkeys";
 
 type LayoutProps = Omit<ComponentProps<typeof Layout>, "sidebar" | "children">;
 type Tab = "listen" | "say";
@@ -76,7 +78,6 @@ export default function PairsView({ layout }: { layout: LayoutProps }) {
               </button>
             </div>
           </header>
-          <PairTable group={group} />
           {tab === "listen" && <ListenQuiz key={`quiz-${group.id}`} group={group} onSay={() => setTab("say")} />}
           {tab === "say" && (
             <Drill
@@ -93,6 +94,8 @@ export default function PairsView({ layout }: { layout: LayoutProps }) {
               }
             />
           )}
+          <h3 className="section-label">All pairs in this group (click to hear)</h3>
+          <PairTable group={group} />
         </div>
       )}
     </Layout>
@@ -179,21 +182,48 @@ function ListenQuiz({ group, onSay }: { group: PairGroup; onSay: () => void }) {
     playRound(i);
   };
 
+  const restart = () => {
+    setCorrect(0);
+    begin(0);
+  };
+
   const choose = (side: "a" | "b") => {
     if (!round || chosen) return;
     setChosen(side);
     if (side === round.answer) setCorrect((c) => c + 1);
   };
 
+  useHotkeys((key) => {
+    if (index === -1) {
+      if (key !== "enter" && key !== "space") return false;
+      begin(0);
+    } else if (index >= ROUNDS) {
+      if (key === "enter") onSay();
+      else if (key === "r") restart();
+      else return false;
+    } else if (!chosen && (key === "1" || key === "2")) choose(key === "1" ? "a" : "b");
+    else if (key === "r" || key === "l" || (!chosen && key === "space")) playRound(index);
+    else if (chosen && (key === "enter" || key === "space" || key === "arrowright")) begin(index + 1);
+    else return false;
+    return true;
+  });
+
   if (index === -1) {
     return (
       <div className="card quiz">
         <p className="quiz-prompt">You'll hear one word from a pair. Pick the word you heard.</p>
-        <div className="controls">
-          <button className="record" onClick={() => begin(0)}>
-            ▶ Start ({ROUNDS} rounds)
-          </button>
-        </div>
+        <ActionBar
+          center={
+            <button className="record" onClick={() => begin(0)}>
+              ▶ Start ({ROUNDS} rounds)
+            </button>
+          }
+          hint={
+            <>
+              <kbd>Enter</kbd> start
+            </>
+          }
+        />
       </div>
     );
   }
@@ -209,19 +239,19 @@ function ListenQuiz({ group, onSay }: { group: PairGroup; onSay: () => void }) {
             ? "Your ear can hear this difference. Now practise saying it."
             : "These sounds take time to hear apart. Try another round."}
         </p>
-        <div className="controls">
-          <button
-            onClick={() => {
-              setCorrect(0);
-              begin(0);
-            }}
-          >
-            ↻ Again
-          </button>
-          <button className="record" onClick={onSay}>
-            🎙 Say the pairs →
-          </button>
-        </div>
+        <ActionBar
+          center={<button onClick={restart}>↻ Again</button>}
+          right={
+            <button className="primary" onClick={onSay}>
+              🎙 Say the pairs →
+            </button>
+          }
+          hint={
+            <>
+              <kbd>Enter</kbd> say the pairs · <kbd>R</kbd> another round
+            </>
+          }
+        />
       </div>
     );
   }
@@ -235,17 +265,14 @@ function ListenQuiz({ group, onSay }: { group: PairGroup; onSay: () => void }) {
         <span className="best">Score: {correct}</span>
       </div>
       <p className="quiz-prompt">Which word did you hear?</p>
-      <div className="controls">
-        <button onClick={() => playRound(index)}>🔊 Play again</button>
-      </div>
       <div className="quiz-options pair-options">
-        {(["a", "b"] as const).map((side) => {
+        {(["a", "b"] as const).map((side, i) => {
           const w = round.pair[side];
           const state = !chosen ? "" : side === round.answer ? "right" : side === chosen ? "wrong" : "dim";
           return (
             <button key={side} className={`quiz-option ${state}`} onClick={() => choose(side)} disabled={!!chosen}>
               <span lang="ru" className="pair-ru">
-                <Stressed text={w.display} />
+                <kbd>{i + 1}</kbd> <Stressed text={w.display} />
               </span>
               <small className="muted">{w.english}</small>
             </button>
@@ -258,12 +285,32 @@ function ListenQuiz({ group, onSay }: { group: PairGroup; onSay: () => void }) {
           <div className="controls small">
             <button onClick={() => audio.play(api.ttsUrl(round.pair.a.text, "slow"))}>🔊 {round.pair.a.plain}</button>
             <button onClick={() => audio.play(api.ttsUrl(round.pair.b.text, "slow"))}>🔊 {round.pair.b.plain}</button>
-            <button className="record" onClick={() => begin(index + 1)}>
-              Next →
-            </button>
           </div>
         </div>
       )}
+      <ActionBar
+        center={
+          <button onClick={() => playRound(index)} title="Play again (R)">
+            🔊 Play again
+          </button>
+        }
+        right={
+          <button className={chosen ? "primary" : ""} onClick={() => begin(index + 1)} disabled={!chosen} title="Next (Enter)">
+            {index === ROUNDS - 1 ? "See score →" : "Next →"}
+          </button>
+        }
+        hint={
+          chosen ? (
+            <>
+              <kbd>Enter</kbd> next · <kbd>R</kbd> play again
+            </>
+          ) : (
+            <>
+              <kbd>1</kbd> / <kbd>2</kbd> choose · <kbd>R</kbd> play again
+            </>
+          )
+        }
+      />
     </div>
   );
 }

@@ -1,10 +1,12 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type ComponentProps } from "react";
+import ActionBar from "./ActionBar";
 import { api, type AttemptResult, type Phrase, type Sentence } from "./api";
 import Drill from "./Drill";
 import Layout from "./Layout";
 import PracticeCard, { TimingNote } from "./PracticeCard";
 import Stressed from "./Stressed";
 import { useAudio } from "./useAudio";
+import { useHotkeys } from "./useHotkeys";
 import { useRecorder } from "./useRecorder";
 import { Letters } from "./WordFeedback";
 
@@ -103,8 +105,6 @@ interface TrainerProps {
 
 function SentenceTrainer({ sentence, onResult, onNextSentence }: TrainerProps) {
   const [step, setStep] = useState<Step>("listen");
-  const audio = useAudio();
-  const play = (text: string, speed: "normal" | "slow" = "normal") => audio.play(api.ttsUrl(text, speed));
 
   // Very short words (я, в, у…) are unreliable to score on their own; they're practised inside chunks.
   const practiceWords = sentence.words.filter((w) => w.plain.length >= 3);
@@ -143,34 +143,7 @@ function SentenceTrainer({ sentence, onResult, onNextSentence }: TrainerProps) {
       </header>
 
       {step === "listen" && (
-        <div className="card">
-          <div className="target" lang="ru">
-            <Stressed text={sentence.display} />
-          </div>
-          <div className="translit">{sentence.translit}</div>
-          <div className="english">“{sentence.english}”</div>
-          <div className="controls">
-            <button onClick={() => play(sentence.text)}>🔊 Listen</button>
-            <button onClick={() => play(sentence.text, "slow")}>🐢 Slow</button>
-          </div>
-          <h3 className="section-label">Word by word (click to hear)</h3>
-          <div className="gloss-grid">
-            {sentence.words.map((w, i) => (
-              <button key={i} className="gloss" onClick={() => play(w.text, "slow")}>
-                <span className="gloss-ru">
-                  <Stressed text={w.display} />
-                </span>
-                <span className="muted">{w.translit}</span>
-                <span className="gloss-en">{w.gloss}</span>
-              </button>
-            ))}
-          </div>
-          <div className="controls">
-            <button className="record" onClick={() => setStep(stepAfter.listen!)}>
-              {nextLabel("listen")}
-            </button>
-          </div>
-        </div>
+        <ListenStep sentence={sentence} onNext={() => setStep(stepAfter.listen!)} nextLabel={nextLabel("listen")} />
       )}
 
       {step === "words" && (
@@ -194,24 +167,76 @@ function SentenceTrainer({ sentence, onResult, onNextSentence }: TrainerProps) {
       )}
 
       {step === "full" && (
-        <>
-          <PracticeCard
-            key="full"
-            phrase={asPhrase(sentence, "Full sentence", sentence.english)}
-            source="sentence"
-            timing
-            intonation
-            onResult={onResult}
-          />
-          <div className="lesson-next">
-            <button className="primary" onClick={() => setStep("shadow")}>
-              {nextLabel("full")}
-            </button>
-          </div>
-        </>
+        <PracticeCard
+          key="full"
+          phrase={asPhrase(sentence, "Full sentence", sentence.english)}
+          source="sentence"
+          timing
+          intonation
+          onResult={onResult}
+          onNext={() => setStep("shadow")}
+          nextLabel={nextLabel("full")}
+        />
       )}
 
       {step === "shadow" && <ShadowCard sentence={sentence} onResult={onResult} onNextSentence={onNextSentence} />}
+    </div>
+  );
+}
+
+function ListenStep({ sentence, onNext, nextLabel }: { sentence: Sentence; onNext: () => void; nextLabel: string }) {
+  const audio = useAudio();
+  const play = (text: string, speed: "normal" | "slow" = "normal") => audio.play(api.ttsUrl(text, speed));
+
+  useHotkeys((key) => {
+    if (key === "l") play(sentence.text);
+    else if (key === "s") play(sentence.text, "slow");
+    else if (key === "enter" || key === "arrowright") onNext();
+    else return false;
+    return true;
+  });
+
+  return (
+    <div className="card">
+      <div className="target" lang="ru">
+        <Stressed text={sentence.display} />
+      </div>
+      <div className="translit">{sentence.translit}</div>
+      <div className="english">“{sentence.english}”</div>
+      <h3 className="section-label">Word by word (click to hear)</h3>
+      <div className="gloss-grid">
+        {sentence.words.map((w, i) => (
+          <button key={i} className="gloss" onClick={() => play(w.text, "slow")}>
+            <span className="gloss-ru">
+              <Stressed text={w.display} />
+            </span>
+            <span className="muted">{w.translit}</span>
+            <span className="gloss-en">{w.gloss}</span>
+          </button>
+        ))}
+      </div>
+      <ActionBar
+        center={
+          <>
+            <button onClick={() => play(sentence.text)} title="Listen (L)">
+              🔊 Listen
+            </button>
+            <button onClick={() => play(sentence.text, "slow")} title="Listen slowly (S)">
+              🐢 Slow
+            </button>
+          </>
+        }
+        right={
+          <button className="primary" onClick={onNext} title="Next (Enter)">
+            {nextLabel}
+          </button>
+        }
+        hint={
+          <>
+            <kbd>L</kbd> listen · <kbd>S</kbd> slow · <kbd>Enter</kbd> next step
+          </>
+        }
+      />
     </div>
   );
 }
@@ -260,6 +285,14 @@ function ShadowCard({ sentence, onResult, onNextSentence }: TrainerProps) {
 
   const later = (fn: () => void, ms: number) => timers.current.push(window.setTimeout(fn, ms));
 
+  useHotkeys((key) => {
+    if (key === "space") {
+      if (phase === "idle") start(); // mid-attempt the key is still swallowed so it can't click a focused button
+    } else if (key === "enter" && onNextSentence && phase === "idle") onNextSentence();
+    else return false;
+    return true;
+  });
+
   const start = () => {
     setResult(null);
     setError(null);
@@ -307,23 +340,6 @@ function ShadowCard({ sentence, onResult, onNextSentence }: TrainerProps) {
         )}
       </div>
       <div className="translit">{sentence.translit}</div>
-
-      <div className="controls">
-        <div className="segmented">
-          <button className={speed === "slow" ? "active" : ""} onClick={() => setSpeed("slow")} disabled={phase !== "idle"}>
-            🐢 Slow
-          </button>
-          <button className={speed === "normal" ? "active" : ""} onClick={() => setSpeed("normal")} disabled={phase !== "idle"}>
-            Normal
-          </button>
-        </div>
-        <button className={`record ${phase === "playing" ? "on" : ""}`} onClick={start} disabled={phase !== "idle"}>
-          {phase === "countdown" ? `Get ready… ${count}` : phase === "playing" ? "Speak now!" : phase === "checking" ? "Checking…" : "▶ Start shadowing"}
-        </button>
-      </div>
-      <div className="meter" aria-hidden>
-        <div style={{ width: `${rec.level * 100}%` }} />
-      </div>
       {(rec.error || error) && <div className="banner error">{rec.error || error}</div>}
 
       {result && (
@@ -348,14 +364,48 @@ function ShadowCard({ sentence, onResult, onNextSentence }: TrainerProps) {
           <div className="controls small">
             {mine && <button onClick={() => replay.play(mine)}>▶ My recording</button>}
             <button onClick={() => replay.play(api.ttsUrl(sentence.text, speed))}>▶ Native</button>
-            {onNextSentence && (
-              <button className="record" onClick={onNextSentence}>
-                Next sentence →
-              </button>
-            )}
           </div>
         </div>
       )}
+
+      <ActionBar
+        level={rec.level}
+        left={
+          <div className="segmented">
+            <button className={speed === "slow" ? "active" : ""} onClick={() => setSpeed("slow")} disabled={phase !== "idle"}>
+              🐢 Slow
+            </button>
+            <button className={speed === "normal" ? "active" : ""} onClick={() => setSpeed("normal")} disabled={phase !== "idle"}>
+              Normal
+            </button>
+          </div>
+        }
+        center={
+          <button className={`record ${phase === "playing" ? "on" : ""}`} onClick={start} disabled={phase !== "idle"}>
+            {phase === "countdown"
+              ? `Get ready… ${count}`
+              : phase === "playing"
+                ? "Speak now!"
+                : phase === "checking"
+                  ? "Checking…"
+                  : result
+                    ? "▶ Again"
+                    : "▶ Start shadowing"}
+          </button>
+        }
+        right={
+          onNextSentence && (
+            <button className={result ? "primary" : ""} onClick={onNextSentence} title="Next sentence (Enter)">
+              Next sentence →
+            </button>
+          )
+        }
+        hint={
+          <>
+            <kbd>Space</kbd> start shadowing{onNextSentence && <> · <kbd>Enter</kbd> next sentence</>}
+          </>
+        }
+      />
     </div>
   );
 }

@@ -26,8 +26,8 @@ saved locally in `backend/userdata/progress.db`.
 ## Flashcards
 The **🃏 Flashcards** screen uses spaced repetition (FSRS) to review vocabulary *out loud*:
 - **Reviews:** you see the English and say the Russian from memory (`Space`), or press
-  `Enter` to reveal it. Your pronunciation score suggests a rating; press `1`–`4`
-  (Again / Hard / Good / Easy) to accept or override it.
+  `Enter` to reveal it. Your pronunciation score suggests a rating: `Enter` accepts it (or
+  picks Good if you didn't speak), and `1`–`4` (Again / Hard / Good / Easy) override it.
 - **New cards** show the Russian, transliteration and audio first so you can repeat them.
 - **Decks:** *Starter words* (291 words in 12 units) and *Phrases* are built in. You can
   create your own decks, add cards, or import a CSV (`russian,english[,notes]`, with `+`
@@ -83,7 +83,26 @@ Setup: `brew install ollama`. `./start.sh` then starts Ollama and downloads the 
 3. **🎙 Say it** (`Space`). Recording stops when you pause.
 4. Each letter turns green (clear), amber (almost) or red (needs work). Faded letters are
    silent. Click a word to see what each problem sound was heard as, and to hear that word
-   on its own. Compare **My recording** with **Native**.
+   on its own. Compare **▶ You** (`P`) with **🔊 Listen**.
+5. **Next** (`Enter`) moves on, and the next item plays automatically (turn this off with
+   *Auto-play* under the buttons).
+
+## Keyboard shortcuts
+Every practice screen keeps its buttons in a bar pinned to the bottom of the window, so they stay
+in the same place from one item to the next. The keys it uses are listed under the buttons:
+
+| Key | Action |
+|---|---|
+| `Space` | Record / stop (Shadow: start) |
+| `Enter` | Next item or step (quizzes: next question; flashcards: reveal, then accept the rating) |
+| `←` `→` | Previous / next item or letter |
+| `L` / `S` | Listen / listen slowly |
+| `P` | Play your recording |
+| `1`–`4` | Quiz answer, or flashcard rating |
+| `R` | Sound pairs: replay the word; finished quiz: try again |
+
+Shortcuts use the physical key, so they still work with a Russian keyboard layout. They're off
+while you type in a text box.
 
 ## How pronunciation scoring works
 - **Whisper** transcribes what you said. It is shown as "I heard", but it auto-corrects, so it

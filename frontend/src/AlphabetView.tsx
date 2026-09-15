@@ -51,6 +51,7 @@ export default function AlphabetView({ layout }: { layout: LayoutProps }) {
 
   const letters = useMemo(() => new Map(data?.letters.map((l) => [l.upper, l]) ?? []), [data]);
   const lesson = data?.lessons.find((l) => l.id === lessonId) ?? null;
+  const letterIndex = lesson && letter ? lesson.letters.indexOf(letter) : -1;
 
   const openLesson = (id: number, tabId: Tab = "learn", letterUpper: string | null = null) => {
     const target = data?.lessons.find((l) => l.id === id);
@@ -144,17 +145,18 @@ export default function AlphabetView({ layout }: { layout: LayoutProps }) {
                   key={letter}
                   letter={letters.get(letter)!}
                   mastery={mastery[letter.toLowerCase()]}
+                  position={`${letterIndex + 1} / ${lesson.letters.length}`}
+                  onPrev={letterIndex > 0 ? () => setLetter(lesson.letters[letterIndex - 1]) : undefined}
+                  onNext={() =>
+                    letterIndex < lesson.letters.length - 1 ? setLetter(lesson.letters[letterIndex + 1]) : setTab("say")
+                  }
+                  nextLabel={letterIndex < lesson.letters.length - 1 ? "Next letter →" : "Next: say the letters →"}
                   onPractise={() => {
                     setDrillFocus(letter);
                     setTab("say");
                   }}
                 />
               )}
-              <div className="lesson-next">
-                <button className="primary" onClick={() => setTab("say")}>
-                  Ready? Practise saying these letters →
-                </button>
-              </div>
             </>
           )}
 

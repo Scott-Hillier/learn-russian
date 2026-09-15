@@ -1,6 +1,8 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
+import ActionBar from "./ActionBar";
 import { api, type AlphabetLetter } from "./api";
 import { useAudio } from "./useAudio";
+import { useHotkeys } from "./useHotkeys";
 
 const QUESTIONS = 10;
 
@@ -60,18 +62,25 @@ export default function LetterQuiz({ letters, allLetters, onDone, doneLabel }: P
     setIndex((i) => i + 1);
   };
 
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (finished) return;
-      const n = Number(e.key);
-      if (!chosen && n >= 1 && n <= 4 && q) choose(q.options[n - 1]);
-      else if (chosen && (e.key === "Enter" || e.code === "Space")) {
-        e.preventDefault();
-        next();
-      }
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+  const retry = () => {
+    setRound((r) => r + 1);
+    setIndex(0);
+    setCorrect(0);
+  };
+
+  const hearAgain = () => q && audio.play(api.ttsUrl(q.letter.examples[0].text, "slow"));
+
+  useHotkeys((key) => {
+    const n = Number(key);
+    if (finished) {
+      if (key === "enter") onDone();
+      else if (key === "r") retry();
+      else return false;
+    } else if (!chosen && n >= 1 && n <= q.options.length) choose(q.options[n - 1]);
+    else if (chosen && (key === "enter" || key === "space" || key === "arrowright")) next();
+    else if (chosen && (key === "l" || key === "s")) hearAgain();
+    else return false;
+    return true;
   });
 
   if (finished) {
@@ -82,20 +91,19 @@ export default function LetterQuiz({ letters, allLetters, onDone, doneLabel }: P
           {correct} / {questions.length} correct
         </h2>
         <p>{pct >= 80 ? "Great, you know these letters! 🎉" : "Have another go: these take a few rounds to stick."}</p>
-        <div className="controls">
-          <button
-            onClick={() => {
-              setRound((r) => r + 1);
-              setIndex(0);
-              setCorrect(0);
-            }}
-          >
-            ↻ Try again
-          </button>
-          <button className="record" onClick={onDone}>
-            {doneLabel}
-          </button>
-        </div>
+        <ActionBar
+          center={<button onClick={retry}>↻ Try again</button>}
+          right={
+            <button className="primary" onClick={onDone}>
+              {doneLabel}
+            </button>
+          }
+          hint={
+            <>
+              <kbd>Enter</kbd> continue · <kbd>R</kbd> try again
+            </>
+          }
+        />
       </div>
     );
   }
@@ -132,14 +140,31 @@ export default function LetterQuiz({ letters, allLetters, onDone, doneLabel }: P
           </span>{" "}
           sounds like {q.letter.sound}. Example: <span lang="ru">{example.plain}</span> ({example.english}).
           {q.letter.false_friend && chosen !== q.letter.latin && <div className="muted">{q.letter.false_friend}</div>}
-          <div className="controls small">
-            <button onClick={() => audio.play(api.ttsUrl(example.text, "slow"))}>🐢 Hear again</button>
-            <button className="record" onClick={next}>
-              Next →
-            </button>
-          </div>
         </div>
       )}
+      <ActionBar
+        center={
+          <button onClick={hearAgain} disabled={!chosen} title="Hear the example slowly (L)">
+            🐢 Hear example
+          </button>
+        }
+        right={
+          <button className={chosen ? "primary" : ""} onClick={next} disabled={!chosen} title="Next (Enter)">
+            {index === questions.length - 1 ? "See score →" : "Next →"}
+          </button>
+        }
+        hint={
+          chosen ? (
+            <>
+              <kbd>Enter</kbd> next · <kbd>L</kbd> hear example
+            </>
+          ) : (
+            <>
+              <kbd>1</kbd>–<kbd>{q.options.length}</kbd> choose an answer
+            </>
+          )
+        }
+      />
     </div>
   );
 }
