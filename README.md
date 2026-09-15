@@ -61,6 +61,8 @@ directions, market, hotel, free chat.
 - **Corrections:** your sentences are checked, and corrections show the changed words
   highlighted. They are AI suggestions and can occasionally be wrong.
 - **Suggested replies:** pick one, practise saying it with pronunciation scoring, then send it.
+- **Numbers:** digits are always written out as Russian words ("двести пятьдесят рублей", not
+  "250 рублей"), so you can hear, read and practise them. Ordinals like "5-й" are left as typed.
 - **Saving:** ⭐ saves a phrase to the *Conversation phrases* flashcard deck.
 
 Setup: `brew install ollama`. `./start.sh` then starts Ollama and downloads the model

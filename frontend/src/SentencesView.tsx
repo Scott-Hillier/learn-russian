@@ -274,6 +274,9 @@ function ShadowCard({ sentence, onResult, onNextSentence }: TrainerProps) {
     [sentence.text, speed, onResult],
   );
   const rec = useRecorder(onRecorded, { autoStop: false });
+  // The recorder is stopped by a timer here, so "Speak now!" would otherwise stay up while the
+  // audio is still being written and uploaded — see useRecorder.
+  const checking = phase === "checking" || rec.processing;
 
   useEffect(
     () => () => {
@@ -381,13 +384,13 @@ function ShadowCard({ sentence, onResult, onNextSentence }: TrainerProps) {
           </div>
         }
         center={
-          <button className={`record ${phase === "playing" ? "on" : ""}`} onClick={start} disabled={phase !== "idle"}>
-            {phase === "countdown"
-              ? `Get ready… ${count}`
-              : phase === "playing"
-                ? "Speak now!"
-                : phase === "checking"
-                  ? "Checking…"
+          <button className={`record ${phase === "playing" && !checking ? "on" : ""}`} onClick={start} disabled={phase !== "idle"}>
+            {checking
+              ? "Checking…"
+              : phase === "countdown"
+                ? `Get ready… ${count}`
+                : phase === "playing"
+                  ? "Speak now!"
                   : result
                     ? "▶ Again"
                     : "▶ Start shadowing"}

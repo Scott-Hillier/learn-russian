@@ -79,14 +79,16 @@ export default function StudySession({ deckId, deckName, onReviewed, onExit }: P
     [card],
   );
   const rec = useRecorder(onRecorded);
+  // Also covers the recorder finishing its file, before `checking` is set — see useRecorder.
+  const scoring = checking || rec.processing;
 
   const toggleRecord = useCallback(() => {
     if (rec.recording) rec.stop();
-    else if (!checking && card) {
+    else if (!scoring && card) {
       audio.stop();
       rec.start();
     }
-  }, [rec, checking, card, audio]);
+  }, [rec, scoring, card, audio]);
 
   const rate = useCallback(
     async (rating: 1 | 2 | 3 | 4) => {
@@ -199,8 +201,8 @@ export default function StudySession({ deckId, deckName, onReviewed, onExit }: P
               level={rec.level}
               center={
                 <>
-                  <button className={`record ${rec.recording ? "on" : ""}`} onClick={toggleRecord} disabled={checking}>
-                    {rec.recording ? "■ Stop" : checking ? "Checking…" : "🎙 Say it"}
+                  <button className={`record ${rec.recording ? "on" : ""}`} onClick={toggleRecord} disabled={scoring}>
+                    {rec.recording ? "■ Stop" : scoring ? "Checking…" : "🎙 Say it"}
                   </button>
                   <button onClick={() => setRevealed(true)}>Show answer</button>
                 </>
@@ -235,8 +237,8 @@ export default function StudySession({ deckId, deckName, onReviewed, onExit }: P
             <div className="controls">
               <button onClick={() => listen("normal")}>🔊 Listen</button>
               <button onClick={() => listen("slow")}>🐢 Slow</button>
-              <button className={`record ${rec.recording ? "on" : ""}`} onClick={toggleRecord} disabled={checking}>
-                {rec.recording ? "■ Stop" : checking ? "Checking…" : result ? "🎙 Try again" : "🎙 Say it"}
+              <button className={`record ${rec.recording ? "on" : ""}`} onClick={toggleRecord} disabled={scoring}>
+                {rec.recording ? "■ Stop" : scoring ? "Checking…" : result ? "🎙 Try again" : "🎙 Say it"}
               </button>
               {myAudio && <button onClick={() => audio.play(myAudio)}>▶ Mine</button>}
             </div>

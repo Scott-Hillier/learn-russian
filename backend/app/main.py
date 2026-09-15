@@ -21,7 +21,7 @@ from .speech import prosody
 from .speech.compare import build_feedback
 from .speech.pronunciation import scorer
 from .speech.tts import tts
-from .text import display_stress, strip_stress, target_words, transliterate
+from .text import display_stress, expand_numbers, strip_stress, target_words, transliterate
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(name)s: %(message)s")
 log = logging.getLogger("learn-russian")
@@ -48,6 +48,7 @@ app = FastAPI(title="Learn Russian", lifespan=lifespan)
 
 
 def _describe(text: str) -> dict:
+    text = expand_numbers(text)  # a card typed as "5 рублей" is taught, spoken and scored as "пять рублей"
     return {"text": text, "display": display_stress(text), "plain": strip_stress(text),
             "translit": transliterate(text)}
 
@@ -220,6 +221,7 @@ def _timing(target: str, pcm) -> dict | None:
 @app.post("/api/attempt")
 async def attempt(target: str = Form(..., max_length=500), audio: UploadFile = File(...),
                   source: str = Form("phrase"), timing: bool = Form(False), intonation: bool = Form(False)):
+    target = expand_numbers(target)
     words = target_words(target)
     if not any(re.search("[а-яё]", w.lower()) for w in words):
         raise HTTPException(400, "Target text has no Russian words.")

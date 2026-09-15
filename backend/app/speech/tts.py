@@ -9,7 +9,7 @@ from pathlib import Path
 from xml.sax.saxutils import escape
 
 from .. import config
-from ..text import strip_stress
+from ..text import expand_numbers, strip_stress
 
 log = logging.getLogger(__name__)
 
@@ -47,6 +47,7 @@ class TTS:
         """Return path to a cached WAV file for `text` (may contain '+' stress marks)."""
         if speed not in SPEEDS:
             speed = "normal"
+        text = expand_numbers(text)  # Silero has no number normaliser and silently drops digits
         self.load()
         key = hashlib.sha1(f"{self.engine}|{speed}|{text}".encode()).hexdigest()
         out = config.TTS_CACHE_DIR / f"{key}.wav"

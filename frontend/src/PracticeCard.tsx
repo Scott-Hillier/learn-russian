@@ -84,15 +84,18 @@ export default function PracticeCard({
   );
 
   const rec = useRecorder(onRecorded);
+  // Covers the whole wait: stopping the recorder, then scoring. `checking` alone leaves a visible
+  // gap while MediaRecorder finishes writing the audio.
+  const busy = checking || rec.processing;
 
   const toggleRecord = useCallback(() => {
     if (rec.recording) rec.stop();
-    else if (!checking) {
+    else if (!busy) {
       audio.stop();
       setResult(null);
       rec.start();
     }
-  }, [rec, checking, audio]);
+  }, [rec, busy, audio]);
 
   // Each item mounts a fresh card: bring it back into view and play it, unless it's a reading challenge.
   useEffect(() => {
@@ -166,7 +169,7 @@ export default function PracticeCard({
       )}
 
       {(rec.error || error) && <div className="banner error">{rec.error || error}</div>}
-      {checking && <div className="hint">Checking your pronunciation…</div>}
+      {busy && <div className="hint">Checking your pronunciation…</div>}
 
       {result && (
         <div className="result">
@@ -236,10 +239,10 @@ export default function PracticeCard({
             <button
               className={`record ${rec.recording ? "on" : ""}`}
               onClick={toggleRecord}
-              disabled={checking}
+              disabled={busy}
               title="Record (Space)"
             >
-              {rec.recording ? "■ Stop" : checking ? "Checking…" : result ? "🎙 Again" : "🎙 Say it"}
+              {rec.recording ? "■ Stop" : busy ? "Checking…" : result ? "🎙 Again" : "🎙 Say it"}
             </button>
             <button onClick={() => myAudioUrl && audio.play(myAudioUrl)} disabled={!myAudioUrl} title="Play your recording (P)">
               ▶ You
@@ -256,6 +259,8 @@ export default function PracticeCard({
         hint={
           rec.recording ? (
             "Listening… stops automatically when you pause, or press Space."
+          ) : busy ? (
+            "Checking your pronunciation…"
           ) : (
             <>
               <kbd>Space</kbd> record · <kbd>L</kbd> listen · <kbd>S</kbd> slow · <kbd>P</kbd> your recording

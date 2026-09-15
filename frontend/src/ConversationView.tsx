@@ -225,10 +225,14 @@ function Chat({ scenario, messages, setMessages, level, showEnglish, autoPlay, o
       }
   };
   const rec = useRecorder(onRecorded);
+  // `rec.processing` spans the gap between stopping the recorder and the request starting, so the
+  // buttons never look idle while the audio is still on its way.
+  const checkingPractice = !!practice?.checking || (!!practice && rec.processing);
+  const listening = transcribing || (!practice && rec.processing);
 
   const toggleRecord = () => {
     if (rec.recording) rec.stop();
-    else if (!thinking && !transcribing) {
+    else if (!thinking && !listening && !checkingPractice) {
       audio.stop();
       rec.start();
     }
@@ -346,8 +350,8 @@ function Chat({ scenario, messages, setMessages, level, showEnglish, autoPlay, o
           </div>
           <div className="controls small">
             <button onClick={() => audio.play(api.ttsUrl(practice.text, "slow"))}>🐢 Hear it</button>
-            <button className={`record ${rec.recording ? "on" : ""}`} onClick={toggleRecord} disabled={practice.checking}>
-              {rec.recording ? "■ Stop" : practice.checking ? "Checking…" : "🎙 Practise"}
+            <button className={`record ${rec.recording ? "on" : ""}`} onClick={toggleRecord} disabled={checkingPractice}>
+              {rec.recording ? "■ Stop" : checkingPractice ? "Checking…" : "🎙 Practise"}
             </button>
             {practice.result && (
               <span className={`pill ${practice.result.score >= 85 ? "good" : practice.result.score >= 55 ? "close" : "wrong"}`}>
@@ -382,16 +386,16 @@ function Chat({ scenario, messages, setMessages, level, showEnglish, autoPlay, o
             setPractice(null);
             toggleRecord();
           }}
-          disabled={thinking || transcribing || (rec.recording && !!practice)}
+          disabled={thinking || listening || (rec.recording && !!practice)}
           title="Speak (Space)"
         >
-          {rec.recording && !practice ? "■" : transcribing ? "…" : "🎙"}
+          {rec.recording && !practice ? "■" : listening ? "…" : "🎙"}
         </button>
         <input
           lang="ru"
           value={draft}
           onChange={(e) => setDraft(e.target.value)}
-          placeholder={transcribing ? "Listening to what you said…" : "Speak (Space) or type in Russian…"}
+          placeholder={listening ? "Listening to what you said…" : "Speak (Space) or type in Russian…"}
         />
         <button className="primary" disabled={!draft.trim() || thinking}>
           Send

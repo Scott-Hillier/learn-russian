@@ -15,6 +15,7 @@ import urllib.request
 from difflib import SequenceMatcher
 
 from . import config
+from .text import expand_numbers
 
 log = logging.getLogger(__name__)
 
@@ -100,9 +101,15 @@ def _structured_chat(messages: list[dict], schema: dict, temperature: float) -> 
 
 
 def _clean_russian(text: str) -> str:
-    """Drop transliterations the model sometimes adds in brackets, e.g. "Это дорого? (Eto dorogo?)"."""
+    """Tidy the model's Russian: drop bracketed transliterations and spell any digits out.
+
+    Transliterations look like "Это дорого? (Eto dorogo?)". Digits are spelled out because nothing
+    downstream can handle them — the voice skips them and the scorer only sees letters — and because
+    a learner needs to see "двести пятьдесят", not "250". The prompt asks for words already, so this
+    is the fallback for when the model writes digits anyway.
+    """
     text = re.sub(r"\s*\([^)]*[A-Za-z][^)]*\)", "", text)
-    return " ".join(text.split())
+    return expand_numbers(text)
 
 
 def system_prompt(scenario: dict, level: str) -> str:
@@ -113,6 +120,7 @@ The learner's goals: {goals}.
 Rules:
 - Reply in simple, natural, grammatically correct Russian: {LEVELS.get(level, LEVELS['beginner'])}.
 - Never use English or Latin letters in "reply".
+- Write every number as Russian words, correctly declined: "двести пятьдесят рублей", never "250 рублей".
 - Respond directly to what the learner just said and move the conversation forward, usually ending with a simple question.
 - If the learner writes in English or seems lost, reply with an even simpler Russian sentence.
 - "translation": the English translation of your reply.

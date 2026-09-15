@@ -6,8 +6,9 @@ const SILENCE_STOP_MS = 1400; // auto-stop after this much silence once speech s
 const MAX_MS = 15000;
 
 /** Microphone recorder with a live level meter and auto-stop on silence. */
-export function useRecorder(onDone: (audio: Blob) => void, { autoStop = true }: { autoStop?: boolean } = {}) {
+export function useRecorder(onDone: (audio: Blob) => void | Promise<void>, { autoStop = true }: { autoStop?: boolean } = {}) {
   const [recording, setRecording] = useState(false);
+  const [processing, setProcessing] = useState(false);
   const [level, setLevel] = useState(0);
   const [error, setError] = useState<string | null>(null);
 
@@ -19,7 +20,13 @@ export function useRecorder(onDone: (audio: Blob) => void, { autoStop = true }: 
 
   const stop = useCallback(() => {
     cancelAnimationFrame(rafRef.current);
-    if (recorderRef.current?.state === "recording") recorderRef.current.stop();
+    // MediaRecorder flushes its encoder asynchronously, so `onstop` (and with it the upload) lands a
+    // moment after this. `processing` covers that gap as well as the handler's own work, so the UI
+    // never drops back to an idle-looking state between the learner stopping and the result arriving.
+    if (recorderRef.current?.state === "recording") {
+      recorderRef.current.stop();
+      setProcessing(true);
+    }
     setRecording(false);
     setLevel(0);
   }, []);
@@ -40,9 +47,19 @@ export function useRecorder(onDone: (audio: Blob) => void, { autoStop = true }: 
     const chunks: Blob[] = [];
     const recorder = new MediaRecorder(stream);
     recorder.ondataavailable = (e) => e.data.size && chunks.push(e.data);
-    recorder.onstop = () => {
+    recorder.onerror = () => {
+      // Without this the button would stay disabled on "Checking…" forever.
+      setError("The recording failed. Try again.");
+      setRecording(false);
+      setProcessing(false);
+    };
+    recorder.onstop = async () => {
       ctx.close();
-      onDoneRef.current(new Blob(chunks, { type: recorder.mimeType }));
+      try {
+        await onDoneRef.current(new Blob(chunks, { type: recorder.mimeType }));
+      } finally {
+        setProcessing(false);
+      }
     };
     recorderRef.current = recorder;
 
@@ -84,5 +101,5 @@ export function useRecorder(onDone: (audio: Blob) => void, { autoStop = true }: 
     [],
   );
 
-  return { recording, level, error, start, stop };
+  return { recording, processing, level, error, start, stop };
 }

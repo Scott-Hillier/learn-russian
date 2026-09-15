@@ -10,7 +10,7 @@ from .speech.asr import asr
 from .speech.audio import decode_to_pcm16k, peak_level, trim_and_pad
 from .speech.compare import build_feedback
 from .speech.pronunciation import scorer
-from .text import display_stress, strip_stress, target_words, transliterate
+from .text import display_stress, expand_numbers, strip_stress, target_words, transliterate
 
 log = logging.getLogger(__name__)
 router = APIRouter(prefix="/api/chat")
@@ -20,8 +20,11 @@ def _load_scenarios() -> dict[str, dict]:
     data = json.loads((config.DATA_DIR / "scenarios.json").read_text(encoding="utf-8"))
     out = {}
     for s in data["scenarios"]:
-        describe = lambda t: {"text": t, "display": display_stress(t), "plain": strip_stress(t),  # noqa: E731
-                              "translit": transliterate(t)}
+        def describe(t: str) -> dict:
+            t = expand_numbers(t)
+            return {"text": t, "display": display_stress(t), "plain": strip_stress(t),
+                    "translit": transliterate(t)}
+
         out[s["id"]] = {**s, "opening": {**s["opening"], **describe(s["opening"]["text"])},
                         "phrases": [{**p, **describe(p["text"])} for p in s["phrases"]]}
     return out
@@ -93,7 +96,9 @@ async def transcribe(audio: UploadFile = File(...)):
     if pcm.size < 16000 * 0.2 or peak_level(pcm) < 0.02:
         return {"text": "", "clarity": None}
     pcm = trim_and_pad(pcm)
-    text = await asyncio.to_thread(asr.transcribe, pcm)
+    # Whisper writes spoken numbers as digits ("мне 25 лет"), which the letter-level scorer can't
+    # see — spell them back out so the clarity score covers everything that was said.
+    text = expand_numbers(await asyncio.to_thread(asr.transcribe, pcm))
     words = target_words(text)
     if not text or not any(chat.CYRILLIC.search(w) for w in words):
         return {"text": text, "clarity": None}
