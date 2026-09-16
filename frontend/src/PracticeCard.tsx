@@ -150,7 +150,7 @@ export default function PracticeCard({
       </div>
       {revealed ? (
         <>
-          <div className="translit">{phrase.translit}</div>
+          {phrase.translit && <div className="translit">{phrase.translit}</div>}
           {phrase.sounds_like && (
             <div className="sounds-like">
               sounds like <strong>{phrase.sounds_like}</strong>

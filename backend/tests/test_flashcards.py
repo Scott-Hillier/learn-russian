@@ -90,9 +90,8 @@ def test_study_order_and_groups(store):
     result = store.rate(first["card"]["id"], 3, score=90)
     assert result["card"]["state"] == "learning" and result["card"]["reps"] == 1
 
-    # A session that has used up its group only gets the learning card back (learn-ahead)...
-    nxt = store.next_card(phrases["id"], new_limit=0)
-    assert nxt["kind"] == "review" and nxt["card"]["text"] == "Прив+ет"
+    # A session that has used up its group doesn't get the card it just rated straight back...
+    assert store.next_card(phrases["id"], new_limit=0) is None
     # ...but the next group is available straight away, with no waiting for tomorrow.
     second = store.next_card(phrases["id"])
     assert second["kind"] == "new" and second["card"]["text"] == "Спас+ибо"
@@ -103,6 +102,19 @@ def test_study_order_and_groups(store):
     assert remaining["new"] == 0 and remaining["group"]["learned"] == 2 and remaining["learned_words"] == 2
     stats = store.stats()
     assert stats["reviewed_today"] == 2 and stats["streak_days"] == 1 and stats["average_score_today"] == 90
+
+
+def test_learn_ahead_skips_the_card_just_rated(store):
+    phrases = deck(store, "Phrases")
+    first = store.next_card(phrases["id"], new_limit=1)["card"]
+    store.rate(first["id"], 3)
+    second = store.next_card(phrases["id"], new_limit=1)["card"]
+    store.rate(second["id"], 3)
+    # Other learning cards due soon still come back, but never the one just rated, however it was rated.
+    for expected in ["Прив+ет", "Спас+ибо", "Прив+ет"]:
+        nxt = store.next_card(phrases["id"], new_limit=0)
+        assert nxt["kind"] == "review" and nxt["card"]["text"] == expected
+        store.rate(nxt["card"]["id"], 2)
 
 
 def test_learned_words_deck(store):

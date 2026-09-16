@@ -94,7 +94,7 @@ export default function SentencesView({ layout }: { layout: LayoutProps }) {
 }
 
 function asPhrase(item: { text: string; display: string; plain: string; translit: string }, category: string, english = ""): Phrase {
-  return { ...item, id: 0, category, english };
+  return { ...item, translit: "", id: 0, category, english };
 }
 
 interface TrainerProps {
@@ -201,7 +201,6 @@ function ListenStep({ sentence, onNext, nextLabel }: { sentence: Sentence; onNex
       <div className="target" lang="ru">
         <Stressed text={sentence.display} />
       </div>
-      <div className="translit">{sentence.translit}</div>
       <div className="english">“{sentence.english}”</div>
       <h3 className="section-label">Word by word (click to hear)</h3>
       <div className="gloss-grid">
@@ -210,7 +209,6 @@ function ListenStep({ sentence, onNext, nextLabel }: { sentence: Sentence; onNex
             <span className="gloss-ru">
               <Stressed text={w.display} />
             </span>
-            <span className="muted">{w.translit}</span>
             <span className="gloss-en">{w.gloss}</span>
           </button>
         ))}
@@ -342,7 +340,6 @@ function ShadowCard({ sentence, onResult, onNextSentence }: TrainerProps) {
           <Stressed text={sentence.display} />
         )}
       </div>
-      <div className="translit">{sentence.translit}</div>
       {(rec.error || error) && <div className="banner error">{rec.error || error}</div>}
 
       {result && (

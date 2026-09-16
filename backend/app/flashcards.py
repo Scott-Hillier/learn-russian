@@ -296,7 +296,11 @@ class FlashcardStore:
                 row = pick("reps = 0", "deck_id, position, id")
                 kind = "new"
             if not row:
-                row = pick("reps > 0 AND due <= ?", "due", now + LEARN_AHEAD.total_seconds())
+                # Never pull forward the card that was just rated: rating it Hard or Again would
+                # otherwise bring the same word straight back, over and over.
+                last = conn.execute("SELECT card_id FROM reviews ORDER BY reviewed_at DESC, id DESC LIMIT 1").fetchone()
+                row = pick("reps > 0 AND due <= ? AND id != ?", "due",
+                           now + LEARN_AHEAD.total_seconds(), last[0] if last else -1)
                 kind = "review"
             if not row:
                 return None
