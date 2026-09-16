@@ -356,7 +356,6 @@ export default function StudySession({ deckId, deckName, learned, onReviewed, on
                 <Stressed text={card!.display} />
               )}
             </div>
-            <div className="translit">{card!.translit}</div>
             {isNew && <div className="english">“{card!.english}”</div>}
             {card!.notes && <div className="note">💡 {card!.notes}</div>}
 

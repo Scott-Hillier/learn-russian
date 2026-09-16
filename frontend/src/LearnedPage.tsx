@@ -17,7 +17,7 @@ export default function LearnedPage({ onReview }: { onReview: () => void }) {
   const visible = useMemo(() => {
     const q = filter.trim().toLowerCase();
     if (!cards || !q) return cards ?? [];
-    return cards.filter((c) => [c.plain, c.translit, c.english, c.tag].some((f) => f.toLowerCase().includes(q)));
+    return cards.filter((c) => [c.plain, c.english, c.tag].some((f) => f.toLowerCase().includes(q)));
   }, [cards, filter]);
 
   return (
@@ -66,7 +66,6 @@ export default function LearnedPage({ onReview }: { onReview: () => void }) {
                     <span className="table-ru">
                       <Stressed text={c.display} />
                     </span>
-                    <div className="muted">{c.translit}</div>
                   </td>
                   <td>
                     {c.english}

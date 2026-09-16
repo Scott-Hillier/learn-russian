@@ -44,7 +44,7 @@ export default function DeckPage({ deck, onChanged, onStudy, onDeleted }: Props)
     const q = filter.trim().toLowerCase();
     if (!q) return cards;
     return cards.filter((c) =>
-      [c.plain, c.translit, c.english, c.tag].some((f) => f.toLowerCase().includes(q)),
+      [c.plain, c.english, c.tag].some((f) => f.toLowerCase().includes(q)),
     );
   }, [cards, filter]);
 
@@ -175,7 +175,6 @@ export default function DeckPage({ deck, onChanged, onStudy, onDeleted }: Props)
                       ⚠
                     </span>
                   )}
-                  <div className="muted">{c.translit}</div>
                 </td>
                 <td>
                   {c.english}
