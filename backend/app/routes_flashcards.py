@@ -26,6 +26,7 @@ class CardUpdate(CardIn):
 class RatingIn(BaseModel):
     rating: int
     score: int | None = Field(None, ge=0, le=100)
+    practice: bool = False  # free practice: record the attempt but don't reschedule the card
 
 
 class SettingsIn(BaseModel):
@@ -92,9 +93,14 @@ def next_card(deck_id: int | None = None):
     return {"next": store.next_card(deck_id), "remaining": store.remaining(deck_id)}
 
 
+@router.get("/study/practice")
+def practice(deck_id: int | None = None):
+    return {"cards": _call(store.practice_queue, deck_id)}
+
+
 @router.post("/study/{card_id}/rate")
 def rate(card_id: int, body: RatingIn):
-    return _call(store.rate, card_id, body.rating, body.score)
+    return _call(store.rate, card_id, body.rating, body.score, body.practice)
 
 
 @router.get("/study/stats")

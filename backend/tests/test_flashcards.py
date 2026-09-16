@@ -101,6 +101,26 @@ def test_study_order_daily_limit_and_rating(store):
     assert stats["reviewed_today"] == 2 and stats["streak_days"] == 1 and stats["average_score_today"] == 90
 
 
+def test_practice_ignores_limits_and_schedule(store):
+    store.update_settings(new_per_day=0)
+    phrases = deck(store, "Phrases")
+    assert store.next_card(phrases["id"]) is None  # no new cards allowed today
+
+    queue = store.practice_queue(phrases["id"])
+    assert {c["text"] for c in queue} == {"Прив+ет", "Спас+ибо"}
+
+    card = queue[0]
+    result = store.rate(card["id"], 3, score=90, practice=True)
+    assert result["next_due_in"] is None
+    assert result["card"]["state"] == "new" and result["card"]["reps"] == 0  # schedule untouched
+    assert store.remaining(phrases["id"])["new"] == 0  # and no new-card allowance spent
+
+    # The attempt still counts towards today's practice.
+    assert store.stats()["reviewed_today"] == 1
+    store.update_settings(new_per_day=1)
+    assert store.next_card(phrases["id"])["kind"] == "new"
+
+
 def test_rating_validation(store):
     card = store.next_card()["card"]
     with pytest.raises(Invalid):

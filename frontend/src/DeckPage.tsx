@@ -7,6 +7,7 @@ interface Props {
   deck: Deck;
   onChanged: () => void;
   onStudy: () => void;
+  onPractise: () => void;
   onDeleted: () => void;
 }
 
@@ -22,7 +23,7 @@ function dueLabel(card: FlashCard): string {
   return `in ${Math.round(s / 86400)}d`;
 }
 
-export default function DeckPage({ deck, onChanged, onStudy, onDeleted }: Props) {
+export default function DeckPage({ deck, onChanged, onStudy, onPractise, onDeleted }: Props) {
   const [cards, setCards] = useState<FlashCard[]>([]);
   const [filter, setFilter] = useState("");
   const [editing, setEditing] = useState<FlashCard | null>(null);
@@ -88,6 +89,9 @@ export default function DeckPage({ deck, onChanged, onStudy, onDeleted }: Props)
         <div className="deck-actions">
           <button className="primary" onClick={onStudy} disabled={!studyable}>
             {studyable ? `Study (${deck.counts.due} due · ${deck.counts.new} new)` : "Nothing due right now"}
+          </button>
+          <button onClick={onPractise} disabled={deck.counts.total === deck.counts.suspended}>
+            ↻ Practise all {deck.counts.total - deck.counts.suspended}
           </button>
           <button onClick={() => fileRef.current?.click()}>⬆ Import CSV</button>
           <input

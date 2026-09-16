@@ -5,7 +5,12 @@ import Layout from "./Layout";
 import StudySession from "./StudySession";
 
 type LayoutProps = Omit<ComponentProps<typeof Layout>, "sidebar" | "children">;
-type View = { kind: "home" } | { kind: "deck"; deckId: number } | { kind: "study"; deckId: number | null };
+type View =
+  | { kind: "home" }
+  | { kind: "deck"; deckId: number }
+  | { kind: "study"; deckId: number | null; practice?: boolean };
+
+const MAX_NEW_PER_DAY = 500;
 
 export default function FlashcardsView({ layout }: { layout: LayoutProps }) {
   const [decks, setDecks] = useState<Deck[]>([]);
@@ -40,7 +45,7 @@ export default function FlashcardsView({ layout }: { layout: LayoutProps }) {
 
   const saveNewPerDay = async (value: number) => {
     setNewPerDay(value);
-    if (Number.isInteger(value) && value >= 0 && value <= 100) {
+    if (Number.isInteger(value) && value >= 0 && value <= MAX_NEW_PER_DAY) {
       await api.updateSettings(value).catch((err) => setError(err.message));
       refresh();
     }
@@ -55,6 +60,10 @@ export default function FlashcardsView({ layout }: { layout: LayoutProps }) {
       >
         <strong>Study all decks</strong>
         <small>{stats ? `${stats.due} due · ${stats.new} new today` : "…"}</small>
+      </button>
+      <button className="study-all practice" onClick={() => setView({ kind: "study", deckId: null, practice: true })}>
+        <strong>Practise all decks</strong>
+        <small>every card, as often as you like</small>
       </button>
       <h2>Decks</h2>
       <ul className="deck-list">
@@ -82,7 +91,7 @@ export default function FlashcardsView({ layout }: { layout: LayoutProps }) {
         <input
           type="number"
           min={0}
-          max={100}
+          max={MAX_NEW_PER_DAY}
           value={newPerDay ?? ""}
           onChange={(e) => saveNewPerDay(Number(e.target.value))}
         />
@@ -99,13 +108,22 @@ export default function FlashcardsView({ layout }: { layout: LayoutProps }) {
           {error}
         </div>
       )}
-      {view.kind === "home" && <Home stats={stats} decks={decks} onOpen={(id) => setView({ kind: "deck", deckId: id })} onStudy={() => setView({ kind: "study", deckId: null })} />}
+      {view.kind === "home" && (
+        <Home
+          stats={stats}
+          decks={decks}
+          onOpen={(id) => setView({ kind: "deck", deckId: id })}
+          onStudy={() => setView({ kind: "study", deckId: null })}
+          onPractise={() => setView({ kind: "study", deckId: null, practice: true })}
+        />
+      )}
       {view.kind === "deck" && deckFor(view.deckId) && (
         <DeckPage
           key={view.deckId}
           deck={deckFor(view.deckId)!}
           onChanged={refresh}
           onStudy={() => setView({ kind: "study", deckId: view.deckId })}
+          onPractise={() => setView({ kind: "study", deckId: view.deckId, practice: true })}
           onDeleted={() => {
             setView({ kind: "home" });
             refresh();
@@ -114,10 +132,12 @@ export default function FlashcardsView({ layout }: { layout: LayoutProps }) {
       )}
       {view.kind === "study" && (
         <StudySession
-          key={`study-${view.deckId}`}
+          key={`study-${view.deckId}-${view.practice ? "practice" : "due"}`}
           deckId={view.deckId}
           deckName={deckFor(view.deckId)?.name ?? "All decks"}
+          practice={view.practice}
           onReviewed={refresh}
+          onPractise={() => setView({ kind: "study", deckId: view.deckId, practice: true })}
           onExit={() => {
             refresh();
             setView(view.deckId ? { kind: "deck", deckId: view.deckId } : { kind: "home" });
@@ -133,11 +153,13 @@ function Home({
   decks,
   onOpen,
   onStudy,
+  onPractise,
 }: {
   stats: StudyStats | null;
   decks: Deck[];
   onOpen: (id: number) => void;
   onStudy: () => void;
+  onPractise: () => void;
 }) {
   return (
     <div className="overview">
@@ -166,11 +188,16 @@ function Home({
           </div>
         </div>
       )}
-      <div>
+      <div className="controls">
         <button className="primary" onClick={onStudy} disabled={!stats || stats.due + stats.new === 0}>
           {stats && stats.due + stats.new === 0 ? "All done for today 🎉" : "Start studying →"}
         </button>
+        <button onClick={onPractise}>↻ Practise any card</button>
       </div>
+      <p className="muted">
+        Practice goes through every card, shuffled, as many times as you like — it never touches the review
+        schedule.
+      </p>
       <div className="deck-grid">
         {decks.map((d) => (
           <button key={d.id} className="deck-tile" onClick={() => onOpen(d.id)}>

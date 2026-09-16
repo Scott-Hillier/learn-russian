@@ -324,6 +324,7 @@ mark { background: var(--accent-soft); color: var(--accent); border-radius: 3px;
   border-radius: 10px; padding: 10px 12px; display: flex; flex-direction: column; margin-bottom: 4px;
 }
 .study-all small { color: var(--muted); }
+.study-all.practice { border-color: var(--line); background: var(--panel); }
 .deck-list .count.due { color: var(--bad); }
 .deck-list .count.new { color: var(--accent); }
 .new-deck { margin-top: 8px; }
@@ -373,6 +374,7 @@ code { background: var(--bg); border-radius: 4px; padding: 0 4px; font-size: 0.8
 .state-badge.new { background: var(--accent-soft); color: var(--accent); }
 .state-badge.learning { background: #fbe7b5; color: #7a4d00; }
 .state-badge.review { background: #c9efd6; color: #11663a; }
+.state-badge.practice { background: #e6dcfa; color: #4a2f86; }
 
 .study { width: 100%; max-width: 720px; display: flex; flex-direction: column; gap: 10px; }
 .study-bar { display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem; }
@@ -382,6 +384,7 @@ code { background: var(--bg); border-radius: 4px; padding: 0 4px; font-size: 0.8
 .study-result { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; justify-content: center; margin-top: 16px; }
 .study-tip { flex-basis: 100%; font-size: 0.9rem; }
 .ratings { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 22px; }
+.ratings:has(> :last-child:nth-child(2)) { grid-template-columns: repeat(2, 1fr); }
 .rating {
   border: 2px solid var(--line); background: var(--panel); border-radius: 12px; padding: 10px 6px; font-weight: 700;
   display: flex; flex-direction: column; align-items: center; gap: 2px;

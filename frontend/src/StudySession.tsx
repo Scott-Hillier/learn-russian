@@ -1,6 +1,6 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import ActionBar from "./ActionBar";
-import { api, type AttemptResult, type RatingName, type StudyNext } from "./api";
+import { api, type AttemptResult, type FlashCard, type RatingName, type StudyNext } from "./api";
 import Stressed from "./Stressed";
 import { useAudio } from "./useAudio";
 import { useHotkeys } from "./useHotkeys";
@@ -10,9 +10,15 @@ import { Letters } from "./WordFeedback";
 interface Props {
   deckId: number | null;
   deckName: string;
+  /** Free practice: every card, shuffled, ignoring due dates and the daily limit. */
+  practice?: boolean;
   onReviewed: () => void;
   onExit: () => void;
+  onPractise?: () => void;
 }
+
+/** The card on screen: either the scheduler's pick or one from a practice pass. */
+type Current = NonNullable<StudyNext["next"]> | { card: FlashCard; kind: "practice"; left: number };
 
 const RATINGS: { value: 1 | 2 | 3 | 4; name: RatingName; label: string }[] = [
   { value: 1, name: "again", label: "Again" },
@@ -26,8 +32,8 @@ function suggestRating(score: number): 1 | 2 | 3 {
   return score >= 85 ? 3 : score >= 55 ? 2 : 1;
 }
 
-export default function StudySession({ deckId, deckName, onReviewed, onExit }: Props) {
-  const [next, setNext] = useState<StudyNext["next"] | undefined>(undefined);
+export default function StudySession({ deckId, deckName, practice, onReviewed, onExit, onPractise }: Props) {
+  const [next, setNext] = useState<Current | null | undefined>(undefined);
   const [revealed, setRevealed] = useState(false);
   const [result, setResult] = useState<AttemptResult | null>(null);
   const [myAudio, setMyAudio] = useState<string | null>(null);
@@ -36,12 +42,20 @@ export default function StudySession({ deckId, deckName, onReviewed, onExit }: P
   const [error, setError] = useState<string | null>(null);
   const [summary, setSummary] = useState({ count: 0, again: 0, scores: [] as number[] });
   const audio = useAudio(setError);
+  const queue = useRef<FlashCard[] | null>(null);
 
   const load = useCallback(async () => {
     try {
-      const r = await api.studyNext(deckId);
-      setNext(r.next);
-      setRevealed(r.next?.kind === "new");
+      let current: Current | null;
+      if (practice) {
+        if (!queue.current) queue.current = await api.practiceQueue(deckId);
+        const card = queue.current.shift();
+        current = card ? { card, kind: "practice", left: queue.current.length } : null;
+      } else {
+        current = (await api.studyNext(deckId)).next;
+      }
+      setNext(current);
+      setRevealed(current?.kind === "new");
       setResult(null);
       setMyAudio((old) => {
         if (old) URL.revokeObjectURL(old);
@@ -50,7 +64,7 @@ export default function StudySession({ deckId, deckName, onReviewed, onExit }: P
     } catch (e) {
       setError((e as Error).message);
     }
-  }, [deckId]);
+  }, [deckId, practice]);
 
   useEffect(() => {
     load();
@@ -95,7 +109,9 @@ export default function StudySession({ deckId, deckName, onReviewed, onExit }: P
       if (!card || busy) return;
       setBusy(true);
       try {
-        await api.rate(card.id, rating, result?.score ?? null);
+        await api.rate(card.id, rating, result?.score ?? null, practice);
+        // In a practice pass, "Again" sends the card back to the end of the queue for another go.
+        if (practice && rating === 1) queue.current?.push(card);
         setSummary((s) => ({
           count: s.count + 1,
           again: s.again + (rating === 1 ? 1 : 0),
@@ -109,8 +125,15 @@ export default function StudySession({ deckId, deckName, onReviewed, onExit }: P
         setBusy(false);
       }
     },
-    [card, busy, result, onReviewed, load],
+    [card, busy, result, practice, onReviewed, load],
   );
+
+  const restart = useCallback(() => {
+    queue.current = null;
+    setSummary({ count: 0, again: 0, scores: [] });
+    setNext(undefined);
+    load();
+  }, [load]);
 
   const listen = useCallback(
     (speed: "normal" | "slow") => card && audio.play(api.ttsUrl(card.text, speed)),
@@ -121,6 +144,7 @@ export default function StudySession({ deckId, deckName, onReviewed, onExit }: P
 
   useHotkeys((key) => {
     if (next === null && key === "enter") onExit();
+    else if (next === null && key === "r" && (practice || onPractise)) (practice ? restart : onPractise!)();
     else if (!card) return false;
     else if (key === "space") toggleRecord();
     else if (rec.recording) return false;
@@ -142,30 +166,48 @@ export default function StudySession({ deckId, deckName, onReviewed, onExit }: P
       : null;
     return (
       <div className="card study-done">
-        <h2>{summary.count ? "Session complete 🎉" : "Nothing to study right now"}</h2>
+        <h2>{summary.count ? (practice ? "Practice pass done 🎉" : "Session complete 🎉") : "Nothing to study right now"}</h2>
         {summary.count > 0 ? (
           <p>
-            You reviewed <strong>{summary.count}</strong> card{summary.count === 1 ? "" : "s"}
+            You {practice ? "practised" : "reviewed"} <strong>{summary.count}</strong> card
+            {summary.count === 1 ? "" : "s"}
             {avg !== null && (
               <>
                 {" "}
                 with an average pronunciation score of <strong>{avg}%</strong>
               </>
             )}
-            . {summary.again > 0 && `${summary.again} will come back again soon.`}
+            .{" "}
+            {practice
+              ? "Nothing was rescheduled, so go again whenever you like."
+              : summary.again > 0 && `${summary.again} will come back again soon.`}
           </p>
+        ) : practice ? (
+          <p>There are no cards to practise here yet.</p>
         ) : (
           <p>All due cards are done and today's new cards have been introduced. Come back later!</p>
         )}
         <ActionBar
           right={
-            <button className="primary" onClick={onExit}>
-              Back to decks
-            </button>
+            <>
+              {practice ? (
+                <button onClick={restart}>↻ Go again</button>
+              ) : (
+                onPractise && <button onClick={onPractise}>↻ Practise anyway</button>
+              )}
+              <button className="primary" onClick={onExit}>
+                Back to decks
+              </button>
+            </>
           }
           hint={
             <>
-              <kbd>Enter</kbd> back
+              <kbd>Enter</kbd> back{(practice || onPractise) && (
+                <>
+                  {" "}
+                  · <kbd>R</kbd> {practice ? "go again" : "practise anyway"}
+                </>
+              )}
             </>
           }
         />
@@ -174,6 +216,7 @@ export default function StudySession({ deckId, deckName, onReviewed, onExit }: P
   }
 
   const isNew = next.kind === "new";
+  const isPractice = next.kind === "practice";
 
   return (
     <div className="study">
@@ -182,13 +225,23 @@ export default function StudySession({ deckId, deckName, onReviewed, onExit }: P
           ← {deckName}
         </button>
         <span className="muted">
-          {next.remaining.due} due · {next.remaining.new} new · {summary.count} done
+          {next.kind === "practice" ? (
+            <>
+              practice · {next.left} left · {summary.count} done
+            </>
+          ) : (
+            <>
+              {next.remaining.due} due · {next.remaining.new} new · {summary.count} done
+            </>
+          )}
         </span>
       </div>
 
       <div className="card study-card">
         <div className="card-top">
-          <span className={`state-badge ${isNew ? "new" : card!.state}`}>{isNew ? "New word" : "Review"}</span>
+          <span className={`state-badge ${isPractice ? "practice" : isNew ? "new" : card!.state}`}>
+            {isPractice ? "Practice" : isNew ? "New word" : "Review"}
+          </span>
           {card!.tag && <span className="category">{card!.tag}</span>}
         </div>
 
@@ -255,6 +308,32 @@ export default function StudySession({ deckId, deckName, onReviewed, onExit }: P
               </div>
             )}
 
+            {isPractice ? (
+              <ActionBar
+                level={rec.level}
+                hint={
+                  <>
+                    Practice doesn't change the schedule. <kbd>1</kbd> again · <kbd>Enter</kbd> next ·{" "}
+                    <kbd>Space</kbd> record · <kbd>L</kbd> listen
+                  </>
+                }
+              >
+                <div className="ratings">
+                  <button className="rating again" onClick={() => rate(1)} disabled={busy}>
+                    <span>
+                      <kbd>1</kbd> Again
+                    </span>
+                    <small>later this pass</small>
+                  </button>
+                  <button className="rating good" onClick={() => rate(3)} disabled={busy}>
+                    <span>
+                      <kbd>↵</kbd> Next card
+                    </span>
+                    <small>{next.left} left</small>
+                  </button>
+                </div>
+              </ActionBar>
+            ) : (
             <ActionBar
               level={rec.level}
               hint={
@@ -287,6 +366,7 @@ export default function StudySession({ deckId, deckName, onReviewed, onExit }: P
                 ))}
               </div>
             </ActionBar>
+            )}
           </>
         )}
 

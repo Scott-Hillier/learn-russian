@@ -15,6 +15,7 @@ from .text import display_stress, strip_stress, transliterate
 DAY_START_HOUR = 4                 # a study "day" rolls over at 4am local time, like Anki
 LEARN_AHEAD = timedelta(minutes=20)  # when nothing else is due, show learning cards due soon
 DEFAULT_SETTINGS = {"new_per_day": 10}
+MAX_NEW_PER_DAY = 500              # high enough to work through a whole deck in one sitting
 VOWELS = set("аеёиоуыэюя")
 
 _scheduler = Scheduler()                        # real reviews (fuzzed intervals)
@@ -125,8 +126,8 @@ class FlashcardStore:
         return out
 
     def update_settings(self, new_per_day: int) -> dict:
-        if not 0 <= new_per_day <= 100:
-            raise Invalid("New cards per day must be between 0 and 100.")
+        if not 0 <= new_per_day <= MAX_NEW_PER_DAY:
+            raise Invalid(f"New cards per day must be between 0 and {MAX_NEW_PER_DAY}.")
         with connect(self.path) as conn:
             conn.execute("INSERT INTO settings (key, value) VALUES ('new_per_day', ?)"
                          " ON CONFLICT(key) DO UPDATE SET value = excluded.value", (json.dumps(new_per_day),))
@@ -295,6 +296,18 @@ class FlashcardStore:
         return {"card": card, "kind": kind, "intervals": self.preview_intervals(row),
                 "remaining": self.remaining(deck_id)}
 
+    def practice_queue(self, deck_id: int | None = None) -> list[dict]:
+        """A free-practice pass: every card, shuffled, ignoring due dates and the daily limit.
+        Practising doesn't reschedule anything, so it can be repeated as often as you like."""
+        deck_clause, args = ("AND deck_id = ?", [deck_id]) if deck_id else ("", [])
+        with connect(self.path) as conn:
+            if deck_id and not conn.execute("SELECT 1 FROM decks WHERE id = ?", (deck_id,)).fetchone():
+                raise NotFound("Deck not found.")
+            rows = conn.execute(f"SELECT * FROM cards WHERE suspended = 0 {deck_clause} ORDER BY RANDOM()",
+                                args).fetchall()
+        now = time.time()
+        return [self._card_dict(r, now) for r in rows]
+
     def _new_left_today(self, conn) -> int:
         introduced = conn.execute("SELECT COUNT(DISTINCT card_id) FROM reviews WHERE was_new = 1 AND reviewed_at >= ?",
                                   (_day_start(),)).fetchone()[0]
@@ -321,25 +334,30 @@ class FlashcardStore:
         return {r.name.lower(): format_interval(_preview_scheduler.review_card(card, r, now)[0].due - now)
                 for r in Rating}
 
-    def rate(self, card_id: int, rating: int, score: int | None = None) -> dict:
+    def rate(self, card_id: int, rating: int, score: int | None = None, practice: bool = False) -> dict:
+        """Record a review. A practice rating counts towards today's stats but leaves the card's
+        schedule (and today's new-card allowance) untouched, so extra passes cost nothing."""
         try:
             rating_enum = Rating(rating)
         except ValueError:
             raise Invalid("Rating must be 1 (Again), 2 (Hard), 3 (Good) or 4 (Easy).")
         now = datetime.now(timezone.utc)
+        next_due_in = None
         with connect(self.path) as conn:
             row = conn.execute("SELECT * FROM cards WHERE id = ?", (card_id,)).fetchone()
             if not row:
                 raise NotFound("Card not found.")
-            before = self._fsrs_card(row)
-            after, _ = _scheduler.review_card(before, rating_enum, now)
-            lapsed = row["reps"] > 0 and before.state == State.Review and rating_enum == Rating.Again
-            conn.execute("UPDATE cards SET fsrs = ?, due = ?, reps = reps + 1, lapses = lapses + ? WHERE id = ?",
-                         (json.dumps(after.to_dict()), after.due.timestamp(), int(lapsed), card_id))
+            if not practice:
+                before = self._fsrs_card(row)
+                after, _ = _scheduler.review_card(before, rating_enum, now)
+                lapsed = row["reps"] > 0 and before.state == State.Review and rating_enum == Rating.Again
+                conn.execute("UPDATE cards SET fsrs = ?, due = ?, reps = reps + 1, lapses = lapses + ? WHERE id = ?",
+                             (json.dumps(after.to_dict()), after.due.timestamp(), int(lapsed), card_id))
+                next_due_in = format_interval(after.due - now)
             conn.execute("INSERT INTO reviews (card_id, rating, score, was_new, reviewed_at) VALUES (?, ?, ?, ?, ?)",
-                         (card_id, rating, score, int(row["reps"] == 0), now.timestamp()))
+                         (card_id, rating, score, int(row["reps"] == 0 and not practice), now.timestamp()))
         card = self.get_card(card_id)
-        return {"card": card, "next_due_in": format_interval(after.due - now)}
+        return {"card": card, "next_due_in": next_due_in}
 
     def stats(self) -> dict:
         day = _day_start()

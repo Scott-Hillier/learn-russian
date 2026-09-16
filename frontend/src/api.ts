@@ -264,8 +264,16 @@ export const api = {
   },
   studyNext: (deckId: number | null) =>
     fetch(`/api/study/next${deckId ? `?deck_id=${deckId}` : ""}`).then((r) => json<StudyNext>(r)),
-  rate: (cardId: number, rating: 1 | 2 | 3 | 4, score: number | null) =>
-    send<{ card: FlashCard; next_due_in: string }>(`/api/study/${cardId}/rate`, "POST", { rating, score }),
+  practiceQueue: (deckId: number | null) =>
+    fetch(`/api/study/practice${deckId ? `?deck_id=${deckId}` : ""}`).then((r) =>
+      json<{ cards: FlashCard[] }>(r).then((d) => d.cards),
+    ),
+  rate: (cardId: number, rating: 1 | 2 | 3 | 4, score: number | null, practice = false) =>
+    send<{ card: FlashCard; next_due_in: string | null }>(`/api/study/${cardId}/rate`, "POST", {
+      rating,
+      score,
+      practice,
+    }),
   studyStats: () => fetch("/api/study/stats").then((r) => json<StudyStats>(r)),
   settings: () => fetch("/api/settings").then((r) => json<{ new_per_day: number }>(r)),
   updateSettings: (newPerDay: number) =>
