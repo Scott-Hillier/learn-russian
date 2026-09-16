@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import ActionBar from "./ActionBar";
-import { api, type AttemptResult, type FlashCard, type RatingName, type StudyNext } from "./api";
+import { api, type AttemptResult, type FlashCard, type Group, type RatingName, type Remaining, type StudyNext } from "./api";
 import Stressed from "./Stressed";
 import { useAudio } from "./useAudio";
 import { useHotkeys } from "./useHotkeys";
@@ -10,15 +10,24 @@ import { Letters } from "./WordFeedback";
 interface Props {
   deckId: number | null;
   deckName: string;
-  /** Free practice: every card, shuffled, ignoring due dates and the daily limit. */
-  practice?: boolean;
+  /** Review the Learned words deck (shuffled, as often as you like) instead of learning the next group. */
+  learned?: boolean;
   onReviewed: () => void;
   onExit: () => void;
-  onPractise?: () => void;
+  onReviewLearned?: () => void;
 }
 
-/** The card on screen: either the scheduler's pick or one from a practice pass. */
-type Current = NonNullable<StudyNext["next"]> | { card: FlashCard; kind: "practice"; left: number };
+/** The card on screen: either the scheduler's pick or one from a pass through the Learned words deck. */
+type Current = NonNullable<StudyNext["next"]> | { card: FlashCard; kind: "learned"; left: number };
+
+function shuffle<T>(items: T[]): T[] {
+  const out = [...items];
+  for (let i = out.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [out[i], out[j]] = [out[j], out[i]];
+  }
+  return out;
+}
 
 const RATINGS: { value: 1 | 2 | 3 | 4; name: RatingName; label: string }[] = [
   { value: 1, name: "again", label: "Again" },
@@ -32,7 +41,7 @@ function suggestRating(score: number): 1 | 2 | 3 {
   return score >= 85 ? 3 : score >= 55 ? 2 : 1;
 }
 
-export default function StudySession({ deckId, deckName, practice, onReviewed, onExit, onPractise }: Props) {
+export default function StudySession({ deckId, deckName, learned, onReviewed, onExit, onReviewLearned }: Props) {
   const [next, setNext] = useState<Current | null | undefined>(undefined);
   const [revealed, setRevealed] = useState(false);
   const [result, setResult] = useState<AttemptResult | null>(null);
@@ -43,16 +52,23 @@ export default function StudySession({ deckId, deckName, practice, onReviewed, o
   const [summary, setSummary] = useState({ count: 0, again: 0, scores: [] as number[] });
   const audio = useAudio(setError);
   const queue = useRef<FlashCard[] | null>(null);
+  // Learning: the group this session started in, and how many of its new words have been learned so far.
+  const [group, setGroup] = useState<Group | null>(null);
+  const [introduced, setIntroduced] = useState(0);
+  const [remaining, setRemaining] = useState<Remaining | null>(null);
 
-  const load = useCallback(async () => {
+  const load = useCallback(async (group: Group | null, introduced: number) => {
     try {
       let current: Current | null;
-      if (practice) {
-        if (!queue.current) queue.current = await api.practiceQueue(deckId);
+      if (learned) {
+        if (!queue.current) queue.current = shuffle(await api.learnedCards());
         const card = queue.current.shift();
-        current = card ? { card, kind: "practice", left: queue.current.length } : null;
+        current = card ? { card, kind: "learned", left: queue.current.length } : null;
       } else {
-        current = (await api.studyNext(deckId)).next;
+        const r = await api.studyNext(deckId, group ? group.left - introduced : null);
+        if (!group) setGroup(r.remaining.group);
+        setRemaining(r.remaining);
+        current = r.next;
       }
       setNext(current);
       setRevealed(current?.kind === "new");
@@ -64,10 +80,10 @@ export default function StudySession({ deckId, deckName, practice, onReviewed, o
     } catch (e) {
       setError((e as Error).message);
     }
-  }, [deckId, practice]);
+  }, [deckId, learned]);
 
   useEffect(() => {
-    load();
+    load(null, 0);
   }, [load]);
 
   const card = next?.card;
@@ -109,31 +125,38 @@ export default function StudySession({ deckId, deckName, practice, onReviewed, o
       if (!card || busy) return;
       setBusy(true);
       try {
-        await api.rate(card.id, rating, result?.score ?? null, practice);
-        // In a practice pass, "Again" sends the card back to the end of the queue for another go.
-        if (practice && rating === 1) queue.current?.push(card);
+        await api.rate(card.id, rating, result?.score ?? null, learned);
+        // Reviewing learned words, "Again" sends the card back to the end of the pass for another go.
+        if (learned && rating === 1) queue.current?.push(card);
         setSummary((s) => ({
           count: s.count + 1,
           again: s.again + (rating === 1 ? 1 : 0),
           scores: result ? [...s.scores, result.score] : s.scores,
         }));
+        const nowIntroduced = introduced + (next?.kind === "new" ? 1 : 0);
+        setIntroduced(nowIntroduced);
         onReviewed();
-        await load();
+        await load(group, nowIntroduced);
       } catch (e) {
         setError((e as Error).message);
       } finally {
         setBusy(false);
       }
     },
-    [card, busy, result, practice, onReviewed, load],
+    [card, busy, result, learned, next, introduced, group, onReviewed, load],
   );
 
+  /** Start over: the next group when learning, another shuffled pass when reviewing learned words. */
   const restart = useCallback(() => {
     queue.current = null;
     setSummary({ count: 0, again: 0, scores: [] });
+    setGroup(null);
+    setIntroduced(0);
     setNext(undefined);
-    load();
+    load(null, 0);
   }, [load]);
+
+  const moreToLearn = !learned && (remaining?.new_total ?? 0) > 0;
 
   const listen = useCallback(
     (speed: "normal" | "slow") => card && audio.play(api.ttsUrl(card.text, speed)),
@@ -143,8 +166,10 @@ export default function StudySession({ deckId, deckName, practice, onReviewed, o
   const suggested = result ? suggestRating(result.score) : null;
 
   useHotkeys((key) => {
-    if (next === null && key === "enter") onExit();
-    else if (next === null && key === "r" && (practice || onPractise)) (practice ? restart : onPractise!)();
+    if (next === null && key === "enter") (moreToLearn ? restart : onExit)();
+    else if (next === null && key === "r" && learned) restart();
+    else if (next === null && key === "r" && onReviewLearned) onReviewLearned();
+    else if (next === null && key === "escape") onExit();
     else if (!card) return false;
     else if (key === "space") toggleRecord();
     else if (rec.recording) return false;
@@ -164,50 +189,96 @@ export default function StudySession({ deckId, deckName, practice, onReviewed, o
     const avg = summary.scores.length
       ? Math.round(summary.scores.reduce((a, b) => a + b, 0) / summary.scores.length)
       : null;
+    const scoreLine = avg !== null && (
+      <>
+        {" "}
+        with an average pronunciation score of <strong>{avg}%</strong>
+      </>
+    );
+    const plural = (n: number, word: string) => `${n} ${word}${n === 1 ? "" : "s"}`;
+
+    if (learned) {
+      return (
+        <div className="card study-done">
+          <h2>{summary.count ? "Review complete 🎉" : "No learned words yet"}</h2>
+          {summary.count ? (
+            <p>
+              You reviewed <strong>{plural(summary.count, "card")}</strong>
+              {scoreLine}. Go again whenever you like: reviewing learned words never changes their schedule.
+            </p>
+          ) : (
+            <p>Finish a group of new words and they'll appear in your Learned words deck.</p>
+          )}
+          <ActionBar
+            right={
+              <>
+                {summary.count > 0 && <button onClick={restart}>↻ Go again</button>}
+                <button className="primary" onClick={onExit}>
+                  Back to decks
+                </button>
+              </>
+            }
+            hint={
+              <>
+                <kbd>Enter</kbd> back{summary.count > 0 && <> · <kbd>R</kbd> go again</>}
+              </>
+            }
+          />
+        </div>
+      );
+    }
+
+    const finishedGroup = group && introduced > 0 && introduced >= group.left;
     return (
       <div className="card study-done">
-        <h2>{summary.count ? (practice ? "Practice pass done 🎉" : "Session complete 🎉") : "Nothing to study right now"}</h2>
+        <h2>
+          {finishedGroup
+            ? `Group ${group.number} complete 🎉`
+            : summary.count
+              ? "Session complete 🎉"
+              : "Every word learned 🎉"}
+        </h2>
         {summary.count > 0 ? (
           <p>
-            You {practice ? "practised" : "reviewed"} <strong>{summary.count}</strong> card
-            {summary.count === 1 ? "" : "s"}
-            {avg !== null && (
+            {introduced > 0 ? (
               <>
-                {" "}
-                with an average pronunciation score of <strong>{avg}%</strong>
+                You learned <strong>{plural(introduced, "new word")}</strong>
+                {summary.count > introduced && ` (${summary.count} cards in all)`}
+              </>
+            ) : (
+              <>
+                You did <strong>{plural(summary.count, "review")}</strong>
               </>
             )}
-            .{" "}
-            {practice
-              ? "Nothing was rescheduled, so go again whenever you like."
-              : summary.again > 0 && `${summary.again} will come back again soon.`}
+            {scoreLine}. Your Learned words deck now has <strong>{plural(remaining?.learned_words ?? 0, "word")}</strong>.
           </p>
-        ) : practice ? (
-          <p>There are no cards to practise here yet.</p>
         ) : (
-          <p>All due cards are done and today's new cards have been introduced. Come back later!</p>
+          <p>There are no new words left here. Review your learned words any time.</p>
         )}
         <ActionBar
           right={
             <>
-              {practice ? (
-                <button onClick={restart}>↻ Go again</button>
-              ) : (
-                onPractise && <button onClick={onPractise}>↻ Practise anyway</button>
+              {onReviewLearned && (remaining?.learned_words ?? 0) > 0 && (
+                <button onClick={onReviewLearned}>Review learned words</button>
               )}
-              <button className="primary" onClick={onExit}>
-                Back to decks
-              </button>
+              {moreToLearn ? (
+                <>
+                  <button onClick={onExit}>Back to decks</button>
+                  <button className="primary" onClick={restart}>
+                    Next group →
+                  </button>
+                </>
+              ) : (
+                <button className="primary" onClick={onExit}>
+                  Back to decks
+                </button>
+              )}
             </>
           }
           hint={
             <>
-              <kbd>Enter</kbd> back{(practice || onPractise) && (
-                <>
-                  {" "}
-                  · <kbd>R</kbd> {practice ? "go again" : "practise anyway"}
-                </>
-              )}
+              <kbd>Enter</kbd> {moreToLearn ? "next group" : "back"}
+              {onReviewLearned && (remaining?.learned_words ?? 0) > 0 && <> · <kbd>R</kbd> review learned words</>}
             </>
           }
         />
@@ -216,7 +287,7 @@ export default function StudySession({ deckId, deckName, practice, onReviewed, o
   }
 
   const isNew = next.kind === "new";
-  const isPractice = next.kind === "practice";
+  const isLearned = next.kind === "learned";
 
   return (
     <div className="study">
@@ -225,13 +296,15 @@ export default function StudySession({ deckId, deckName, practice, onReviewed, o
           ← {deckName}
         </button>
         <span className="muted">
-          {next.kind === "practice" ? (
+          {next.kind === "learned" ? (
             <>
-              practice · {next.left} left · {summary.count} done
+              Learned words · {next.left} left · {summary.count} done
             </>
           ) : (
             <>
-              {next.remaining.due} due · {next.remaining.new} new · {summary.count} done
+              Group {group?.number ?? next.remaining.group.number} ·{" "}
+              {Math.min((group?.left ?? next.remaining.new) - introduced, next.remaining.new_total)} new ·{" "}
+              {next.remaining.due} due · {summary.count} done
             </>
           )}
         </span>
@@ -239,8 +312,8 @@ export default function StudySession({ deckId, deckName, practice, onReviewed, o
 
       <div className="card study-card">
         <div className="card-top">
-          <span className={`state-badge ${isPractice ? "practice" : isNew ? "new" : card!.state}`}>
-            {isPractice ? "Practice" : isNew ? "New word" : "Review"}
+          <span className={`state-badge ${isLearned ? "practice" : isNew ? "new" : card!.state}`}>
+            {isLearned ? "Learned word" : isNew ? "New word" : "Review"}
           </span>
           {card!.tag && <span className="category">{card!.tag}</span>}
         </div>
@@ -308,12 +381,12 @@ export default function StudySession({ deckId, deckName, practice, onReviewed, o
               </div>
             )}
 
-            {isPractice ? (
+            {isLearned ? (
               <ActionBar
                 level={rec.level}
                 hint={
                   <>
-                    Practice doesn't change the schedule. <kbd>1</kbd> again · <kbd>Enter</kbd> next ·{" "}
+                    Doesn't change the schedule. <kbd>1</kbd> again · <kbd>Enter</kbd> next ·{" "}
                     <kbd>Space</kbd> record · <kbd>L</kbd> listen
                   </>
                 }
@@ -323,7 +396,7 @@ export default function StudySession({ deckId, deckName, practice, onReviewed, o
                     <span>
                       <kbd>1</kbd> Again
                     </span>
-                    <small>later this pass</small>
+                    <small>later in this review</small>
                   </button>
                   <button className="rating good" onClick={() => rate(3)} disabled={busy}>
                     <span>

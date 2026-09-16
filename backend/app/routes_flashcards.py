@@ -26,11 +26,11 @@ class CardUpdate(CardIn):
 class RatingIn(BaseModel):
     rating: int
     score: int | None = Field(None, ge=0, le=100)
-    practice: bool = False  # free practice: record the attempt but don't reschedule the card
+    practice: bool = False  # reviewing Learned words: record the attempt but don't reschedule the card
 
 
 class SettingsIn(BaseModel):
-    new_per_day: int
+    group_size: int
 
 
 def _call(fn, *args, **kwargs):
@@ -89,13 +89,13 @@ def delete_card(card_id: int):
 
 
 @router.get("/study/next")
-def next_card(deck_id: int | None = None):
-    return {"next": store.next_card(deck_id), "remaining": store.remaining(deck_id)}
+def next_card(deck_id: int | None = None, new_limit: int | None = None):
+    return {"next": store.next_card(deck_id, new_limit), "remaining": store.remaining(deck_id)}
 
 
-@router.get("/study/practice")
-def practice(deck_id: int | None = None):
-    return {"cards": _call(store.practice_queue, deck_id)}
+@router.get("/study/learned")
+def learned():
+    return {"cards": store.learned_cards()}
 
 
 @router.post("/study/{card_id}/rate")
@@ -115,4 +115,4 @@ def get_settings():
 
 @router.put("/settings")
 def put_settings(body: SettingsIn):
-    return _call(store.update_settings, body.new_per_day)
+    return _call(store.update_settings, body.group_size)

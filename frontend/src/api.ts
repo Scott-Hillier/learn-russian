@@ -137,12 +137,21 @@ export interface DeckCounts {
   suspended: number;
 }
 
+/** Words are learned in groups: group `number` has `left` of its `size` words still to learn. */
+export interface Group {
+  number: number;
+  size: number;
+  left: number;
+  learned: number;
+}
+
 export interface Deck {
   id: number;
   name: string;
   description: string;
   builtin: boolean;
   counts: DeckCounts;
+  group: Group;
 }
 
 export interface FlashCard extends Described {
@@ -165,7 +174,10 @@ export type RatingName = "again" | "hard" | "good" | "easy";
 
 export interface Remaining {
   due: number;
-  new: number;
+  new: number; // new words left in the current group
+  new_total: number; // new words not yet learned at all
+  group: Group;
+  learned_words: number; // size of the Learned words deck
 }
 
 export interface StudyNext {
@@ -262,12 +274,13 @@ export const api = {
       json<{ added: number; skipped_duplicates: number; errors: string[] }>(r),
     );
   },
-  studyNext: (deckId: number | null) =>
-    fetch(`/api/study/next${deckId ? `?deck_id=${deckId}` : ""}`).then((r) => json<StudyNext>(r)),
-  practiceQueue: (deckId: number | null) =>
-    fetch(`/api/study/practice${deckId ? `?deck_id=${deckId}` : ""}`).then((r) =>
-      json<{ cards: FlashCard[] }>(r).then((d) => d.cards),
-    ),
+  studyNext: (deckId: number | null, newLimit: number | null = null) => {
+    const params = new URLSearchParams();
+    if (deckId) params.set("deck_id", String(deckId));
+    if (newLimit !== null) params.set("new_limit", String(newLimit));
+    return fetch(`/api/study/next?${params}`).then((r) => json<StudyNext>(r));
+  },
+  learnedCards: () => fetch("/api/study/learned").then((r) => json<{ cards: FlashCard[] }>(r).then((d) => d.cards)),
   rate: (cardId: number, rating: 1 | 2 | 3 | 4, score: number | null, practice = false) =>
     send<{ card: FlashCard; next_due_in: string | null }>(`/api/study/${cardId}/rate`, "POST", {
       rating,
@@ -275,9 +288,9 @@ export const api = {
       practice,
     }),
   studyStats: () => fetch("/api/study/stats").then((r) => json<StudyStats>(r)),
-  settings: () => fetch("/api/settings").then((r) => json<{ new_per_day: number }>(r)),
-  updateSettings: (newPerDay: number) =>
-    send<{ new_per_day: number }>("/api/settings", "PUT", { new_per_day: newPerDay }),
+  settings: () => fetch("/api/settings").then((r) => json<{ group_size: number }>(r)),
+  updateSettings: (groupSize: number) =>
+    send<{ group_size: number }>("/api/settings", "PUT", { group_size: groupSize }),
   ttsUrl: (text: string, speed: "normal" | "slow") =>
     `/api/tts?text=${encodeURIComponent(text)}&speed=${speed}`,
   chatStatus: () => fetch("/api/chat/status").then((r) => json<ChatStatus>(r)),

@@ -28,15 +28,18 @@ The **🃏 Flashcards** screen uses spaced repetition (FSRS) to review vocabular
 - **Reviews:** you see the English and say the Russian from memory (`Space`), or press
   `Enter` to reveal it. Your pronunciation score suggests a rating: `Enter` accepts it (or
   picks Good if you didn't speak), and `1`–`4` (Again / Hard / Good / Easy) override it.
+- **Groups:** new words come in groups (10 by default). *Learn group N* introduces the next
+  group's words; finish it and *Next group →* starts the next one straight away. There's no
+  daily limit. Leave part-way through and the group picks up where you left off.
 - **New cards** show the Russian, transliteration and audio first so you can repeat them.
+- **⭐ Learned words:** every word you've learned from any deck, so after three groups of 10 it
+  has 30 words. *Review all* goes through them shuffled, as often as you like: `1` sends a card
+  to the end of the review, `Enter` moves on. Scores count towards your progress, but these
+  reviews never change the spaced-repetition schedule.
 - **Decks:** *Starter words* (291 words in 12 units) and *Phrases* are built in. You can
   create your own decks, add cards, or import a CSV (`russian,english[,notes]`, with `+`
   before the stressed vowel).
-- **Practice:** *Practise all decks* (or *Practise all* on a deck) shuffles every card and
-  goes through them regardless of what's due, as many times a day as you like. `1` sends a
-  card back to the end of the pass, `Enter` moves on. Scores still count towards your
-  progress, but nothing is rescheduled, so it can't disturb the review plan.
-- **Settings:** set how many new cards to introduce per day (0–500) in the sidebar.
+- **Settings:** set how many words are in a group (1–100) in the sidebar.
 
 ## Sentences
 The **🗣 Sentences** screen teaches 36 everyday sentences in five steps:

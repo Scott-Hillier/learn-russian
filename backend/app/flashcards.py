@@ -14,8 +14,8 @@ from .text import display_stress, strip_stress, transliterate
 
 DAY_START_HOUR = 4                 # a study "day" rolls over at 4am local time, like Anki
 LEARN_AHEAD = timedelta(minutes=20)  # when nothing else is due, show learning cards due soon
-DEFAULT_SETTINGS = {"new_per_day": 10}
-MAX_NEW_PER_DAY = 500              # high enough to work through a whole deck in one sitting
+DEFAULT_SETTINGS = {"group_size": 10}
+MAX_GROUP_SIZE = 100
 VOWELS = set("аеёиоуыэюя")
 
 _scheduler = Scheduler()                        # real reviews (fuzzed intervals)
@@ -121,16 +121,20 @@ class FlashcardStore:
     def settings(self) -> dict:
         with connect(self.path) as conn:
             rows = conn.execute("SELECT key, value FROM settings").fetchall()
+        stored = {r["key"]: json.loads(r["value"]) for r in rows}
         out = dict(DEFAULT_SETTINGS)
-        out.update({r["key"]: json.loads(r["value"]) for r in rows if r["key"] in DEFAULT_SETTINGS})
+        # Words used to be introduced per day; carry an old "new_per_day" over as the group size.
+        if "group_size" not in stored and stored.get("new_per_day", 0) > 0:
+            stored["group_size"] = stored["new_per_day"]
+        out.update({k: v for k, v in stored.items() if k in DEFAULT_SETTINGS})
         return out
 
-    def update_settings(self, new_per_day: int) -> dict:
-        if not 0 <= new_per_day <= MAX_NEW_PER_DAY:
-            raise Invalid(f"New cards per day must be between 0 and {MAX_NEW_PER_DAY}.")
+    def update_settings(self, group_size: int) -> dict:
+        if not 1 <= group_size <= MAX_GROUP_SIZE:
+            raise Invalid(f"Words per group must be between 1 and {MAX_GROUP_SIZE}.")
         with connect(self.path) as conn:
-            conn.execute("INSERT INTO settings (key, value) VALUES ('new_per_day', ?)"
-                         " ON CONFLICT(key) DO UPDATE SET value = excluded.value", (json.dumps(new_per_day),))
+            conn.execute("INSERT INTO settings (key, value) VALUES ('group_size', ?)"
+                         " ON CONFLICT(key) DO UPDATE SET value = excluded.value", (json.dumps(group_size),))
         return self.settings()
 
     # ---------- decks ----------
@@ -148,9 +152,10 @@ class FlashcardStore:
                      SUM(c.reps > 0 AND c.suspended = 0 AND json_extract(c.fsrs, '$.state') IN (1, 3)) AS learning
                    FROM decks d LEFT JOIN cards c ON c.deck_id = d.id
                    GROUP BY d.id ORDER BY d.builtin DESC, d.id""", (now,)).fetchall()
-        return [{"id": r["id"], "name": r["name"], "description": r["description"], "builtin": bool(r["builtin"]),
-                 "counts": {k: r[k] or 0 for k in ("total", "new", "learning", "review", "due", "suspended")}}
-                for r in rows]
+            return [{"id": r["id"], "name": r["name"], "description": r["description"], "builtin": bool(r["builtin"]),
+                     "counts": {k: r[k] or 0 for k in ("total", "new", "learning", "review", "due", "suspended")},
+                     "group": self._group(conn, r["id"])}
+                    for r in rows]
 
     def create_deck(self, name: str, description: str = "") -> dict:
         name = name.strip()
@@ -271,9 +276,10 @@ class FlashcardStore:
 
     # ---------- studying ----------
 
-    def next_card(self, deck_id: int | None = None) -> dict | None:
-        """The next card to study: due learning cards, due reviews, new cards (within the daily limit),
-        then learning cards due within the next few minutes."""
+    def next_card(self, deck_id: int | None = None, new_limit: int | None = None) -> dict | None:
+        """The next card to study: due learning cards, due reviews, new cards, then learning cards due
+        within the next few minutes. New cards come in groups: `new_limit` is how many more this session
+        may introduce (by default, the rest of the current group)."""
         now = time.time()
         deck_clause, args = ("AND deck_id = ?", [deck_id]) if deck_id else ("", [])
         with connect(self.path) as conn:
@@ -284,7 +290,9 @@ class FlashcardStore:
             row = (pick("reps > 0 AND due <= ? AND json_extract(fsrs, '$.state') IN (1, 3)", "due", now)
                    or pick("reps > 0 AND due <= ?", "due", now))
             kind = "review"
-            if not row and self._new_left_today(conn) > 0:
+            if new_limit is None:
+                new_limit = self._group(conn, deck_id)["left"]
+            if not row and new_limit > 0:
                 row = pick("reps = 0", "deck_id, position, id")
                 kind = "new"
             if not row:
@@ -296,22 +304,24 @@ class FlashcardStore:
         return {"card": card, "kind": kind, "intervals": self.preview_intervals(row),
                 "remaining": self.remaining(deck_id)}
 
-    def practice_queue(self, deck_id: int | None = None) -> list[dict]:
-        """A free-practice pass: every card, shuffled, ignoring due dates and the daily limit.
-        Practising doesn't reschedule anything, so it can be repeated as often as you like."""
-        deck_clause, args = ("AND deck_id = ?", [deck_id]) if deck_id else ("", [])
+    def learned_cards(self) -> list[dict]:
+        """The Learned words deck: every card you've started learning, most recently learned first.
+        It can be reviewed at any time; those reviews don't reschedule anything."""
         with connect(self.path) as conn:
-            if deck_id and not conn.execute("SELECT 1 FROM decks WHERE id = ?", (deck_id,)).fetchone():
-                raise NotFound("Deck not found.")
-            rows = conn.execute(f"SELECT * FROM cards WHERE suspended = 0 {deck_clause} ORDER BY RANDOM()",
-                                args).fetchall()
+            rows = conn.execute(
+                """SELECT c.*, (SELECT MIN(reviewed_at) FROM reviews r WHERE r.card_id = c.id) AS learned_at
+                   FROM cards c WHERE c.reps > 0 AND c.suspended = 0
+                   ORDER BY learned_at DESC, c.id DESC""").fetchall()
         now = time.time()
         return [self._card_dict(r, now) for r in rows]
 
-    def _new_left_today(self, conn) -> int:
-        introduced = conn.execute("SELECT COUNT(DISTINCT card_id) FROM reviews WHERE was_new = 1 AND reviewed_at >= ?",
-                                  (_day_start(),)).fetchone()[0]
-        return max(0, self.settings()["new_per_day"] - introduced)
+    def _group(self, conn, deck_id: int | None = None) -> dict:
+        """Where you are in the groups of new words. Group n is complete once n × size words have been
+        learned, and the next group is available straight away."""
+        size = self.settings()["group_size"]
+        deck_clause, args = ("AND deck_id = ?", [deck_id]) if deck_id else ("", [])
+        learned = conn.execute(f"SELECT COUNT(*) FROM cards WHERE reps > 0 {deck_clause}", args).fetchone()[0]
+        return {"number": learned // size + 1, "size": size, "left": size - learned % size, "learned": learned}
 
     def remaining(self, deck_id: int | None = None) -> dict:
         now = time.time()
@@ -321,8 +331,10 @@ class FlashcardStore:
                                (*args, now)).fetchone()[0]
             new_cards = conn.execute(f"SELECT COUNT(*) FROM cards WHERE suspended = 0 {deck_clause} AND reps = 0",
                                      args).fetchone()[0]
-            new_left = self._new_left_today(conn)
-        return {"due": due, "new": min(new_cards, new_left)}
+            group = self._group(conn, deck_id)
+            learned = conn.execute("SELECT COUNT(*) FROM cards WHERE reps > 0 AND suspended = 0").fetchone()[0]
+        return {"due": due, "new": min(new_cards, group["left"]), "new_total": new_cards, "group": group,
+                "learned_words": learned}
 
     @staticmethod
     def _fsrs_card(row) -> Card:
@@ -335,8 +347,8 @@ class FlashcardStore:
                 for r in Rating}
 
     def rate(self, card_id: int, rating: int, score: int | None = None, practice: bool = False) -> dict:
-        """Record a review. A practice rating counts towards today's stats but leaves the card's
-        schedule (and today's new-card allowance) untouched, so extra passes cost nothing."""
+        """Record a review. A practice rating (reviewing the Learned words deck) counts towards your stats
+        but leaves the card's schedule untouched, so extra passes cost nothing."""
         try:
             rating_enum = Rating(rating)
         except ValueError:

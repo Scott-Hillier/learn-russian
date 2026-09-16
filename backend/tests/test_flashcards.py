@@ -79,46 +79,56 @@ def test_csv_import(store):
     assert store.import_csv(d["id"], tsv)["added"] == 2
 
 
-def test_study_order_daily_limit_and_rating(store):
-    store.update_settings(new_per_day=2)
+def test_study_order_and_groups(store):
+    store.update_settings(group_size=1)
     phrases = deck(store, "Phrases")
     first = store.next_card(phrases["id"])
     assert first["kind"] == "new" and first["card"]["text"] == "Прив+ет"
     assert set(first["intervals"]) == {"again", "hard", "good", "easy"}
+    assert first["remaining"]["group"] == {"number": 1, "size": 1, "left": 1, "learned": 0}
 
     result = store.rate(first["card"]["id"], 3, score=90)
     assert result["card"]["state"] == "learning" and result["card"]["reps"] == 1
 
+    # A session that has used up its group only gets the learning card back (learn-ahead)...
+    nxt = store.next_card(phrases["id"], new_limit=0)
+    assert nxt["kind"] == "review" and nxt["card"]["text"] == "Прив+ет"
+    # ...but the next group is available straight away, with no waiting for tomorrow.
     second = store.next_card(phrases["id"])
     assert second["kind"] == "new" and second["card"]["text"] == "Спас+ибо"
+    assert second["remaining"]["group"]["number"] == 2
     store.rate(second["card"]["id"], 4)
 
-    # Daily limit (2) reached: only the learning card due within the learn-ahead window remains.
-    nxt = store.next_card()
-    assert nxt["kind"] == "review" and nxt["card"]["text"] == "Прив+ет"
-    assert store.remaining()["new"] == 0
+    remaining = store.remaining(phrases["id"])
+    assert remaining["new"] == 0 and remaining["group"]["learned"] == 2 and remaining["learned_words"] == 2
     stats = store.stats()
     assert stats["reviewed_today"] == 2 and stats["streak_days"] == 1 and stats["average_score_today"] == 90
 
 
-def test_practice_ignores_limits_and_schedule(store):
-    store.update_settings(new_per_day=0)
+def test_learned_words_deck(store):
+    assert store.learned_cards() == []
     phrases = deck(store, "Phrases")
-    assert store.next_card(phrases["id"]) is None  # no new cards allowed today
+    for _ in range(2):
+        store.rate(store.next_card(phrases["id"], new_limit=1)["card"]["id"], 4)
+    learned = store.learned_cards()
+    assert [c["text"] for c in learned] == ["Спас+ибо", "Прив+ет"]  # most recently learned first
 
-    queue = store.practice_queue(phrases["id"])
-    assert {c["text"] for c in queue} == {"Прив+ет", "Спас+ибо"}
-
-    card = queue[0]
-    result = store.rate(card["id"], 3, score=90, practice=True)
+    # Reviewing a learned word records the attempt but leaves its schedule alone.
+    card = learned[0]
+    result = store.rate(card["id"], 1, score=40, practice=True)
     assert result["next_due_in"] is None
-    assert result["card"]["state"] == "new" and result["card"]["reps"] == 0  # schedule untouched
-    assert store.remaining(phrases["id"])["new"] == 0  # and no new-card allowance spent
+    assert result["card"]["reps"] == card["reps"] and result["card"]["due"] == card["due"]
+    assert store.stats()["reviewed_today"] == 3
 
-    # The attempt still counts towards today's practice.
-    assert store.stats()["reviewed_today"] == 1
-    store.update_settings(new_per_day=1)
-    assert store.next_card(phrases["id"])["kind"] == "new"
+
+def test_group_size_setting(store):
+    from app.db import connect
+    with connect(store.path) as conn:
+        conn.execute("INSERT INTO settings (key, value) VALUES ('new_per_day', '7')")
+    assert store.settings() == {"group_size": 7}  # carried over from the old per-day setting
+    assert store.update_settings(group_size=12) == {"group_size": 12}
+    with pytest.raises(Invalid):
+        store.update_settings(group_size=0)
 
 
 def test_rating_validation(store):

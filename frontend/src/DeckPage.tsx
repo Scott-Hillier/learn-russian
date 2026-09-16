@@ -7,7 +7,6 @@ interface Props {
   deck: Deck;
   onChanged: () => void;
   onStudy: () => void;
-  onPractise: () => void;
   onDeleted: () => void;
 }
 
@@ -23,7 +22,7 @@ function dueLabel(card: FlashCard): string {
   return `in ${Math.round(s / 86400)}d`;
 }
 
-export default function DeckPage({ deck, onChanged, onStudy, onPractise, onDeleted }: Props) {
+export default function DeckPage({ deck, onChanged, onStudy, onDeleted }: Props) {
   const [cards, setCards] = useState<FlashCard[]>([]);
   const [filter, setFilter] = useState("");
   const [editing, setEditing] = useState<FlashCard | null>(null);
@@ -79,7 +78,8 @@ export default function DeckPage({ deck, onChanged, onStudy, onPractise, onDelet
     onDeleted();
   };
 
-  const studyable = deck.counts.due + deck.counts.new > 0;
+  const newInGroup = Math.min(deck.group.left, deck.counts.new);
+  const studyable = deck.counts.due + newInGroup > 0;
 
   return (
     <div className="deck-page">
@@ -88,10 +88,11 @@ export default function DeckPage({ deck, onChanged, onStudy, onPractise, onDelet
         {deck.description && <p>{deck.description}</p>}
         <div className="deck-actions">
           <button className="primary" onClick={onStudy} disabled={!studyable}>
-            {studyable ? `Study (${deck.counts.due} due · ${deck.counts.new} new)` : "Nothing due right now"}
-          </button>
-          <button onClick={onPractise} disabled={deck.counts.total === deck.counts.suspended}>
-            ↻ Practise all {deck.counts.total - deck.counts.suspended}
+            {!studyable
+              ? "Every word learned 🎉"
+              : newInGroup > 0
+                ? `Learn group ${deck.group.number} (${newInGroup} new · ${deck.counts.due} due)`
+                : `Do due reviews (${deck.counts.due})`}
           </button>
           <button onClick={() => fileRef.current?.click()}>⬆ Import CSV</button>
           <input

@@ -2,20 +2,22 @@ import { useCallback, useEffect, useState, type ComponentProps } from "react";
 import { api, type Deck, type StudyStats } from "./api";
 import DeckPage from "./DeckPage";
 import Layout from "./Layout";
+import LearnedPage from "./LearnedPage";
 import StudySession from "./StudySession";
 
 type LayoutProps = Omit<ComponentProps<typeof Layout>, "sidebar" | "children">;
 type View =
   | { kind: "home" }
   | { kind: "deck"; deckId: number }
-  | { kind: "study"; deckId: number | null; practice?: boolean };
+  | { kind: "learned" }
+  | { kind: "study"; deckId: number | null; learned?: boolean };
 
-const MAX_NEW_PER_DAY = 500;
+const MAX_GROUP_SIZE = 100;
 
 export default function FlashcardsView({ layout }: { layout: LayoutProps }) {
   const [decks, setDecks] = useState<Deck[]>([]);
   const [stats, setStats] = useState<StudyStats | null>(null);
-  const [newPerDay, setNewPerDay] = useState<number | null>(null);
+  const [groupSize, setGroupSize] = useState<number | null>(null);
   const [view, setView] = useState<View>({ kind: "home" });
   const [newDeckName, setNewDeckName] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -27,7 +29,7 @@ export default function FlashcardsView({ layout }: { layout: LayoutProps }) {
 
   useEffect(() => {
     refresh();
-    api.settings().then((s) => setNewPerDay(s.new_per_day)).catch(() => {});
+    api.settings().then((s) => setGroupSize(s.group_size)).catch(() => {});
   }, [refresh]);
 
   const createDeck = async (e: React.FormEvent) => {
@@ -43,13 +45,16 @@ export default function FlashcardsView({ layout }: { layout: LayoutProps }) {
     }
   };
 
-  const saveNewPerDay = async (value: number) => {
-    setNewPerDay(value);
-    if (Number.isInteger(value) && value >= 0 && value <= MAX_NEW_PER_DAY) {
+  const saveGroupSize = async (value: number) => {
+    setGroupSize(value);
+    if (Number.isInteger(value) && value >= 1 && value <= MAX_GROUP_SIZE) {
       await api.updateSettings(value).catch((err) => setError(err.message));
       refresh();
     }
   };
+
+  const learnedCount = stats?.learned_words ?? 0;
+  const reviewLearned = () => setView({ kind: "study", deckId: null, learned: true });
 
   const sidebar = (
     <>
@@ -58,25 +63,29 @@ export default function FlashcardsView({ layout }: { layout: LayoutProps }) {
         onClick={() => setView({ kind: "study", deckId: null })}
         disabled={!stats || stats.due + stats.new === 0}
       >
-        <strong>Study all decks</strong>
-        <small>{stats ? `${stats.due} due · ${stats.new} new today` : "…"}</small>
-      </button>
-      <button className="study-all practice" onClick={() => setView({ kind: "study", deckId: null, practice: true })}>
-        <strong>Practise all decks</strong>
-        <small>every card, as often as you like</small>
+        <strong>{stats ? `Learn group ${stats.group.number}` : "Study all decks"}</strong>
+        <small>{stats ? `${stats.new} new · ${stats.due} due · all decks` : "…"}</small>
       </button>
       <h2>Decks</h2>
       <ul className="deck-list">
+        <li>
+          <button className={view.kind === "learned" ? "active" : ""} onClick={() => setView({ kind: "learned" })}>
+            <span>⭐ Learned words</span>
+            <small>
+              {learnedCount} word{learnedCount === 1 ? "" : "s"} · review any time
+            </small>
+          </button>
+        </li>
         {decks.map((d) => (
           <li key={d.id}>
             <button
-              className={view.kind !== "home" && view.deckId === d.id ? "active" : ""}
+              className={(view.kind === "deck" || view.kind === "study") && view.deckId === d.id ? "active" : ""}
               onClick={() => setView({ kind: "deck", deckId: d.id })}
             >
               <span>{d.name}</span>
               <small>
-                <span className="count due">{d.counts.due} due</span> ·{" "}
-                <span className="count new">{d.counts.new} new</span> · {d.counts.total} cards
+                Group {d.group.number} · <span className="count new">{Math.min(d.group.left, d.counts.new)} new</span>{" "}
+                · <span className="count due">{d.counts.due} due</span>
               </small>
             </button>
           </li>
@@ -87,13 +96,13 @@ export default function FlashcardsView({ layout }: { layout: LayoutProps }) {
       </form>
       <h2>Settings</h2>
       <label className="setting">
-        New cards per day
+        Words per group
         <input
           type="number"
-          min={0}
-          max={MAX_NEW_PER_DAY}
-          value={newPerDay ?? ""}
-          onChange={(e) => saveNewPerDay(Number(e.target.value))}
+          min={1}
+          max={MAX_GROUP_SIZE}
+          value={groupSize ?? ""}
+          onChange={(e) => saveGroupSize(Number(e.target.value))}
         />
       </label>
     </>
@@ -113,17 +122,18 @@ export default function FlashcardsView({ layout }: { layout: LayoutProps }) {
           stats={stats}
           decks={decks}
           onOpen={(id) => setView({ kind: "deck", deckId: id })}
+          onOpenLearned={() => setView({ kind: "learned" })}
           onStudy={() => setView({ kind: "study", deckId: null })}
-          onPractise={() => setView({ kind: "study", deckId: null, practice: true })}
+          onReviewLearned={reviewLearned}
         />
       )}
+      {view.kind === "learned" && <LearnedPage onReview={reviewLearned} />}
       {view.kind === "deck" && deckFor(view.deckId) && (
         <DeckPage
           key={view.deckId}
           deck={deckFor(view.deckId)!}
           onChanged={refresh}
           onStudy={() => setView({ kind: "study", deckId: view.deckId })}
-          onPractise={() => setView({ kind: "study", deckId: view.deckId, practice: true })}
           onDeleted={() => {
             setView({ kind: "home" });
             refresh();
@@ -132,15 +142,17 @@ export default function FlashcardsView({ layout }: { layout: LayoutProps }) {
       )}
       {view.kind === "study" && (
         <StudySession
-          key={`study-${view.deckId}-${view.practice ? "practice" : "due"}`}
+          key={`study-${view.deckId}-${view.learned ? "learned" : "learn"}`}
           deckId={view.deckId}
-          deckName={deckFor(view.deckId)?.name ?? "All decks"}
-          practice={view.practice}
+          deckName={view.learned ? "Learned words" : (deckFor(view.deckId)?.name ?? "All decks")}
+          learned={view.learned}
           onReviewed={refresh}
-          onPractise={() => setView({ kind: "study", deckId: view.deckId, practice: true })}
+          onReviewLearned={reviewLearned}
           onExit={() => {
             refresh();
-            setView(view.deckId ? { kind: "deck", deckId: view.deckId } : { kind: "home" });
+            setView(
+              view.learned ? { kind: "learned" } : view.deckId ? { kind: "deck", deckId: view.deckId } : { kind: "home" },
+            );
           }}
         />
       )}
@@ -152,35 +164,41 @@ function Home({
   stats,
   decks,
   onOpen,
+  onOpenLearned,
   onStudy,
-  onPractise,
+  onReviewLearned,
 }: {
   stats: StudyStats | null;
   decks: Deck[];
   onOpen: (id: number) => void;
+  onOpenLearned: () => void;
   onStudy: () => void;
-  onPractise: () => void;
+  onReviewLearned: () => void;
 }) {
+  const learnedCount = stats?.learned_words ?? 0;
   return (
     <div className="overview">
       <h2>Flashcards</h2>
       <p>
-        See the English, <strong>say the Russian out loud</strong>, then check yourself. Your pronunciation score
-        suggests how well you knew it, and spaced repetition (FSRS) brings each card back just before you'd forget it.
+        See the English, <strong>say the Russian out loud</strong>, then check yourself. New words come in{" "}
+        <strong>groups</strong>: finish one and the next is ready straight away. Every word you learn goes into your{" "}
+        <strong>Learned words</strong> deck, which you can review as often as you like.
       </p>
       {stats && (
         <div className="stat-row">
           <div className="stat">
+            <strong>{stats.group.number}</strong>
+            <span>
+              current group · {stats.new} new left
+            </span>
+          </div>
+          <div className="stat">
+            <strong>{learnedCount}</strong>
+            <span>learned words</span>
+          </div>
+          <div className="stat">
             <strong>{stats.due}</strong>
-            <span>due now</span>
-          </div>
-          <div className="stat">
-            <strong>{stats.new}</strong>
-            <span>new today</span>
-          </div>
-          <div className="stat">
-            <strong>{stats.reviewed_today}</strong>
-            <span>reviewed today</span>
+            <span>reviews due</span>
           </div>
           <div className="stat">
             <strong>{stats.streak_days}</strong>
@@ -190,15 +208,26 @@ function Home({
       )}
       <div className="controls">
         <button className="primary" onClick={onStudy} disabled={!stats || stats.due + stats.new === 0}>
-          {stats && stats.due + stats.new === 0 ? "All done for today 🎉" : "Start studying →"}
+          {!stats
+            ? "Loading…"
+            : stats.due + stats.new === 0
+              ? "Every word learned 🎉"
+              : stats.new > 0
+                ? `Learn group ${stats.group.number} →`
+                : "Do due reviews →"}
         </button>
-        <button onClick={onPractise}>↻ Practise any card</button>
+        <button onClick={onReviewLearned} disabled={learnedCount === 0}>
+          ⭐ Review learned words ({learnedCount})
+        </button>
       </div>
-      <p className="muted">
-        Practice goes through every card, shuffled, as many times as you like — it never touches the review
-        schedule.
-      </p>
       <div className="deck-grid">
+        <button className="deck-tile" onClick={onOpenLearned}>
+          <strong>⭐ Learned words</strong>
+          <span className="muted">Every word you've learned so far. Review it any time.</span>
+          <small>
+            {learnedCount} word{learnedCount === 1 ? "" : "s"}
+          </small>
+        </button>
         {decks.map((d) => (
           <button key={d.id} className="deck-tile" onClick={() => onOpen(d.id)}>
             <strong>{d.name}</strong>
@@ -209,7 +238,7 @@ function Home({
               <span className="new" style={{ flex: d.counts.new }} />
             </span>
             <small>
-              {d.counts.review} learned · {d.counts.learning} learning · {d.counts.new} new
+              Group {d.group.number} · {d.group.learned} learned · {d.counts.new} new
             </small>
           </button>
         ))}
