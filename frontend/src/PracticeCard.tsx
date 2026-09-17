@@ -50,6 +50,8 @@ export default function PracticeCard({
   const [myAudioUrl, setMyAudioUrl] = useState<string | null>(null);
   const [best, setBest] = useState<number | null>(null);
   const [selected, setSelected] = useState<number | null>(null);
+  // Outlives `result`, so the previous contour stays on screen while the learner records again.
+  const [lastIntonation, setLastIntonation] = useState<AttemptResult["intonation"]>(null);
   const [revealed, setRevealed] = useState(!hideHints);
   const audio = useAudio(setError);
   const onResultRef = useRef(onResult);
@@ -69,6 +71,7 @@ export default function PracticeCard({
       try {
         const r = await api.attempt(phrase.text, blob, source, timing, intonation);
         setResult(r);
+        if (r.intonation) setLastIntonation(r.intonation);
         setRevealed(true);
         setBest((b) => Math.max(b ?? 0, r.score));
         const worst = r.words.reduce((w, cur, i) => (cur.score < r.words[w].score ? i : w), 0);
@@ -216,6 +219,14 @@ export default function PracticeCard({
               <IntonationChart {...result.intonation} />
             </div>
           )}
+        </div>
+      )}
+      {!result && lastIntonation && (
+        <div className="result">
+          <div className="muted">Your last attempt, for reference while you try again:</div>
+          <div className="intonation-wrap">
+            <IntonationChart {...lastIntonation} />
+          </div>
         </div>
       )}
 
