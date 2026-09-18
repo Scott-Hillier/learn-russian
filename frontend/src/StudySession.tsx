@@ -10,14 +10,15 @@ import { Letters } from "./WordFeedback";
 interface Props {
   deckId: number | null;
   deckName: string;
-  /** Review the Learned words deck (shuffled, as often as you like) instead of learning the next group. */
+  /** Review every card, shuffled and as often as you like, instead of learning the next group:
+   *  this deck's cards when `deckId` is set, otherwise the Learned words deck. */
   learned?: boolean;
   onReviewed: () => void;
   onExit: () => void;
   onReviewLearned?: () => void;
 }
 
-/** The card on screen: either the scheduler's pick or one from a pass through the Learned words deck. */
+/** The card on screen: either the scheduler's pick or one from a free review pass. */
 type Current = NonNullable<StudyNext["next"]> | { card: FlashCard; kind: "learned"; left: number };
 
 function shuffle<T>(items: T[]): T[] {
@@ -61,7 +62,7 @@ export default function StudySession({ deckId, deckName, learned, onReviewed, on
     try {
       let current: Current | null;
       if (learned) {
-        if (!queue.current) queue.current = shuffle(await api.learnedCards());
+        if (!queue.current) queue.current = shuffle(await api.learnedCards(deckId));
         const card = queue.current.shift();
         current = card ? { card, kind: "learned", left: queue.current.length } : null;
       } else {
@@ -200,12 +201,15 @@ export default function StudySession({ deckId, deckName, learned, onReviewed, on
     if (learned) {
       return (
         <div className="card study-done">
-          <h2>{summary.count ? "Review complete 🎉" : "No learned words yet"}</h2>
+          <h2>{summary.count ? "Review complete 🎉" : deckId ? "Nothing to review here" : "No learned words yet"}</h2>
           {summary.count ? (
             <p>
               You reviewed <strong>{plural(summary.count, "card")}</strong>
-              {scoreLine}. Go again whenever you like: reviewing learned words never changes their schedule.
+              {scoreLine}. Go again whenever you like: a free review never changes when the scheduled reviews come
+              round.
             </p>
+          ) : deckId ? (
+            <p>Add some cards to {deckName} and you can review them here.</p>
           ) : (
             <p>Finish a group of new words and they'll appear in your Learned words deck.</p>
           )}
@@ -298,7 +302,7 @@ export default function StudySession({ deckId, deckName, learned, onReviewed, on
         <span className="muted">
           {next.kind === "learned" ? (
             <>
-              Learned words · {next.left} left · {summary.count} done
+              {deckName} · {next.left} left · {summary.count} done
             </>
           ) : (
             <>
@@ -313,7 +317,7 @@ export default function StudySession({ deckId, deckName, learned, onReviewed, on
       <div className="card study-card">
         <div className="card-top">
           <span className={`state-badge ${isLearned ? "practice" : isNew ? "new" : card!.state}`}>
-            {isLearned ? "Learned word" : isNew ? "New word" : "Review"}
+            {isLearned ? (deckId ? "Practice" : "Learned word") : isNew ? "New word" : "Review"}
           </span>
           {card!.tag && <span className="category">{card!.tag}</span>}
         </div>

@@ -1,12 +1,15 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import AddToDeck, { copyToDeck } from "./AddToDeck";
 import { api, type Deck, type FlashCard } from "./api";
 import Stressed from "./Stressed";
 import { useAudio } from "./useAudio";
 
 interface Props {
   deck: Deck;
+  decks: Deck[];
   onChanged: () => void;
   onStudy: () => void;
+  onReviewAll: () => void;
   onDeleted: () => void;
 }
 
@@ -22,22 +25,44 @@ function dueLabel(card: FlashCard): string {
   return `in ${Math.round(s / 86400)}d`;
 }
 
-export default function DeckPage({ deck, onChanged, onStudy, onDeleted }: Props) {
+export default function DeckPage({ deck, decks, onChanged, onStudy, onReviewAll, onDeleted }: Props) {
   const [cards, setCards] = useState<FlashCard[]>([]);
   const [filter, setFilter] = useState("");
   const [editing, setEditing] = useState<FlashCard | null>(null);
+  const [selected, setSelected] = useState<number[]>([]);
+  const [target, setTarget] = useState<Deck | null>(null);
   const [message, setMessage] = useState<{ kind: "ok" | "error"; text: string } | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
   const audio = useAudio();
 
   const load = useCallback(() => {
-    api.cards(deck.id).then(setCards).catch((e) => setMessage({ kind: "error", text: e.message }));
+    api
+      .cards(deck.id)
+      .then((list) => {
+        setCards(list);
+        setSelected((s) => s.filter((id) => list.some((c) => c.id === id))); // drop cards that went away
+      })
+      .catch((e) => setMessage({ kind: "error", text: e.message }));
   }, [deck.id]);
   useEffect(load, [load]);
 
   const changed = () => {
     load();
     onChanged();
+  };
+
+  const toggle = (id: number) => setSelected((s) => (s.includes(id) ? s.filter((x) => x !== id) : [...s, id]));
+
+  const allVisibleSelected = (list: FlashCard[]) => list.length > 0 && list.every((c) => selected.includes(c.id));
+
+  const quickAdd = async (card: FlashCard) => {
+    if (!target) return;
+    try {
+      setMessage({ kind: "ok", text: await copyToDeck(target, [card.id]) });
+      onChanged();
+    } catch (e) {
+      setMessage({ kind: "error", text: (e as Error).message });
+    }
   };
 
   const visible = useMemo(() => {
@@ -80,6 +105,7 @@ export default function DeckPage({ deck, onChanged, onStudy, onDeleted }: Props)
 
   const newInGroup = Math.min(deck.group.left, deck.counts.new);
   const studyable = deck.counts.due + newInGroup > 0;
+  const reviewable = deck.counts.total - deck.counts.suspended;
 
   return (
     <div className="deck-page">
@@ -93,6 +119,9 @@ export default function DeckPage({ deck, onChanged, onStudy, onDeleted }: Props)
               : newInGroup > 0
                 ? `Learn group ${deck.group.number} (${newInGroup} new · ${deck.counts.due} due)`
                 : `Do due reviews (${deck.counts.due})`}
+          </button>
+          <button onClick={onReviewAll} disabled={!reviewable}>
+            {reviewable ? `↻ Review all ${reviewable} →` : "No cards yet"}
           </button>
           <button onClick={() => fileRef.current?.click()}>⬆ Import CSV</button>
           <input
@@ -150,9 +179,35 @@ export default function DeckPage({ deck, onChanged, onStudy, onDeleted }: Props)
             {visible.length} of {cards.length}
           </span>
         </div>
+
+        <AddToDeck
+          decks={decks}
+          excludeDeckId={deck.id}
+          target={target}
+          onTarget={setTarget}
+          selected={selected}
+          onCopied={(text) => setMessage({ kind: "ok", text })}
+          onError={(text) => setMessage({ kind: "error", text })}
+          onDecksChanged={onChanged}
+          onClearSelection={() => setSelected([])}
+        />
+
         <table className="card-table">
           <thead>
             <tr>
+              <th className="tick">
+                <input
+                  type="checkbox"
+                  checked={allVisibleSelected(visible)}
+                  onChange={() => {
+                    const ids = visible.map((c) => c.id);
+                    setSelected((s) =>
+                      allVisibleSelected(visible) ? s.filter((x) => !ids.includes(x)) : [...new Set([...s, ...ids])],
+                    );
+                  }}
+                  title="Select everything shown"
+                />
+              </th>
               <th>Russian</th>
               <th>English</th>
               <th>Status</th>
@@ -162,7 +217,10 @@ export default function DeckPage({ deck, onChanged, onStudy, onDeleted }: Props)
           </thead>
           <tbody>
             {visible.map((c) => (
-              <tr key={c.id} className={c.suspended ? "suspended" : ""}>
+              <tr key={c.id} className={[c.suspended ? "suspended" : "", selected.includes(c.id) ? "picked" : ""].join(" ").trim()}>
+                <td className="tick">
+                  <input type="checkbox" checked={selected.includes(c.id)} onChange={() => toggle(c.id)} />
+                </td>
                 <td>
                   <button className="icon" onClick={() => audio.play(api.ttsUrl(c.text, "normal"))} title="Listen">
                     🔊
@@ -185,6 +243,9 @@ export default function DeckPage({ deck, onChanged, onStudy, onDeleted }: Props)
                 </td>
                 <td className="muted">{dueLabel(c)}</td>
                 <td className="row-actions">
+                  <button onClick={() => quickAdd(c)} disabled={!target} title={target ? `Add to ${target.name}` : "Choose a deck above first"}>
+                    ＋ Add
+                  </button>
                   <button onClick={() => setEditing(c)}>Edit</button>
                   <button onClick={() => toggleSuspend(c)}>{c.suspended ? "Unsuspend" : "Suspend"}</button>
                   {!c.builtin && <button onClick={() => remove(c)}>Delete</button>}

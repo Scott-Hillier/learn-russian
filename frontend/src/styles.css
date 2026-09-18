@@ -367,6 +367,25 @@ code { background: var(--bg); border-radius: 4px; padding: 0 4px; font-size: 0.8
 .card-table tr.suspended { opacity: 0.45; }
 .card-table .muted { font-size: 0.8rem; }
 .table-ru { font-size: 1.1rem; font-weight: 600; }
+.card-table th.tick, .card-table td.tick { width: 28px; padding-right: 0; }
+.card-table input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--accent); }
+.card-table tr.picked { background: var(--accent-soft); }
+.table-tools .sort { display: flex; align-items: center; gap: 6px; color: var(--muted); font-size: 0.85rem; white-space: nowrap; }
+.table-tools .sort select, .add-to-deck select {
+  padding: 6px 8px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); color: var(--ink);
+}
+.add-to-deck {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; padding: 8px 10px;
+  border: 1px dashed var(--line); border-radius: 10px; background: var(--bg); font-size: 0.9rem;
+}
+.add-to-deck label { display: flex; align-items: center; gap: 6px; color: var(--muted); }
+.add-to-deck input { flex: 1; min-width: 200px; padding: 7px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--panel); color: var(--ink); }
+.add-to-deck button:not(.primary) { border: 1px solid var(--line); background: var(--panel); border-radius: 999px; padding: 6px 12px; }
+.add-to-deck .primary { padding: 7px 14px; }
+.new-deck-tile { border-style: dashed; gap: 8px; }
+.new-deck-tile input { padding: 8px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); width: 100%; }
+.new-deck-tile .form-row button:not(.primary) { border: 1px solid var(--line); background: var(--panel); border-radius: 999px; padding: 6px 12px; }
+.row-actions button:disabled { color: var(--muted); opacity: 0.6; }
 .stress-warn { color: var(--close); margin-left: 4px; cursor: help; }
 .row-actions { white-space: nowrap; text-align: right; }
 .row-actions button { border: 0; background: none; color: var(--accent); padding: 2px 6px; font-size: 0.85rem; }

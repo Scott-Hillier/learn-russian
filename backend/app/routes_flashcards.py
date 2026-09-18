@@ -23,6 +23,10 @@ class CardUpdate(CardIn):
     suspended: bool = False
 
 
+class CopyIn(BaseModel):
+    card_ids: list[int] = Field(min_length=1, max_length=1000)
+
+
 class RatingIn(BaseModel):
     rating: int
     score: int | None = Field(None, ge=0, le=100)
@@ -68,6 +72,11 @@ def add_card(deck_id: int, body: CardIn):
     return _call(store.add_card, deck_id, body.russian, body.english, body.notes)
 
 
+@router.post("/decks/{deck_id}/copy")
+def copy_cards(deck_id: int, body: CopyIn):
+    return _call(store.copy_cards, deck_id, body.card_ids)
+
+
 @router.post("/decks/{deck_id}/import")
 async def import_cards(deck_id: int, file: UploadFile = File(...)):
     data = await file.read(MAX_IMPORT_BYTES + 1)
@@ -94,8 +103,8 @@ def next_card(deck_id: int | None = None, new_limit: int | None = None):
 
 
 @router.get("/study/learned")
-def learned():
-    return {"cards": store.learned_cards()}
+def learned(deck_id: int | None = None):
+    return {"cards": _call(store.learned_cards, deck_id)}
 
 
 @router.post("/study/{card_id}/rate")

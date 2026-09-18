@@ -39,6 +39,15 @@ The **🃏 Flashcards** screen uses spaced repetition (FSRS) to review vocabular
 - **Decks:** *Starter words* (291 words in 12 units) and *Phrases* are built in. You can
   create your own decks, add cards, or import a CSV (`russian,english[,notes]`, with `+`
   before the stressed vowel).
+- **Review all N →** on a deck page goes through that deck's cards, shuffled, the same way as the
+  ⭐ deck: it includes cards you've never studied and never changes the spaced-repetition
+  schedule. *Learn group N* is still there when you want the scheduled run through the deck.
+- **Building a deck from words you already have:** every card table (⭐ Learned words and each
+  deck) has tick boxes and an *Add to* bar. Pick an existing deck or *＋ New deck…*, tick the
+  words and add them, or use *＋ Add* on a single row. The copies start as new cards in the
+  target deck, so they're learned on their own schedule; the originals are untouched and words
+  the deck already has are skipped. On ⭐ Learned words, sort by *Forgotten most* to put the
+  words you keep lapsing on at the top.
 - **Settings:** set how many words are in a group (1–100) in the sidebar.
 
 ## Sentences

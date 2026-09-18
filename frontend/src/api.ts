@@ -267,6 +267,8 @@ export const api = {
   updateCard: (id: number, card: { russian: string; english: string; notes: string; suspended: boolean }) =>
     send<FlashCard>(`/api/cards/${id}`, "PUT", card),
   deleteCard: (id: number) => send<{ ok: boolean }>(`/api/cards/${id}`, "DELETE"),
+  copyCards: (deckId: number, cardIds: number[]) =>
+    send<{ added: number; skipped_duplicates: number }>(`/api/decks/${deckId}/copy`, "POST", { card_ids: cardIds }),
   importCsv: (deckId: number, file: File) => {
     const form = new FormData();
     form.append("file", file);
@@ -280,7 +282,11 @@ export const api = {
     if (newLimit !== null) params.set("new_limit", String(newLimit));
     return fetch(`/api/study/next?${params}`).then((r) => json<StudyNext>(r));
   },
-  learnedCards: () => fetch("/api/study/learned").then((r) => json<{ cards: FlashCard[] }>(r).then((d) => d.cards)),
+  /** Cards for a free review pass: one deck's cards, or every learned word when no deck is given. */
+  learnedCards: (deckId: number | null = null) =>
+    fetch(`/api/study/learned${deckId ? `?deck_id=${deckId}` : ""}`).then((r) =>
+      json<{ cards: FlashCard[] }>(r).then((d) => d.cards),
+    ),
   rate: (cardId: number, rating: 1 | 2 | 3 | 4, score: number | null, practice = false) =>
     send<{ card: FlashCard; next_due_in: string | null }>(`/api/study/${cardId}/rate`, "POST", {
       rating,

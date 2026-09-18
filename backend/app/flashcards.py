@@ -244,6 +244,38 @@ class FlashcardStore:
                 raise Invalid("Built-in cards can't be deleted, but you can suspend them.")
             conn.execute("DELETE FROM cards WHERE id = ?", (card_id,))
 
+    def copy_cards(self, deck_id: int, card_ids: list[int]) -> dict:
+        """Copy existing cards into another deck. The copies start as new cards there, so they are
+        learned on their own schedule and can be deleted even if the original is built in. Words the
+        deck already has are skipped."""
+        if not card_ids:
+            raise Invalid("Pick at least one word to add.")
+        now = time.time()
+        added = skipped = 0
+        with connect(self.path) as conn:
+            if not conn.execute("SELECT 1 FROM decks WHERE id = ?", (deck_id,)).fetchone():
+                raise NotFound("Deck not found.")
+            existing = {_plain_key(r["russian"]) for r in conn.execute(
+                "SELECT russian FROM cards WHERE deck_id = ?", (deck_id,))}
+            position = conn.execute("SELECT COALESCE(MAX(position), -1) + 1 FROM cards WHERE deck_id = ?",
+                                    (deck_id,)).fetchone()[0]
+            for card_id in card_ids:
+                row = conn.execute("SELECT * FROM cards WHERE id = ?", (card_id,)).fetchone()
+                if not row:
+                    raise NotFound("Card not found.")
+                key = _plain_key(row["russian"])
+                if key in existing:
+                    skipped += 1
+                    continue
+                conn.execute(
+                    "INSERT INTO cards (deck_id, russian, english, notes, tag, position, created_at)"
+                    " VALUES (?, ?, ?, ?, ?, ?, ?)",
+                    (deck_id, row["russian"], row["english"], row["notes"], row["tag"], position, now))
+                existing.add(key)
+                position += 1
+                added += 1
+        return {"added": added, "skipped_duplicates": skipped}
+
     def import_csv(self, deck_id: int, data: bytes) -> dict:
         """Import rows of `russian, english[, notes]`. A header row is detected and skipped."""
         try:
@@ -308,14 +340,22 @@ class FlashcardStore:
         return {"card": card, "kind": kind, "intervals": self.preview_intervals(row),
                 "remaining": self.remaining(deck_id)}
 
-    def learned_cards(self) -> list[dict]:
-        """The Learned words deck: every card you've started learning, most recently learned first.
-        It can be reviewed at any time; those reviews don't reschedule anything."""
+    def learned_cards(self, deck_id: int | None = None) -> list[dict]:
+        """Cards to review outside the schedule; those reviews don't reschedule anything.
+        Across all decks that's the Learned words deck: every card you've started learning, most
+        recently learned first. Within one deck it's all of its cards in deck order, so a deck you
+        put together yourself can be reviewed straight away, before any of it has been scheduled."""
         with connect(self.path) as conn:
-            rows = conn.execute(
-                """SELECT c.*, (SELECT MIN(reviewed_at) FROM reviews r WHERE r.card_id = c.id) AS learned_at
-                   FROM cards c WHERE c.reps > 0 AND c.suspended = 0
-                   ORDER BY learned_at DESC, c.id DESC""").fetchall()
+            if deck_id is not None:
+                if not conn.execute("SELECT 1 FROM decks WHERE id = ?", (deck_id,)).fetchone():
+                    raise NotFound("Deck not found.")
+                rows = conn.execute("SELECT * FROM cards WHERE deck_id = ? AND suspended = 0 ORDER BY position, id",
+                                    (deck_id,)).fetchall()
+            else:
+                rows = conn.execute(
+                    """SELECT c.*, (SELECT MIN(reviewed_at) FROM reviews r WHERE r.card_id = c.id) AS learned_at
+                       FROM cards c WHERE c.reps > 0 AND c.suspended = 0
+                       ORDER BY learned_at DESC, c.id DESC""").fetchall()
         now = time.time()
         return [self._card_dict(r, now) for r in rows]
 

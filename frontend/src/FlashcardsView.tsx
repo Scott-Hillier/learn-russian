@@ -32,11 +32,10 @@ export default function FlashcardsView({ layout }: { layout: LayoutProps }) {
     api.settings().then((s) => setGroupSize(s.group_size)).catch(() => {});
   }, [refresh]);
 
-  const createDeck = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!newDeckName.trim()) return;
+  const createDeck = async (name: string) => {
+    if (!name.trim()) return;
     try {
-      const deck = await api.createDeck(newDeckName);
+      const deck = await api.createDeck(name);
       setNewDeckName("");
       refresh();
       setView({ kind: "deck", deckId: deck.id });
@@ -91,7 +90,13 @@ export default function FlashcardsView({ layout }: { layout: LayoutProps }) {
           </li>
         ))}
       </ul>
-      <form className="custom new-deck" onSubmit={createDeck}>
+      <form
+        className="custom new-deck"
+        onSubmit={(e) => {
+          e.preventDefault();
+          createDeck(newDeckName);
+        }}
+      >
         <input value={newDeckName} onChange={(e) => setNewDeckName(e.target.value)} placeholder="+ New deck name" />
       </form>
       <h2>Settings</h2>
@@ -125,15 +130,18 @@ export default function FlashcardsView({ layout }: { layout: LayoutProps }) {
           onOpenLearned={() => setView({ kind: "learned" })}
           onStudy={() => setView({ kind: "study", deckId: null })}
           onReviewLearned={reviewLearned}
+          onCreateDeck={createDeck}
         />
       )}
-      {view.kind === "learned" && <LearnedPage onReview={reviewLearned} />}
+      {view.kind === "learned" && <LearnedPage onReview={reviewLearned} decks={decks} onDecksChanged={refresh} />}
       {view.kind === "deck" && deckFor(view.deckId) && (
         <DeckPage
           key={view.deckId}
           deck={deckFor(view.deckId)!}
+          decks={decks}
           onChanged={refresh}
           onStudy={() => setView({ kind: "study", deckId: view.deckId })}
+          onReviewAll={() => setView({ kind: "study", deckId: view.deckId, learned: true })}
           onDeleted={() => {
             setView({ kind: "home" });
             refresh();
@@ -144,14 +152,18 @@ export default function FlashcardsView({ layout }: { layout: LayoutProps }) {
         <StudySession
           key={`study-${view.deckId}-${view.learned ? "learned" : "learn"}`}
           deckId={view.deckId}
-          deckName={view.learned ? "Learned words" : (deckFor(view.deckId)?.name ?? "All decks")}
+          deckName={deckFor(view.deckId)?.name ?? (view.learned ? "Learned words" : "All decks")}
           learned={view.learned}
           onReviewed={refresh}
           onReviewLearned={reviewLearned}
           onExit={() => {
             refresh();
             setView(
-              view.learned ? { kind: "learned" } : view.deckId ? { kind: "deck", deckId: view.deckId } : { kind: "home" },
+              view.deckId
+                ? { kind: "deck", deckId: view.deckId }
+                : view.learned
+                  ? { kind: "learned" }
+                  : { kind: "home" },
             );
           }}
         />
@@ -167,6 +179,7 @@ function Home({
   onOpenLearned,
   onStudy,
   onReviewLearned,
+  onCreateDeck,
 }: {
   stats: StudyStats | null;
   decks: Deck[];
@@ -174,8 +187,10 @@ function Home({
   onOpenLearned: () => void;
   onStudy: () => void;
   onReviewLearned: () => void;
+  onCreateDeck: (name: string) => void;
 }) {
   const learnedCount = stats?.learned_words ?? 0;
+  const [newName, setNewName] = useState<string | null>(null);
   return (
     <div className="overview">
       <h2>Flashcards</h2>
@@ -242,6 +257,37 @@ function Home({
             </small>
           </button>
         ))}
+        {newName === null ? (
+          <button className="deck-tile new-deck-tile" onClick={() => setNewName("")}>
+            <strong>＋ New deck</strong>
+            <span className="muted">Make your own deck, then fill it from any other deck or the Learned words.</span>
+          </button>
+        ) : (
+          <form
+            className="deck-tile new-deck-tile"
+            onSubmit={(e) => {
+              e.preventDefault();
+              onCreateDeck(newName);
+              setNewName(null);
+            }}
+          >
+            <input
+              autoFocus
+              value={newName}
+              onChange={(e) => setNewName(e.target.value)}
+              placeholder="Deck name"
+              maxLength={80}
+            />
+            <div className="form-row">
+              <button className="primary" disabled={!newName.trim()}>
+                Create
+              </button>
+              <button type="button" onClick={() => setNewName(null)}>
+                Cancel
+              </button>
+            </div>
+          </form>
+        )}
       </div>
     </div>
   );

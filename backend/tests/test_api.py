@@ -54,5 +54,10 @@ def test_flashcard_routes():
     client.post(f"/api/study/{card['id']}/rate", json={"rating": 3})
     assert card["id"] in [c["id"] for c in client.get("/api/study/learned").json()["cards"]]
     assert client.post(f"/api/study/{card['id']}/rate", json={"rating": 3, "practice": True}).json()["next_due_in"] is None
+    other = client.post("/api/decks", json={"name": "API test copies"}).json()
+    assert client.post(f"/api/decks/{other['id']}/copy", json={"card_ids": [card["id"]]}).json()["added"] == 1
+    assert client.post(f"/api/decks/{other['id']}/copy", json={"card_ids": []}).status_code == 422
+    assert client.post(f"/api/decks/999999/copy", json={"card_ids": [card["id"]]}).status_code == 404
+    assert client.delete(f"/api/decks/{other['id']}").json() == {"ok": True}
     assert client.get("/api/decks/999999/cards").status_code == 404
     assert client.delete(f"/api/decks/{deck['id']}").json() == {"ok": True}

@@ -5,7 +5,7 @@ import time
 import pytest
 
 from app import config
-from app.flashcards import FlashcardStore, Invalid, format_interval, needs_stress_mark
+from app.flashcards import FlashcardStore, Invalid, NotFound, format_interval, needs_stress_mark
 from app.speech.pronunciation import VOWELS
 
 PHRASES = [{"text": "Прив+ет", "english": "Hi", "category": "Greetings"},
@@ -67,6 +67,28 @@ def test_builtin_cards_and_decks_cannot_be_deleted(store):
         store.delete_deck(starter["id"])
     with pytest.raises(Invalid):
         store.delete_card(store.list_cards(starter["id"])[0]["id"])
+
+
+def test_copy_cards_between_decks(store):
+    starter = deck(store, "Starter words")
+    source = store.list_cards(starter["id"])[:3]
+    target = store.create_deck("Words I can't remember")
+    result = store.copy_cards(target["id"], [c["id"] for c in source])
+    assert result == {"added": 3, "skipped_duplicates": 0}
+    copies = store.list_cards(target["id"])
+    assert [c["text"] for c in copies] == [c["text"] for c in source]
+    assert [c["english"] for c in copies] == [c["english"] for c in source]
+    assert all(c["state"] == "new" and not c["builtin"] for c in copies)  # copies are re-learned and deletable
+    # Adding the same word again is a no-op, and the originals stay where they are.
+    assert store.copy_cards(target["id"], [source[0]["id"]]) == {"added": 0, "skipped_duplicates": 1}
+    assert len(store.list_cards(starter["id"])) == starter["counts"]["total"]
+    store.delete_card(copies[0]["id"])
+    with pytest.raises(Invalid):
+        store.copy_cards(target["id"], [])
+    with pytest.raises(NotFound):
+        store.copy_cards(target["id"], [999999])
+    with pytest.raises(NotFound):
+        store.copy_cards(999999, [source[0]["id"]])
 
 
 def test_csv_import(store):
@@ -131,6 +153,18 @@ def test_learned_words_deck(store):
     assert result["next_due_in"] is None
     assert result["card"]["reps"] == card["reps"] and result["card"]["due"] == card["due"]
     assert store.stats()["reviewed_today"] == 3
+
+
+def test_deck_review_lists_every_card_including_new_ones(store):
+    d = store.create_deck("Words I can't remember")
+    store.add_card(d["id"], "кн+ига", "book")
+    hidden = store.add_card(d["id"], "м+ама", "mum")
+    store.update_card(hidden["id"], hidden["text"], hidden["english"], "", True)  # suspended
+    cards = store.learned_cards(d["id"])
+    assert [c["text"] for c in cards] == ["кн+ига"]  # never studied, but reviewable right away
+    assert store.learned_cards() == []  # and not in the Learned words deck until it's been studied
+    with pytest.raises(NotFound):
+        store.learned_cards(999999)
 
 
 def test_group_size_setting(store):
