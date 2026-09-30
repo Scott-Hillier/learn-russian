@@ -91,6 +91,28 @@ def test_copy_cards_between_decks(store):
         store.copy_cards(999999, [source[0]["id"]])
 
 
+def test_remove_cards_only_touches_that_deck(store):
+    starter = deck(store, "Starter words")
+    source = store.list_cards(starter["id"])[:3]
+    first = store.create_deck("Tricky")
+    second = store.create_deck("Also tricky")
+    store.copy_cards(first["id"], [c["id"] for c in source])
+    store.copy_cards(second["id"], [c["id"] for c in source])
+    copies = store.list_cards(first["id"])
+    # Ids from other decks (the built-in originals, the second deck's copies) are ignored.
+    ids = [copies[0]["id"], copies[1]["id"], source[2]["id"], store.list_cards(second["id"])[2]["id"]]
+    assert store.remove_cards(first["id"], ids) == {"removed": 2, "skipped_builtin": 0}
+    assert [c["text"] for c in store.list_cards(first["id"])] == [source[2]["text"]]
+    assert len(store.list_cards(second["id"])) == 3
+    assert len(store.list_cards(starter["id"])) == starter["counts"]["total"]
+    # Built-in cards can't be removed from their own deck.
+    assert store.remove_cards(starter["id"], [source[0]["id"]]) == {"removed": 0, "skipped_builtin": 1}
+    with pytest.raises(Invalid):
+        store.remove_cards(first["id"], [])
+    with pytest.raises(NotFound):
+        store.remove_cards(999999, [source[0]["id"]])
+
+
 def test_csv_import(store):
     d = store.create_deck("Imported")
     data = "russian,english,notes\nкот,cat,\nс+обака;dog\n\nкот,cat again\nhello,world\nодно\n".encode()

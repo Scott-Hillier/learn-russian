@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import { api, type Deck } from "./api";
 
 /** Copy cards into another deck and describe what happened, e.g. "Added 3 words to Tricky words." */
@@ -19,6 +19,8 @@ interface Props {
   onError: (message: string) => void;
   onDecksChanged: () => void;
   onClearSelection: () => void;
+  /** Extra actions for the ticked words, shown before Clear. */
+  children?: ReactNode;
 }
 
 /** "Add to deck" toolbar: pick a deck (or make one), then add the ticked words to it. */
@@ -32,6 +34,7 @@ export default function AddToDeck({
   onError,
   onDecksChanged,
   onClearSelection,
+  children,
 }: Props) {
   const [newName, setNewName] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
@@ -117,6 +120,7 @@ export default function AddToDeck({
       <button className="primary" onClick={add} disabled={busy || !target || !selected.length}>
         {selected.length ? `Add ${selected.length} word${selected.length === 1 ? "" : "s"}` : "Add"}
       </button>
+      {children}
       {selected.length > 0 && (
         <button type="button" onClick={onClearSelection}>
           Clear

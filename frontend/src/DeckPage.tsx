@@ -97,6 +97,22 @@ export default function DeckPage({ deck, decks, onChanged, onStudy, onReviewAll,
     changed();
   };
 
+  const removeSelected = async () => {
+    const n = selected.length;
+    const words = n === 1 ? `“${cards.find((c) => c.id === selected[0])?.plain}”` : `${n} words`;
+    if (!window.confirm(`Remove ${words} from “${deck.name}”? They stay in every other deck; only their review history in this deck is lost.`)) return;
+    try {
+      const r = await api.removeCards(deck.id, selected);
+      const parts = [`Removed ${r.removed} word${r.removed === 1 ? "" : "s"} from ${deck.name}`];
+      if (r.skipped_builtin) parts.push(`${r.skipped_builtin} built-in kept`);
+      setMessage({ kind: "ok", text: parts.join(" · ") });
+      setSelected([]);
+      changed();
+    } catch (e) {
+      setMessage({ kind: "error", text: (e as Error).message });
+    }
+  };
+
   const deleteDeck = async () => {
     if (!window.confirm(`Delete the deck “${deck.name}” and all ${deck.counts.total} cards?`)) return;
     await api.deleteDeck(deck.id);
@@ -190,7 +206,13 @@ export default function DeckPage({ deck, decks, onChanged, onStudy, onReviewAll,
           onError={(text) => setMessage({ kind: "error", text })}
           onDecksChanged={onChanged}
           onClearSelection={() => setSelected([])}
-        />
+        >
+          {!deck.builtin && selected.length > 0 && (
+            <button type="button" className="danger" onClick={removeSelected}>
+              Remove {selected.length} from deck
+            </button>
+          )}
+        </AddToDeck>
 
         <table className="card-table">
           <thead>

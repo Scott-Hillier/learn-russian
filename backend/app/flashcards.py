@@ -276,6 +276,21 @@ class FlashcardStore:
                 added += 1
         return {"added": added, "skipped_duplicates": skipped}
 
+    def remove_cards(self, deck_id: int, card_ids: list[int]) -> dict:
+        """Remove cards from one deck. Only that deck's own rows go, so copies of the same word in other
+        decks (and the originals they were copied from) are untouched. Built-in cards are skipped."""
+        if not card_ids:
+            raise Invalid("Pick at least one word to remove.")
+        with connect(self.path) as conn:
+            if not conn.execute("SELECT 1 FROM decks WHERE id = ?", (deck_id,)).fetchone():
+                raise NotFound("Deck not found.")
+            marks = ",".join("?" * len(card_ids))
+            rows = conn.execute(f"SELECT id, source_key FROM cards WHERE deck_id = ? AND id IN ({marks})",
+                                (deck_id, *card_ids)).fetchall()
+            removable = [r["id"] for r in rows if r["source_key"] is None]
+            conn.executemany("DELETE FROM cards WHERE id = ?", [(i,) for i in removable])
+        return {"removed": len(removable), "skipped_builtin": len(rows) - len(removable)}
+
     def import_csv(self, deck_id: int, data: bytes) -> dict:
         """Import rows of `russian, english[, notes]`. A header row is detected and skipped."""
         try:

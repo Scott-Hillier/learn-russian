@@ -77,6 +77,11 @@ def copy_cards(deck_id: int, body: CopyIn):
     return _call(store.copy_cards, deck_id, body.card_ids)
 
 
+@router.post("/decks/{deck_id}/remove")
+def remove_cards(deck_id: int, body: CopyIn):
+    return _call(store.remove_cards, deck_id, body.card_ids)
+
+
 @router.post("/decks/{deck_id}/import")
 async def import_cards(deck_id: int, file: UploadFile = File(...)):
     data = await file.read(MAX_IMPORT_BYTES + 1)

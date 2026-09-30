@@ -58,6 +58,9 @@ def test_flashcard_routes():
     assert client.post(f"/api/decks/{other['id']}/copy", json={"card_ids": [card["id"]]}).json()["added"] == 1
     assert client.post(f"/api/decks/{other['id']}/copy", json={"card_ids": []}).status_code == 422
     assert client.post(f"/api/decks/999999/copy", json={"card_ids": [card["id"]]}).status_code == 404
+    copy_id = client.get(f"/api/decks/{other['id']}/cards").json()[0]["id"]
+    assert client.post(f"/api/decks/{other['id']}/remove", json={"card_ids": [copy_id]}).json()["removed"] == 1
+    assert client.get(f"/api/decks/{deck['id']}/cards").json()[0]["id"] == card["id"]  # original kept
     assert client.delete(f"/api/decks/{other['id']}").json() == {"ok": True}
     assert client.get("/api/decks/999999/cards").status_code == 404
     assert client.delete(f"/api/decks/{deck['id']}").json() == {"ok": True}

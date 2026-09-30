@@ -269,6 +269,8 @@ export const api = {
   deleteCard: (id: number) => send<{ ok: boolean }>(`/api/cards/${id}`, "DELETE"),
   copyCards: (deckId: number, cardIds: number[]) =>
     send<{ added: number; skipped_duplicates: number }>(`/api/decks/${deckId}/copy`, "POST", { card_ids: cardIds }),
+  removeCards: (deckId: number, cardIds: number[]) =>
+    send<{ removed: number; skipped_builtin: number }>(`/api/decks/${deckId}/remove`, "POST", { card_ids: cardIds }),
   importCsv: (deckId: number, file: File) => {
     const form = new FormData();
     form.append("file", file);

@@ -350,7 +350,7 @@ mark { background: var(--accent-soft); color: var(--accent); border-radius: 3px;
 .deck-page { width: 100%; max-width: 900px; display: flex; flex-direction: column; gap: 14px; }
 .deck-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
 .deck-actions button:not(.primary) { border: 1px solid var(--line); background: var(--panel); border-radius: 999px; padding: 9px 16px; }
-.deck-actions .danger { color: var(--bad); }
+.deck-actions .danger, .add-to-deck .danger { color: var(--bad); }
 .small-print { font-size: 0.8rem; }
 code { background: var(--bg); border-radius: 4px; padding: 0 4px; font-size: 0.85em; }
 .card-form { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; }
