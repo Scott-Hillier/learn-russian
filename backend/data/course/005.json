@@ -1,0 +1,259 @@
+{
+ "id": 5,
+ "title": "Тут / там",
+ "goal": "Here or there: «Где сумка?» — «Сумка там.»",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 5
+  },
+  {
+   "track": "vocab",
+   "type": "teach",
+   "title": "New words",
+   "instruction": "Listen, say it after me, then say it on your own from the picture.",
+   "items": [
+    {
+     "answer": "там",
+     "cue": "👉",
+     "english": "there"
+    },
+    {
+     "answer": "п+аспорт",
+     "cue": "🛂",
+     "english": "passport"
+    },
+    {
+     "answer": "с+умка",
+     "cue": "👜",
+     "english": "bag"
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "teach",
+   "title": "«… там» — … is there",
+   "instruction": "«там» means “there”. Now you know both: «тут» (here 👇) and «там» (there 👉).",
+   "items": [
+    {
+     "answer": "Ключ там.",
+     "cue": "👉 🔑",
+     "english": "It's there.",
+     "ask": "Где ключ?"
+    },
+    {
+     "answer": "С+умка там.",
+     "cue": "👉 👜",
+     "english": "It's there.",
+     "ask": "Где с+умка?"
+    }
+   ]
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "Here or there?",
+   "instruction": "Listen and pick where it is.",
+   "items": [
+    {
+     "audio": "Ключ тут.",
+     "options": [
+      "👇 here",
+      "👉 there"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Тел+ефон там.",
+     "options": [
+      "👇 here",
+      "👉 there"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "С+умка там.",
+     "options": [
+      "👇 here",
+      "👉 there"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Кн+ига тут.",
+     "options": [
+      "👇 here",
+      "👉 there"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "П+аспорт тут.",
+     "options": [
+      "👇 here",
+      "👉 there"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Маш+ина там.",
+     "options": [
+      "👇 here",
+      "👉 there"
+     ],
+     "correct": 1
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "Here or there?",
+   "instruction": "Answer «Где …?» with «… тут» (👇) or «… там» (👉).",
+   "items": [
+    {
+     "answer": "П+аспорт тут.",
+     "cue": "👇 🛂",
+     "english": "It's here.",
+     "ask": "Где п+аспорт?"
+    },
+    {
+     "answer": "С+умка там.",
+     "cue": "👉 👜",
+     "english": "It's there.",
+     "ask": "Где с+умка?"
+    },
+    {
+     "answer": "Маш+ина там.",
+     "cue": "👉 🚗",
+     "english": "It's there.",
+     "ask": "Где маш+ина?"
+    },
+    {
+     "answer": "Кн+ига тут.",
+     "cue": "👇 📖",
+     "english": "It's here.",
+     "ask": "Где кн+ига?"
+    },
+    {
+     "answer": "П+аспорт там.",
+     "cue": "👉 🛂",
+     "english": "It's there.",
+     "ask": "Где п+аспорт?"
+    },
+    {
+     "answer": "С+умка тут.",
+     "cue": "👇 👜",
+     "english": "It's here.",
+     "ask": "Где с+умка?"
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "Numbers 1–10",
+   "instruction": "Say the number.",
+   "items": [
+    {
+     "answer": "д+есять",
+     "cue": "🔟",
+     "english": "ten"
+    },
+    {
+     "answer": "чет+ыре",
+     "cue": "4️⃣",
+     "english": "four"
+    },
+    {
+     "answer": "в+осемь",
+     "cue": "8️⃣",
+     "english": "eight"
+    },
+    {
+     "answer": "од+ин",
+     "cue": "1️⃣",
+     "english": "one"
+    },
+    {
+     "answer": "д+евять",
+     "cue": "9️⃣",
+     "english": "nine"
+    },
+    {
+     "answer": "пять",
+     "cue": "5️⃣",
+     "english": "five"
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "Conversation",
+   "instruction": "Your friend is packing for a trip.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "+Это п+аспорт?",
+     "cue": "🛂",
+     "english": "Is this the passport?"
+    },
+    {
+     "answer": "Да, +это п+аспорт.",
+     "cue": "🛂",
+     "english": "Yes, it's the passport.",
+     "distractors": [
+      "Нет, +это не п+аспорт."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Где п+аспорт?",
+     "cue": "🛂❓",
+     "english": "Where is the passport?"
+    },
+    {
+     "answer": "П+аспорт там.",
+     "cue": "👉 🛂",
+     "english": "The passport is there.",
+     "distractors": [
+      "П+аспорт тут."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Где с+умка?",
+     "cue": "👜❓",
+     "english": "Where is the bag?"
+    },
+    {
+     "answer": "С+умка тут.",
+     "cue": "👇 👜",
+     "english": "The bag is here.",
+     "distractors": [
+      "С+умка там."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Спас+ибо!",
+     "cue": "🙂",
+     "english": "Thanks!"
+    },
+    {
+     "answer": "Пож+алуйста!",
+     "cue": "🙂",
+     "english": "You're welcome!",
+     "distractors": [
+      "Спас+ибо!"
+     ]
+    }
+   ]
+  }
+ ]
+}

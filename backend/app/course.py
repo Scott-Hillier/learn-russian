@@ -1,6 +1,10 @@
 """The Direct Instruction course: scripted lessons, hard mastery gates and per-item results.
 
-Lessons live in data/course/*.json. Each lesson is a list of short exercises from different tracks.
+Lessons live in data/course/NNN.json. Each lesson is a list of short exercises from different tracks.
+Two things are filled in when lessons load, so lesson files stay short:
+- distractors: every spoken item is also checked against the other answers in its exercise;
+- review: an exercise with "review": N gets N spoken items from earlier lessons, spaced 1, 2, 3, 5, 8…
+  lessons back (cumulative review).
 An exercise is passed when one round of it reaches PASS_ACCURACY on first tries (corrections and
 re-tests inside the round don't count as first tries). A lesson is passed when all of its exercises
 are, and only then does the next lesson unlock.
@@ -19,6 +23,8 @@ PASS_ACCURACY = 0.9
 TRACKS = {"script", "frames", "vocab", "listening", "sounds", "numbers", "dialogue", "review"}
 TYPES = {"teach", "say", "choose", "dialogue"}
 STEPS = {"first", "practice", "retest", "delayed"}  # only "first" tries decide whether a round passes
+REVIEW_DISTANCES = (1, 2, 3, 5, 8, 13, 21)  # lessons back that review items are drawn from
+MAX_AUTO_DISTRACTORS = 5
 
 
 class LessonLocked(Exception):
@@ -31,9 +37,17 @@ def _describe(text: str) -> dict:
 
 def item_key(exercise_type: str, item: dict) -> str:
     """Stable identity of an item across lessons (for delayed tests and review statistics)."""
+    if exercise_type == "choose" and "prompt" in item:
+        return f"form:{strip_stress(item['prompt']).lower()}={strip_stress(item['options'][item['correct']]).lower()}"
     if exercise_type == "choose":
         return f"hear:{strip_stress(item['audio']).lower()}"
     return f"say:{strip_stress(item['answer']).lower()}"
+
+
+def spoken_items(lesson: dict) -> list[dict]:
+    """Items the learner answers by speaking (teach, say and the learner's dialogue turns)."""
+    return [item for ex in lesson["exercises"] if ex["type"] in ("teach", "say", "dialogue")
+            for item in ex.get("items", []) if "answer" in item]
 
 
 def validate_lesson(lesson: dict) -> list[str]:
@@ -49,16 +63,20 @@ def validate_lesson(lesson: dict) -> list[str]:
             errors.append(f"{at}: unknown track {ex.get('track')!r}")
         if ex.get("type") not in TYPES:
             errors.append(f"{at}: unknown type {ex.get('type')!r}")
-        if not ex.get("items"):
+        if not ex.get("items") and not ex.get("review"):
             errors.append(f"{at}: no items")
+        if ex.get("review") and ex.get("type") != "say":
+            errors.append(f"{at}: review exercises must be type 'say'")
         for i_idx, item in enumerate(ex.get("items", [])):
             it = f"{at} item {i_idx + 1}"
             if ex.get("type") == "choose":
-                if "audio" not in item or not item.get("options"):
-                    errors.append(f"{it}: choose items need 'audio' and 'options'")
+                if not ("audio" in item or "prompt" in item) or not item.get("options"):
+                    errors.append(f"{it}: choose items need 'options' and an 'audio' or a 'prompt'")
                 elif not 0 <= item.get("correct", -1) < len(item["options"]):
                     errors.append(f"{it}: 'correct' must index into options")
-                texts = [item.get("audio", "")]
+                texts = [item.get("audio", ""), item.get("prompt", "")]
+                if "prompt" in item:  # choosing a written form: the options are Russian
+                    texts += item.get("options", [])
             elif ex.get("type") == "dialogue" and item.get("speaker") == "partner":
                 if "line" not in item:
                     errors.append(f"{it}: partner turns need 'line'")
@@ -80,18 +98,77 @@ def strip_punct(text: str) -> str:
     return "".join(c if c.isalpha() or c in "+- " else " " for c in text)
 
 
-@lru_cache(maxsize=1)
-def lessons() -> tuple[dict, ...]:
-    """All lessons, in order. Raises ValueError if any lesson file is malformed."""
-    found = []
-    for path in sorted((config.DATA_DIR / "course").glob("*.json")):
+def _with_distractors(ex: dict) -> dict:
+    """Check each spoken answer against the other answers in its exercise too (plus any listed)."""
+    if ex["type"] not in ("teach", "say", "dialogue") or "items" not in ex:
+        return ex
+    answers = [i["answer"] for i in ex["items"] if "answer" in i]
+    items = []
+    for item in ex["items"]:
+        if "answer" in item:
+            taken = {strip_stress(t).lower() for t in [item["answer"], *item.get("accept", [])]}
+            extra = []
+            for other in [*item.get("distractors", []), *answers]:
+                key = strip_stress(other).lower()
+                if key not in taken:
+                    taken.add(key)
+                    extra.append(other)
+            n_listed = len(item.get("distractors", []))
+            item = {**item, "distractors": extra[:max(n_listed, MAX_AUTO_DISTRACTORS)]}
+        items.append(item)
+    return {**ex, "items": items}
+
+
+def _review_items(earlier: list[dict], lesson: dict, count: int) -> list[dict]:
+    """Spoken items from earlier lessons, taken in turn from 1, 2, 3, 5, 8… lessons back."""
+    own = {item_key("say", i) for i in spoken_items(lesson)}
+    pools = []
+    for d in REVIEW_DISTANCES:
+        source = next((l for l in earlier if l["id"] == lesson["id"] - d), None)
+        if source:
+            items = spoken_items(source)
+            start = lesson["id"] % len(items) if items else 0  # vary which items come up
+            pools.append(items[start:] + items[:start])
+    picked, seen = [], set(own)
+    while len(picked) < count and any(pools):
+        for pool in pools:
+            while pool:
+                item = pool.pop(0)
+                if item_key("say", item) not in seen:
+                    seen.add(item_key("say", item))
+                    picked.append(item)
+                    break
+            if len(picked) == count:
+                break
+    return picked
+
+
+def load_lessons(directory: Path) -> tuple[dict, ...]:
+    """Read, validate and fill in every lesson file in a directory."""
+    raw = []
+    for path in sorted(directory.glob("[0-9]*.json")):
         lesson = json.loads(path.read_text(encoding="utf-8"))
         errors = validate_lesson(lesson)
         if errors:
             raise ValueError(f"{path.name}: " + "; ".join(errors))
-        found.append(lesson)
-    found.sort(key=lambda l: l["id"])
-    return tuple(found)
+        raw.append(lesson)
+    raw.sort(key=lambda l: l["id"])
+    done: list[dict] = []
+    for lesson in raw:
+        lesson = {**lesson, "exercises": [_with_distractors(ex) for ex in lesson["exercises"]]}
+        exercises = []
+        for ex in lesson["exercises"]:
+            if ex.get("review"):
+                ex = {**ex, "items": _review_items(done, lesson, ex["review"])}
+            exercises.append(ex)
+        done.append({**lesson, "exercises": [ex for ex in exercises if ex["items"]]})
+    return tuple(done)
+
+
+@lru_cache(maxsize=1)
+def lessons() -> tuple[dict, ...]:
+    """All lessons, in order. Raises ValueError if any lesson file is malformed."""
+    return load_lessons(config.DATA_DIR / "course")
 
 
 def _lesson(lesson_id: int) -> dict:
@@ -109,7 +186,11 @@ def _expand(lesson: dict) -> dict:
         for item in ex["items"]:
             out = dict(item)
             if ex["type"] == "choose":
-                out["audio"] = _describe(item["audio"])
+                for field in ("audio", "prompt"):
+                    if field in item:
+                        out[field] = _describe(item[field])
+                if "prompt" in item:  # written Russian forms to choose from
+                    out["options"] = [display_stress(o) for o in item["options"]]
             elif ex["type"] == "dialogue" and item.get("speaker") == "partner":
                 out["line"] = _describe(item["line"])
             else:

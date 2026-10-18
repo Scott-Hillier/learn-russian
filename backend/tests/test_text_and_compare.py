@@ -97,3 +97,7 @@ def test_devoiced_consonant_gets_voicing_advice():
     assert specific and "voiced" in text and "sounded like “т”" in text
     text, _ = letter_tip("дом", {"char": "д", "stressed": False, "heard_as": None})
     assert "wasn't clear" in text
+
+
+def test_display_stress_leaves_yo_unmarked():
+    assert display_stress("мо+ё") == "моё"

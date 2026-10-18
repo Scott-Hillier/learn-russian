@@ -198,8 +198,68 @@ written by hand.
      - The pilot lessons were written before the scope and sequence, and Phase 10 may re-order them.
      - There's no "choose the written form" exercise yet. It's needed for the contrasts the checker
        can't hear.
-10. **Scope and sequence plus lessons 1–20.** A track map for about 60 lessons, the curriculum
-    checker, and pymorphy3 validation.
+10. **Scope and sequence, curriculum checker, lessons 1–10 ✅ (done 2026-10-18).**
+    - **Scope and sequence:** see the table below.
+    - **Curriculum checker** (`backend/app/curriculum.py`, run by `tests/test_curriculum.py`): words are
+      compared by lemma via pymorphy3. The build fails if:
+      - a lesson has fewer than 3 tracks, or no review exercise from lesson 2 on
+      - a word isn't in the pymorphy3 dictionary (catches typos)
+      - a lesson brings more than 8 new words
+      - a teach exercise has more than 5 items
+      - a word is said before it has been modelled in a teach exercise
+      - a new word doesn't come back in at least 2 of the next 5 lessons
+      - confusable items are introduced too close together (`data/course/confusables.json`)
+      - a distractor differs from the answer only by a contrast the checker can't hear
+    - **Filled in when lessons load:**
+      - Each spoken item's distractors include the other answers in its exercise.
+      - `"review": N` exercises take N spoken items from 1, 2, 3, 5, 8… lessons back.
+    - **New exercise item:** choose the written form (`prompt` "___ сок", options мой/моя/моё).
+      The full sentence plays after answering. Contrasts that speech can't judge are taught this way.
+    - **Lessons 1–10** are rewritten in DI order:
+      - тут (3) is firm before там (5)
+      - он (7) → она (8) → оно (9), each contrasted with the ones before
+      - кто/что (6)
+      - мой/моя/моё (10)
+    - **Speech check of the lessons:** every speaking item and every distractor, spoken by 2 native
+      voices, comes out as expected (1,576/1,576 checks). That includes он/она/оно, which are
+      reliable as whole short sentences.
+    - **Verified in the real app:** the written-form exercise ran through to a delayed re-test and
+      a firm-up round. Two display bugs were fixed: stress marks on options, and a doubled accent on ё.
+
+10b. **Lessons 11–20** (твой, gender exceptions, names, present tense я/ты/он, говорить, хочу/вижу +
+    accusative, unit review dialogue).
+
+### Scope and sequence
+Each new item comes in only after what it depends on is firm. Confusable items are introduced
+apart and contrasted afterwards (тут → там, он → она → оно). Every lesson also has review, numbers
+and a dialogue.
+
+| Lessons | Sentence frames (core track) | New words, about 3 per lesson | Numbers |
+|---|---|---|---|
+| 1 | «Это …» | дом, кошка, собака | 1–3 |
+| 2 | «Это …?» — «Да, это … / Нет, это не …, это …» | машина, книга, хлеб | 4–5 |
+| 3 | «Где …?» — «… тут» | ключ, телефон | 6–7 |
+| 4 | Greetings: привет / здравствуйте, спасибо, пожалуйста | | 8–10 |
+| 5 | «… там», then тут/там contrasted | паспорт, сумка | 1–10 mixed |
+| 6 | «Кто это?» (people and animals) vs «Что это?» | мама, брат, сестра, друг | «Сколько?» counting |
+| 7 | он (consonant ending) | стул, сок | counting |
+| 8 | она (-а), then он/она contrasted | рыба, вода | counting |
+| 9 | оно (-о), then all three contrasted | молоко, яблоко, окно | counting |
+| 10 | мой / моя / моё (form choice, plus whole sentences) | | counting |
+| 11 | твой / твоя / твоё; «Это твой …?» — «Да, это мой …» | | 11–12 |
+| 12 | Gender to learn with the word: папа (он), дверь, ночь (она) | папа, дверь | 13–15 |
+| 13 | «Как тебя зовут?» — «Меня зовут …»; я / ты | | 16–20 |
+| 14 | Present tense, я form: я знаю, я понимаю, я не понимаю | | |
+| 15 | ты form: ты знаешь? ты понимаешь? | | |
+| 16 | он/она form, then я/ты/он contrasted | | |
+| 17 | говорить: говорю / говоришь / говорит; по-русски, по-английски | | |
+| 18 | «Я хочу …» with accusative -а → -у (воду, рыбу), masculine unchanged | чай, кофе | |
+| 19 | «Я вижу …» with accusative for people and animals (маму, кошку) | | 20–30 |
+| 20 | Unit review dialogue: meeting someone | | |
+| 21–30 | мы/вы/они verb forms (listening and form choice only: speech can't tell them apart); в/на + prepositional (в машине, на столе); «Я живу в …»; nominative plural; «У меня есть …» / «У меня нет …» + genitive | | 30–100 |
+| 31–40 | идти / ехать + в + accusative; times and days; «Мне нравится …» (мне/тебе) | | prices |
+| 41–50 | Past tense (был/была, -л/-ла); с + instrumental (с молоком); café and shop dialogues | | |
+| 51–60 | Future (буду + infinitive); adjectives (большой/маленький; form choice for endings); unit reviews; conversation limited to taught content | | |
 11. **Mastery and review.** Mastery tests, placement, remediation, and FSRS-due items in each
     lesson's review block.
 12. **Lessons become the main route.**

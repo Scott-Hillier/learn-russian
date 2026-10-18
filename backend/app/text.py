@@ -32,7 +32,8 @@ def display_stress(text: str) -> str:
             continue
         out.append(ch)
         if pending and ch in VOWELS:
-            out.append(COMBINING_ACUTE)
+            if ch not in "ёЁ":  # ё is always stressed and never takes a mark
+                out.append(COMBINING_ACUTE)
             pending = False
     return "".join(out)
 

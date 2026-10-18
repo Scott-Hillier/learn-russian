@@ -1,0 +1,247 @@
+{
+ "id": 4,
+ "title": "Привет!",
+ "goal": "Greet people and be polite: «Привет!», «Здравствуйте!», «Спасибо!»",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 5
+  },
+  {
+   "track": "vocab",
+   "type": "teach",
+   "title": "New words",
+   "instruction": "Listen, say it after me, then say it on your own.",
+   "items": [
+    {
+     "answer": "Прив+ет!",
+     "cue": "👋 🧑‍🤝‍🧑",
+     "english": "Hi! (to a friend)"
+    },
+    {
+     "answer": "Здр+авствуйте!",
+     "cue": "🤝 👔",
+     "english": "Hello! (polite)"
+    },
+    {
+     "answer": "Спас+ибо!",
+     "cue": "🙏",
+     "english": "Thank you!"
+    },
+    {
+     "answer": "Пож+алуйста!",
+     "cue": "🙂",
+     "english": "Please! / You're welcome!"
+    }
+   ]
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "Friend or stranger?",
+   "instruction": "Who would you say this to?",
+   "items": [
+    {
+     "audio": "Прив+ет!",
+     "options": [
+      "🧑‍🤝‍🧑 to a friend",
+      "👔 to a stranger or teacher"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Здр+авствуйте!",
+     "options": [
+      "🧑‍🤝‍🧑 to a friend",
+      "👔 to a stranger or teacher"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Здр+авствуйте!",
+     "options": [
+      "🧑‍🤝‍🧑 to a friend",
+      "👔 to a stranger or teacher"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Прив+ет!",
+     "options": [
+      "🧑‍🤝‍🧑 to a friend",
+      "👔 to a stranger or teacher"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Прив+ет!",
+     "options": [
+      "🧑‍🤝‍🧑 to a friend",
+      "👔 to a stranger or teacher"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Здр+авствуйте!",
+     "options": [
+      "🧑‍🤝‍🧑 to a friend",
+      "👔 to a stranger or teacher"
+     ],
+     "correct": 1
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "What do you say?",
+   "instruction": "Say the right thing for each situation.",
+   "items": [
+    {
+     "answer": "Прив+ет!",
+     "cue": "👋 🧑‍🤝‍🧑",
+     "english": "Say hi to a friend."
+    },
+    {
+     "answer": "Спас+ибо!",
+     "cue": "🎁",
+     "english": "Someone gives you a present."
+    },
+    {
+     "answer": "Здр+авствуйте!",
+     "cue": "🤝 👔",
+     "english": "Say hello to a teacher."
+    },
+    {
+     "answer": "Пож+алуйста!",
+     "cue": "🙏",
+     "english": "Someone thanks you."
+    },
+    {
+     "answer": "Здр+авствуйте!",
+     "cue": "🤝 👵",
+     "english": "Say hello to an older neighbour."
+    },
+    {
+     "answer": "Прив+ет!",
+     "cue": "👋 🧑‍🤝‍🧑",
+     "english": "Say hi to a friend."
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "teach",
+   "title": "Numbers 8–10",
+   "instruction": "Three new numbers.",
+   "items": [
+    {
+     "answer": "в+осемь",
+     "cue": "8️⃣",
+     "english": "eight"
+    },
+    {
+     "answer": "д+евять",
+     "cue": "9️⃣",
+     "english": "nine"
+    },
+    {
+     "answer": "д+есять",
+     "cue": "🔟",
+     "english": "ten"
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "Numbers 1–10",
+   "instruction": "Say the number.",
+   "items": [
+    {
+     "answer": "д+евять",
+     "cue": "9️⃣",
+     "english": "nine"
+    },
+    {
+     "answer": "три",
+     "cue": "3️⃣",
+     "english": "three"
+    },
+    {
+     "answer": "д+есять",
+     "cue": "🔟",
+     "english": "ten"
+    },
+    {
+     "answer": "семь",
+     "cue": "7️⃣",
+     "english": "seven"
+    },
+    {
+     "answer": "в+осемь",
+     "cue": "8️⃣",
+     "english": "eight"
+    },
+    {
+     "answer": "шесть",
+     "cue": "6️⃣",
+     "english": "six"
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "Conversation",
+   "instruction": "You meet a friend.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "Прив+ет!",
+     "cue": "🧑‍🤝‍🧑",
+     "english": "Hi!"
+    },
+    {
+     "answer": "Прив+ет!",
+     "cue": "👋",
+     "english": "Hi!",
+     "distractors": [
+      "Здр+авствуйте!"
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "+Это тел+ефон?",
+     "cue": "📖",
+     "english": "Is this a phone?"
+    },
+    {
+     "answer": "Нет, +это не тел+ефон, +это кн+ига.",
+     "cue": "📖",
+     "english": "No, it's not a phone, it's a book.",
+     "distractors": [
+      "Да, +это тел+ефон."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Спас+ибо!",
+     "cue": "🙂",
+     "english": "Thanks!"
+    },
+    {
+     "answer": "Пож+алуйста!",
+     "cue": "🙂",
+     "english": "You're welcome!",
+     "distractors": [
+      "Спас+ибо!"
+     ]
+    }
+   ]
+  }
+ ]
+}

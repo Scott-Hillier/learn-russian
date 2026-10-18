@@ -23,6 +23,8 @@ in order:
   are asked again, and the missed one comes back a few items later.
 - **Passing:** an exercise passes at **90% right first time**. Below that, you get the same exercise again in
   a new order (a "firm-up" round). The next lesson unlocks only when every exercise has passed.
+- **Choose the right word:** some exercises show a sentence with a gap ("___ сок") and you pick the form
+  (мой / моя / моё). These cover differences that speech checking can't hear reliably.
 - **Hands-free** (on by default): the mic opens by itself after each question and stops when you pause.
   `Space` answers or stops, `R` repeats the question, `1`–`4` pick an answer in listening exercises, and `Esc`
   pauses hands-free.

@@ -1,0 +1,247 @@
+{
+ "id": 10,
+ "title": "Мой / моя / моё",
+ "goal": "Say “my”: «мой дом», «моя кошка», «моё яблоко».",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 6
+  },
+  {
+   "track": "frames",
+   "type": "teach",
+   "title": "«Мой, моя, моё» — my",
+   "instruction": "“My” follows the same pattern: он-words → «мой», она-words → «моя», оно-words → «моё». 🙋 = mine.",
+   "items": [
+    {
+     "answer": "+Это мой дом.",
+     "cue": "🏠 🙋",
+     "english": "This is my house.",
+     "ask": "Что +это?"
+    },
+    {
+     "answer": "+Это мо+я к+ошка.",
+     "cue": "🐈 🙋",
+     "english": "This is my cat.",
+     "ask": "Кто +это?"
+    },
+    {
+     "answer": "+Это моё +яблоко.",
+     "cue": "🍎 🙋",
+     "english": "This is my apple.",
+     "ask": "Что +это?"
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "choose",
+   "title": "Choose «my»",
+   "instruction": "Pick «мой», «моя» or «моё» for each word.",
+   "items": [
+    {
+     "prompt": "___ сок",
+     "cue": "🧃 🙋",
+     "english": "my juice",
+     "options": [
+      "мой",
+      "мо+я",
+      "моё"
+     ],
+     "correct": 0,
+     "audio": "Мой сок."
+    },
+    {
+     "prompt": "___ с+умка",
+     "cue": "👜 🙋",
+     "english": "my bag",
+     "options": [
+      "мой",
+      "мо+я",
+      "моё"
+     ],
+     "correct": 1,
+     "audio": "Мо+я с+умка."
+    },
+    {
+     "prompt": "___ окн+о",
+     "cue": "🪟 🙋",
+     "english": "my window",
+     "options": [
+      "мой",
+      "мо+я",
+      "моё"
+     ],
+     "correct": 2,
+     "audio": "Моё окн+о."
+    },
+    {
+     "prompt": "___ брат",
+     "cue": "👦 🙋",
+     "english": "my brother",
+     "options": [
+      "мой",
+      "мо+я",
+      "моё"
+     ],
+     "correct": 0,
+     "audio": "Мой брат."
+    },
+    {
+     "prompt": "___ р+ыба",
+     "cue": "🐟 🙋",
+     "english": "my fish",
+     "options": [
+      "мой",
+      "мо+я",
+      "моё"
+     ],
+     "correct": 1,
+     "audio": "Мо+я р+ыба."
+    },
+    {
+     "prompt": "___ мол+око",
+     "cue": "🥛 🙋",
+     "english": "my milk",
+     "options": [
+      "мой",
+      "мо+я",
+      "моё"
+     ],
+     "correct": 2,
+     "audio": "Моё мол+око."
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "This is mine",
+   "instruction": "Say what it is, and that it's yours: «Это мой …».",
+   "items": [
+    {
+     "answer": "+Это мой стул.",
+     "cue": "🪑 🙋",
+     "english": "This is my chair.",
+     "ask": "Что +это?"
+    },
+    {
+     "answer": "+Это мо+я кн+ига.",
+     "cue": "📖 🙋",
+     "english": "This is my book.",
+     "ask": "Что +это?"
+    },
+    {
+     "answer": "+Это моё окн+о.",
+     "cue": "🪟 🙋",
+     "english": "This is my window.",
+     "ask": "Что +это?"
+    },
+    {
+     "answer": "+Это мой тел+ефон.",
+     "cue": "📱 🙋",
+     "english": "This is my phone.",
+     "ask": "Что +это?"
+    },
+    {
+     "answer": "+Это мо+я сестр+а.",
+     "cue": "👧 🙋",
+     "english": "This is my sister.",
+     "ask": "Кто +это?"
+    },
+    {
+     "answer": "+Это моё мол+око.",
+     "cue": "🥛 🙋",
+     "english": "This is my milk.",
+     "ask": "Что +это?"
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "«Сколько?»",
+   "instruction": "Count and say the number.",
+   "items": [
+    {
+     "answer": "Д+есять.",
+     "cue": "🍎🍎🍎🍎🍎🍎🍎🍎🍎🍎",
+     "english": "ten",
+     "ask": "Ск+олько?"
+    },
+    {
+     "answer": "Чет+ыре.",
+     "cue": "📖📖📖📖",
+     "english": "four",
+     "ask": "Ск+олько?"
+    },
+    {
+     "answer": "Шесть.",
+     "cue": "🥛🥛🥛🥛🥛🥛",
+     "english": "six",
+     "ask": "Ск+олько?"
+    },
+    {
+     "answer": "Од+ин.",
+     "cue": "📱",
+     "english": "one",
+     "ask": "Ск+олько?"
+    },
+    {
+     "answer": "Д+евять.",
+     "cue": "🪑🪑🪑🪑🪑🪑🪑🪑🪑",
+     "english": "nine",
+     "ask": "Ск+олько?"
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "Conversation",
+   "instruction": "Showing a friend round your flat.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "Что +это?",
+     "cue": "📱",
+     "english": "What is this?"
+    },
+    {
+     "answer": "+Это мой тел+ефон.",
+     "cue": "📱 🙋",
+     "english": "This is my phone."
+    },
+    {
+     "speaker": "partner",
+     "line": "Кто +это?",
+     "cue": "🐈",
+     "english": "Who is this?"
+    },
+    {
+     "answer": "+Это мо+я к+ошка.",
+     "cue": "🐈 🙋",
+     "english": "This is my cat."
+    },
+    {
+     "speaker": "partner",
+     "line": "Где п+аспорт?",
+     "cue": "🛂❓",
+     "english": "Where is the passport?"
+    },
+    {
+     "answer": "Он там.",
+     "cue": "👉 🛂",
+     "english": "It's there.",
+     "distractors": [
+      "Он+а там.",
+      "Он тут."
+     ]
+    }
+   ]
+  }
+ ]
+}

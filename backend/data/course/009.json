@@ -1,0 +1,283 @@
+{
+ "id": 9,
+ "title": "Оно",
+ "goal": "Say “it” for words ending in «-о»: «Где молоко?» — «Оно тут.»",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 5
+  },
+  {
+   "track": "vocab",
+   "type": "teach",
+   "title": "New words",
+   "instruction": "Listen, say it after me, then say it on your own from the picture.",
+   "items": [
+    {
+     "answer": "мол+око",
+     "cue": "🥛",
+     "english": "milk"
+    },
+    {
+     "answer": "+яблоко",
+     "cue": "🍎",
+     "english": "apple"
+    },
+    {
+     "answer": "окн+о",
+     "cue": "🪟",
+     "english": "window"
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "teach",
+   "title": "«Оно» — it",
+   "instruction": "Words that end in «-о» are «оно» (it): молоко → оно. Now: consonant → он, «-а» → она, «-о» → оно.",
+   "items": [
+    {
+     "answer": "Он+о тут.",
+     "cue": "👇 🥛",
+     "english": "It's here.",
+     "ask": "Где мол+око?",
+     "distractors": [
+      "Мол+око тут."
+     ]
+    },
+    {
+     "answer": "Он+о там.",
+     "cue": "👉 🍎",
+     "english": "It's there.",
+     "ask": "Где +яблоко?",
+     "distractors": [
+      "+Яблоко там."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "Он, она or оно?",
+   "instruction": "Listen to the word and pick the right one.",
+   "items": [
+    {
+     "audio": "окн+о",
+     "options": [
+      "он",
+      "он+а",
+      "он+о"
+     ],
+     "correct": 2
+    },
+    {
+     "audio": "р+ыба",
+     "options": [
+      "он",
+      "он+а",
+      "он+о"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "сок",
+     "options": [
+      "он",
+      "он+а",
+      "он+о"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "+яблоко",
+     "options": [
+      "он",
+      "он+а",
+      "он+о"
+     ],
+     "correct": 2
+    },
+    {
+     "audio": "с+умка",
+     "options": [
+      "он",
+      "он+а",
+      "он+о"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "стул",
+     "options": [
+      "он",
+      "он+а",
+      "он+о"
+     ],
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "Он, она or оно?",
+   "instruction": "Answer with «Он», «Она» or «Оно», and «тут» (👇) or «там» (👉).",
+   "items": [
+    {
+     "answer": "Он+о там.",
+     "cue": "👉 🪟",
+     "english": "It's there.",
+     "ask": "Где окн+о?",
+     "distractors": [
+      "Он+а там.",
+      "Он там."
+     ]
+    },
+    {
+     "answer": "Он+а тут.",
+     "cue": "👇 💧",
+     "english": "It's here.",
+     "ask": "Где вод+а?",
+     "distractors": [
+      "Он+о тут.",
+      "Он тут."
+     ]
+    },
+    {
+     "answer": "Он там.",
+     "cue": "👉 🔑",
+     "english": "It's there.",
+     "ask": "Где ключ?",
+     "distractors": [
+      "Он+а там.",
+      "Он+о там."
+     ]
+    },
+    {
+     "answer": "Он+о тут.",
+     "cue": "👇 🍎",
+     "english": "It's here.",
+     "ask": "Где +яблоко?",
+     "distractors": [
+      "Он+а тут.",
+      "Он тут."
+     ]
+    },
+    {
+     "answer": "Он+а там.",
+     "cue": "👉 🐈",
+     "english": "It's there.",
+     "ask": "Где к+ошка?",
+     "distractors": [
+      "Он+о там.",
+      "Он там."
+     ]
+    },
+    {
+     "answer": "Он+о там.",
+     "cue": "👉 🥛",
+     "english": "It's there.",
+     "ask": "Где мол+око?",
+     "distractors": [
+      "Он+а там.",
+      "Он там."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "«Сколько?»",
+   "instruction": "Count and say the number.",
+   "items": [
+    {
+     "answer": "Два.",
+     "cue": "🍎🍎",
+     "english": "two",
+     "ask": "Ск+олько?"
+    },
+    {
+     "answer": "Семь.",
+     "cue": "🥛🥛🥛🥛🥛🥛🥛",
+     "english": "seven",
+     "ask": "Ск+олько?"
+    },
+    {
+     "answer": "Пять.",
+     "cue": "🪟🪟🪟🪟🪟",
+     "english": "five",
+     "ask": "Ск+олько?"
+    },
+    {
+     "answer": "В+осемь.",
+     "cue": "🐟🐟🐟🐟🐟🐟🐟🐟",
+     "english": "eight",
+     "ask": "Ск+олько?"
+    },
+    {
+     "answer": "Три.",
+     "cue": "💧💧💧",
+     "english": "three",
+     "ask": "Ск+олько?"
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "Conversation",
+   "instruction": "Making breakfast.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "Где мол+око?",
+     "cue": "🥛❓",
+     "english": "Where is the milk?"
+    },
+    {
+     "answer": "Он+о тут.",
+     "cue": "👇 🥛",
+     "english": "It's here.",
+     "distractors": [
+      "Он+а тут.",
+      "Он+о там."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Где хлеб?",
+     "cue": "🍞❓",
+     "english": "Where is the bread?"
+    },
+    {
+     "answer": "Он там.",
+     "cue": "👉 🍞",
+     "english": "It's there.",
+     "distractors": [
+      "Он+а там.",
+      "Он тут."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Спас+ибо!",
+     "cue": "🙂",
+     "english": "Thanks!"
+    },
+    {
+     "answer": "Пож+алуйста!",
+     "cue": "🙂",
+     "english": "You're welcome!",
+     "distractors": [
+      "Спас+ибо!"
+     ]
+    }
+   ]
+  }
+ ]
+}

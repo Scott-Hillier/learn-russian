@@ -338,7 +338,8 @@ export default function LessonPlayer({
       if (step.step === "first") lastFirst.current = null; // "I said it right" only applies to the item just missed
       const toReady = (p: Phase) => (p === "prompt" ? "ready" : p); // the learner may already have answered
       if (step.kind === "choose") {
-        await clip.play(api.ttsUrl(item.audio!.text, "normal"));
+        // Listening items play first; written-form items ("___ дом") play the full sentence after answering.
+        if (!item.prompt) await clip.play(api.ttsUrl(item.audio!.text, "normal"));
         if (live) setPhase(toReady);
         return;
       }
@@ -382,9 +383,9 @@ export default function LessonPlayer({
     let live = true;
     if (phase === "right") timer = window.setTimeout(next, ADVANCE_MS);
     if (phase === "wrong" && item) {
-      const text =
-        step.kind === "choose" ? item.audio!.text : item.answer!.text;
-      void clip.play(api.ttsUrl(text, "normal")).then(() => {
+      const text = step.kind === "choose" ? item.audio?.text : item.answer!.text;
+      const played = text ? clip.play(api.ttsUrl(text, "normal")) : Promise.resolve(true);
+      void played.then(() => {
         if (!live) return;
         if (step.kind === "lead") {
           setCheck(null);
@@ -393,7 +394,11 @@ export default function LessonPlayer({
         } else timer = window.setTimeout(next, 1200);
       });
     }
-    if (phase === "chosen") timer = window.setTimeout(next, ADVANCE_MS);
+    if (phase === "chosen" && item?.prompt && item.audio)
+      void clip.play(api.ttsUrl(item.audio.text, "normal")).then(() => {
+        if (live) timer = window.setTimeout(next, ADVANCE_MS / 2);
+      });
+    else if (phase === "chosen") timer = window.setTimeout(next, ADVANCE_MS);
     return () => {
       live = false;
       clearTimeout(timer);
@@ -427,7 +432,7 @@ export default function LessonPlayer({
       step.kind === "partner"
         ? item.line!.text
         : step.kind === "choose"
-          ? item.audio!.text
+          ? item.audio?.text
           : step.kind === "lead"
             ? item.answer!.text
             : item.ask?.text;
@@ -598,7 +603,9 @@ export default function LessonPlayer({
               )}
             </>
           ) : step?.kind === "choose" ? (
-            <button onClick={replay}>🔊 Again</button>
+            <button onClick={replay} disabled={!!item?.prompt && phase !== "chosen" && phase !== "wrong"}>
+              🔊 Again
+            </button>
           ) : null
         }
         right={
@@ -651,11 +658,24 @@ function StepView({
     const answered = phase === "chosen" || phase === "wrong";
     return (
       <div className="step choose">
-        <p className="step-label">🔊 Listen. What did you hear?</p>
-        {answered && (
-          <div className="target" lang="ru">
-            <Stressed text={item.audio!.display} />
-          </div>
+        {item.prompt ? (
+          <>
+            <div className="cue">{item.cue}</div>
+            <p className="step-label">Choose the right word:</p>
+            <div className="target" lang="ru">
+              <Stressed text={answered && item.audio ? item.audio.display : item.prompt.display} />
+            </div>
+            {item.english && <div className="english">{item.english}</div>}
+          </>
+        ) : (
+          <>
+            <p className="step-label">🔊 Listen. What did you hear?</p>
+            {answered && (
+              <div className="target" lang="ru">
+                <Stressed text={item.audio!.display} />
+              </div>
+            )}
+          </>
         )}
         <div className="choose-options">
           {item.options!.map((o, i) => (

@@ -1,0 +1,266 @@
+{
+ "id": 7,
+ "title": "Он",
+ "goal": "Say “he / it” for words ending in a consonant: «Где брат?» — «Он тут.»",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 5
+  },
+  {
+   "track": "vocab",
+   "type": "teach",
+   "title": "New words",
+   "instruction": "Listen, say it after me, then say it on your own from the picture.",
+   "items": [
+    {
+     "answer": "стул",
+     "cue": "🪑",
+     "english": "chair"
+    },
+    {
+     "answer": "сок",
+     "cue": "🧃",
+     "english": "juice"
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "teach",
+   "title": "«Он» — he / it",
+   "instruction": "Words that end in a consonant are «он» (he or it): брат → он, дом → он. So «Где брат?» — «Он тут.»",
+   "items": [
+    {
+     "answer": "Он тут.",
+     "cue": "👇 👦",
+     "english": "It's here.",
+     "ask": "Где брат?",
+     "distractors": [
+      "Брат тут."
+     ]
+    },
+    {
+     "answer": "Он там.",
+     "cue": "👉 🔑",
+     "english": "It's there.",
+     "ask": "Где ключ?",
+     "distractors": [
+      "Ключ там."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "Is it «он»?",
+   "instruction": "Listen to the word. Is it an «он» word (it ends in a consonant)?",
+   "items": [
+    {
+     "audio": "стул",
+     "options": [
+      "он",
+      "not он"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "с+умка",
+     "options": [
+      "он",
+      "not он"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "брат",
+     "options": [
+      "он",
+      "not он"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "кн+ига",
+     "options": [
+      "он",
+      "not он"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "тел+ефон",
+     "options": [
+      "он",
+      "not он"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "маш+ина",
+     "options": [
+      "он",
+      "not он"
+     ],
+     "correct": 1
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "Where is he? Where is it?",
+   "instruction": "Answer with «Он тут» (👇) or «Он там» (👉).",
+   "items": [
+    {
+     "answer": "Он там.",
+     "cue": "👉 🧑‍🤝‍🧑",
+     "english": "It's there.",
+     "ask": "Где друг?",
+     "distractors": [
+      "Друг там."
+     ]
+    },
+    {
+     "answer": "Он тут.",
+     "cue": "👇 🪑",
+     "english": "It's here.",
+     "ask": "Где стул?",
+     "distractors": [
+      "Стул тут."
+     ]
+    },
+    {
+     "answer": "Он там.",
+     "cue": "👉 🧃",
+     "english": "It's there.",
+     "ask": "Где сок?",
+     "distractors": [
+      "Сок там."
+     ]
+    },
+    {
+     "answer": "Он тут.",
+     "cue": "👇 🛂",
+     "english": "It's here.",
+     "ask": "Где п+аспорт?",
+     "distractors": [
+      "П+аспорт тут."
+     ]
+    },
+    {
+     "answer": "Он там.",
+     "cue": "👉 🏠",
+     "english": "It's there.",
+     "ask": "Где дом?",
+     "distractors": [
+      "Дом там."
+     ]
+    },
+    {
+     "answer": "Он тут.",
+     "cue": "👇 📱",
+     "english": "It's here.",
+     "ask": "Где тел+ефон?",
+     "distractors": [
+      "Тел+ефон тут."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "«Сколько?»",
+   "instruction": "Count and say the number.",
+   "items": [
+    {
+     "answer": "Шесть.",
+     "cue": "🪑🪑🪑🪑🪑🪑",
+     "english": "six",
+     "ask": "Ск+олько?"
+    },
+    {
+     "answer": "В+осемь.",
+     "cue": "🧃🧃🧃🧃🧃🧃🧃🧃",
+     "english": "eight",
+     "ask": "Ск+олько?"
+    },
+    {
+     "answer": "Д+есять.",
+     "cue": "🔑🔑🔑🔑🔑🔑🔑🔑🔑🔑",
+     "english": "ten",
+     "ask": "Ск+олько?"
+    },
+    {
+     "answer": "Три.",
+     "cue": "👦👦👦",
+     "english": "three",
+     "ask": "Ск+олько?"
+    },
+    {
+     "answer": "Пять.",
+     "cue": "🧑‍🤝‍🧑🧑‍🤝‍🧑🧑‍🤝‍🧑🧑‍🤝‍🧑🧑‍🤝‍🧑",
+     "english": "five",
+     "ask": "Ск+олько?"
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "Conversation",
+   "instruction": "Your friend is looking for things.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "Где п+аспорт?",
+     "cue": "🛂❓",
+     "english": "Where is the passport?"
+    },
+    {
+     "answer": "Он тут.",
+     "cue": "👇 🛂",
+     "english": "It's here.",
+     "distractors": [
+      "Он там.",
+      "П+аспорт тут."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Где сок?",
+     "cue": "🧃❓",
+     "english": "Where is the juice?"
+    },
+    {
+     "answer": "Он там.",
+     "cue": "👉 🧃",
+     "english": "It's there.",
+     "distractors": [
+      "Он тут.",
+      "Сок там."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Спас+ибо!",
+     "cue": "🙂",
+     "english": "Thanks!"
+    },
+    {
+     "answer": "Пож+алуйста!",
+     "cue": "🙂",
+     "english": "You're welcome!",
+     "distractors": [
+      "Спас+ибо!"
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -157,11 +157,14 @@ def lesson_items() -> int:
     from app.speech.answers import check_answer
 
     ok = total = 0
+    seen = set()
     for lesson in lessons():
         for e_idx, ex in enumerate(lesson["exercises"]):
             for item in ex["items"]:
-                if "answer" not in item:
+                key = (item.get("answer"), tuple(item.get("accept", [])), tuple(item.get("distractors", [])))
+                if "answer" not in item or key in seen:  # review exercises repeat earlier items
                     continue
+                seen.add(key)
                 for spoken in [item["answer"], *item.get("distractors", [])]:
                     expect = spoken == item["answer"]
                     for spk in ("xenia", "aidar"):

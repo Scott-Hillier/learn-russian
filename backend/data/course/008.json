@@ -1,0 +1,252 @@
+{
+ "id": 8,
+ "title": "Она",
+ "goal": "Say “she / it” for words ending in «-а»: «Где мама?» — «Она там.»",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 5
+  },
+  {
+   "track": "vocab",
+   "type": "teach",
+   "title": "New words",
+   "instruction": "Listen, say it after me, then say it on your own from the picture.",
+   "items": [
+    {
+     "answer": "р+ыба",
+     "cue": "🐟",
+     "english": "fish"
+    },
+    {
+     "answer": "вод+а",
+     "cue": "💧",
+     "english": "water"
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "teach",
+   "title": "«Она» — she / it",
+   "instruction": "Words that end in «-а» are «она» (she or it): мама → она, сумка → она. «Где мама?» — «Она тут.»",
+   "items": [
+    {
+     "answer": "Он+а тут.",
+     "cue": "👇 👩",
+     "english": "It's here.",
+     "ask": "Где м+ама?",
+     "distractors": [
+      "М+ама тут."
+     ]
+    },
+    {
+     "answer": "Он+а там.",
+     "cue": "👉 🚗",
+     "english": "It's there.",
+     "ask": "Где маш+ина?",
+     "distractors": [
+      "Маш+ина там."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "Он or она?",
+   "instruction": "Listen. Which thing could it be?",
+   "items": [
+    {
+     "audio": "Он+а тут.",
+     "options": [
+      "🔑 key",
+      "🐈 cat"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Он там.",
+     "options": [
+      "👜 bag",
+      "🪑 chair"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Он тут.",
+     "options": [
+      "📱 phone",
+      "🐟 fish"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Он+а там.",
+     "options": [
+      "💧 water",
+      "🧃 juice"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Он+а тут.",
+     "options": [
+      "👧 sister",
+      "👦 brother"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Он там.",
+     "options": [
+      "🚗 car",
+      "🏠 house"
+     ],
+     "correct": 1
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "Он or она?",
+   "instruction": "Answer with «Он …» or «Она …», and «тут» (👇) or «там» (👉).",
+   "items": [
+    {
+     "answer": "Он+а тут.",
+     "cue": "👇 👜",
+     "english": "It's here.",
+     "ask": "Где с+умка?",
+     "distractors": [
+      "Он тут."
+     ]
+    },
+    {
+     "answer": "Он тут.",
+     "cue": "👇 🪑",
+     "english": "It's here.",
+     "ask": "Где стул?",
+     "distractors": [
+      "Он+а тут."
+     ]
+    },
+    {
+     "answer": "Он+а там.",
+     "cue": "👉 💧",
+     "english": "It's there.",
+     "ask": "Где вод+а?",
+     "distractors": [
+      "Он там."
+     ]
+    },
+    {
+     "answer": "Он там.",
+     "cue": "👉 👦",
+     "english": "It's there.",
+     "ask": "Где брат?",
+     "distractors": [
+      "Он+а там."
+     ]
+    },
+    {
+     "answer": "Он+а тут.",
+     "cue": "👇 🐟",
+     "english": "It's here.",
+     "ask": "Где р+ыба?",
+     "distractors": [
+      "Он тут."
+     ]
+    },
+    {
+     "answer": "Он там.",
+     "cue": "👉 🧃",
+     "english": "It's there.",
+     "ask": "Где сок?",
+     "distractors": [
+      "Он+а там."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "«Сколько?»",
+   "instruction": "Count and say the number.",
+   "items": [
+    {
+     "answer": "Чет+ыре.",
+     "cue": "🐟🐟🐟🐟",
+     "english": "four",
+     "ask": "Ск+олько?"
+    },
+    {
+     "answer": "Д+евять.",
+     "cue": "💧💧💧💧💧💧💧💧💧",
+     "english": "nine",
+     "ask": "Ск+олько?"
+    },
+    {
+     "answer": "Од+ин.",
+     "cue": "🐈",
+     "english": "one",
+     "ask": "Ск+олько?"
+    },
+    {
+     "answer": "Шесть.",
+     "cue": "👜👜👜👜👜👜",
+     "english": "six",
+     "ask": "Ск+олько?"
+    },
+    {
+     "answer": "Д+есять.",
+     "cue": "🧃🧃🧃🧃🧃🧃🧃🧃🧃🧃",
+     "english": "ten",
+     "ask": "Ск+олько?"
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "Conversation",
+   "instruction": "At home.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "Где сестр+а?",
+     "cue": "👧❓",
+     "english": "Where is your sister?"
+    },
+    {
+     "answer": "Он+а там.",
+     "cue": "👉 👧",
+     "english": "She's there.",
+     "distractors": [
+      "Он там.",
+      "Он+а тут."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Где брат?",
+     "cue": "👦❓",
+     "english": "Where is your brother?"
+    },
+    {
+     "answer": "Он тут.",
+     "cue": "👇 👦",
+     "english": "He's here.",
+     "distractors": [
+      "Он+а тут.",
+      "Он там."
+     ]
+    }
+   ]
+  }
+ ]
+}

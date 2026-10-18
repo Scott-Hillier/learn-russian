@@ -1,0 +1,6 @@
+[
+  {"words": ["тут", "там"], "gap": 2, "why": "same frame, similar sound; тут must be firm before там"},
+  {"words": ["кто", "что"], "gap": 2, "why": "both ask 'what/who is this'"},
+  {"words": ["он", "она", "оно"], "gap": 1, "why": "one gender at a time, then contrasted"},
+  {"words": ["привет", "пока"], "gap": 2, "why": "informal hello / bye"}
+]

@@ -201,7 +201,8 @@ export interface CourseItem {
   english?: string;
   answer?: Described; // what the learner should say (teach, say, dialogue "you" turns)
   ask?: Described; // question played before the learner answers
-  audio?: Described; // choose: what is played
+  audio?: Described; // choose: what is played (before answering, or after it when there's a prompt)
+  prompt?: Described; // choose: written sentence with a blank, e.g. "___ дом" (options are Russian forms)
   options?: string[]; // choose
   correct?: number; // choose
   speaker?: "partner" | "you"; // dialogue
