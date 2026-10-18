@@ -1,5 +1,8 @@
 # Learn Russian: Plan
 
+> Picking this up? Start with [HANDOFF.md](HANDOFF.md): it covers what's done, what's left, and how to
+> add and verify lessons.
+
 ## Goal
 A local, fully offline app that teaches Russian from zero to simple conversation. It stands in
 for a teacher and a speaking partner. It runs on an M1 Mac with 8 GB of RAM, and nothing reaches

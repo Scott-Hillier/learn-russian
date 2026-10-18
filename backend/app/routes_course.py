@@ -4,7 +4,7 @@ import logging
 from fastapi import APIRouter, File, Form, HTTPException, UploadFile
 from pydantic import BaseModel, Field
 
-from . import progress
+from . import config, progress, recordings
 from .course import LessonLocked, course, lessons
 from .speech.answers import check_answer
 from .speech.audio import decode_to_pcm16k, peak_level, trim_and_pad
@@ -68,8 +68,9 @@ async def check(lesson_id: int, exercise: int = Form(...), item: int = Form(...)
         raise HTTPException(404, "No such item.")
     if "answer" not in spec:
         raise HTTPException(400, "This item isn't answered by speaking.")
+    data = await audio.read()
     try:
-        pcm = decode_to_pcm16k(await audio.read())
+        pcm = decode_to_pcm16k(data)
     except ValueError as e:
         raise HTTPException(400, str(e))
     if pcm.size < 16000 * 0.2 or peak_level(pcm) < 0.02:
@@ -80,4 +81,8 @@ async def check(lesson_id: int, exercise: int = Form(...), item: int = Form(...)
         progress.record_attempt("lesson", spec["answer"], result)
     except Exception:
         log.exception("Could not save attempt to progress database")
+    if config.SAVE_RECORDINGS:  # keep the lesson context so a misjudged answer can be replayed against its item
+        context = {**result, "lesson": lesson_id, "exercise": exercise, "item": item,
+                   "accept": spec.get("accept", []), "distractors": spec.get("distractors", [])}
+        await asyncio.to_thread(recordings.save, spec["answer"], data, context)
     return result

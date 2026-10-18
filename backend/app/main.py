@@ -4,14 +4,13 @@ import json
 import logging
 import re
 import threading
-import time
 from functools import lru_cache
 
 from fastapi import FastAPI, File, Form, HTTPException, Query, UploadFile
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
-from . import config, progress
+from . import config, progress, recordings
 from .flashcards import store as flashcards
 from .routes_chat import router as chat_router
 from .routes_course import router as course_router
@@ -250,23 +249,9 @@ async def attempt(target: str = Form(..., max_length=500), audio: UploadFile = F
         except Exception:
             log.exception("Could not save attempt to progress database")
     if config.SAVE_RECORDINGS:
-        await asyncio.to_thread(_save_recording, target, data, feedback)
+        await asyncio.to_thread(recordings.save, target, data, feedback)
     return feedback
 
-
-def _save_recording(target: str, data: bytes, feedback: dict) -> None:
-    """Keep the latest attempts on disk (see config.SAVE_RECORDINGS)."""
-    try:
-        config.RECORDINGS_DIR.mkdir(exist_ok=True)
-        now = time.time()
-        stem = config.RECORDINGS_DIR / f"{time.strftime('%Y%m%d-%H%M%S', time.localtime(now))}-{int(now * 1000) % 1000:03d}"
-        stem.with_suffix(".webm").write_bytes(data)
-        stem.with_suffix(".json").write_text(json.dumps({"target": target, "feedback": feedback}, ensure_ascii=False))
-        for old in sorted(config.RECORDINGS_DIR.glob("*.webm"))[:-config.RECORDINGS_KEPT]:
-            old.unlink()
-            old.with_suffix(".json").unlink(missing_ok=True)
-    except Exception:
-        log.exception("Could not save recording")
 
 
 if config.FRONTEND_DIST.exists():

@@ -112,3 +112,24 @@ def test_check_reports_silence_without_scoring(tmp_path, monkeypatch):
     assert r.status_code == 200 and r.json()["silent"] is True
     assert TestClient(app).post("/api/course/1/check", data={"exercise": "-1", "item": "0"},
                                 files={"audio": ("a.wav", _silent_wav(), "audio/wav")}).status_code == 404
+
+
+def test_lesson_answers_are_saved_with_their_item_when_recording(tmp_path, monkeypatch):
+    import json
+
+    import numpy as np
+
+    from app import config, routes_course
+    from app.main import app
+
+    monkeypatch.setattr(routes_course, "course", Course(tmp_path / "progress.db"))
+    monkeypatch.setattr(config, "SAVE_RECORDINGS", True)
+    monkeypatch.setattr(config, "RECORDINGS_DIR", tmp_path / "recordings")
+    monkeypatch.setattr(routes_course, "decode_to_pcm16k", lambda data: np.full(16000, 0.1, dtype=np.float32))
+    monkeypatch.setattr(routes_course, "check_answer", lambda *a: {
+        "correct": True, "silent": False, "heard": None, "score": 90, "words": []})
+    r = TestClient(app).post("/api/course/1/check", data={"exercise": "0", "item": "0"},
+                             files={"audio": ("a.webm", b"audio", "audio/webm")})
+    assert r.status_code == 200
+    saved = json.loads(next((tmp_path / "recordings").glob("*.json")).read_text())
+    assert saved["target"] == "дом" and saved["feedback"]["lesson"] == 1 and "distractors" in saved["feedback"]
