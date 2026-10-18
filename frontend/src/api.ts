@@ -66,7 +66,7 @@ export interface LetterMastery {
   status: "learning" | "mastered";
 }
 
-export type AttemptSource = "phrase" | "letter" | "reading" | "custom" | "flashcard" | "sentence" | "pair";
+export type AttemptSource = "phrase" | "letter" | "reading" | "custom" | "flashcard" | "sentence" | "pair" | "lesson";
 
 export interface SentenceWord extends Described {
   gloss: string;
@@ -189,6 +189,82 @@ export interface StudyStats extends Remaining {
   reviewed_today: number;
   average_score_today: number | null;
   streak_days: number;
+}
+
+export type CourseTrack = "script" | "frames" | "vocab" | "listening" | "sounds" | "numbers" | "dialogue" | "review";
+export type LessonStatus = "passed" | "available" | "locked";
+
+/** One item of a course exercise. Which fields are set depends on the exercise type. */
+export interface CourseItem {
+  key?: string; // stable identity for results (not set on partner turns)
+  cue?: string; // emoji / picture prompt
+  english?: string;
+  answer?: Described; // what the learner should say (teach, say, dialogue "you" turns)
+  ask?: Described; // question played before the learner answers
+  audio?: Described; // choose: what is played
+  options?: string[]; // choose
+  correct?: number; // choose
+  speaker?: "partner" | "you"; // dialogue
+  line?: Described; // dialogue partner turn
+}
+
+export interface CourseExercise {
+  track: CourseTrack;
+  type: "teach" | "say" | "choose" | "dialogue";
+  title: string;
+  instruction: string;
+  items: CourseItem[];
+}
+
+export interface CourseLessonSummary {
+  id: number;
+  title: string;
+  goal: string;
+  status: LessonStatus;
+  exercises: number;
+  exercise: number; // first exercise not yet passed
+  tracks: CourseTrack[];
+}
+
+export interface CourseOverview {
+  lessons: CourseLessonSummary[];
+  current: number | null;
+  pass_accuracy: number;
+}
+
+export interface CourseLesson {
+  id: number;
+  title: string;
+  goal: string;
+  status: LessonStatus;
+  exercise: number;
+  exercises: CourseExercise[];
+}
+
+export interface AnswerCheck {
+  correct: boolean;
+  heard: string | null; // the candidate answer that matched best (display form)
+  score: number; // pronunciation of the expected answer, 0–100
+  words: WordResult[];
+  silent: boolean; // nothing was said
+}
+
+export type ResultStep = "first" | "practice" | "retest" | "delayed";
+
+export interface ItemResult {
+  key: string;
+  step: ResultStep;
+  correct: boolean;
+  override?: boolean;
+  score?: number | null;
+}
+
+export interface RoundResult {
+  passed: boolean;
+  accuracy: number;
+  exercise: number;
+  lesson_passed: boolean;
+  next_lesson: number | null;
 }
 
 async function send<T>(url: string, method: string, body?: unknown): Promise<T> {
@@ -316,6 +392,18 @@ export const api = {
   bestScores: (source: AttemptSource) =>
     fetch(`/api/progress/best?source=${source}`).then((r) => json<Record<string, number>>(r)),
   progressSummary: () => fetch("/api/progress/summary").then((r) => json<ProgressSummary>(r)),
+  course: () => fetch("/api/course").then((r) => json<CourseOverview>(r)),
+  courseLesson: (id: number) => fetch(`/api/course/${id}`).then((r) => json<CourseLesson>(r)),
+  courseCheck: (lessonId: number, exercise: number, item: number, audio: Blob) => {
+    const form = new FormData();
+    form.append("exercise", String(exercise));
+    form.append("item", String(item));
+    form.append("audio", audio, "answer");
+    return fetch(`/api/course/${lessonId}/check`, { method: "POST", body: form }).then((r) => json<AnswerCheck>(r));
+  },
+  courseRound: (lessonId: number, exercise: number, results: ItemResult[]) =>
+    send<RoundResult>(`/api/course/${lessonId}/rounds`, "POST", { exercise, results }),
+  courseRestart: (lessonId: number) => send<{ ok: boolean }>(`/api/course/${lessonId}/restart`, "POST"),
   attempt: (target: string, audio: Blob, source: AttemptSource, timing = false, intonation = false) => {
     const form = new FormData();
     form.append("target", target);

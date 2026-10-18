@@ -1,0 +1,101 @@
+{
+  "id": 2,
+  "title": "Да / нет",
+  "goal": "Answer yes or no: «Это кошка?» — «Нет, это не кошка, это собака.»",
+  "exercises": [
+    {
+      "track": "review", "type": "say", "title": "Warm-up",
+      "instruction": "Answer «Что это?» with «Это …»",
+      "items": [
+        {"answer": "+Это к+ошка.", "cue": "🐈", "english": "This is a cat.", "ask": "Что +это?",
+         "distractors": ["+Это соб+ака.", "+Это дом."]},
+        {"answer": "+Это маш+ина.", "cue": "🚗", "english": "This is a car.", "ask": "Что +это?",
+         "distractors": ["+Это дом.", "+Это соб+ака."]},
+        {"answer": "+Это дом.", "cue": "🏠", "english": "This is a house.", "ask": "Что +это?",
+         "distractors": ["+Это маш+ина.", "+Это к+ошка."]},
+        {"answer": "+Это соб+ака.", "cue": "🐕", "english": "This is a dog.", "ask": "Что +это?",
+         "distractors": ["+Это к+ошка.", "+Это маш+ина."]}
+      ]
+    },
+    {
+      "track": "vocab", "type": "teach", "title": "New words",
+      "instruction": "Listen, say it after me, then say it on your own from the picture.",
+      "items": [
+        {"answer": "кн+ига", "cue": "📖", "english": "book", "distractors": ["хлеб", "мол+око"]},
+        {"answer": "хлеб", "cue": "🍞", "english": "bread", "distractors": ["кн+ига", "мол+око"]},
+        {"answer": "мол+око", "cue": "🥛", "english": "milk", "distractors": ["кн+ига", "хлеб"]}
+      ]
+    },
+    {
+      "track": "listening", "type": "choose", "title": "Is it or isn't it?",
+      "instruction": "Listen carefully for «не» (not) and pick what you heard.",
+      "items": [
+        {"audio": "+Это к+ошка.", "options": ["✅ 🐈 It is a cat", "❌ 🐈 It's not a cat"], "correct": 0},
+        {"audio": "+Это не к+ошка.", "options": ["✅ 🐈 It is a cat", "❌ 🐈 It's not a cat"], "correct": 1},
+        {"audio": "+Это не дом.", "options": ["✅ 🏠 It is a house", "❌ 🏠 It's not a house"], "correct": 1},
+        {"audio": "+Это кн+ига.", "options": ["✅ 📖 It is a book", "❌ 📖 It's not a book"], "correct": 0},
+        {"audio": "+Это не хлеб.", "options": ["✅ 🍞 It is bread", "❌ 🍞 It's not bread"], "correct": 1},
+        {"audio": "+Это дом.", "options": ["✅ 🏠 It is a house", "❌ 🏠 It's not a house"], "correct": 0}
+      ]
+    },
+    {
+      "track": "frames", "type": "teach", "title": "«Да» and «Нет»",
+      "instruction": "A question just rises at the end: «Это кошка?» Answer «Да, это …» or «Нет, это не …, это …».",
+      "items": [
+        {"answer": "Да, +это к+ошка.", "cue": "🐈", "english": "Yes, it's a cat.", "ask": "+Это к+ошка?",
+         "distractors": ["Нет, +это не к+ошка, +это соб+ака."]},
+        {"answer": "Нет, +это не к+ошка, +это соб+ака.", "cue": "🐕", "english": "No, it's not a cat, it's a dog.",
+         "ask": "+Это к+ошка?", "distractors": ["Да, +это к+ошка.", "Да, +это соб+ака."]}
+      ]
+    },
+    {
+      "track": "frames", "type": "say", "title": "Yes or no?",
+      "instruction": "Look at the picture and answer the question.",
+      "items": [
+        {"answer": "Да, +это дом.", "cue": "🏠", "english": "Yes, it's a house.", "ask": "+Это дом?",
+         "distractors": ["Нет, +это не дом."]},
+        {"answer": "Нет, +это не хлеб, +это мол+око.", "cue": "🥛", "english": "No, it's not bread, it's milk.",
+         "ask": "+Это хлеб?", "distractors": ["Да, +это хлеб.", "Да, +это мол+око."]},
+        {"answer": "Да, +это кн+ига.", "cue": "📖", "english": "Yes, it's a book.", "ask": "+Это кн+ига?",
+         "distractors": ["Нет, +это не кн+ига."]},
+        {"answer": "Нет, +это не дом, +это маш+ина.", "cue": "🚗", "english": "No, it's not a house, it's a car.",
+         "ask": "+Это дом?", "distractors": ["Да, +это дом.", "Да, +это маш+ина."]},
+        {"answer": "Да, +это хлеб.", "cue": "🍞", "english": "Yes, it's bread.", "ask": "+Это хлеб?",
+         "distractors": ["Нет, +это не хлеб."]},
+        {"answer": "Нет, +это не соб+ака, +это к+ошка.", "cue": "🐈", "english": "No, it's not a dog, it's a cat.",
+         "ask": "+Это соб+ака?", "distractors": ["Да, +это соб+ака.", "Да, +это к+ошка."]}
+      ]
+    },
+    {
+      "track": "numbers", "type": "teach", "title": "Numbers 4–5",
+      "instruction": "Two new numbers, then all five mixed up.",
+      "items": [
+        {"answer": "чет+ыре", "cue": "4️⃣", "english": "four", "distractors": ["пять", "три"]},
+        {"answer": "пять", "cue": "5️⃣", "english": "five", "distractors": ["чет+ыре", "два"]}
+      ]
+    },
+    {
+      "track": "numbers", "type": "say", "title": "Numbers 1–5",
+      "instruction": "Say the number.",
+      "items": [
+        {"answer": "три", "cue": "3️⃣", "english": "three", "distractors": ["два", "пять"]},
+        {"answer": "пять", "cue": "5️⃣", "english": "five", "distractors": ["чет+ыре", "три"]},
+        {"answer": "од+ин", "cue": "1️⃣", "english": "one", "distractors": ["два", "три"]},
+        {"answer": "чет+ыре", "cue": "4️⃣", "english": "four", "distractors": ["пять", "три"]},
+        {"answer": "два", "cue": "2️⃣", "english": "two", "distractors": ["од+ин", "три"]}
+      ]
+    },
+    {
+      "track": "dialogue", "type": "dialogue", "title": "Conversation",
+      "instruction": "Your friend is guessing. Answer.",
+      "items": [
+        {"speaker": "partner", "line": "+Это мол+око?", "cue": "📖", "english": "Is this milk?"},
+        {"answer": "Нет, +это не мол+око, +это кн+ига.", "cue": "📖", "english": "No, it's not milk, it's a book.",
+         "distractors": ["Да, +это мол+око.", "Да, +это кн+ига."]},
+        {"speaker": "partner", "line": "А +это хлеб?", "cue": "🍞", "english": "And is this bread?"},
+        {"answer": "Да, +это хлеб.", "cue": "🍞", "english": "Yes, it's bread.",
+         "distractors": ["Нет, +это не хлеб."]}
+      ]
+    }
+  ]
+}

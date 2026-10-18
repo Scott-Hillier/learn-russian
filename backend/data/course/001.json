@@ -1,0 +1,78 @@
+{
+  "id": 1,
+  "title": "Это …",
+  "goal": "Name things: «Это кошка.» — This is a cat.",
+  "exercises": [
+    {
+      "track": "vocab", "type": "teach", "title": "New words",
+      "instruction": "Listen, say it after me, then say it on your own from the picture.",
+      "items": [
+        {"answer": "дом", "cue": "🏠", "english": "house", "distractors": ["к+ошка", "соб+ака", "маш+ина"]},
+        {"answer": "к+ошка", "cue": "🐈", "english": "cat", "distractors": ["дом", "соб+ака", "маш+ина"]},
+        {"answer": "соб+ака", "cue": "🐕", "english": "dog", "distractors": ["дом", "к+ошка", "маш+ина"]},
+        {"answer": "маш+ина", "cue": "🚗", "english": "car", "distractors": ["дом", "к+ошка", "соб+ака"]}
+      ]
+    },
+    {
+      "track": "listening", "type": "choose", "title": "Which one?",
+      "instruction": "Listen and pick the picture.",
+      "items": [
+        {"audio": "соб+ака", "options": ["🏠", "🐈", "🐕", "🚗"], "correct": 2},
+        {"audio": "дом", "options": ["🏠", "🐈", "🐕", "🚗"], "correct": 0},
+        {"audio": "маш+ина", "options": ["🏠", "🐈", "🐕", "🚗"], "correct": 3},
+        {"audio": "к+ошка", "options": ["🏠", "🐈", "🐕", "🚗"], "correct": 1},
+        {"audio": "дом", "options": ["🏠", "🐈", "🐕", "🚗"], "correct": 0},
+        {"audio": "соб+ака", "options": ["🏠", "🐈", "🐕", "🚗"], "correct": 2}
+      ]
+    },
+    {
+      "track": "frames", "type": "teach", "title": "«Это …» — This is …",
+      "instruction": "«Это» means “this is”. Russian has no word for “a” or “the”, and no “is”: «Это дом.» = This is a house.",
+      "items": [
+        {"answer": "+Это дом.", "cue": "🏠", "english": "This is a house.", "ask": "Что +это?",
+         "distractors": ["Дом.", "+Это к+ошка.", "+Это соб+ака."]},
+        {"answer": "+Это к+ошка.", "cue": "🐈", "english": "This is a cat.", "ask": "Что +это?",
+         "distractors": ["К+ошка.", "+Это дом.", "+Это соб+ака."]}
+      ]
+    },
+    {
+      "track": "frames", "type": "say", "title": "What is this?",
+      "instruction": "Answer «Что это?» (What is this?) with a full sentence: «Это …»",
+      "items": [
+        {"answer": "+Это соб+ака.", "cue": "🐕", "english": "This is a dog.", "ask": "Что +это?",
+         "distractors": ["Соб+ака.", "+Это к+ошка.", "+Это маш+ина."]},
+        {"answer": "+Это маш+ина.", "cue": "🚗", "english": "This is a car.", "ask": "Что +это?",
+         "distractors": ["Маш+ина.", "+Это дом.", "+Это соб+ака."]},
+        {"answer": "+Это дом.", "cue": "🏠", "english": "This is a house.", "ask": "Что +это?",
+         "distractors": ["Дом.", "+Это маш+ина.", "+Это к+ошка."]},
+        {"answer": "+Это к+ошка.", "cue": "🐈", "english": "This is a cat.", "ask": "Что +это?",
+         "distractors": ["К+ошка.", "+Это соб+ака.", "+Это дом."]},
+        {"answer": "+Это маш+ина.", "cue": "🚗", "english": "This is a car.", "ask": "Что +это?",
+         "distractors": ["Маш+ина.", "+Это к+ошка.", "+Это дом."]},
+        {"answer": "+Это соб+ака.", "cue": "🐕", "english": "This is a dog.", "ask": "Что +это?",
+         "distractors": ["Соб+ака.", "+Это дом.", "+Это маш+ина."]}
+      ]
+    },
+    {
+      "track": "numbers", "type": "teach", "title": "Numbers 1–3",
+      "instruction": "Listen, say it after me, then say the number on your own.",
+      "items": [
+        {"answer": "од+ин", "cue": "1️⃣", "english": "one", "distractors": ["два", "три"]},
+        {"answer": "два", "cue": "2️⃣", "english": "two", "distractors": ["од+ин", "три"]},
+        {"answer": "три", "cue": "3️⃣", "english": "three", "distractors": ["од+ин", "два"]}
+      ]
+    },
+    {
+      "track": "dialogue", "type": "dialogue", "title": "Conversation",
+      "instruction": "Listen to your friend and answer.",
+      "items": [
+        {"speaker": "partner", "line": "Что +это?", "cue": "🐕", "english": "What is this?"},
+        {"answer": "+Это соб+ака.", "cue": "🐕", "english": "This is a dog.",
+         "distractors": ["+Это к+ошка.", "Соб+ака."]},
+        {"speaker": "partner", "line": "А +это?", "cue": "🚗", "english": "And this?"},
+        {"answer": "+Это маш+ина.", "cue": "🚗", "english": "This is a car.",
+         "distractors": ["+Это дом.", "Маш+ина."]}
+      ]
+    }
+  ]
+}

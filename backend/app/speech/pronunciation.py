@@ -202,6 +202,16 @@ class PronunciationScorer:
         with self._lock:
             return self._log_probs(audio)
 
+    def greedy_text(self, logp: np.ndarray) -> str:
+        """What the model heard with no target to steer it: best letter per frame, repeats and blanks removed."""
+        out, prev = [], None
+        for i in logp.argmax(-1):
+            if i != prev and i != 0:
+                c = self._inv.get(int(i), "")
+                out.append(" " if c == "|" else c if len(c) == 1 else "")
+            prev = i
+        return " ".join("".join(out).split())
+
     def likelihood(self, words: list[str], logp: np.ndarray) -> float:
         """Best-path CTC log-likelihood of the whole utterance being `words`.
 

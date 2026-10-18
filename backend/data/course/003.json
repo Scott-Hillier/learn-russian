@@ -1,0 +1,94 @@
+{
+  "id": 3,
+  "title": "Где …?",
+  "goal": "Ask and say where things are: «Где ключ?» — «Ключ тут.»",
+  "exercises": [
+    {
+      "track": "review", "type": "say", "title": "Warm-up",
+      "instruction": "Look at the picture and answer the question.",
+      "items": [
+        {"answer": "Да, +это мол+око.", "cue": "🥛", "english": "Yes, it's milk.", "ask": "+Это мол+око?",
+         "distractors": ["Нет, +это не мол+око."]},
+        {"answer": "Нет, +это не кн+ига, +это хлеб.", "cue": "🍞", "english": "No, it's not a book, it's bread.",
+         "ask": "+Это кн+ига?", "distractors": ["Да, +это кн+ига.", "Да, +это хлеб."]},
+        {"answer": "+Это соб+ака.", "cue": "🐕", "english": "This is a dog.", "ask": "Что +это?",
+         "distractors": ["+Это к+ошка.", "+Это маш+ина."]},
+        {"answer": "чет+ыре", "cue": "4️⃣", "english": "four", "distractors": ["пять", "три"]}
+      ]
+    },
+    {
+      "track": "vocab", "type": "teach", "title": "New words",
+      "instruction": "Listen, say it after me, then say it on your own.",
+      "items": [
+        {"answer": "ключ", "cue": "🔑", "english": "key", "distractors": ["тел+ефон", "кн+ига"]},
+        {"answer": "тел+ефон", "cue": "📱", "english": "phone", "distractors": ["ключ", "кн+ига"]},
+        {"answer": "тут", "cue": "👇", "english": "here", "distractors": ["там"]},
+        {"answer": "там", "cue": "👉", "english": "there", "distractors": ["тут"]}
+      ]
+    },
+    {
+      "track": "listening", "type": "choose", "title": "Here or there?",
+      "instruction": "Listen and pick where it is.",
+      "items": [
+        {"audio": "Ключ тут.", "options": ["👇 here", "👉 there"], "correct": 0},
+        {"audio": "Тел+ефон там.", "options": ["👇 here", "👉 there"], "correct": 1},
+        {"audio": "К+ошка там.", "options": ["👇 here", "👉 there"], "correct": 1},
+        {"audio": "Кн+ига тут.", "options": ["👇 here", "👉 there"], "correct": 0},
+        {"audio": "Соб+ака тут.", "options": ["👇 here", "👉 there"], "correct": 0},
+        {"audio": "Маш+ина там.", "options": ["👇 here", "👉 there"], "correct": 1}
+      ]
+    },
+    {
+      "track": "frames", "type": "teach", "title": "«Где …?» — Where is …?",
+      "instruction": "«Где» means “where (is)”. Answer with the thing, then «тут» (here) or «там» (there).",
+      "items": [
+        {"answer": "Ключ тут.", "cue": "👇 🔑", "english": "The key is here.", "ask": "Где ключ?",
+         "distractors": ["Ключ там.", "Тел+ефон тут."]},
+        {"answer": "Ключ там.", "cue": "👉 🔑", "english": "The key is there.", "ask": "Где ключ?",
+         "distractors": ["Ключ тут.", "Тел+ефон там."]}
+      ]
+    },
+    {
+      "track": "frames", "type": "say", "title": "Where is it?",
+      "instruction": "Answer «Где …?» with «… тут» or «… там».",
+      "items": [
+        {"answer": "Тел+ефон там.", "cue": "👉 📱", "english": "The phone is there.", "ask": "Где тел+ефон?",
+         "distractors": ["Тел+ефон тут.", "Ключ там."]},
+        {"answer": "К+ошка тут.", "cue": "👇 🐈", "english": "The cat is here.", "ask": "Где к+ошка?",
+         "distractors": ["К+ошка там.", "Соб+ака тут."]},
+        {"answer": "Маш+ина там.", "cue": "👉 🚗", "english": "The car is there.", "ask": "Где маш+ина?",
+         "distractors": ["Маш+ина тут.", "Дом там."]},
+        {"answer": "Тел+ефон тут.", "cue": "👇 📱", "english": "The phone is here.", "ask": "Где тел+ефон?",
+         "distractors": ["Тел+ефон там.", "Ключ тут."]},
+        {"answer": "Мол+око там.", "cue": "👉 🥛", "english": "The milk is there.", "ask": "Где мол+око?",
+         "distractors": ["Мол+око тут.", "Хлеб там."]},
+        {"answer": "Ключ тут.", "cue": "👇 🔑", "english": "The key is here.", "ask": "Где ключ?",
+         "distractors": ["Ключ там.", "Тел+ефон тут."]}
+      ]
+    },
+    {
+      "track": "numbers", "type": "say", "title": "Numbers 1–5",
+      "instruction": "Say the number.",
+      "items": [
+        {"answer": "два", "cue": "2️⃣", "english": "two", "distractors": ["три", "пять"]},
+        {"answer": "пять", "cue": "5️⃣", "english": "five", "distractors": ["чет+ыре", "два"]},
+        {"answer": "три", "cue": "3️⃣", "english": "three", "distractors": ["два", "од+ин"]},
+        {"answer": "од+ин", "cue": "1️⃣", "english": "one", "distractors": ["два", "пять"]},
+        {"answer": "чет+ыре", "cue": "4️⃣", "english": "four", "distractors": ["пять", "три"]}
+      ]
+    },
+    {
+      "track": "dialogue", "type": "dialogue", "title": "Conversation",
+      "instruction": "Your friend has lost their phone.",
+      "items": [
+        {"speaker": "partner", "line": "Где тел+ефон?", "cue": "📱❓", "english": "Where is the phone?"},
+        {"answer": "Тел+ефон там.", "cue": "👉 📱", "english": "The phone is there.",
+         "distractors": ["Тел+ефон тут."]},
+        {"speaker": "partner", "line": "А где ключ?", "cue": "🔑❓", "english": "And where is the key?"},
+        {"answer": "Ключ тут.", "cue": "👇 🔑", "english": "The key is here.",
+         "distractors": ["Ключ там."]},
+        {"speaker": "partner", "line": "Спас+ибо!", "cue": "🙂", "english": "Thanks!"}
+      ]
+    }
+  ]
+}

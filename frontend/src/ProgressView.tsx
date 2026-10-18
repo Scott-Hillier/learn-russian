@@ -14,6 +14,7 @@ const SOURCE_LABELS: Record<string, string> = {
   sentence: "Full sentences",
   flashcard: "Flashcards",
   pair: "Sound pairs",
+  lesson: "Lessons",
 };
 
 export default function ProgressView({ layout }: { layout: LayoutProps }) {

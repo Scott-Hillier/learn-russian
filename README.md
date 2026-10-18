@@ -12,7 +12,28 @@ the speech models (about 3 GB). After that the app works fully offline.
 
 Requirements: macOS on Apple Silicon, Python 3.10+, Node 18+, `ffmpeg` (`brew install ffmpeg`).
 
-## Letters & Sounds (start here if you're new)
+## 📘 Lessons (start here)
+The app opens on **Lessons**: a Direct Instruction course (see [PLAN.md](PLAN.md)). Do one lesson at a time,
+in order:
+- **Mixed exercises:** each lesson has short exercises from different tracks: new words, sentence patterns,
+  listening, numbers and a mini dialogue. Every lesson also reviews earlier ones.
+- **How new items are taught:** you hear it, say it after the voice, then say it on your own from a picture.
+  It comes back again a few items later.
+- **When you get one wrong:** you hear the right answer and say it after the voice. The two items before it
+  are asked again, and the missed one comes back a few items later.
+- **Passing:** an exercise passes at **90% right first time**. Below that, you get the same exercise again in
+  a new order (a "firm-up" round). The next lesson unlocks only when every exercise has passed.
+- **Hands-free** (on by default): the mic opens by itself after each question and stops when you pause.
+  `Space` answers or stops, `R` repeats the question, `1`–`4` pick an answer in listening exercises, and `Esc`
+  pauses hands-free.
+- **Answer checking:** your answer is compared with the expected answer and the likely wrong ones (кошка vs
+  кошку, тут vs там). If the checker gets it wrong, **✓ I said it right** (`O`) counts it as right; that is
+  saved separately.
+
+Everything else (letters, flashcards, sentences, sound pairs, conversation, phrases) is under **Practice** in
+the sidebar, for reviewing any content whenever you like.
+
+## Letters & Sounds
 The **🔤 Letters & Sounds** screen teaches all 33 Cyrillic letters in 6 lessons. Each lesson
 has four steps:
 1. **Learn** each letter: its sound, English lookalike warnings and example words, all with audio.
@@ -31,7 +52,7 @@ The **🃏 Flashcards** screen uses spaced repetition (FSRS) to review vocabular
 - **Groups:** new words come in groups (10 by default). *Learn group N* introduces the next
   group's words; finish it and *Next group →* starts the next one straight away. There's no
   daily limit. Leave part-way through and the group picks up where you left off.
-- **New cards** show the Russian, transliteration and audio first so you can repeat them.
+- **New cards** show the Russian, its meaning and audio first so you can repeat them.
 - **⭐ Learned words:** every word you've learned from any deck, so after three groups of 10 it
   has 30 words. *Review all* goes through them shuffled, as often as you like: `1` sends a card
   to the end of the review, `Enter` moves on. Scores count towards your progress, but these
@@ -92,7 +113,7 @@ Setup: `brew install ollama`. `./start.sh` then starts Ollama and downloads the 
   over the native voice's, with stressed syllables marked. Match the rises and falls, e.g.
   the rise at the end of "Как дела?".
 - **Word stress** isn't graded automatically. It was tested and found unreliable (see
-  `backend/scripts/stress_experiment.py`), so use the stress marks, the slow audio and the
+  [PLAN.md](PLAN.md)), so use the stress marks, the slow audio and the
   intonation chart.
 
 ## How to practise phrases

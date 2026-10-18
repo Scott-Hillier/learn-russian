@@ -59,6 +59,24 @@ CREATE TABLE IF NOT EXISTS reviews (
     reviewed_at REAL NOT NULL
 );
 CREATE INDEX IF NOT EXISTS reviews_time ON reviews(reviewed_at);
+CREATE TABLE IF NOT EXISTS course_progress (
+    lesson_id INTEGER PRIMARY KEY,
+    exercise INTEGER NOT NULL DEFAULT 0,  -- index of the first exercise not yet passed
+    started_at REAL NOT NULL,
+    passed_at REAL                        -- set once every exercise has been passed
+);
+CREATE TABLE IF NOT EXISTS course_results (
+    id INTEGER PRIMARY KEY,
+    lesson_id INTEGER NOT NULL,
+    exercise INTEGER NOT NULL,
+    item_key TEXT NOT NULL,               -- e.g. "say:это кошка", "hear:кошка"
+    step TEXT NOT NULL,                   -- first | practice | retest | delayed
+    correct INTEGER NOT NULL,
+    override INTEGER NOT NULL DEFAULT 0,  -- learner said the checker was wrong
+    score INTEGER,
+    created_at REAL NOT NULL
+);
+CREATE INDEX IF NOT EXISTS course_results_item ON course_results(item_key);
 CREATE TABLE IF NOT EXISTS settings (
     key TEXT PRIMARY KEY,
     value TEXT NOT NULL

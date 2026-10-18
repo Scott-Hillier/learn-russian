@@ -156,11 +156,48 @@ written by hand.
      The pilot lessons pass 388/388.
    - **pymorphy3** generates the inflected forms correctly. It gives no stress, so stress marks
      stay hand-written.
-9. **Lesson engine.**
-   - Tables for lessons, exercises and item results
-   - A model-lead-test runtime with the correction procedure and firm-up loops
-   - Hands-free pacing
-   - 3 pilot lessons
+9. **Lesson engine ✅ (done 2026-10-18).**
+   - **Content:** lessons are JSON files in `backend/data/course/`, checked on load (`course.validate_lesson`).
+     An exercise has a `track`, a `type` (`teach`, `say`, `choose` or `dialogue`) and `items`.
+     - **Spoken items:** `answer`, `cue` (emoji), `english`, an optional `ask` (question audio),
+       `distractors` (likely wrong answers for the forced choice) and `accept` (other right answers).
+     - **Listening items:** `audio`, `options` and `correct`.
+   - **Runtime** (`frontend/src/LessonPlayer.tsx`):
+     - **teach:** each item is modelled and repeated, then tested straight away and again after
+       the next item. A shuffled cold pass at the end holds the tries that count.
+     - **Corrections:** on a miss, the answer is modelled, the learner says it after the voice,
+       2 items are re-tested, and the missed item comes back 3 steps later.
+     - **Firm-up:** a round passes at 90% right first time. Otherwise the same exercise repeats in
+       a new order.
+     - **Hands-free:** the mic opens after each prompt and stops on silence.
+     - **Override:** "I said it right" (`O`) counts a miss as right. The override is stored.
+   - **Gates and storage:**
+     - Hard gates are enforced on the server: a locked lesson returns 403 for both content and checks.
+     - Progress is kept in `course_progress`. Every try (`first`, `practice`, `retest`, `delayed`) is
+       kept in `course_results` under a stable item key, ready for review scheduling.
+   - **Answer check** (`speech/answers.py`):
+     - **Correctness:** forced choice by likelihood, with letter score ≥ 50 on the expected answer.
+     - **"That sounded like …":** a wrong candidate is named only when the model's unsteered
+       reading of the audio matches it, so a random word isn't reported as a distractor.
+     - **Letter statistics:** spoken lesson answers feed them (source `lesson`).
+   - **3 pilot lessons:**
+     1. «Это …»
+     2. Да/нет with «не»
+     3. «Где …?» with тут/там
+
+     Each has 6–8 exercises across 5 tracks, with numbers 1–5 and a dialogue in every lesson.
+   - **Navigation:** 📘 Lessons is the default screen. The original screens are grouped under
+     **Practice**.
+   - **Verified in the real app:**
+     - **Setup:** headless Chromium with a fake microphone playing native audio.
+     - **Spoken items:** model → repeat → cold test passes, and a wrong answer runs the full
+       correction.
+     - **Listening:** a miss gets its delayed re-test, and 5/6 gives 83%, so a firm-up round.
+     - **Dialogue:** partner turns play and advance by themselves.
+   - **Not yet done:**
+     - The pilot lessons were written before the scope and sequence, and Phase 10 may re-order them.
+     - There's no "choose the written form" exercise yet. It's needed for the contrasts the checker
+       can't hear.
 10. **Scope and sequence plus lessons 1–20.** A track map for about 60 lessons, the curriculum
     checker, and pymorphy3 validation.
 11. **Mastery and review.** Mastery tests, placement, remediation, and FSRS-due items in each

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { api, type Health } from "./api";
 import AlphabetView from "./AlphabetView";
 import ConversationView from "./ConversationView";
+import CourseView from "./CourseView";
 import FlashcardsView from "./FlashcardsView";
 import type { Mode } from "./Layout";
 import PairsView from "./PairsView";
@@ -10,14 +11,14 @@ import ProgressView from "./ProgressView";
 import SentencesView from "./SentencesView";
 
 const MODE_KEY = "learn-russian:mode";
-const MODES: Mode[] = ["alphabet", "flashcards", "sentences", "pairs", "conversation", "phrases", "progress"];
+const MODES: Mode[] = ["course", "alphabet", "flashcards", "sentences", "pairs", "conversation", "phrases", "progress"];
 
 function loadMode(): Mode {
   try {
     const stored = localStorage.getItem(MODE_KEY) as Mode | null;
-    return stored && MODES.includes(stored) ? stored : "alphabet";
+    return stored && MODES.includes(stored) ? stored : "course";
   } catch {
-    return "alphabet";
+    return "course";
   }
 }
 
@@ -56,5 +57,6 @@ export default function App() {
   if (mode === "conversation") return <ConversationView layout={layout} />;
   if (mode === "phrases") return <PhrasesView layout={layout} />;
   if (mode === "progress") return <ProgressView layout={layout} />;
-  return <AlphabetView layout={layout} />;
+  if (mode === "alphabet") return <AlphabetView layout={layout} />;
+  return <CourseView layout={layout} />;
 }
