@@ -192,12 +192,52 @@ class PronunciationScorer:
             logits = self._model(torch.from_numpy(x.astype(np.float32))[None]).logits[0]
             return torch.log_softmax(logits.float(), dim=-1).numpy()
 
-    def score(self, words: list[str], audio: np.ndarray) -> list[dict]:
+    def score(self, words: list[str], audio: np.ndarray, logp: np.ndarray | None = None) -> list[dict]:
         """Score each target word (with '+' stress marks) letter by letter."""
+        return self._score_logp(words, self.log_probs(audio) if logp is None else logp)
+
+    def log_probs(self, audio: np.ndarray) -> np.ndarray:
+        """Per-frame letter log-probabilities (one model pass), to reuse across several scorings."""
         self.load()
         with self._lock:
-            logp = self._log_probs(audio)
+            return self._log_probs(audio)
 
+    def likelihood(self, words: list[str], logp: np.ndarray) -> float:
+        """Best-path CTC log-likelihood of the whole utterance being `words`.
+
+        Each letter accepts its pronunciation variants (vowel reduction, devoicing…), so comparing this
+        across candidate answers asks "which of these did they say?" rather than "how well did they say it?".
+        """
+        columns: dict[frozenset, int] = {}
+        emissions = [logp[:, 0]]  # blank
+        tokens = []
+
+        def column(ids: frozenset) -> int:
+            if ids not in columns:
+                columns[ids] = len(columns) + 1
+                emissions.append(np.logaddexp.reduce(logp[:, sorted(ids)], axis=1))
+            return columns[ids]
+
+        for raw in words:
+            letters = [l for l in analyse_word(raw) if l.norm in self._vocab]
+            if not letters:
+                continue
+            if tokens:
+                tokens.append(column(frozenset({self._vocab["|"]})))
+            for l in letters:
+                tokens.append(column(frozenset(self._vocab[c] for c in {l.norm} | l.alts if c in self._vocab)))
+        if not tokens:
+            return -np.inf
+        emit = np.stack(emissions, axis=1)
+        frames = ctc_align(emit, tokens)
+        if frames is None:
+            return -np.inf
+        path = np.zeros(emit.shape[0], dtype=int)  # blank by default
+        for tok, fr in zip(tokens, frames):
+            path[fr] = tok
+        return float(emit[np.arange(emit.shape[0]), path].sum())
+
+    def _score_logp(self, words: list[str], logp: np.ndarray) -> list[dict]:
         analysed = [analyse_word(w) for w in words]
         sep = self._vocab["|"]
         tokens, owners = [], []  # owners: (word index, letter index) or None for separators

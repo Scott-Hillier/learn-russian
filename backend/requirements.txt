@@ -11,3 +11,4 @@ fsrs
 praat-parselmouth
 pytest
 httpx
+pymorphy3

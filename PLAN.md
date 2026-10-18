@@ -1,313 +1,173 @@
-# Learn Russian: Local Speaking Practice Platform (Plan)
+# Learn Russian: Plan
 
 ## Goal
-A local web app that stands in for a speaking partner. It says Russian aloud, listens to you
-say it back, tells you which sounds were wrong, and can hold a simple spoken conversation.
-Everything runs on this Mac (M1, 8 GB RAM). A cloud LLM is an optional extra.
+A local, fully offline app that teaches Russian from zero to simple conversation. It stands in
+for a teacher and a speaking partner. It runs on an M1 Mac with 8 GB of RAM, and nothing reaches
+the internet after the first model download.
 
-## The core loop
-```
- ┌─ 1. HEAR ──────┐   ┌─ 2. SPEAK ─────┐   ┌─ 3. ANALYSE ───────────────┐   ┌─ 4. FEEDBACK ────────┐
- │ Native-quality │ → │ Record in the  │ → │ a) What words did you say? │ → │ Word + sound level   │
- │ TTS, normal &  │   │ browser mic    │   │ b) What sounds did you     │   │ highlights, tips,    │
- │ slow speed     │   │                │   │    actually make?          │   │ replay yours vs.     │
- └────────────────┘   └────────────────┘   │ c) Compare to target       │   │ native, retry        │
-                                           └────────────────────────────┘   └──────────────────────┘
-```
+The method is **Direct Instruction (DI)**: one scripted lesson a day, built from short
+exercises across several tracks, with mastery required before moving on. The original toolbox
+screens stay as a **Practice** area, for reviewing any content at any time.
 
-## Architecture
-| Layer | Choice | Why |
-|---|---|---|
-| Frontend | React + Vite + TypeScript, runs in the browser at `localhost` | Mic recording (MediaRecorder), waveform and pitch display, good UI for flashcards |
-| Backend | Python 3.11+ with FastAPI | All the speech models live in Python |
-| Storage | SQLite (via SQLModel) | Cards, review history, per-sound error stats |
-| Text-to-speech | **Silero TTS (ru)**, falling back to **Piper** or macOS `say` (Milena/Yuri voices) | Natural Russian voices that run on CPU; Silero accepts stress marks (`+`) so words are stressed correctly |
-| Speech-to-text | **mlx-whisper** (`small`/`medium`, Metal-accelerated) | Accurate Russian transcription on Apple Silicon |
-| Pronunciation analysis | **wav2vec2 phoneme model** (`facebook/wav2vec2-xlsr-53-espeak-cv-ft`) + **espeak-ng** for expected pronunciation | See below |
-| Conversation LLM | **Ollama** with a small local model (Qwen2.5-3B / Gemma-3-4B), fully offline | 8 GB RAM limits local models to about 3–4B parameters |
-| Launch | One `./start.sh` that starts backend and frontend and opens the browser | Simple local use |
+## What already exists
+| Area | What it does |
+|---|---|
+| Speech engine | Silero TTS (stress via `+` marks, normal and slow speeds, macOS `say` fallback), mlx-whisper, letter-level pronunciation scoring, pace and intonation analysis |
+| 🔤 Letters & Sounds | 33 letters in 6 lessons: learn, say, read, quiz |
+| 🃏 Flashcards | FSRS spaced repetition, spoken recall, built-in and custom decks, CSV import, ⭐ learned words |
+| 🗣 Sentences | 36 sentences: listen, words, chunks, full sentence, shadowing |
+| 👂 Sound pairs | 9 contrast groups: listening quiz and speaking drill |
+| 🤖 Conversation | `gemma3:4b` on Ollama: 6 scenarios, corrections shown as highlighted rewrites, suggested replies |
+| 📈 Progress | Streak, daily activity, score trend, letter heatmap, sounds to work on |
 
-### Why Whisper alone isn't enough for pronunciation
-Whisper is built to guess the *intended* words. If you say "мишка" when you meant
-"мышка", it will often write "мышка" anyway and hide the mistake. So pronunciation checking
-uses two signals:
-1. **Whisper** checks word level: did you say the right words in the right order?
-2. **A phoneme recognizer** transcribes the *sounds* you actually made (IPA, no language-model
-   correction). **espeak-ng** turns the target text into its expected IPA, including Russian
-   vowel reduction (молоко → [məlɐˈko]) and soft/hard consonants. A Needleman–Wunsch
-   alignment of the two sequences shows each sound as correct, substituted, missing or
-   extra.
+## What the speech stack can and can't judge
+These findings come from calibration in phases 1–7, and the lesson design has to respect them.
 
-Errors are mapped to tips aimed at English speakers, for example:
-- ы vs и
-- palatalised consonants (мат / мать)
-- unreduced unstressed о
-- rolled р
-- щ vs ш
-- final devoicing (хлеб → [xlʲep])
+- **Letter scorer** (`bond005/wav2vec2-large-ru-golos`, force-aligned to the target spelling):
+  - **Accuracy:** native voices score 99.8%. It catches 9 of 10 deliberate mistakes (ы→и, щ→ш, х→к, р→л…).
+  - **Accepted variants:** reductions, devoicing and silent letters are treated as correct,
+    not as errors.
+- **Not judged reliably:**
+  - **Isolated syllables and very short words** (я, в, у) score unreliably. Practise them
+    inside phrases.
+  - **A missing ь** after a hard consonant is often not heard (брат/брать, спать → "спат").
+  - **Word stress:**
+    - Tested on 211 words with the stress moved. At most ~42% of errors were caught when
+      ≥90% of correct words were left alone, so the app shows a pitch-contour chart instead
+      of a verdict.
+    - The experiment script is in git history before the DI redesign
+      (`backend/scripts/stress_experiment.py`).
+- **Whisper** auto-corrects towards real words, so it's only used to transcribe free speech.
+- **gemma3:4b** gives good minimal rewrites, but its grammar explanations are often wrong, so
+  none are shown. Replies take about 7 s, and grammar checks about 8 s more.
 
-### Implementation note (Phase 2): what changed from the original design
-- **Phoneme model dropped.** Tested on native Russian, the multilingual phoneme recognizer
-  (`wav2vec2-xlsr-53-espeak-cv-ft`) missed most palatalisation and heard "мать" as "b a t".
-  It was too noisy to score learners fairly.
-- **Replaced with a Russian letter-level CTC model** (`bond005/wav2vec2-large-ru-golos`).
-  The target spelling is force-aligned to the audio, and each letter gets a
-  goodness-of-pronunciation score plus a "sounded like" letter.
-- **espeak-ng not needed.** Russian pronunciation rules are applied as accepted variants
-  instead: vowel reduction, devoicing, silent letters and exceptions.
-- **Benefit:** errors are shown on the actual letters, which suits a beginner better than IPA.
-- **Calibration:** native 99.8%, 9/10 deliberate mistakes caught, English-accent voice 78%
-  (see README).
-- **Limitation:** vowel *quality* in unstressed syllables and word stress aren't judged,
-  because the model maps sounds to spelling. Stress is left for the prosody phase.
+---
 
-### Implementation note (Phase 3): Letters & Sounds
-- **Six lessons** covering all 33 letters:
-  1. familiar letters
-  2. false friends
-  3. new shapes with familiar sounds
-  4. soft vowels
-  5. tricky sounds
-  6. the two signs
-- **Four steps per lesson:** Learn (letter cards), Say the letters (drill words), Read words
-  (transliteration hidden until attempted), Quiz (the letter's sound, with English
-  lookalikes as distractors).
-- **Syllables are listen-only.** Calibration showed the pronunciation model is unreliable on
-  isolated syllables ("ма", "у"), even from native voices. Drill words from each letter's
-  examples and the lesson words average 98.5% with native voices.
-- **Progress** is saved in SQLite (`backend/userdata/progress.db`, git-ignored). Every scored
-  attempt stores per-letter scores, including attempts from the Phrases screen. A letter is
-  "mastered" once it has at least 3 occurrences averaging 80% or more over its last 8. This
-  per-letter data will feed minimal pairs and the problem-sounds dashboard later.
-- **Content is checked by tests:** lesson words only use letters taught so far, and every
-  multi-vowel word has a stress mark.
+## Direct Instruction design (decided 2026-10-18)
 
-### Implementation note (Phase 4): Flashcards
-- **Built-in decks:**
-  - **Starter words:** 291 high-frequency words in 12 themed units, all stress-marked.
-  - **Phrases:** the 32 survival phrases.
-  - Built-in cards are synced on startup without overwriting your edits. They can be
-    suspended but not deleted.
-- **Custom decks** support add, edit, suspend and delete, plus CSV/TSV import
-  (`russian,english[,notes]`). Words with more than one vowel and no stress mark are
-  flagged.
-- **Scheduling** uses FSRS via `py-fsrs`: default parameters, 90% desired retention, a
-  study day that starts at 4am, a new-card limit per day (default 10), and a 20-minute
-  learn-ahead window for learning cards.
-- **Study order:** due learning cards, then due reviews, then new cards, then learning cards
-  due soon.
-- **Speaking recall:** a review shows the English; you say the Russian from memory, and the
-  pronunciation score suggests a rating (≥85 Good, ≥55 Hard, otherwise Again). You can
-  override it. A new card shows everything first, so you can listen and repeat.
-- **Letter statistics:** flashcard attempts feed the per-letter scores too.
-- **Not yet:** example sentences are not in the starter deck. They come with the sentence
-  trainer in Phase 5.
+### Why change
+Practice history up to 2026-09-30:
+- **Flashcards:** 981 attempts
+- **Letters:** 429 attempts
+- **Reading:** 173 attempts
+- **Sentences:** 10 attempts
+- **Sound pairs:** 0 attempts
 
-### Implementation note (Phase 5): Sentences & sound pairs
-- **Sentence trainer:** 36 beginner sentences in 6 themes, each with a word-by-word
-  translation and chunk boundaries. Five steps:
-  1. Listen (click any word to hear it)
-  2. Words
-  3. Chunks
-  4. Full sentence
-  5. Shadow
-- **Word step skips very short words** (я, в, у). Earlier calibration showed isolated tiny
-  words score unreliably, so they're practised inside chunks instead.
-- **Pace feedback:** the full-sentence and shadowing steps compare your speaking length with
-  the native voice (`timing` on `/api/attempt`, measured from the first to last voiced frame).
-- **Shadowing:** after a countdown, the native audio plays while recording; recording stops
-  0.9 s after the audio ends. Headphones are needed, or the mic picks up the native voice.
-- **Sentence calibration** with native voices: full sentences 99.9%, chunks 99.7%,
-  words 98.8%.
-- **Sound pairs:** 9 contrast groups (ы/и, ь, х/к, р/л, ж/ш, б/п, д/т, г/к, з/с), each with
-  a listening quiz and a speaking drill. Groups are ordered by your weakest per-letter scores
-  (below 85%), then by importance for English speakers.
-- **Pair calibration** (native audio of one word scored against the other, three voices):
-  112 of 120 checks pass. The scorer can't hear the missing ь in брат/брать or полка/полька,
-  so those pairs are listening-only. мат/мать and угол/уголь do work.
-- **API smoke tests** (FastAPI TestClient, without loading models) now cover every route.
-  They were added after a decorator mix-up briefly broke `/api/attempt`.
+With six separate screens and nothing saying what to do next, practice drifted to isolated
+words with almost no grammar. Some content also breaks DI sequencing rules:
+- Alphabet lesson 5 introduces Ж, Ш, Щ and Ы together.
+- The starter deck introduces words by theme rather than by what a sentence needs.
 
-### Implementation note (Phase 6): Conversation partner
-- **Model choice:** `gemma3:4b` on Ollama, compared against `qwen2.5:3b` with the speech models
-  also loaded.
-  - Qwen was faster but made false grammar corrections (e.g. "Меня зовут Джон" →
-    "Джоном"), once replied in English, and wrote garbled explanations.
-  - Gemma's role-play Russian was clearly better.
-- **Grammar check:** a separate call returns `analysis` and a minimally `corrected`
-  sentence, and the app decides "correct or not" by comparing words. Asking for a
-  yes/no verdict gave answers that contradicted the model's own analysis.
-  - With this design Gemma judged all 11 test sentences it finished correctly, including
-    с молоко → с молоком and мой мама → моя мама.
-  - Rewrites that change more than half the words are discarded as unreliable.
-- **No AI grammar explanations** are shown. Gemma's explanations were often wrong (it called
-  с молоком accusative), so the UI shows the corrected sentence with the changed words
-  highlighted.
-- **Scenarios:** 6 (café, meeting someone, directions, market, hotel, free chat). Each has
-  goals, an opening line and useful phrases. There are Beginner and Elementary levels.
-- **Each partner reply** has an English translation, audio (Silero stresses unmarked text
-  automatically), "practise saying this", "save to flashcards" (the *Conversation phrases*
-  deck), and two suggested replies. You can practise a suggestion with pronunciation scoring
-  before sending it.
-- **Speaking:** Whisper transcribes free speech. A "clarity" score (letters checked against
-  what was recognised) is shown but not saved to letter statistics, because it can't know
-  what you meant to say.
-- **Latency on this Mac:**
-  - Reply: about 7 s. The first message after a cold start takes about 15 s while the model
-    loads.
-  - Grammar check: about 8 s more. Ollama runs one request at a time, so the reply is
-    requested first.
-- **start.sh** starts `ollama serve` if it isn't running and pulls the model on first run.
-  Without Ollama the Conversation screen shows setup steps, and the rest of the app still
-  works.
-- **Limitations:** a 4B model sometimes produces slightly unnatural Russian (e.g. "Что вам с
-  чаем?") and can occasionally miss or invent a correction. The UI labels corrections as
-  AI suggestions.
+### About DI
+DI is Engelmann and Becker's design method. It is not the Berlitz "Direct Method".
 
-### Implementation note (Phase 7): Stress, intonation & progress
-- **Automatic stress verdicts were tested and rejected.** The script is
-  `scripts/stress_experiment.py`; the test set was 211 Starter words from two Silero voices,
-  each with correct stress and with the stress deliberately moved (Silero follows `+` marks).
+- **Evidence:** it comes mostly from school reading, maths and language for children: Project
+  Follow Through, and the Stockard et al. 2018 meta-analysis (328 studies, average effect
+  about 0.6 SD).
+- **Fit with learning research:** its principles match well-supported findings on retrieval
+  practice, spacing, interleaving and mastery learning.
+- **Language courses:** Pimsleur and Michel Thomas are close relatives.
+- **Main weakness of language drills:** meaning-free drilling transfers poorly to real use.
+  So every response here carries meaning (picture or English cue), and each lesson ends in
+  real use.
 
-  | Method | Moved stress caught (at ≥90% of correct words left alone) |
-  |---|---|
-  | Per-vowel duration / loudness / pitch from the letter alignment | ~42% |
-  | Comparison with the native voice's prominence pattern | 25% |
-  | Syllable-nucleus (intensity peak) detection | ~42%, and it missed syllables in 18% of recordings |
+| Principle | In this app |
+|---|---|
+| Faultless communication: examples allow only one interpretation; learner errors mean the lesson needs fixing | Example sets are designed by sameness/difference; item error stats point to content to revise |
+| Sameness and minimum difference | Positive examples vary widely; non-examples differ by one feature (Это кошка / Я вижу кошку) |
+| Model → Lead → Test, plus a delayed test | Hear it, say it along with the native voice, answer alone, get tested again later |
+| Fixed correction procedure | On an error: model, lead, retest, back up 2 items, queue a delayed test |
+| Firm-up to mastery | An exercise repeats until about 90% is right on the first try. Mastery tests every 5 lessons. Placement test on first launch |
+| Track design | Each lesson mixes 4–6 short exercises from different tracks; about 10–20% new, the rest firm-up and cumulative review |
+| Separate confusable items | Confusable items are introduced at least 5 lessons apart and contrasted only once each is firm |
+| Brisk pace, many responses | Hands-free: the mic opens after each prompt and answers are marked instantly |
 
-  Telling a learner "wrong stress" while catching under half of real errors and wrongly
-  flagging about 1 in 11 correct words would do more harm than good.
-- **Instead, an intonation chart.** On Phrases and the full-sentence step, your pitch contour
-  (Praat via parselmouth, in semitones relative to your own median pitch, normalised in time)
-  is drawn over the native voice's. The native stressed syllables are marked, using the
-  pronunciation model's letter alignment. Native results are cached per phrase.
-- **📈 Progress dashboard** (`/api/progress/summary`):
-  - streak and active days, speaking attempts, average score, flashcards learned, letters practised
-  - 30-day stacked columns of speaking attempts and flashcard reviews
-  - a separate daily score line (a second chart rather than a second axis)
-  - a table view of the daily numbers
-  - a 33-letter heatmap on a single-hue sequential ramp, reversed on dark surfaces so strong
-    letters stay prominent
-  - "sounds to work on" (3+ attempts, below 85%), linking to Sound pairs or Letter lessons
-  - where you've practised
-- **Chart colours** were checked with the dataviz palette validator (categorical blue and
-  orange, light and dark, against the app's own surfaces; all checks pass).
+### Decisions
+1. **Cues:** images and emoji are used wherever they make meaning clear without English.
+   English cues are used otherwise.
+2. **Old screens stay** as a **Practice** area. All content (letters, decks, sentences, pairs,
+   conversation) stays reachable for review at any time. The lesson path becomes the main
+   route.
+3. **Hard mastery gates:** the next lesson unlocks only after the current one is passed. A
+   failed mastery test leads to remedial lessons built from the items you missed.
+4. **Lesson length:** aim for about 20 minutes, but content decides.
 
-### Stress and intonation (original design, for reference)
-Word stress is the hardest thing to score automatically. Planned approach:
-1. Force-align your audio to the target phonemes.
-2. Measure each vowel's duration, loudness and pitch (via `parselmouth`/Praat).
-3. Flag when the loudest or longest vowel isn't the stressed one.
-4. Show your pitch contour over the native TTS contour for sentence intonation, e.g. the
-   rising pitch on yes/no questions.
+### Tracks
+| Track | Content |
+|---|---|
+| A. Sounds & script | Re-sequenced so confusable letters are separated; mostly skipped via placement |
+| B. Sentence frames (core) | Это ___ → Это не ___, это ___ → Где ___? → мой/моя/моё → У меня есть ___ → Я вижу ___ (accusative) → present tense → one case at a time |
+| C. Vocabulary | 3–5 words per lesson, introduced only when a frame needs them and used the same day |
+| D. Listening discrimination | Hear a sentence, then choose the picture or meaning, including grammar minimal pairs |
+| E. Sound contrasts | Sound pairs, contrasted only after both members are firm |
+| F. Numbers | Its own daily track |
+| G. Application | A short scripted dialogue every lesson; at the end of each unit, a conversation limited to taught words and grammar |
 
-## Features / Modes
-1. **Word drill (flashcards + speaking).** Card shows the word with its stress mark and
-   meaning. You tap to hear it, record yourself, and get a score. Spaced repetition
-   (**FSRS** algorithm) sets the next review from both recall and pronunciation score.
-2. **Sentence trainer.** Learn a new sentence in steps:
-   - listen at normal and slow speed
-   - repeat it word by word
-   - repeat it in chunks
-   - say the full sentence
-   - shadow the native audio
-3. **Minimal pairs.** Short focused drills on the sounds you get wrong most (built from your
-   error stats), e.g. был/бил, брат/брать.
-4. **Conversation partner.** Push-to-talk voice chat. The LLM plays a scenario (café, directions, small talk) using
-   vocabulary for your level. Each reply comes with an optional correction panel covering
-   grammar and pronunciation flags, and useful new words can be added to your deck with
-   one click.
-5. **Progress dashboard.** Cards due, streak, accuracy over time, and your "problem sounds"
-   heatmap.
-6. **Content.**
-   - Seed deck of about 500 high-frequency words with stress marks and example sentences
-   - Import from Anki `.apkg` / CSV
-   - Add your own words (stress marks filled in automatically, e.g. with `russtress`, and
-     editable)
+### Curriculum checks (tests that fail the build)
+- At most about 20% new items per lesson
+- At least 3 tracks per lesson
+- No item used before it's introduced
+- Each new item reviewed in at least 3 later lessons
+- Confusable items introduced at least N lessons apart
+- Stress marks on all multi-vowel words
+- Inflected forms checked with pymorphy3 (offline morphology)
 
-## Project layout
-```
-learn-russian/
-├── start.sh
-├── backend/
-│   ├── app/
-│   │   ├── main.py              # FastAPI app & routes
-│   │   ├── speech/tts.py        # Silero/Piper/say wrapper + audio cache
-│   │   ├── speech/asr.py        # mlx-whisper transcription
-│   │   ├── speech/phonemes.py   # wav2vec2 phoneme recognition + espeak G2P
-│   │   ├── speech/scoring.py    # alignment, scores, error → tip mapping
-│   │   ├── speech/prosody.py    # stress/pitch analysis (later phase)
-│   │   ├── srs/fsrs.py          # spaced repetition scheduling
-│   │   ├── chat/llm.py          # Claude API / Ollama adapter
-│   │   └── db/models.py         # SQLModel tables
-│   ├── data/seed_deck.csv
-│   └── tests/
-└── frontend/
-    └── src/
-        ├── pages/  (Drill, Sentence, MinimalPairs, Conversation, Dashboard, Deck)
-        └── components/ (Recorder, Waveform, PitchChart, PhonemeDiff, CardView)
-```
+pymorphy3 gives no stress, and stress moves in some forms (вода́ → во́ду), so stress marks are
+written by hand.
 
-## Build phases
-Each phase ends with something usable.
+### Phases
+8. **Answer-checking calibration ✅ (done 2026-10-18).** Can the speech stack tell grammar minimal pairs
+   apart? The script is `backend/scripts/answer_check_experiment.py`. The test set was 20 sets of
+   grammar minimal forms, spoken by 4 Silero voices and macOS Milena (230 recordings). Each
+   recording was scored against every form in its set, and the best match counted as what was said.
 
-**Phase 1: Hear and say (foundation)**
-- Backend and frontend skeleton, `start.sh`
-- TTS endpoint with caching; browser recorder component
-- Whisper transcription and a word-level diff
-- Result: type or pick a word or sentence, hear it, say it, see which words were recognised
+   | Rule | Native accuracy | Time per check |
+   |---|---|---|
+   | **Whole-utterance CTC likelihood (with reduction/devoicing variants)** | **92.2%** | 0.7 s |
+   | Mean letter score of each candidate | 88.3% | 1.3 s |
+   | Whisper transcript, nearest candidate | 80.0% | 1.4 s |
 
-**Phase 2: Pronunciation scoring**
-- espeak-ng G2P, wav2vec2 phoneme recognition, alignment
-- Per-sound colour-coded feedback, overall score and English-speaker tips
-- Side-by-side playback of your recording and the native audio
-- Test set: record known good and bad pronunciations to tune thresholds
+   - **Decision:** lessons check spoken answers by **forced choice on likelihood** against the
+     item's expected answer and its distractors. The expected answer must also reach a letter
+     score of 50, so mumbling isn't accepted.
+   - **Reliable contrasts (9–10/10)**, which can decide a spoken answer:
+     - accusative, genitive, prepositional and instrumental endings
+     - plural
+     - «не»
+     - меня/мне
+     - past-tense gender
+     - говорю/говорит/говорят
+     - тут/там
+     - different words
+   - **Unreliable contrasts:**
+     - adjective endings -ый/-ая/-ое (8/15)
+     - мой/моя/моё (12/15)
+     - person endings that differ only in a final consonant, e.g. читаю/читаем/читают (20/25)
 
-**Phase 3: Flashcards and SRS**
-- SQLite models, FSRS scheduling, seed deck, Anki/CSV import, deck editor
-- Word drill mode ties SRS and pronunciation scoring together
-
-**Phase 4: Sentence trainer and minimal pairs**
-- Chunked learning flow, slow playback, shadowing
-- Minimal-pair drills generated from per-sound error stats
-
-**Phase 5: Conversation partner**
-- LLM adapter (Claude API or Ollama), scenario prompts, level control
-- Voice loop: record → Whisper → LLM → TTS, plus the correction panel and "add to deck"
-
-**Phase 6: Stress, intonation and progress**
-- Prosody analysis and pitch-contour overlay
-- Progress dashboard
-
-## Constraints and honest caveats
-- **8 GB RAM.** Models are loaded lazily and unloaded when idle. Whisper `small` is the
-  default (`medium` is optional). A local LLM and Whisper together will be tight, which is
-  why Claude API is the recommended conversation backend.
-- **Automated scoring is less precise than a human tutor.** It reliably catches missing or
-  wrong sounds, ы/и confusion and hard/soft consonant errors. It is less reliable on subtle
-  vowel quality and on stress. Feedback will be framed as guidance rather than a verdict.
-- **TTS stress.** Silero stresses correctly when given stress marks. The seed deck includes
-  them, so native audio is correct.
-- **First run** downloads roughly 1.5–2 GB of models, then everything works offline
-  (except the Claude API, if chosen).
-
-## Decisions (2026-09-14)
-1. **Fully offline.** The conversation partner uses Ollama with a small local model
-   (Qwen2.5-3B or Gemma-3-4B). Scenarios stay tightly scoped and beginner-level so a small
-   model can cope. Nothing reaches the internet after the first model download.
-2. **Complete beginner.** Changes to the plan:
-   - Every Russian word shows **transliteration + English** (toggleable later).
-   - A new **Alphabet & Sounds** module comes before flashcards: all 33 letters, each with
-     native audio, a speak-and-check drill and example words.
-   - The starter deck is graded: greetings and survival phrases, then the top 500 words.
-   - Conversation scenarios are unlocked only after enough vocabulary is learned.
-3. **No Anki import.** Moved to "nice to have". CSV import and a manual deck editor stay.
-
-Revised order:
-1. Hear and say ✅ (done 2026-09-14)
-2. Pronunciation scoring ✅ (done 2026-09-14; see the implementation note below)
-3. Alphabet & Sounds ✅ (done 2026-09-14; see the implementation note below)
-4. Flashcards and SRS ✅ (done 2026-09-14; see the implementation note below)
-5. Sentence trainer and minimal pairs ✅ (done 2026-09-14; see the implementation note below)
-6. Conversation partner (Ollama) ✅ (done 2026-09-14; see the implementation note below)
-7. Stress, intonation and progress ✅ (done 2026-09-14; see the implementation note below)
+     These are taught and tested with listening and choose-the-form exercises. They are never the
+     only difference between a spoken answer and a distractor.
+   - **Whisper** turns ungrammatical speech into grammatical text ("с молоко" → "с молоком" for 4 of 5
+     voices), so it's never used to judge grammar.
+   - **English voice:** an English voice reading made-up spellings scored 9/14. That's a weak stand-in
+     for a real accent, so the lesson player has an **"I said it right"** override, which is logged
+     separately.
+   - **Course content check:** `--lessons` replays every speaking item in the course. Each answer
+     spoken by 2 native voices must be accepted, and each distractor said instead must be rejected.
+     The pilot lessons pass 388/388.
+   - **pymorphy3** generates the inflected forms correctly. It gives no stress, so stress marks
+     stay hand-written.
+9. **Lesson engine.**
+   - Tables for lessons, exercises and item results
+   - A model-lead-test runtime with the correction procedure and firm-up loops
+   - Hands-free pacing
+   - 3 pilot lessons
+10. **Scope and sequence plus lessons 1–20.** A track map for about 60 lessons, the curriculum
+    checker, and pymorphy3 validation.
+11. **Mastery and review.** Mastery tests, placement, remediation, and FSRS-due items in each
+    lesson's review block.
+12. **Lessons become the main route.**
+    - Home becomes "Today's lesson"; the old screens move under Practice
+    - Starter words are linked to the lessons that introduce them
+    - The dashboard shows the lesson path, mastery test results and per-track accuracy
+13. **Lessons 21–60 and constrained conversation.** The partner is told the taught words and
+    grammar, and unknown words in its replies are flagged.

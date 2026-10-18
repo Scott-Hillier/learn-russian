@@ -1,6 +1,6 @@
 """Intonation from acoustics, using Praat (parselmouth).
 
-Automatic word-stress verdicts were tried and rejected (see scripts/stress_experiment.py): they caught
+Automatic word-stress verdicts were tried and rejected (see PLAN.md): they caught
 under half of misplaced stress while wrongly flagging ~1 in 11 correct words. Instead the app shows the
 learner's pitch contour over the native one, with the native stressed syllables marked, so learners
 can see where the voice rises, falls and emphasises.
