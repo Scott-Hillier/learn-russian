@@ -32,7 +32,7 @@ decisions, the 60-lesson scope and sequence, and implementation notes for each p
 | 10 | Scope and sequence, curriculum checker, lessons 1–10 | fb29105 |
 | 10a | Answer checking tuned on simulated learners: learner mode, fit gate, "say it again" | e244d69 |
 | 10b | Lessons 11–20; stress fixes (молоко́, телефо́н, четы́рнадцать) | ee38ea9 |
-| 11–13 | Mastery tests, fix-up lessons, placement, error-driven review; Today screen, word links, dashboard; lessons 21–60; conversation limited to taught words; stress fixes in sentences | the commit after ee38ea9 |
+| 11–13 | Mastery tests, fix-up lessons, placement, error-driven review; Today screen, word links, dashboard; lessons 21–60; conversation limited to taught words; stress fixes in sentences | c7c2a0d |
 
 ## What's left
 All phases in PLAN.md are built. In order of value:
