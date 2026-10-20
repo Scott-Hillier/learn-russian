@@ -83,6 +83,11 @@ kbd {
   max-width: 720px; font-size: 0.9rem;
 }
 .banner.error { background: #fde8e8; color: #9b1c1c; }
+.update-banner {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 20; display: flex; gap: 14px; align-items: center;
+  justify-content: center; padding: 10px 16px; background: var(--accent-soft); color: var(--ink);
+  border-bottom: 1px solid var(--accent); font-weight: 600;
+}
 
 .card {
   background: var(--panel); border: 1px solid var(--line); border-radius: 18px;

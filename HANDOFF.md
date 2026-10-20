@@ -78,6 +78,12 @@ All phases in PLAN.md are built. In order of value:
 | `backend/scripts/answer_check_experiment.py` | The Phase 8 experiment, plus `--lessons [--from N]`: a native-voice check of every course item |
 | `backend/scripts/learner_benchmark.py` | `collect`: simulated learner speech for every course item. `analyse`: replays decision rules. |
 
+**Out-of-date pages (2026-10-20):** a tab opened before items carried `src` checked
+[lesson, exercise, position]. In a per-learner review block that is a different item: 🐶 was shown while
+«Это дом.» was checked. `/check` now refuses (409) a position inside a review exercise, and an item `key`
+that doesn't match. `/api/health` reports the UI `bundle`, and `App.tsx` shows a reload banner when the page
+runs a different one. `index.html` is served `no-cache`.
+
 Since 2026-10-20, a one-noun answer («соба́ка») also accepts «Это соба́ка.», with framed distractors so
 «Это ко́шка.» can't pass (`course._this_is`). Picture-only listening options get English `labels` from the
 vocabulary items that use the same picture (`_picture_words`). Only lessons 1–3 were re-simulated after the

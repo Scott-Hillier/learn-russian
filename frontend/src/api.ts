@@ -383,6 +383,7 @@ export interface Health {
   asr_model: string;
   pronunciation_loaded: boolean;
   ready: boolean;
+  bundle: string | null; // the script the built UI loads now; another one means this page is out of date
 }
 
 async function json<T>(res: Response): Promise<T> {
@@ -461,11 +462,13 @@ export const api = {
   progressSummary: () => fetch("/api/progress/summary").then((r) => json<ProgressSummary>(r)),
   course: () => fetch("/api/course").then((r) => json<CourseOverview>(r)),
   courseLesson: (id: number) => fetch(`/api/course/${id}`).then((r) => json<CourseLesson>(r)),
-  courseCheck: (src: [number, number, number], audio: Blob, testUnit?: number) => {
+  /** `key` is the item shown: the server refuses to check a different one (an out-of-date page). */
+  courseCheck: (src: [number, number, number], key: string, audio: Blob, testUnit?: number) => {
     const [lessonId, exercise, item] = src;
     const form = new FormData();
     form.append("exercise", String(exercise));
     form.append("item", String(item));
+    form.append("key", key);
     if (testUnit !== undefined) form.append("test", String(testUnit));
     form.append("audio", audio, "answer");
     return fetch(`/api/course/${lessonId}/check`, { method: "POST", body: form }).then((r) => json<AnswerCheck>(r));

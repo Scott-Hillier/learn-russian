@@ -5,12 +5,14 @@ from fastapi import APIRouter, File, Form, HTTPException, UploadFile
 from pydantic import BaseModel, Field
 
 from . import config, progress, recordings
-from .course import LessonLocked, NotAvailable, course, item_at
+from .course import LessonLocked, NotAvailable, _lesson, course, item_at, item_key
 from .speech.answers import check_answer
 from .speech.audio import decode_to_pcm16k, peak_level, trim_and_pad
 
 log = logging.getLogger(__name__)
 router = APIRouter(prefix="/api/course")
+
+OUT_OF_DATE = "This page is out of date: the app was updated. Reload the page (⌘R) and carry on."
 
 
 class ResultIn(BaseModel):
@@ -92,17 +94,22 @@ def restart(lesson_id: int):
 
 @router.post("/{lesson_id}/check")
 async def check(lesson_id: int, exercise: int = Form(...), item: int = Form(...), test: int | None = Form(None),
-                audio: UploadFile = File(...)):
+                key: str | None = Form(None), audio: UploadFile = File(...)):
     """Is the spoken answer to an item right? Scored against the item's answer and its likely wrong answers.
 
     The item is the one written at lesson / exercise / item (its "src"), wherever it is being practised. Items
-    in locked lessons can only be checked while taking that unit's test (`test`).
+    in locked lessons can only be checked while taking that unit's test (`test`). `key` is the item key the
+    page shows: if it isn't the item at src, the page is out of date and nothing is checked.
     """
     src = [lesson_id, exercise, item]
     try:
         spec = item_at(src)
     except KeyError:
         raise HTTPException(404, "No such item.")
+    # A review block is put together per learner, so a position in one never names an item. Only a page from
+    # before items carried their src sends one, and checking it would score the wrong answer.
+    if _lesson(lesson_id)["exercises"][exercise].get("review") or (key and key != item_key("say", spec)):
+        raise HTTPException(409, OUT_OF_DATE)
     if not course.can_check(src, test):
         raise HTTPException(403, "This lesson is locked. Pass the lesson before it first.")
     if "answer" not in spec:

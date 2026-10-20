@@ -295,6 +295,7 @@ export default function LessonPlayer({ lesson, onExit, onDone }: Props) {
       try {
         result = await api.courseCheck(
           item.src ?? [lesson.id, exIndex, step.item],
+          item.key!,
           blob,
           isTest ? lesson.id : undefined,
         );

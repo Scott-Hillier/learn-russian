@@ -161,3 +161,33 @@ def test_lesson_answers_are_saved_with_their_item_when_recording(tmp_path, monke
     assert r.status_code == 200
     saved = json.loads(next((tmp_path / "recordings").glob("*.json")).read_text())
     assert saved["target"] == "дом" and saved["feedback"]["lesson"] == 1 and "distractors" in saved["feedback"]
+
+
+def test_a_check_from_an_out_of_date_page_is_refused(tmp_path, monkeypatch):
+    """A page from before items carried their src sent [lesson, exercise, position]. In a review block that
+    position named a different item from the one on screen (🐶 shown, «Это дом.» checked)."""
+    from app import routes_course
+    from app.main import app
+
+    monkeypatch.setattr(routes_course, "course", Course(tmp_path / "progress.db"))
+    client = TestClient(app)
+    audio = {"audio": ("a.wav", b"RIFF", "audio/wav")}
+    review = next(i for i, e in enumerate(lessons()[1]["exercises"]) if e.get("review"))
+    r = client.post("/api/course/2/check", data={"exercise": str(review), "item": "0"}, files=audio)
+    assert r.status_code == 409 and "Reload" in r.json()["detail"]
+    dog = item_at([1, 0, 2])
+    r = client.post("/api/course/1/check", data={"exercise": "0", "item": "0", "key": item_key("say", dog)},
+                    files=audio)
+    assert r.status_code == 409
+    # the right key gets through to the audio check
+    r = client.post("/api/course/1/check", data={"exercise": "0", "item": "2", "key": item_key("say", dog)},
+                    files=audio)
+    assert r.status_code == 400  # b"RIFF" isn't audio
+
+
+def test_health_names_the_current_ui_bundle():
+    from app.main import _bundle
+
+    from app import config
+    if (config.FRONTEND_DIST / "index.html").exists():
+        assert _bundle().startswith("/assets/") and _bundle().endswith(".js")

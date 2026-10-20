@@ -52,22 +52,74 @@ export default function App() {
     return () => clearTimeout(timer);
   }, []);
 
+  // A page left open across an update keeps running the old code against the new server. Check whenever the
+  // window comes back into focus (and every few minutes) and offer a reload.
+  const outdated = useOutdated();
+
   const layout = { mode, onMode: changeMode, health };
-  if (mode === "flashcards") return <FlashcardsView layout={layout} />;
-  if (mode === "sentences") return <SentencesView layout={layout} />;
-  if (mode === "pairs") return <PairsView layout={layout} />;
-  if (mode === "conversation") return <ConversationView layout={layout} />;
-  if (mode === "phrases") return <PhrasesView layout={layout} />;
-  if (mode === "progress") return <ProgressView layout={layout} />;
-  if (mode === "alphabet") return <AlphabetView layout={layout} />;
-  if (mode === "course") return <CourseView layout={layout} start={start} onStarted={() => setStart(null)} />;
+  const view =
+    mode === "flashcards" ? (
+      <FlashcardsView layout={layout} />
+    ) : mode === "sentences" ? (
+      <SentencesView layout={layout} />
+    ) : mode === "pairs" ? (
+      <PairsView layout={layout} />
+    ) : mode === "conversation" ? (
+      <ConversationView layout={layout} />
+    ) : mode === "phrases" ? (
+      <PhrasesView layout={layout} />
+    ) : mode === "progress" ? (
+      <ProgressView layout={layout} />
+    ) : mode === "alphabet" ? (
+      <AlphabetView layout={layout} />
+    ) : mode === "course" ? (
+      <CourseView layout={layout} start={start} onStarted={() => setStart(null)} />
+    ) : (
+      <HomeView
+        layout={layout}
+        onStart={(next) => {
+          setStart(next);
+          changeMode("course");
+        }}
+      />
+    );
   return (
-    <HomeView
-      layout={layout}
-      onStart={(next) => {
-        setStart(next);
-        changeMode("course");
-      }}
-    />
+    <>
+      {outdated && (
+        <div className="update-banner" role="alert">
+          The app has been updated. Reload to use the new version (your progress is saved).
+          <button className="primary" onClick={() => window.location.reload()}>
+            Reload
+          </button>
+        </div>
+      )}
+      {view}
+    </>
   );
+}
+
+/** The script this page runs, e.g. "/assets/index-D263XKXu.js" (null in the dev server, which is never stale). */
+const OWN_BUNDLE = (() => {
+  const path = new URL(import.meta.url).pathname;
+  return path.startsWith("/assets/") ? path : null;
+})();
+
+function useOutdated(): boolean {
+  const [outdated, setOutdated] = useState(false);
+  useEffect(() => {
+    if (!OWN_BUNDLE) return;
+    const check = () =>
+      api
+        .health()
+        .then((h) => h.bundle && h.bundle !== OWN_BUNDLE && setOutdated(true))
+        .catch(() => {});
+    check();
+    const timer = window.setInterval(check, 5 * 60_000);
+    window.addEventListener("focus", check);
+    return () => {
+      clearInterval(timer);
+      window.removeEventListener("focus", check);
+    };
+  }, []);
+  return outdated;
 }

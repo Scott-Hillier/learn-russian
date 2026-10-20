@@ -110,10 +110,29 @@ app.include_router(chat_router)
 app.include_router(course_router)
 
 
+def _bundle() -> str | None:
+    """The script the built UI loads now. A page running a different one is out of date (rebuilt since)."""
+    try:
+        found = re.search(r'src="(/assets/[^"]+\.js)"', (config.FRONTEND_DIST / "index.html").read_text())
+    except OSError:
+        return None
+    return found.group(1) if found else None
+
+
 @app.get("/api/health")
 def health():
     return {"tts": tts.engine, "asr_loaded": asr.loaded, "asr_model": config.WHISPER_MODEL,
-            "pronunciation_loaded": scorer.loaded, "ready": asr.loaded and scorer.loaded}
+            "pronunciation_loaded": scorer.loaded, "ready": asr.loaded and scorer.loaded, "bundle": _bundle()}
+
+
+@app.middleware("http")
+async def revalidate_pages(request, call_next):
+    """index.html must be revalidated on every load, so a rebuilt UI is picked up on reload. The hashed
+    files under /assets never change, so they can be cached."""
+    response = await call_next(request)
+    if not request.url.path.startswith(("/api/", "/assets/")):
+        response.headers["Cache-Control"] = "no-cache"
+    return response
 
 
 @app.get("/api/phrases")
