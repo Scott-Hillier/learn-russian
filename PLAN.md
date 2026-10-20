@@ -269,8 +269,18 @@ written by hand.
     - **Lessons 1–20 with native voices:** 3,601/3,602 judged as expected. The miss, «маму» heard as
       «мама» from one voice, now gets "say it again".
 
-10b. **Lessons 11–20** (твой, gender exceptions, names, present tense я/ты/он, говорить, хочу/вижу +
-    accusative, unit review dialogue).
+10b. **Lessons 11–20 ✅ (done 2026-10-20).**
+    - **Content, in DI order:**
+      - твой/твоя/твоё (form choice, plus whole sentences with мой/твой)
+      - папа and дверь learned with their gender
+      - «Меня зовут …», played as Анна 👩 or Иван 👨
+      - present tense я → ты → он/она, then contrasted (знать, понимать)
+      - говорить with по-русски / по-английски
+      - «Я хочу …» and «Я вижу …» with the accusative -а → -у
+      - a unit review with two dialogues
+    - **Also new:** «Ещё раз, пожалуйста», хорошо, тоже, пока, очень приятно, and numbers 11–30.
+    - **Stress fixes:** lessons 3–10 had молоко and телефон stressed wrongly (мол+око, тел+ефон). They are
+      now молоко́ and телефо́н. The number speller had четыр+надцать; it's now четы́рнадцать.
 
 ### Scope and sequence
 Each new item comes in only after what it depends on is firm. Confusable items are introduced

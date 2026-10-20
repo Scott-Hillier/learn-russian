@@ -1,0 +1,374 @@
+{
+ "id": 19,
+ "title": "Я вижу …",
+ "goal": "Say what and who you see: «Я вижу кошку.» Numbers to 30.",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 6
+  },
+  {
+   "track": "frames",
+   "type": "teach",
+   "title": "«Я вижу …» — I see …",
+   "instruction": "«Вижу» (I see) works like «хочу»: «-а» becomes «-у», for people and animals too: мама → «Я вижу маму», папа → «Я вижу папу». «Дом» stays «дом».",
+   "items": [
+    {
+     "answer": "Я в+ижу м+аму.",
+     "cue": "👀 👩",
+     "english": "I see mum.",
+     "distractors": [
+      "Я в+ижу м+ама."
+     ]
+    },
+    {
+     "answer": "Я в+ижу к+ошку.",
+     "cue": "👀 🐈",
+     "english": "I see a cat.",
+     "distractors": [
+      "Я в+ижу к+ошка."
+     ]
+    },
+    {
+     "answer": "Я в+ижу п+апу.",
+     "cue": "👀 👨",
+     "english": "I see dad.",
+     "distractors": [
+      "Я в+ижу п+апа."
+     ]
+    },
+    {
+     "answer": "Я в+ижу дом.",
+     "cue": "👀 🏠",
+     "english": "I see a house."
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "choose",
+   "title": "-а or -у?",
+   "instruction": "After «вижу», «-а» becomes «-у». Pick the right form.",
+   "items": [
+    {
+     "prompt": "Я в+ижу ___.",
+     "cue": "👀 👧",
+     "english": "I see my sister.",
+     "options": [
+      "сестр+а",
+      "сестр+у"
+     ],
+     "correct": 1,
+     "audio": "Я в+ижу сестр+у."
+    },
+    {
+     "prompt": "Я в+ижу ___.",
+     "cue": "👀 🐕",
+     "english": "I see a dog.",
+     "options": [
+      "соб+ака",
+      "соб+аку"
+     ],
+     "correct": 1,
+     "audio": "Я в+ижу соб+аку."
+    },
+    {
+     "prompt": "___ там.",
+     "cue": "👉 👨",
+     "english": "Dad is there.",
+     "options": [
+      "п+апа",
+      "п+апу"
+     ],
+     "correct": 0,
+     "audio": "П+апа там."
+    },
+    {
+     "prompt": "Я в+ижу ___.",
+     "cue": "👀 🚗",
+     "english": "I see a car.",
+     "options": [
+      "маш+ина",
+      "маш+ину"
+     ],
+     "correct": 1,
+     "audio": "Я в+ижу маш+ину."
+    },
+    {
+     "prompt": "Я хоч+у ___.",
+     "cue": "💧",
+     "english": "I want water.",
+     "options": [
+      "вод+а",
+      "в+оду"
+     ],
+     "correct": 1,
+     "audio": "Я хоч+у в+оду."
+    },
+    {
+     "prompt": "+Это ___.",
+     "cue": "🐈",
+     "english": "This is a cat.",
+     "options": [
+      "к+ошка",
+      "к+ошку"
+     ],
+     "correct": 0,
+     "audio": "+Это к+ошка."
+    }
+   ]
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "What do you see?",
+   "instruction": "Listen and pick the picture.",
+   "items": [
+    {
+     "audio": "Я в+ижу соб+аку.",
+     "options": [
+      "🐕",
+      "🐈",
+      "🏠"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Я в+ижу дом.",
+     "options": [
+      "🐕",
+      "🐈",
+      "🏠"
+     ],
+     "correct": 2
+    },
+    {
+     "audio": "Я в+ижу к+ошку.",
+     "options": [
+      "🐕",
+      "🐈",
+      "🏠"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Я в+ижу сестр+у.",
+     "options": [
+      "👩",
+      "👧",
+      "👨"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Я в+ижу п+апу.",
+     "options": [
+      "👩",
+      "👧",
+      "👨"
+     ],
+     "correct": 2
+    },
+    {
+     "audio": "Я в+ижу м+аму.",
+     "options": [
+      "👩",
+      "👧",
+      "👨"
+     ],
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "What do you see?",
+   "instruction": "Say what you see: «Я вижу …».",
+   "items": [
+    {
+     "answer": "Я в+ижу маш+ину.",
+     "cue": "👀 🚗",
+     "english": "I see a car.",
+     "ask": "Что ты в+идишь?",
+     "distractors": [
+      "Я в+ижу маш+ина."
+     ]
+    },
+    {
+     "answer": "Я в+ижу сестр+у.",
+     "cue": "👀 👧",
+     "english": "I see my sister.",
+     "distractors": [
+      "Я в+ижу сестр+а."
+     ]
+    },
+    {
+     "answer": "Я в+ижу соб+аку.",
+     "cue": "👀 🐕",
+     "english": "I see a dog.",
+     "distractors": [
+      "Я в+ижу соб+ака."
+     ]
+    },
+    {
+     "answer": "Я в+ижу дверь.",
+     "cue": "👀 🚪",
+     "english": "I see a door.",
+     "ask": "Что ты в+идишь?"
+    },
+    {
+     "answer": "Я в+ижу п+апу.",
+     "cue": "👀 👨",
+     "english": "I see dad.",
+     "distractors": [
+      "Я в+ижу п+апа."
+     ]
+    },
+    {
+     "answer": "Я хоч+у в+оду.",
+     "cue": "💧",
+     "english": "I want water.",
+     "ask": "Что ты х+очешь?",
+     "distractors": [
+      "Я в+ижу в+оду."
+     ]
+    },
+    {
+     "answer": "Я хоч+у чай.",
+     "cue": "🍵",
+     "english": "I want tea.",
+     "ask": "Что ты х+очешь?",
+     "distractors": [
+      "Я хоч+у к+офе."
+     ]
+    },
+    {
+     "answer": "Я хоч+у к+офе.",
+     "cue": "☕",
+     "english": "I want coffee.",
+     "ask": "Что ты х+очешь?",
+     "distractors": [
+      "Я хоч+у чай."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "teach",
+   "title": "Numbers 20–30",
+   "instruction": "Tens and units go side by side: 20 + 1 = «двадцать один». And 30 is «тридцать».",
+   "items": [
+    {
+     "answer": "Тр+идцать.",
+     "cue": "3️⃣0️⃣",
+     "english": "thirty"
+    },
+    {
+     "answer": "Дв+адцать од+ин.",
+     "cue": "2️⃣1️⃣",
+     "english": "twenty-one"
+    },
+    {
+     "answer": "Дв+адцать пять.",
+     "cue": "2️⃣5️⃣",
+     "english": "twenty-five"
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "Numbers 11–30",
+   "instruction": "Say the number.",
+   "items": [
+    {
+     "answer": "Дв+адцать два.",
+     "cue": "2️⃣2️⃣",
+     "english": "twenty-two"
+    },
+    {
+     "answer": "Тр+идцать.",
+     "cue": "3️⃣0️⃣",
+     "english": "thirty"
+    },
+    {
+     "answer": "Дв+адцать семь.",
+     "cue": "2️⃣7️⃣",
+     "english": "twenty-seven"
+    },
+    {
+     "answer": "Девятн+адцать.",
+     "cue": "1️⃣9️⃣",
+     "english": "nineteen"
+    },
+    {
+     "answer": "Дв+адцать д+евять.",
+     "cue": "2️⃣9️⃣",
+     "english": "twenty-nine"
+    },
+    {
+     "answer": "Дв+адцать три.",
+     "cue": "2️⃣3️⃣",
+     "english": "twenty-three"
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "Conversation",
+   "instruction": "Looking out of the window with a friend.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "Что ты в+идишь?",
+     "cue": "🪟👀",
+     "english": "What do you see?"
+    },
+    {
+     "answer": "Я в+ижу к+ошку.",
+     "cue": "👀 🐈",
+     "english": "I see a cat.",
+     "distractors": [
+      "Я в+ижу к+ошка.",
+      "Я в+ижу соб+аку."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Где он+а?",
+     "cue": "🐈❓",
+     "english": "Where is it?"
+    },
+    {
+     "answer": "Он+а там.",
+     "cue": "👉 🐈",
+     "english": "It's there.",
+     "distractors": [
+      "Он там.",
+      "Он+а тут."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Ты в+идишь соб+аку?",
+     "cue": "🐕❓",
+     "english": "Do you see a dog?"
+    },
+    {
+     "answer": "Нет, я не в+ижу соб+аку.",
+     "cue": "🚫🐕",
+     "english": "No, I don't see a dog.",
+     "distractors": [
+      "Да, я в+ижу соб+аку."
+     ]
+    }
+   ]
+  }
+ ]
+}

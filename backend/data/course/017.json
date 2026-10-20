@@ -1,0 +1,337 @@
+{
+ "id": 17,
+ "title": "Я говорю по-русски",
+ "goal": "Say which languages you speak: «Я немного говорю по-русски.»",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 6
+  },
+  {
+   "track": "vocab",
+   "type": "teach",
+   "title": "New words",
+   "instruction": "Listen, say it after me, then say it on your own from the picture.",
+   "items": [
+    {
+     "answer": "по-р+усски",
+     "cue": "🇷🇺",
+     "english": "in Russian"
+    },
+    {
+     "answer": "по-англ+ийски",
+     "cue": "🇬🇧",
+     "english": "in English"
+    },
+    {
+     "answer": "немн+ого",
+     "cue": "🤏",
+     "english": "a little"
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "teach",
+   "title": "«Говорить» — to speak",
+   "instruction": "«Говорить» (to speak) changes differently from «знать»: я говорю, ты говоришь, он / она говорит.",
+   "items": [
+    {
+     "answer": "Я говор+ю по-англ+ийски.",
+     "cue": "🙋 🇬🇧",
+     "english": "I speak English."
+    },
+    {
+     "answer": "Я немн+ого говор+ю по-р+усски.",
+     "cue": "🙋 🤏 🇷🇺",
+     "english": "I speak a little Russian."
+    },
+    {
+     "answer": "Ты говор+ишь по-англ+ийски?",
+     "cue": "❓🫵 🇬🇧",
+     "english": "Do you speak English?"
+    },
+    {
+     "answer": "Он говор+ит по-р+усски.",
+     "cue": "👦 🇷🇺",
+     "english": "He speaks Russian.",
+     "distractors": [
+      "Я говор+ю по-р+усски."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "Which language?",
+   "instruction": "Listen and pick the language.",
+   "items": [
+    {
+     "audio": "Он+а говор+ит по-англ+ийски.",
+     "options": [
+      "🇷🇺 Russian",
+      "🇬🇧 English"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Я говор+ю по-р+усски.",
+     "options": [
+      "🇷🇺 Russian",
+      "🇬🇧 English"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Ты говор+ишь по-англ+ийски?",
+     "options": [
+      "🇷🇺 Russian",
+      "🇬🇧 English"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "П+апа говор+ит по-р+усски.",
+     "options": [
+      "🇷🇺 Russian",
+      "🇬🇧 English"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Я немн+ого говор+ю по-р+усски.",
+     "options": [
+      "🇷🇺 Russian",
+      "🇬🇧 English"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Брат не говор+ит по-англ+ийски.",
+     "options": [
+      "🇷🇺 Russian",
+      "🇬🇧 English"
+     ],
+     "correct": 1
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "choose",
+   "title": "Говорю, говоришь or говорит?",
+   "instruction": "Pick the form that goes with the person.",
+   "items": [
+    {
+     "prompt": "Я ___ по-р+усски.",
+     "cue": "🙋 🇷🇺",
+     "english": "I speak Russian.",
+     "options": [
+      "говор+ю",
+      "говор+ишь",
+      "говор+ит"
+     ],
+     "correct": 0,
+     "audio": "Я говор+ю по-р+усски."
+    },
+    {
+     "prompt": "Ты ___ по-англ+ийски?",
+     "cue": "🫵 🇬🇧",
+     "english": "Do you speak English?",
+     "options": [
+      "говор+ю",
+      "говор+ишь",
+      "говор+ит"
+     ],
+     "correct": 1,
+     "audio": "Ты говор+ишь по-англ+ийски?"
+    },
+    {
+     "prompt": "Он+а ___ по-р+усски.",
+     "cue": "👧 🇷🇺",
+     "english": "She speaks Russian.",
+     "options": [
+      "говор+ю",
+      "говор+ишь",
+      "говор+ит"
+     ],
+     "correct": 2,
+     "audio": "Он+а говор+ит по-р+усски."
+    },
+    {
+     "prompt": "П+апа ___ по-англ+ийски.",
+     "cue": "👨 🇬🇧",
+     "english": "Dad speaks English.",
+     "options": [
+      "говор+ю",
+      "говор+ишь",
+      "говор+ит"
+     ],
+     "correct": 2,
+     "audio": "П+апа говор+ит по-англ+ийски."
+    },
+    {
+     "prompt": "Я не ___ по-англ+ийски.",
+     "cue": "🙋 🚫🇬🇧",
+     "english": "I don't speak English.",
+     "options": [
+      "говор+ю",
+      "говор+ишь",
+      "говор+ит"
+     ],
+     "correct": 0,
+     "audio": "Я не говор+ю по-англ+ийски."
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "Who speaks what?",
+   "instruction": "Say it from the picture.",
+   "items": [
+    {
+     "answer": "Он+а говор+ит по-англ+ийски.",
+     "cue": "👧 🇬🇧",
+     "english": "She speaks English.",
+     "distractors": [
+      "Он+а говор+ит по-р+усски.",
+      "Я говор+ю по-англ+ийски."
+     ]
+    },
+    {
+     "answer": "Я немн+ого говор+ю по-р+усски.",
+     "cue": "🙋 🤏 🇷🇺",
+     "english": "I speak a little Russian.",
+     "ask": "Ты говор+ишь по-р+усски?",
+     "distractors": [
+      "Я говор+ю по-англ+ийски."
+     ]
+    },
+    {
+     "answer": "Да, я говор+ю по-англ+ийски.",
+     "cue": "✅ 🇬🇧",
+     "english": "Yes, I speak English.",
+     "ask": "Ты говор+ишь по-англ+ийски?",
+     "distractors": [
+      "Нет, я не говор+ю по-англ+ийски."
+     ]
+    },
+    {
+     "answer": "Он не говор+ит по-англ+ийски.",
+     "cue": "👦 🚫🇬🇧",
+     "english": "He doesn't speak English.",
+     "distractors": [
+      "Он говор+ит по-англ+ийски.",
+      "Я не говор+ю по-англ+ийски."
+     ]
+    },
+    {
+     "answer": "Ты говор+ишь по-р+усски?",
+     "cue": "❓🫵 🇷🇺",
+     "english": "Ask: Do you speak Russian?",
+     "distractors": [
+      "Я говор+ю по-р+усски."
+     ]
+    },
+    {
+     "answer": "П+апа говор+ит по-р+усски.",
+     "cue": "👨 🇷🇺",
+     "english": "Dad speaks Russian.",
+     "distractors": [
+      "П+апа говор+ит по-англ+ийски."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "«Сколько?»",
+   "instruction": "Count and say the number.",
+   "items": [
+    {
+     "answer": "Девятн+адцать.",
+     "cue": "1️⃣9️⃣ 🍎",
+     "english": "nineteen",
+     "ask": "Ск+олько?"
+    },
+    {
+     "answer": "Двен+адцать.",
+     "cue": "🔑🔑🔑🔑🔑🔑🔑🔑🔑🔑🔑🔑",
+     "english": "twelve",
+     "ask": "Ск+олько?"
+    },
+    {
+     "answer": "Дв+адцать.",
+     "cue": "2️⃣0️⃣ 📖",
+     "english": "twenty",
+     "ask": "Ск+олько?"
+    },
+    {
+     "answer": "Чет+ырнадцать.",
+     "cue": "1️⃣4️⃣ 🐟",
+     "english": "fourteen",
+     "ask": "Ск+олько?"
+    },
+    {
+     "answer": "Восемн+адцать.",
+     "cue": "1️⃣8️⃣ 🥛",
+     "english": "eighteen",
+     "ask": "Ск+олько?"
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "Conversation",
+   "instruction": "You meet someone at a party.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "Прив+ет! Ты говор+ишь по-р+усски?",
+     "cue": "🧑",
+     "english": "Hi! Do you speak Russian?"
+    },
+    {
+     "answer": "Да, я немн+ого говор+ю по-р+усски.",
+     "cue": "🤏 🇷🇺",
+     "english": "Yes, I speak a little Russian.",
+     "distractors": [
+      "Нет, я не говор+ю по-р+усски."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Мой брат говор+ит по-англ+ийски.",
+     "cue": "👦 🇬🇧",
+     "english": "My brother speaks English."
+    },
+    {
+     "answer": "Ещё раз, пож+алуйста.",
+     "cue": "😕 🔁",
+     "english": "Once more, please."
+    },
+    {
+     "speaker": "partner",
+     "line": "Мой брат говор+ит по-англ+ийски.",
+     "cue": "👦 🇬🇧",
+     "english": "My brother speaks English."
+    },
+    {
+     "answer": "Хорош+о! Я т+оже говор+ю по-англ+ийски.",
+     "cue": "👌 🙋 ➕ 🇬🇧",
+     "english": "Great! I speak English too.",
+     "distractors": [
+      "Я не говор+ю по-англ+ийски."
+     ]
+    }
+   ]
+  }
+ ]
+}

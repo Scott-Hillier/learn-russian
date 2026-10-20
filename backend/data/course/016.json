@@ -1,0 +1,357 @@
+{
+ "id": 16,
+ "title": "Он знает, она понимает",
+ "goal": "Talk about someone else: «Он знает.» «Она не понимает.»",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 6
+  },
+  {
+   "track": "frames",
+   "type": "teach",
+   "title": "«Он знает» — He knows",
+   "instruction": "With «он» and «она» the verb ends in «-ет»: «он знает», «она понимает». So: я знаю, ты знаешь, он / она знает.",
+   "items": [
+    {
+     "answer": "Он зн+ает.",
+     "cue": "👦 💡",
+     "english": "He knows."
+    },
+    {
+     "answer": "Он+а поним+ает.",
+     "cue": "👧 👍",
+     "english": "She understands."
+    },
+    {
+     "answer": "Он не зн+ает.",
+     "cue": "👦 🤷",
+     "english": "He doesn't know."
+    },
+    {
+     "answer": "Он+а не поним+ает.",
+     "cue": "👧 😕",
+     "english": "She doesn't understand."
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "choose",
+   "title": "Which ending?",
+   "instruction": "Pick the form that goes with the person.",
+   "items": [
+    {
+     "prompt": "Он ___.",
+     "cue": "👦 💡",
+     "english": "He knows.",
+     "options": [
+      "зн+аю",
+      "зн+аешь",
+      "зн+ает"
+     ],
+     "correct": 2,
+     "audio": "Он зн+ает."
+    },
+    {
+     "prompt": "Я ___.",
+     "cue": "🙋 💡",
+     "english": "I know.",
+     "options": [
+      "зн+аю",
+      "зн+аешь",
+      "зн+ает"
+     ],
+     "correct": 0,
+     "audio": "Я зн+аю."
+    },
+    {
+     "prompt": "Ты ___?",
+     "cue": "🫵 💡",
+     "english": "Do you know?",
+     "options": [
+      "зн+аю",
+      "зн+аешь",
+      "зн+ает"
+     ],
+     "correct": 1,
+     "audio": "Ты зн+аешь?"
+    },
+    {
+     "prompt": "Он+а ___.",
+     "cue": "👧 👍",
+     "english": "She understands.",
+     "options": [
+      "поним+аю",
+      "поним+аешь",
+      "поним+ает"
+     ],
+     "correct": 2,
+     "audio": "Он+а поним+ает."
+    },
+    {
+     "prompt": "Я не ___.",
+     "cue": "😕",
+     "english": "I don't understand.",
+     "options": [
+      "поним+аю",
+      "поним+аешь",
+      "поним+ает"
+     ],
+     "correct": 0,
+     "audio": "Я не поним+аю."
+    },
+    {
+     "prompt": "П+апа не ___.",
+     "cue": "👨 🤷",
+     "english": "Dad doesn't know.",
+     "options": [
+      "зн+аю",
+      "зн+аешь",
+      "зн+ает"
+     ],
+     "correct": 2,
+     "audio": "П+апа не зн+ает."
+    }
+   ]
+  },
+  {
+   "track": "vocab",
+   "type": "teach",
+   "title": "New words",
+   "instruction": "«Тоже» means “too / also”. It goes before the verb.",
+   "items": [
+    {
+     "answer": "Я т+оже зн+аю.",
+     "cue": "🙋 ➕ 💡",
+     "english": "I know too."
+    },
+    {
+     "answer": "Он+а т+оже поним+ает.",
+     "cue": "👧 ➕ 👍",
+     "english": "She understands too."
+    }
+   ]
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "Who?",
+   "instruction": "Listen. Who is it about?",
+   "items": [
+    {
+     "audio": "Он+а зн+ает.",
+     "options": [
+      "🙋 I",
+      "🫵 you",
+      "👦 he",
+      "👧 she"
+     ],
+     "correct": 3
+    },
+    {
+     "audio": "Я поним+аю.",
+     "options": [
+      "🙋 I",
+      "🫵 you",
+      "👦 he",
+      "👧 she"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Ты зн+аешь?",
+     "options": [
+      "🙋 I",
+      "🫵 you",
+      "👦 he",
+      "👧 she"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Он не поним+ает.",
+     "options": [
+      "🙋 I",
+      "🫵 you",
+      "👦 he",
+      "👧 she"
+     ],
+     "correct": 2
+    },
+    {
+     "audio": "Он+а т+оже поним+ает.",
+     "options": [
+      "🙋 I",
+      "🫵 you",
+      "👦 he",
+      "👧 she"
+     ],
+     "correct": 3
+    },
+    {
+     "audio": "Я не зн+аю.",
+     "options": [
+      "🙋 I",
+      "🫵 you",
+      "👦 he",
+      "👧 she"
+     ],
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "I, you, he, she",
+   "instruction": "Say it about the person in the picture.",
+   "items": [
+    {
+     "answer": "Он зн+ает.",
+     "cue": "👦 💡",
+     "english": "He knows.",
+     "distractors": [
+      "Я зн+аю.",
+      "Он+а зн+ает.",
+      "Он не зн+ает."
+     ]
+    },
+    {
+     "answer": "Я не поним+аю.",
+     "cue": "🙋 😕",
+     "english": "I don't understand.",
+     "distractors": [
+      "Он не поним+ает.",
+      "Я поним+аю."
+     ]
+    },
+    {
+     "answer": "Он+а не зн+ает.",
+     "cue": "👧 🤷",
+     "english": "She doesn't know.",
+     "distractors": [
+      "Он не зн+ает.",
+      "Он+а зн+ает."
+     ]
+    },
+    {
+     "answer": "Ты поним+аешь?",
+     "cue": "❓🫵 👍",
+     "english": "Ask: Do you understand?",
+     "distractors": [
+      "Я поним+аю."
+     ]
+    },
+    {
+     "answer": "Он поним+ает.",
+     "cue": "👦 👍",
+     "english": "He understands.",
+     "distractors": [
+      "Он+а поним+ает.",
+      "Я поним+аю."
+     ]
+    },
+    {
+     "answer": "Я т+оже зн+аю.",
+     "cue": "🙋 ➕ 💡",
+     "english": "I know too.",
+     "distractors": [
+      "Я зн+аю."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "«Сколько?»",
+   "instruction": "Count and say the number.",
+   "items": [
+    {
+     "answer": "Дв+адцать.",
+     "cue": "2️⃣0️⃣ 📖",
+     "english": "twenty",
+     "ask": "Ск+олько?"
+    },
+    {
+     "answer": "Трин+адцать.",
+     "cue": "1️⃣3️⃣ 🍎",
+     "english": "thirteen",
+     "ask": "Ск+олько?"
+    },
+    {
+     "answer": "Семн+адцать.",
+     "cue": "1️⃣7️⃣ 🔑",
+     "english": "seventeen",
+     "ask": "Ск+олько?"
+    },
+    {
+     "answer": "Од+иннадцать.",
+     "cue": "🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟",
+     "english": "eleven",
+     "ask": "Ск+олько?"
+    },
+    {
+     "answer": "Шестн+адцать.",
+     "cue": "1️⃣6️⃣ 🥛",
+     "english": "sixteen",
+     "ask": "Ск+олько?"
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "Conversation",
+   "instruction": "At home, looking for mum.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "Где м+ама?",
+     "cue": "👩❓",
+     "english": "Where is mum?"
+    },
+    {
+     "answer": "Я не зн+аю. П+апа зн+ает.",
+     "cue": "🤷 👨 💡",
+     "english": "I don't know. Dad knows.",
+     "distractors": [
+      "Он+а там."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Брат т+оже зн+ает?",
+     "cue": "👦❓",
+     "english": "Does your brother know too?"
+    },
+    {
+     "answer": "Нет, он не зн+ает.",
+     "cue": "👦 🤷",
+     "english": "No, he doesn't know.",
+     "distractors": [
+      "Да, он зн+ает."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Ты поним+аешь?",
+     "cue": "❓",
+     "english": "Do you understand?"
+    },
+    {
+     "answer": "Да, я поним+аю.",
+     "cue": "👍",
+     "english": "Yes, I understand.",
+     "distractors": [
+      "Нет, я не поним+аю."
+     ]
+    }
+   ]
+  }
+ ]
+}

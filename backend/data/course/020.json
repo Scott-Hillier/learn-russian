@@ -1,0 +1,295 @@
+{
+ "id": 20,
+ "title": "Знакомство",
+ "goal": "Put it all together: meet someone, say who you are, what you speak and what you want.",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 8
+  },
+  {
+   "track": "vocab",
+   "type": "teach",
+   "title": "New words",
+   "instruction": "Two phrases for meeting people. Listen, say it after me, then say it on your own.",
+   "items": [
+    {
+     "answer": "Пок+а!",
+     "cue": "👋 🚶",
+     "english": "Bye! (to a friend)"
+    },
+    {
+     "answer": "+Очень при+ятно!",
+     "cue": "🤝 😊",
+     "english": "Nice to meet you!"
+    }
+   ]
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "Hello or goodbye?",
+   "instruction": "Listen and pick what it means.",
+   "items": [
+    {
+     "audio": "Пок+а!",
+     "options": [
+      "👋 hello",
+      "🚶 goodbye"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Прив+ет!",
+     "options": [
+      "👋 hello",
+      "🚶 goodbye"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Здр+авствуйте!",
+     "options": [
+      "👋 hello",
+      "🚶 goodbye"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Пок+а!",
+     "options": [
+      "👋 hello",
+      "🚶 goodbye"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "+Очень при+ятно!",
+     "options": [
+      "🤝 nice to meet you",
+      "🙏 thank you"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Спас+ибо!",
+     "options": [
+      "🤝 nice to meet you",
+      "🙏 thank you"
+     ],
+     "correct": 1
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "What do you say?",
+   "instruction": "Say the right thing for each situation.",
+   "items": [
+    {
+     "answer": "+Очень при+ятно!",
+     "cue": "🤝 😊",
+     "english": "Someone has just told you their name."
+    },
+    {
+     "answer": "Пок+а!",
+     "cue": "👋 🚶",
+     "english": "Say bye to a friend.",
+     "distractors": [
+      "Прив+ет!"
+     ]
+    },
+    {
+     "answer": "Ещё раз, пож+алуйста.",
+     "cue": "😕 🔁",
+     "english": "You didn't catch that. Ask to hear it again."
+    },
+    {
+     "answer": "Я немн+ого говор+ю по-р+усски.",
+     "cue": "🙋 🤏 🇷🇺",
+     "english": "Say you speak a little Russian."
+    },
+    {
+     "answer": "Как теб+я зов+ут?",
+     "cue": "❓🫵",
+     "english": "Ask: What's your name?"
+    },
+    {
+     "answer": "Я не поним+аю.",
+     "cue": "😕",
+     "english": "Say you don't understand.",
+     "distractors": [
+      "Я поним+аю."
+     ]
+    },
+    {
+     "answer": "Я т+оже говор+ю по-англ+ийски.",
+     "cue": "🙋 ➕ 🇬🇧",
+     "english": "Your new friend speaks English. Say you do too.",
+     "distractors": [
+      "Я не говор+ю по-англ+ийски."
+     ]
+    },
+    {
+     "answer": "Я в+ижу соб+аку.",
+     "cue": "👀 🐕",
+     "english": "Say what you see.",
+     "distractors": [
+      "Я в+ижу соб+ака."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "Meeting someone",
+   "instruction": "You are Анна 👩. You meet Иван at a party.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "Прив+ет! Как теб+я зов+ут?",
+     "cue": "👨 Иван",
+     "english": "Hi! What's your name?"
+    },
+    {
+     "answer": "Мен+я зов+ут +Анна. Как теб+я зов+ут?",
+     "cue": "👩 Анна ❓🫵",
+     "english": "My name is Anna. What's your name?"
+    },
+    {
+     "speaker": "partner",
+     "line": "Мен+я зов+ут Ив+ан. +Очень при+ятно!",
+     "cue": "👨 Иван",
+     "english": "My name is Ivan. Nice to meet you!"
+    },
+    {
+     "answer": "+Очень при+ятно!",
+     "cue": "🤝 😊",
+     "english": "Nice to meet you!"
+    },
+    {
+     "speaker": "partner",
+     "line": "Ты говор+ишь по-р+усски?",
+     "cue": "🇷🇺❓",
+     "english": "Do you speak Russian?"
+    },
+    {
+     "answer": "Да, я немн+ого говор+ю по-р+усски.",
+     "cue": "🤏 🇷🇺",
+     "english": "Yes, I speak a little Russian.",
+     "distractors": [
+      "Нет, я не говор+ю по-р+усски."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Хорош+о! Пок+а!",
+     "cue": "👋",
+     "english": "Great! Bye!"
+    },
+    {
+     "answer": "Пок+а!",
+     "cue": "👋 🚶",
+     "english": "Bye!",
+     "distractors": [
+      "Прив+ет!"
+     ]
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "At a friend's place",
+   "instruction": "Your friend Иван offers you a drink.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "Что ты х+очешь? Чай?",
+     "cue": "🍵❓",
+     "english": "What would you like? Tea?"
+    },
+    {
+     "answer": "Нет, спас+ибо. Я хоч+у к+офе.",
+     "cue": "🚫🍵 ☕",
+     "english": "No, thanks. I'd like coffee.",
+     "distractors": [
+      "Да, я хоч+у чай."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Где мо+я с+умка? Ты зн+аешь?",
+     "cue": "👜❓",
+     "english": "Where is my bag? Do you know?"
+    },
+    {
+     "answer": "Он+а там.",
+     "cue": "👉 👜",
+     "english": "It's there.",
+     "distractors": [
+      "Он там.",
+      "Я не зн+аю."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Спас+ибо!",
+     "cue": "🙂",
+     "english": "Thanks!"
+    },
+    {
+     "answer": "Пож+алуйста!",
+     "cue": "🙂",
+     "english": "You're welcome!",
+     "distractors": [
+      "Спас+ибо!"
+     ]
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "Numbers 1–30",
+   "instruction": "Say the number.",
+   "items": [
+    {
+     "answer": "Дв+адцать шесть.",
+     "cue": "2️⃣6️⃣",
+     "english": "twenty-six"
+    },
+    {
+     "answer": "Од+иннадцать.",
+     "cue": "1️⃣1️⃣",
+     "english": "eleven"
+    },
+    {
+     "answer": "Тр+идцать.",
+     "cue": "3️⃣0️⃣",
+     "english": "thirty"
+    },
+    {
+     "answer": "Пятн+адцать.",
+     "cue": "1️⃣5️⃣",
+     "english": "fifteen"
+    },
+    {
+     "answer": "Дв+адцать в+осемь.",
+     "cue": "2️⃣8️⃣",
+     "english": "twenty-eight"
+    },
+    {
+     "answer": "Семн+адцать.",
+     "cue": "1️⃣7️⃣",
+     "english": "seventeen"
+    }
+   ]
+  }
+ ]
+}

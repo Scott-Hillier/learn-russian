@@ -17,7 +17,7 @@
    "instruction": "Listen, say it after me, then say it on your own from the picture.",
    "items": [
     {
-     "answer": "мол+око",
+     "answer": "молок+о",
      "cue": "🥛",
      "english": "milk"
     },
@@ -43,9 +43,9 @@
      "answer": "Он+о тут.",
      "cue": "👇 🥛",
      "english": "It's here.",
-     "ask": "Где мол+око?",
+     "ask": "Где молок+о?",
      "distractors": [
-      "Мол+око тут."
+      "Молок+о тут."
      ]
     },
     {
@@ -181,7 +181,7 @@
      "answer": "Он+о там.",
      "cue": "👉 🥛",
      "english": "It's there.",
-     "ask": "Где мол+око?",
+     "ask": "Где молок+о?",
      "distractors": [
       "Он+а там.",
       "Он там."
@@ -235,7 +235,7 @@
    "items": [
     {
      "speaker": "partner",
-     "line": "Где мол+око?",
+     "line": "Где молок+о?",
      "cue": "🥛❓",
      "english": "Where is the milk?"
     },

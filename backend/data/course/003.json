@@ -22,7 +22,7 @@
      "english": "key"
     },
     {
-     "answer": "тел+ефон",
+     "answer": "телеф+он",
      "cue": "📱",
      "english": "phone"
     }
@@ -41,10 +41,10 @@
      "ask": "Где ключ?"
     },
     {
-     "answer": "Тел+ефон тут.",
+     "answer": "Телеф+он тут.",
      "cue": "👇 📱",
      "english": "It's here.",
-     "ask": "Где тел+ефон?"
+     "ask": "Где телеф+он?"
     }
    ]
   },
@@ -129,10 +129,10 @@
      "ask": "Где хлеб?"
     },
     {
-     "answer": "Тел+ефон тут.",
+     "answer": "Телеф+он тут.",
      "cue": "👇 📱",
      "english": "It's here.",
-     "ask": "Где тел+ефон?"
+     "ask": "Где телеф+он?"
     },
     {
      "answer": "Соб+ака тут.",
@@ -207,27 +207,27 @@
    "items": [
     {
      "speaker": "partner",
-     "line": "Где тел+ефон?",
+     "line": "Где телеф+он?",
      "cue": "📱❓",
      "english": "Where is the phone?"
     },
     {
-     "answer": "Тел+ефон тут.",
+     "answer": "Телеф+он тут.",
      "cue": "👇 📱",
      "english": "The phone is here."
     },
     {
      "speaker": "partner",
-     "line": "+Это тел+ефон?",
+     "line": "+Это телеф+он?",
      "cue": "🔑",
      "english": "Is this the phone?"
     },
     {
-     "answer": "Нет, +это не тел+ефон, +это ключ.",
+     "answer": "Нет, +это не телеф+он, +это ключ.",
      "cue": "🔑",
      "english": "No, it's not the phone, it's the key.",
      "distractors": [
-      "Да, +это тел+ефон."
+      "Да, +это телеф+он."
      ]
     }
    ]

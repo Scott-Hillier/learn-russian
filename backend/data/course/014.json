@@ -1,0 +1,284 @@
+{
+ "id": 14,
+ "title": "Я знаю, я понимаю",
+ "goal": "Say what you know and understand: «Я знаю.» «Я не понимаю.»",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 6
+  },
+  {
+   "track": "frames",
+   "type": "teach",
+   "title": "«Я знаю» — I know",
+   "instruction": "With «я» (I), these verbs end in «-ю»: «Я знаю» = I know, «Я понимаю» = I understand. Put «не» in front for “don't”.",
+   "items": [
+    {
+     "answer": "Я зн+аю.",
+     "cue": "🙋 💡",
+     "english": "I know."
+    },
+    {
+     "answer": "Я не зн+аю.",
+     "cue": "🤷",
+     "english": "I don't know."
+    },
+    {
+     "answer": "Я поним+аю.",
+     "cue": "🙋 👍",
+     "english": "I understand."
+    },
+    {
+     "answer": "Я не поним+аю.",
+     "cue": "😕",
+     "english": "I don't understand."
+    }
+   ]
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "Yes or no?",
+   "instruction": "Listen carefully for «не».",
+   "items": [
+    {
+     "audio": "Я зн+аю.",
+     "options": [
+      "💡 I know",
+      "🤷 I don't know"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Я не зн+аю.",
+     "options": [
+      "💡 I know",
+      "🤷 I don't know"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Я не поним+аю.",
+     "options": [
+      "👍 I understand",
+      "😕 I don't understand"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Я поним+аю.",
+     "options": [
+      "👍 I understand",
+      "😕 I don't understand"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Я не зн+аю.",
+     "options": [
+      "💡 I know",
+      "🤷 I don't know"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Я поним+аю.",
+     "options": [
+      "👍 I understand",
+      "😕 I don't understand"
+     ],
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "Do you know?",
+   "instruction": "Answer from the picture: 🤷 = you don't know.",
+   "items": [
+    {
+     "answer": "Я не зн+аю.",
+     "cue": "🛂 🤷",
+     "english": "I don't know.",
+     "ask": "Где п+аспорт?",
+     "distractors": [
+      "Он тут.",
+      "Он там."
+     ]
+    },
+    {
+     "answer": "Он там.",
+     "cue": "👉 🔑",
+     "english": "It's there.",
+     "ask": "Где твой ключ?",
+     "distractors": [
+      "Он тут.",
+      "Я не зн+аю."
+     ]
+    },
+    {
+     "answer": "Я не поним+аю.",
+     "cue": "😕",
+     "english": "Someone says something you don't follow.",
+     "distractors": [
+      "Я поним+аю.",
+      "Я не зн+аю."
+     ]
+    },
+    {
+     "answer": "Я не зн+аю.",
+     "cue": "👩 🤷",
+     "english": "I don't know.",
+     "ask": "Где м+ама?",
+     "distractors": [
+      "Он+а тут.",
+      "Он+а там."
+     ]
+    },
+    {
+     "answer": "Я поним+аю.",
+     "cue": "👍",
+     "english": "You follow what someone said.",
+     "distractors": [
+      "Я не поним+аю.",
+      "Я зн+аю."
+     ]
+    },
+    {
+     "answer": "Он+а тут.",
+     "cue": "👇 🚪",
+     "english": "It's here.",
+     "ask": "Где дверь?",
+     "distractors": [
+      "Он тут.",
+      "Я не зн+аю."
+     ]
+    },
+    {
+     "answer": "Мен+я зов+ут Ив+ан.",
+     "cue": "👨 Иван",
+     "english": "My name is Ivan.",
+     "ask": "Как теб+я зов+ут?",
+     "distractors": [
+      "Мен+я зов+ут +Анна."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "teach",
+   "title": "Numbers 18–19",
+   "instruction": "New numbers. Listen, say it after me, then say it on your own.",
+   "items": [
+    {
+     "answer": "Восемн+адцать.",
+     "cue": "1️⃣8️⃣",
+     "english": "eighteen"
+    },
+    {
+     "answer": "Девятн+адцать.",
+     "cue": "1️⃣9️⃣",
+     "english": "nineteen"
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "«Сколько?»",
+   "instruction": "Count and say the number.",
+   "items": [
+    {
+     "answer": "Восемн+адцать.",
+     "cue": "1️⃣8️⃣ 🍎",
+     "english": "eighteen",
+     "ask": "Ск+олько?"
+    },
+    {
+     "answer": "Чет+ырнадцать.",
+     "cue": "1️⃣4️⃣ 🔑",
+     "english": "fourteen",
+     "ask": "Ск+олько?"
+    },
+    {
+     "answer": "Девятн+адцать.",
+     "cue": "1️⃣9️⃣ 📖",
+     "english": "nineteen",
+     "ask": "Ск+олько?"
+    },
+    {
+     "answer": "Шестн+адцать.",
+     "cue": "1️⃣6️⃣ 🐟",
+     "english": "sixteen",
+     "ask": "Ск+олько?"
+    },
+    {
+     "answer": "Од+иннадцать.",
+     "cue": "🥛🥛🥛🥛🥛🥛🥛🥛🥛🥛🥛",
+     "english": "eleven",
+     "ask": "Ск+олько?"
+    },
+    {
+     "answer": "Семн+адцать.",
+     "cue": "1️⃣7️⃣ 🪑",
+     "english": "seventeen",
+     "ask": "Ск+олько?"
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "Conversation",
+   "instruction": "Your friend is looking for things.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "Где тво+я с+умка?",
+     "cue": "👜❓",
+     "english": "Where is your bag?"
+    },
+    {
+     "answer": "Я не зн+аю.",
+     "cue": "🤷",
+     "english": "I don't know.",
+     "distractors": [
+      "Я зн+аю.",
+      "Он+а тут."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Он+а там!",
+     "cue": "👉 👜",
+     "english": "It's there!"
+    },
+    {
+     "answer": "Спас+ибо!",
+     "cue": "🙏",
+     "english": "Thanks!"
+    },
+    {
+     "speaker": "partner",
+     "line": "Где мой телеф+он?",
+     "cue": "📱❓",
+     "english": "Where is my phone?"
+    },
+    {
+     "answer": "Он тут.",
+     "cue": "👇 📱",
+     "english": "It's here.",
+     "distractors": [
+      "Он там.",
+      "Я не зн+аю."
+     ]
+    }
+   ]
+  }
+ ]
+}

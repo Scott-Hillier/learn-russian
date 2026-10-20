@@ -1,0 +1,349 @@
+{
+ "id": 18,
+ "title": "Я хочу …",
+ "goal": "Say what you want: «Я хочу воду.» Words ending in «-а» change it to «-у».",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 6
+  },
+  {
+   "track": "vocab",
+   "type": "teach",
+   "title": "New words",
+   "instruction": "Listen, say it after me, then say it on your own from the picture.",
+   "items": [
+    {
+     "answer": "чай",
+     "cue": "🍵",
+     "english": "tea"
+    },
+    {
+     "answer": "к+офе",
+     "cue": "☕",
+     "english": "coffee"
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "teach",
+   "title": "«Я хочу …» — I want …",
+   "instruction": "After «хочу» (I want), words ending in «-а» change it to «-у»: вода → «Я хочу воду». Other words stay as they are: «Я хочу чай», «Я хочу молоко».",
+   "items": [
+    {
+     "answer": "Я хоч+у чай.",
+     "cue": "🙋 🍵",
+     "english": "I want tea."
+    },
+    {
+     "answer": "Я хоч+у в+оду.",
+     "cue": "🙋 💧",
+     "english": "I want water.",
+     "distractors": [
+      "Я хоч+у вод+а."
+     ]
+    },
+    {
+     "answer": "Я хоч+у к+офе.",
+     "cue": "🙋 ☕",
+     "english": "I want coffee."
+    },
+    {
+     "answer": "Я хоч+у р+ыбу.",
+     "cue": "🙋 🐟",
+     "english": "I want fish.",
+     "distractors": [
+      "Я хоч+у р+ыба."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "choose",
+   "title": "-а or -у?",
+   "instruction": "After «хочу», «-а» becomes «-у». Pick the right form.",
+   "items": [
+    {
+     "prompt": "Я хоч+у ___.",
+     "cue": "💧",
+     "english": "I want water.",
+     "options": [
+      "вод+а",
+      "в+оду"
+     ],
+     "correct": 1,
+     "audio": "Я хоч+у в+оду."
+    },
+    {
+     "prompt": "Я хоч+у ___.",
+     "cue": "📖",
+     "english": "I want a book.",
+     "options": [
+      "кн+ига",
+      "кн+игу"
+     ],
+     "correct": 1,
+     "audio": "Я хоч+у кн+игу."
+    },
+    {
+     "prompt": "___ тут.",
+     "cue": "👇 🐟",
+     "english": "The fish is here.",
+     "options": [
+      "р+ыба",
+      "р+ыбу"
+     ],
+     "correct": 0,
+     "audio": "Р+ыба тут."
+    },
+    {
+     "prompt": "Я хоч+у ___.",
+     "cue": "🚗",
+     "english": "I want a car.",
+     "options": [
+      "маш+ина",
+      "маш+ину"
+     ],
+     "correct": 1,
+     "audio": "Я хоч+у маш+ину."
+    },
+    {
+     "prompt": "Где ___?",
+     "cue": "👜❓",
+     "english": "Where is the bag?",
+     "options": [
+      "с+умка",
+      "с+умку"
+     ],
+     "correct": 0,
+     "audio": "Где с+умка?"
+    },
+    {
+     "prompt": "Я хоч+у ___.",
+     "cue": "🐈",
+     "english": "I want a cat.",
+     "options": [
+      "к+ошка",
+      "к+ошку"
+     ],
+     "correct": 1,
+     "audio": "Я хоч+у к+ошку."
+    }
+   ]
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "What do they want?",
+   "instruction": "Listen and pick what they want.",
+   "items": [
+    {
+     "audio": "Я хоч+у к+офе.",
+     "options": [
+      "🍵",
+      "☕",
+      "💧"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Я хоч+у в+оду.",
+     "options": [
+      "🍵",
+      "☕",
+      "💧"
+     ],
+     "correct": 2
+    },
+    {
+     "audio": "Я хоч+у чай.",
+     "options": [
+      "🍵",
+      "☕",
+      "💧"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Я хоч+у р+ыбу.",
+     "options": [
+      "🐟",
+      "🍞",
+      "🍎"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Я хоч+у +яблоко.",
+     "options": [
+      "🐟",
+      "🍞",
+      "🍎"
+     ],
+     "correct": 2
+    },
+    {
+     "audio": "Я хоч+у хлеб.",
+     "options": [
+      "🐟",
+      "🍞",
+      "🍎"
+     ],
+     "correct": 1
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "What do you want?",
+   "instruction": "Answer «Что ты хочешь?» (What do you want?) from the picture.",
+   "items": [
+    {
+     "answer": "Я хоч+у в+оду.",
+     "cue": "💧",
+     "english": "I want water.",
+     "ask": "Что ты х+очешь?",
+     "distractors": [
+      "Я хоч+у вод+а."
+     ]
+    },
+    {
+     "answer": "Я хоч+у +яблоко.",
+     "cue": "🍎",
+     "english": "I want an apple.",
+     "ask": "Что ты х+очешь?"
+    },
+    {
+     "answer": "Я хоч+у сок.",
+     "cue": "🧃",
+     "english": "I want juice.",
+     "ask": "Что ты х+очешь?"
+    },
+    {
+     "answer": "Я хоч+у кн+игу.",
+     "cue": "📖",
+     "english": "I want a book.",
+     "ask": "Что ты х+очешь?",
+     "distractors": [
+      "Я хоч+у кн+ига."
+     ]
+    },
+    {
+     "answer": "Я хоч+у р+ыбу.",
+     "cue": "🐟",
+     "english": "I want fish.",
+     "ask": "Что ты х+очешь?",
+     "distractors": [
+      "Я хоч+у р+ыба."
+     ]
+    },
+    {
+     "answer": "Я хоч+у чай.",
+     "cue": "🍵",
+     "english": "I want tea.",
+     "ask": "Что ты х+очешь?"
+    },
+    {
+     "answer": "Я немн+ого говор+ю по-англ+ийски.",
+     "cue": "🙋 🤏 🇬🇧",
+     "english": "I speak a little English.",
+     "ask": "Ты говор+ишь по-англ+ийски?",
+     "distractors": [
+      "Я немн+ого говор+ю по-р+усски."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "«Сколько?»",
+   "instruction": "Count and say the number.",
+   "items": [
+    {
+     "answer": "Шестн+адцать.",
+     "cue": "1️⃣6️⃣ 🍎",
+     "english": "sixteen",
+     "ask": "Ск+олько?"
+    },
+    {
+     "answer": "Дв+адцать.",
+     "cue": "2️⃣0️⃣ 🔑",
+     "english": "twenty",
+     "ask": "Ск+олько?"
+    },
+    {
+     "answer": "Од+иннадцать.",
+     "cue": "📖📖📖📖📖📖📖📖📖📖📖",
+     "english": "eleven",
+     "ask": "Ск+олько?"
+    },
+    {
+     "answer": "Трин+адцать.",
+     "cue": "1️⃣3️⃣ 🐟",
+     "english": "thirteen",
+     "ask": "Ск+олько?"
+    },
+    {
+     "answer": "Семн+адцать.",
+     "cue": "1️⃣7️⃣ 🥛",
+     "english": "seventeen",
+     "ask": "Ск+олько?"
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "Conversation",
+   "instruction": "At a friend's kitchen.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "Прив+ет! Что ты х+очешь?",
+     "cue": "🍵☕",
+     "english": "Hi! What would you like?"
+    },
+    {
+     "answer": "Я хоч+у к+офе, пож+алуйста.",
+     "cue": "☕ 🙏",
+     "english": "I'd like coffee, please.",
+     "distractors": [
+      "Я хоч+у чай, пож+алуйста."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Я т+оже хоч+у к+офе. Ты х+очешь в+оду?",
+     "cue": "💧❓",
+     "english": "I want coffee too. Do you want water?"
+    },
+    {
+     "answer": "Да, я хоч+у в+оду.",
+     "cue": "💧 ✅",
+     "english": "Yes, I want water.",
+     "distractors": [
+      "Да, я хоч+у вод+а."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Пож+алуйста!",
+     "cue": "☕ 💧",
+     "english": "Here you go!"
+    },
+    {
+     "answer": "Спас+ибо!",
+     "cue": "🙏",
+     "english": "Thank you!"
+    }
+   ]
+  }
+ ]
+}

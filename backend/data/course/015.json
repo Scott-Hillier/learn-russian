@@ -1,0 +1,340 @@
+{
+ "id": 15,
+ "title": "Ты знаешь?",
+ "goal": "Ask “do you know / understand?”: «Ты понимаешь?» — «Да, я понимаю.»",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 6
+  },
+  {
+   "track": "frames",
+   "type": "teach",
+   "title": "«Ты знаешь?» — Do you know?",
+   "instruction": "With «ты» (you) the verb ends in «-ешь»: «ты знаешь», «ты понимаешь». A question just rises at the end.",
+   "items": [
+    {
+     "answer": "Ты зн+аешь?",
+     "cue": "❓🫵 💡",
+     "english": "Do you know?"
+    },
+    {
+     "answer": "Ты поним+аешь?",
+     "cue": "❓🫵 👍",
+     "english": "Do you understand?"
+    },
+    {
+     "answer": "Да, я поним+аю.",
+     "cue": "👍",
+     "english": "Yes, I understand.",
+     "ask": "Ты поним+аешь?",
+     "distractors": [
+      "Нет, я не поним+аю."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "choose",
+   "title": "Я or ты?",
+   "instruction": "Pick the form that goes with «я» or «ты».",
+   "items": [
+    {
+     "prompt": "Я ___.",
+     "cue": "🙋 💡",
+     "english": "I know.",
+     "options": [
+      "зн+аю",
+      "зн+аешь"
+     ],
+     "correct": 0,
+     "audio": "Я зн+аю."
+    },
+    {
+     "prompt": "Ты ___?",
+     "cue": "🫵 💡",
+     "english": "Do you know?",
+     "options": [
+      "зн+аю",
+      "зн+аешь"
+     ],
+     "correct": 1,
+     "audio": "Ты зн+аешь?"
+    },
+    {
+     "prompt": "Я ___.",
+     "cue": "🙋 👍",
+     "english": "I understand.",
+     "options": [
+      "поним+аю",
+      "поним+аешь"
+     ],
+     "correct": 0,
+     "audio": "Я поним+аю."
+    },
+    {
+     "prompt": "Ты ___?",
+     "cue": "🫵 👍",
+     "english": "Do you understand?",
+     "options": [
+      "поним+аю",
+      "поним+аешь"
+     ],
+     "correct": 1,
+     "audio": "Ты поним+аешь?"
+    },
+    {
+     "prompt": "Я не ___.",
+     "cue": "🤷",
+     "english": "I don't know.",
+     "options": [
+      "зн+аю",
+      "зн+аешь"
+     ],
+     "correct": 0,
+     "audio": "Я не зн+аю."
+    },
+    {
+     "prompt": "Я не ___.",
+     "cue": "😕",
+     "english": "I don't understand.",
+     "options": [
+      "поним+аю",
+      "поним+аешь"
+     ],
+     "correct": 0,
+     "audio": "Я не поним+аю."
+    }
+   ]
+  },
+  {
+   "track": "vocab",
+   "type": "teach",
+   "title": "New words",
+   "instruction": "Two phrases you'll use a lot. Listen, say it after me, then say it on your own.",
+   "items": [
+    {
+     "answer": "Ещё раз, пож+алуйста.",
+     "cue": "🔁 🙏",
+     "english": "Once more, please."
+    },
+    {
+     "answer": "Хорош+о.",
+     "cue": "👌",
+     "english": "OK. / Good."
+    }
+   ]
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "Asking or telling?",
+   "instruction": "Is someone asking you (🫵) or talking about themselves (🙋)?",
+   "items": [
+    {
+     "audio": "Ты зн+аешь?",
+     "options": [
+      "❓🫵 asking you",
+      "🙋 about me"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Я зн+аю.",
+     "options": [
+      "❓🫵 asking you",
+      "🙋 about me"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Ты поним+аешь?",
+     "options": [
+      "❓🫵 asking you",
+      "🙋 about me"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Я не поним+аю.",
+     "options": [
+      "❓🫵 asking you",
+      "🙋 about me"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Я поним+аю.",
+     "options": [
+      "❓🫵 asking you",
+      "🙋 about me"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Ты зн+аешь?",
+     "options": [
+      "❓🫵 asking you",
+      "🙋 about me"
+     ],
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "Ask and answer",
+   "instruction": "Answer the question, or ask one, from the picture.",
+   "items": [
+    {
+     "answer": "Ты зн+аешь?",
+     "cue": "❓🫵 💡",
+     "english": "Ask: Do you know?",
+     "distractors": [
+      "Я зн+аю."
+     ]
+    },
+    {
+     "answer": "Нет, я не зн+аю.",
+     "cue": "🤷",
+     "english": "No, I don't know.",
+     "ask": "Ты зн+аешь?",
+     "distractors": [
+      "Да, я зн+аю."
+     ]
+    },
+    {
+     "answer": "Нет, я не поним+аю.",
+     "cue": "😕",
+     "english": "No, I don't understand.",
+     "ask": "Ты поним+аешь?",
+     "distractors": [
+      "Да, я поним+аю."
+     ]
+    },
+    {
+     "answer": "Ещё раз, пож+алуйста.",
+     "cue": "😕 🔁",
+     "english": "You didn't catch that. Ask to hear it again."
+    },
+    {
+     "answer": "Да, я поним+аю.",
+     "cue": "👍",
+     "english": "Yes, I understand.",
+     "ask": "Ты поним+аешь?",
+     "distractors": [
+      "Нет, я не поним+аю."
+     ]
+    },
+    {
+     "answer": "Хорош+о.",
+     "cue": "👌",
+     "english": "Someone suggests a plan. Agree."
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "teach",
+   "title": "Number 20",
+   "instruction": "Twenty. Listen, say it after me, then say it on your own.",
+   "items": [
+    {
+     "answer": "Дв+адцать.",
+     "cue": "2️⃣0️⃣",
+     "english": "twenty"
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "«Сколько?»",
+   "instruction": "Count and say the number.",
+   "items": [
+    {
+     "answer": "Дв+адцать.",
+     "cue": "2️⃣0️⃣ 🍎",
+     "english": "twenty",
+     "ask": "Ск+олько?"
+    },
+    {
+     "answer": "Пятн+адцать.",
+     "cue": "1️⃣5️⃣ 🔑",
+     "english": "fifteen",
+     "ask": "Ск+олько?"
+    },
+    {
+     "answer": "Восемн+адцать.",
+     "cue": "1️⃣8️⃣ 📖",
+     "english": "eighteen",
+     "ask": "Ск+олько?"
+    },
+    {
+     "answer": "Двен+адцать.",
+     "cue": "🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟",
+     "english": "twelve",
+     "ask": "Ск+олько?"
+    },
+    {
+     "answer": "Девятн+адцать.",
+     "cue": "1️⃣9️⃣ 🥛",
+     "english": "nineteen",
+     "ask": "Ск+олько?"
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "Conversation",
+   "instruction": "You are Анна 👩. A new friend talks a bit fast.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "Как теб+я зов+ут?",
+     "cue": "👨",
+     "english": "What's your name?"
+    },
+    {
+     "answer": "Мен+я зов+ут +Анна.",
+     "cue": "👩 Анна",
+     "english": "My name is Anna.",
+     "distractors": [
+      "Мен+я зов+ут Ив+ан."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Ты поним+аешь?",
+     "cue": "👨❓",
+     "english": "Do you understand?"
+    },
+    {
+     "answer": "Нет, я не поним+аю. Ещё раз, пож+алуйста.",
+     "cue": "😕 🔁",
+     "english": "No, I don't understand. Once more, please.",
+     "distractors": [
+      "Да, я поним+аю."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Мен+я зов+ут Ив+ан.",
+     "cue": "👨 Иван",
+     "english": "My name is Ivan."
+    },
+    {
+     "answer": "Хорош+о. Спас+ибо!",
+     "cue": "👌 🙏",
+     "english": "OK. Thanks!"
+    }
+   ]
+  }
+ ]
+}

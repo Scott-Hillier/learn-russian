@@ -1,0 +1,289 @@
+{
+ "id": 13,
+ "title": "Меня зовут …",
+ "goal": "Say your name and ask someone theirs: «Как тебя зовут?» — «Меня зовут Анна.»",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 6
+  },
+  {
+   "track": "frames",
+   "type": "teach",
+   "title": "«Меня зовут …» — My name is …",
+   "instruction": "Russians say «Меня зовут …», literally “me they call …”. In these lessons you play Анна 👩 or Иван 👨: say the name shown.",
+   "items": [
+    {
+     "answer": "Мен+я зов+ут +Анна.",
+     "cue": "👩 Анна",
+     "english": "My name is Anna.",
+     "distractors": [
+      "Мне зов+ут +Анна."
+     ]
+    },
+    {
+     "answer": "Мен+я зов+ут Ив+ан.",
+     "cue": "👨 Иван",
+     "english": "My name is Ivan.",
+     "distractors": [
+      "Мне зов+ут Ив+ан."
+     ]
+    },
+    {
+     "answer": "Как теб+я зов+ут?",
+     "cue": "❓🫵",
+     "english": "What's your name?"
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "teach",
+   "title": "«Я» and «ты» — I and you",
+   "instruction": "«Я» = I, «ты» = you (a friend). Russian has no “am / are” here: «Я Анна.» = I'm Anna.",
+   "items": [
+    {
+     "answer": "Я +Анна.",
+     "cue": "🙋 👩 Анна",
+     "english": "I'm Anna."
+    },
+    {
+     "answer": "Ты Ив+ан?",
+     "cue": "🫵 👨 Иван ❓",
+     "english": "Are you Ivan?"
+    },
+    {
+     "answer": "Нет, я не Ив+ан.",
+     "cue": "🙋 👩 Анна",
+     "english": "No, I'm not Ivan.",
+     "ask": "Ты Ив+ан?",
+     "distractors": [
+      "Да, я Ив+ан."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "Who is it?",
+   "instruction": "Listen and pick who is speaking, or what is happening.",
+   "items": [
+    {
+     "audio": "Мен+я зов+ут Ив+ан.",
+     "options": [
+      "👩 Анна",
+      "👨 Иван"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Я +Анна.",
+     "options": [
+      "👩 Анна",
+      "👨 Иван"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Как теб+я зов+ут?",
+     "options": [
+      "❓ asking a name",
+      "🙋 saying a name"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Мен+я зов+ут +Анна.",
+     "options": [
+      "👩 Анна",
+      "👨 Иван"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Мен+я зов+ут +Анна.",
+     "options": [
+      "❓ asking a name",
+      "🙋 saying a name"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Я Ив+ан.",
+     "options": [
+      "👩 Анна",
+      "👨 Иван"
+     ],
+     "correct": 1
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "Introduce yourself",
+   "instruction": "Answer as the person shown.",
+   "items": [
+    {
+     "answer": "Мен+я зов+ут +Анна.",
+     "cue": "👩 Анна",
+     "english": "My name is Anna.",
+     "ask": "Как теб+я зов+ут?",
+     "distractors": [
+      "Мен+я зов+ут Ив+ан.",
+      "Мне зов+ут +Анна."
+     ]
+    },
+    {
+     "answer": "Да, я Ив+ан.",
+     "cue": "👨 Иван",
+     "english": "Yes, I'm Ivan.",
+     "ask": "Ты Ив+ан?",
+     "distractors": [
+      "Нет, я не Ив+ан."
+     ]
+    },
+    {
+     "answer": "Нет, я не +Анна.",
+     "cue": "👨 Иван",
+     "english": "No, I'm not Anna.",
+     "ask": "Ты +Анна?",
+     "distractors": [
+      "Да, я +Анна."
+     ]
+    },
+    {
+     "answer": "Мен+я зов+ут Ив+ан.",
+     "cue": "👨 Иван",
+     "english": "My name is Ivan.",
+     "ask": "Как теб+я зов+ут?",
+     "distractors": [
+      "Мен+я зов+ут +Анна.",
+      "Мне зов+ут Ив+ан."
+     ]
+    },
+    {
+     "answer": "Как теб+я зов+ут?",
+     "cue": "❓🫵",
+     "english": "Ask: What's your name?"
+    },
+    {
+     "answer": "Да, я +Анна.",
+     "cue": "👩 Анна",
+     "english": "Yes, I'm Anna.",
+     "ask": "Ты +Анна?",
+     "distractors": [
+      "Нет, я не +Анна."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "teach",
+   "title": "Numbers 16–17",
+   "instruction": "New numbers. Listen, say it after me, then say it on your own.",
+   "items": [
+    {
+     "answer": "Шестн+адцать.",
+     "cue": "1️⃣6️⃣",
+     "english": "sixteen"
+    },
+    {
+     "answer": "Семн+адцать.",
+     "cue": "1️⃣7️⃣",
+     "english": "seventeen"
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "«Сколько?»",
+   "instruction": "Count and say the number.",
+   "items": [
+    {
+     "answer": "Шестн+адцать.",
+     "cue": "1️⃣6️⃣ 🍎",
+     "english": "sixteen",
+     "ask": "Ск+олько?"
+    },
+    {
+     "answer": "Трин+адцать.",
+     "cue": "1️⃣3️⃣ 🔑",
+     "english": "thirteen",
+     "ask": "Ск+олько?"
+    },
+    {
+     "answer": "Семн+адцать.",
+     "cue": "1️⃣7️⃣ 📖",
+     "english": "seventeen",
+     "ask": "Ск+олько?"
+    },
+    {
+     "answer": "Пятн+адцать.",
+     "cue": "1️⃣5️⃣ 🐟",
+     "english": "fifteen",
+     "ask": "Ск+олько?"
+    },
+    {
+     "answer": "Двен+адцать.",
+     "cue": "🥛🥛🥛🥛🥛🥛🥛🥛🥛🥛🥛🥛",
+     "english": "twelve",
+     "ask": "Ск+олько?"
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "Conversation",
+   "instruction": "You are Анна 👩. Someone says hello.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "Прив+ет!",
+     "cue": "👨",
+     "english": "Hi!"
+    },
+    {
+     "answer": "Прив+ет! Как теб+я зов+ут?",
+     "cue": "👋 ❓🫵",
+     "english": "Hi! What's your name?"
+    },
+    {
+     "speaker": "partner",
+     "line": "Мен+я зов+ут Ив+ан.",
+     "cue": "👨 Иван",
+     "english": "My name is Ivan."
+    },
+    {
+     "answer": "Мен+я зов+ут +Анна.",
+     "cue": "👩 Анна",
+     "english": "My name is Anna.",
+     "distractors": [
+      "Мен+я зов+ут Ив+ан."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "+Это твой телеф+он?",
+     "cue": "📱",
+     "english": "Is this your phone?"
+    },
+    {
+     "answer": "Да, +это мой телеф+он. Спас+ибо!",
+     "cue": "📱 🙋 🙏",
+     "english": "Yes, it's my phone. Thanks!",
+     "distractors": [
+      "Нет, +это не мой телеф+он."
+     ]
+    }
+   ]
+  }
+ ]
+}

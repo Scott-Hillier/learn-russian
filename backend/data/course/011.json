@@ -1,0 +1,349 @@
+{
+ "id": 11,
+ "title": "Твой / твоя / твоё",
+ "goal": "Say “your”: «Это твой телефон?» — «Да, это мой телефон.»",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 6
+  },
+  {
+   "track": "frames",
+   "type": "teach",
+   "title": "«Твой, твоя, твоё» — your",
+   "instruction": "«Твой» (your) works just like «мой»: он-words → «твой», она-words → «твоя», оно-words → «твоё». 🫵 = yours.",
+   "items": [
+    {
+     "answer": "+Это твой ключ.",
+     "cue": "🔑 🫵",
+     "english": "This is your key.",
+     "ask": "Что +это?"
+    },
+    {
+     "answer": "+Это тво+я с+умка.",
+     "cue": "👜 🫵",
+     "english": "This is your bag.",
+     "ask": "Что +это?"
+    },
+    {
+     "answer": "+Это твоё +яблоко.",
+     "cue": "🍎 🫵",
+     "english": "This is your apple.",
+     "ask": "Что +это?"
+    }
+   ]
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "Mine or yours?",
+   "instruction": "Listen: is it «мой» (mine 🙋) or «твой» (yours 🫵)?",
+   "items": [
+    {
+     "audio": "+Это мой телеф+он.",
+     "options": [
+      "🙋 mine",
+      "🫵 yours"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "+Это тво+я кн+ига.",
+     "options": [
+      "🙋 mine",
+      "🫵 yours"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "+Это мо+я с+умка.",
+     "options": [
+      "🙋 mine",
+      "🫵 yours"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "+Это твой брат.",
+     "options": [
+      "🙋 mine",
+      "🫵 yours"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "+Это твоё окн+о.",
+     "options": [
+      "🙋 mine",
+      "🫵 yours"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "+Это моё молок+о.",
+     "options": [
+      "🙋 mine",
+      "🫵 yours"
+     ],
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "choose",
+   "title": "Choose «your»",
+   "instruction": "Pick «твой», «твоя» or «твоё» for each word.",
+   "items": [
+    {
+     "prompt": "___ стул",
+     "cue": "🪑 🫵",
+     "english": "your chair",
+     "options": [
+      "твой",
+      "тво+я",
+      "твоё"
+     ],
+     "correct": 0,
+     "audio": "Твой стул."
+    },
+    {
+     "prompt": "___ маш+ина",
+     "cue": "🚗 🫵",
+     "english": "your car",
+     "options": [
+      "твой",
+      "тво+я",
+      "твоё"
+     ],
+     "correct": 1,
+     "audio": "Тво+я маш+ина."
+    },
+    {
+     "prompt": "___ молок+о",
+     "cue": "🥛 🫵",
+     "english": "your milk",
+     "options": [
+      "твой",
+      "тво+я",
+      "твоё"
+     ],
+     "correct": 2,
+     "audio": "Твоё молок+о."
+    },
+    {
+     "prompt": "___ сестр+а",
+     "cue": "👧 🫵",
+     "english": "your sister",
+     "options": [
+      "твой",
+      "тво+я",
+      "твоё"
+     ],
+     "correct": 1,
+     "audio": "Тво+я сестр+а."
+    },
+    {
+     "prompt": "___ друг",
+     "cue": "🧑‍🤝‍🧑 🫵",
+     "english": "your friend",
+     "options": [
+      "твой",
+      "тво+я",
+      "твоё"
+     ],
+     "correct": 0,
+     "audio": "Твой друг."
+    },
+    {
+     "prompt": "___ окн+о",
+     "cue": "🪟 🫵",
+     "english": "your window",
+     "options": [
+      "твой",
+      "тво+я",
+      "твоё"
+     ],
+     "correct": 2,
+     "audio": "Твоё окн+о."
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "Is this yours?",
+   "instruction": "Your friend asks if something is yours. 🙋 = yes, it's mine. ❌🙋 = no, it's not mine.",
+   "items": [
+    {
+     "answer": "Да, +это мой телеф+он.",
+     "cue": "📱 🙋",
+     "english": "Yes, it's my phone.",
+     "ask": "+Это твой телеф+он?",
+     "distractors": [
+      "Да, +это твой телеф+он.",
+      "Нет, +это не мой телеф+он."
+     ]
+    },
+    {
+     "answer": "Да, +это мо+я с+умка.",
+     "cue": "👜 🙋",
+     "english": "Yes, it's my bag.",
+     "ask": "+Это тво+я с+умка?",
+     "distractors": [
+      "Да, +это тво+я с+умка.",
+      "Нет, +это не мо+я с+умка."
+     ]
+    },
+    {
+     "answer": "Нет, +это не мой ключ.",
+     "cue": "🔑 ❌🙋",
+     "english": "No, it's not my key.",
+     "ask": "+Это твой ключ?",
+     "distractors": [
+      "Да, +это мой ключ."
+     ]
+    },
+    {
+     "answer": "Да, +это моё +яблоко.",
+     "cue": "🍎 🙋",
+     "english": "Yes, it's my apple.",
+     "ask": "+Это твоё +яблоко?",
+     "distractors": [
+      "Да, +это твоё +яблоко.",
+      "Нет, +это не моё +яблоко."
+     ]
+    },
+    {
+     "answer": "Нет, +это не мо+я маш+ина.",
+     "cue": "🚗 ❌🙋",
+     "english": "No, it's not my car.",
+     "ask": "+Это тво+я маш+ина?",
+     "distractors": [
+      "Да, +это мо+я маш+ина."
+     ]
+    },
+    {
+     "answer": "Да, +это мой п+аспорт.",
+     "cue": "🛂 🙋",
+     "english": "Yes, it's my passport.",
+     "ask": "+Это твой п+аспорт?",
+     "distractors": [
+      "Да, +это твой п+аспорт.",
+      "Нет, +это не мой п+аспорт."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "teach",
+   "title": "Numbers 11–12",
+   "instruction": "Eleven and twelve. «-надцать» means “-teen”: «одиннадцать» is “one-on-ten”.",
+   "items": [
+    {
+     "answer": "Од+иннадцать.",
+     "cue": "1️⃣1️⃣",
+     "english": "eleven"
+    },
+    {
+     "answer": "Двен+адцать.",
+     "cue": "1️⃣2️⃣",
+     "english": "twelve"
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "«Сколько?»",
+   "instruction": "Count and say the number.",
+   "items": [
+    {
+     "answer": "Од+иннадцать.",
+     "cue": "🍎🍎🍎🍎🍎🍎🍎🍎🍎🍎🍎",
+     "english": "eleven",
+     "ask": "Ск+олько?"
+    },
+    {
+     "answer": "Семь.",
+     "cue": "🔑🔑🔑🔑🔑🔑🔑",
+     "english": "seven",
+     "ask": "Ск+олько?"
+    },
+    {
+     "answer": "Двен+адцать.",
+     "cue": "📖📖📖📖📖📖📖📖📖📖📖📖",
+     "english": "twelve",
+     "ask": "Ск+олько?"
+    },
+    {
+     "answer": "Д+есять.",
+     "cue": "🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟",
+     "english": "ten",
+     "ask": "Ск+олько?"
+    },
+    {
+     "answer": "Од+иннадцать.",
+     "cue": "🥛🥛🥛🥛🥛🥛🥛🥛🥛🥛🥛",
+     "english": "eleven",
+     "ask": "Ск+олько?"
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "Conversation",
+   "instruction": "Your friend is tidying up and finds some things.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "+Это твой телеф+он?",
+     "cue": "📱",
+     "english": "Is this your phone?"
+    },
+    {
+     "answer": "Да, +это мой телеф+он.",
+     "cue": "📱 🙋",
+     "english": "Yes, it's my phone.",
+     "distractors": [
+      "Нет, +это не мой телеф+он."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "+Это тво+я с+умка?",
+     "cue": "👜",
+     "english": "Is this your bag?"
+    },
+    {
+     "answer": "Нет, +это не мо+я с+умка.",
+     "cue": "👜 ❌🙋",
+     "english": "No, it's not my bag.",
+     "distractors": [
+      "Да, +это мо+я с+умка."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Где твой ключ?",
+     "cue": "🔑❓",
+     "english": "Where is your key?"
+    },
+    {
+     "answer": "Он тут.",
+     "cue": "👇 🔑",
+     "english": "It's here.",
+     "distractors": [
+      "Он там.",
+      "Он+а тут."
+     ]
+    }
+   ]
+  }
+ ]
+}

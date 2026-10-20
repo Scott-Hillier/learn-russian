@@ -1,0 +1,389 @@
+{
+ "id": 12,
+ "title": "Папа, дверь",
+ "goal": "Some words don't follow the ending: «папа» is он, «дверь» is она.",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 6
+  },
+  {
+   "track": "vocab",
+   "type": "teach",
+   "title": "New words",
+   "instruction": "Listen, say it after me, then say it on your own from the picture.",
+   "items": [
+    {
+     "answer": "п+апа",
+     "cue": "👨",
+     "english": "dad"
+    },
+    {
+     "answer": "дверь",
+     "cue": "🚪",
+     "english": "door"
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "teach",
+   "title": "«Папа» is он, «дверь» is она",
+   "instruction": "A few words break the pattern, so learn them with он or она. «Папа» ends in «-а», but he's a man: он, мой папа. «Дверь» ends in «-ь» and is она: моя дверь.",
+   "items": [
+    {
+     "answer": "Он тут.",
+     "cue": "👇 👨",
+     "english": "He's here.",
+     "ask": "Где п+апа?",
+     "distractors": [
+      "Он+а тут."
+     ]
+    },
+    {
+     "answer": "Он+а там.",
+     "cue": "👉 🚪",
+     "english": "It's there.",
+     "ask": "Где дверь?",
+     "distractors": [
+      "Он там."
+     ]
+    },
+    {
+     "answer": "+Это мой п+апа.",
+     "cue": "👨 🙋",
+     "english": "This is my dad.",
+     "ask": "Кто +это?"
+    },
+    {
+     "answer": "+Это мо+я дверь.",
+     "cue": "🚪 🙋",
+     "english": "This is my door.",
+     "ask": "Что +это?"
+    }
+   ]
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "Он, она or оно?",
+   "instruction": "Listen to the word and pick the right one.",
+   "items": [
+    {
+     "audio": "п+апа",
+     "options": [
+      "он",
+      "он+а",
+      "он+о"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "дверь",
+     "options": [
+      "он",
+      "он+а",
+      "он+о"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "м+ама",
+     "options": [
+      "он",
+      "он+а",
+      "он+о"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "+яблоко",
+     "options": [
+      "он",
+      "он+а",
+      "он+о"
+     ],
+     "correct": 2
+    },
+    {
+     "audio": "друг",
+     "options": [
+      "он",
+      "он+а",
+      "он+о"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "сестр+а",
+     "options": [
+      "он",
+      "он+а",
+      "он+о"
+     ],
+     "correct": 1
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "choose",
+   "title": "Мой or моя?",
+   "instruction": "Pick the right form for each word. Watch out for папа and дверь!",
+   "items": [
+    {
+     "prompt": "___ п+апа",
+     "cue": "👨 🙋",
+     "english": "my dad",
+     "options": [
+      "мой",
+      "мо+я",
+      "моё"
+     ],
+     "correct": 0,
+     "audio": "Мой п+апа."
+    },
+    {
+     "prompt": "___ дверь",
+     "cue": "🚪 🙋",
+     "english": "my door",
+     "options": [
+      "мой",
+      "мо+я",
+      "моё"
+     ],
+     "correct": 1,
+     "audio": "Мо+я дверь."
+    },
+    {
+     "prompt": "___ м+ама",
+     "cue": "👩 🙋",
+     "english": "my mum",
+     "options": [
+      "мой",
+      "мо+я",
+      "моё"
+     ],
+     "correct": 1,
+     "audio": "Мо+я м+ама."
+    },
+    {
+     "prompt": "___ п+апа",
+     "cue": "👨 🫵",
+     "english": "your dad",
+     "options": [
+      "твой",
+      "тво+я",
+      "твоё"
+     ],
+     "correct": 0,
+     "audio": "Твой п+апа."
+    },
+    {
+     "prompt": "___ дверь",
+     "cue": "🚪 🫵",
+     "english": "your door",
+     "options": [
+      "твой",
+      "тво+я",
+      "твоё"
+     ],
+     "correct": 1,
+     "audio": "Тво+я дверь."
+    },
+    {
+     "prompt": "___ брат",
+     "cue": "👦 🙋",
+     "english": "my brother",
+     "options": [
+      "мой",
+      "мо+я",
+      "моё"
+     ],
+     "correct": 0,
+     "audio": "Мой брат."
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "Where is it?",
+   "instruction": "Answer with «Он», «Она» or «Оно», and «тут» (👇) or «там» (👉).",
+   "items": [
+    {
+     "answer": "Он там.",
+     "cue": "👉 👨",
+     "english": "He's there.",
+     "ask": "Где п+апа?",
+     "distractors": [
+      "Он+а там.",
+      "Он тут."
+     ]
+    },
+    {
+     "answer": "Он+а тут.",
+     "cue": "👇 🚪",
+     "english": "It's here.",
+     "ask": "Где дверь?",
+     "distractors": [
+      "Он тут.",
+      "Он+а там."
+     ]
+    },
+    {
+     "answer": "Он+а там.",
+     "cue": "👉 👩",
+     "english": "She's there.",
+     "ask": "Где м+ама?",
+     "distractors": [
+      "Он там.",
+      "Он+а тут."
+     ]
+    },
+    {
+     "answer": "Он+о тут.",
+     "cue": "👇 🍎",
+     "english": "It's here.",
+     "ask": "Где +яблоко?",
+     "distractors": [
+      "Он+а тут.",
+      "Он тут."
+     ]
+    },
+    {
+     "answer": "Он тут.",
+     "cue": "👇 👨",
+     "english": "He's here.",
+     "ask": "Где твой п+апа?",
+     "distractors": [
+      "Он+а тут.",
+      "Он там."
+     ]
+    },
+    {
+     "answer": "+Это тво+я дверь.",
+     "cue": "🚪 🫵",
+     "english": "This is your door.",
+     "ask": "Что +это?",
+     "distractors": [
+      "+Это мо+я дверь."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "teach",
+   "title": "Numbers 13–15",
+   "instruction": "New numbers. Listen, say it after me, then say it on your own.",
+   "items": [
+    {
+     "answer": "Трин+адцать.",
+     "cue": "1️⃣3️⃣",
+     "english": "thirteen"
+    },
+    {
+     "answer": "Чет+ырнадцать.",
+     "cue": "1️⃣4️⃣",
+     "english": "fourteen"
+    },
+    {
+     "answer": "Пятн+адцать.",
+     "cue": "1️⃣5️⃣",
+     "english": "fifteen"
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "«Сколько?»",
+   "instruction": "Count and say the number.",
+   "items": [
+    {
+     "answer": "Трин+адцать.",
+     "cue": "1️⃣3️⃣ 🍎",
+     "english": "thirteen",
+     "ask": "Ск+олько?"
+    },
+    {
+     "answer": "Пятн+адцать.",
+     "cue": "1️⃣5️⃣ 📖",
+     "english": "fifteen",
+     "ask": "Ск+олько?"
+    },
+    {
+     "answer": "Двен+адцать.",
+     "cue": "🔑🔑🔑🔑🔑🔑🔑🔑🔑🔑🔑🔑",
+     "english": "twelve",
+     "ask": "Ск+олько?"
+    },
+    {
+     "answer": "Чет+ырнадцать.",
+     "cue": "1️⃣4️⃣ 🐟",
+     "english": "fourteen",
+     "ask": "Ск+олько?"
+    },
+    {
+     "answer": "Од+иннадцать.",
+     "cue": "🥛🥛🥛🥛🥛🥛🥛🥛🥛🥛🥛",
+     "english": "eleven",
+     "ask": "Ск+олько?"
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "Conversation",
+   "instruction": "Your friend is looking at your family photos.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "Кто +это?",
+     "cue": "👨",
+     "english": "Who is this?"
+    },
+    {
+     "answer": "+Это мой п+апа.",
+     "cue": "👨 🙋",
+     "english": "This is my dad."
+    },
+    {
+     "speaker": "partner",
+     "line": "Где твой п+апа?",
+     "cue": "👨❓",
+     "english": "Where is your dad?"
+    },
+    {
+     "answer": "Он там.",
+     "cue": "👉 👨",
+     "english": "He's there.",
+     "distractors": [
+      "Он+а там.",
+      "Он тут."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Где дверь?",
+     "cue": "🚪❓",
+     "english": "Where is the door?"
+    },
+    {
+     "answer": "Он+а тут.",
+     "cue": "👇 🚪",
+     "english": "It's here.",
+     "distractors": [
+      "Он тут.",
+      "Он+а там."
+     ]
+    }
+   ]
+  }
+ ]
+}

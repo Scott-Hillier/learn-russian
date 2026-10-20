@@ -215,16 +215,16 @@
     },
     {
      "speaker": "partner",
-     "line": "+Это тел+ефон?",
+     "line": "+Это телеф+он?",
      "cue": "📖",
      "english": "Is this a phone?"
     },
     {
-     "answer": "Нет, +это не тел+ефон, +это кн+ига.",
+     "answer": "Нет, +это не телеф+он, +это кн+ига.",
      "cue": "📖",
      "english": "No, it's not a phone, it's a book.",
      "distractors": [
-      "Да, +это тел+ефон."
+      "Да, +это телеф+он."
      ]
     },
     {
