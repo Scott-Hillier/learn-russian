@@ -1,0 +1,281 @@
+{
+ "id": 45,
+ "title": "Что ты делал вчера?",
+ "goal": "Put unit 9 together: what you did and where you were, and «с».",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 8
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "What did you hear?",
+   "instruction": "Listen and pick what it means.",
+   "items": [
+    {
+     "audio": "Вчер+а я был+а в кин+о.",
+     "options": [
+      "👩 Анна ⬅️📅 🎬",
+      "👨 Иван ⬅️📅 🎬",
+      "👩 Анна 📅 🎬"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Мы б+ыли в Л+ондоне.",
+     "options": [
+      "🙋‍♀️🙋‍♂️ ⬅️📅 🏙️🇬🇧",
+      "🙋‍♀️🙋‍♂️ 📅 🏙️🇬🇧",
+      "👥 ⬅️📅 🏙️🇬🇧"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "К+офе с с+ахаром.",
+     "options": [
+      "☕ ➕ 🍬",
+      "☕ ➕ 🥛",
+      "🍵 ➕ 🍬"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Он в+идел соб+аку.",
+     "options": [
+      "👨 ⬅️📅 👀 🐕",
+      "👨 📅 👀 🐕",
+      "👩 ⬅️📅 👀 🐕"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Я ид+у в каф+е с м+амой.",
+     "options": [
+      "🚶 ☕🍰 ➕ 👩",
+      "🚶 ☕🍰 ➕ 👨",
+      "🚶 🎬 ➕ 👩"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Он+и ж+или в Москв+е.",
+     "options": [
+      "👥 ⬅️📅 🏙️🇷🇺",
+      "👥 📅 🏙️🇷🇺",
+      "🙋‍♀️🙋‍♂️ ⬅️📅 🏙️🇷🇺"
+     ],
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "choose",
+   "title": "Which form?",
+   "instruction": "Pick the right form.",
+   "items": [
+    {
+     "prompt": "Вчер+а он+а ___ д+ома.",
+     "cue": "👩 ⬅️📅 🏠",
+     "english": "Yesterday she was at home.",
+     "options": [
+      "был",
+      "был+а",
+      "б+ыли"
+     ],
+     "correct": 1,
+     "audio": "Вчер+а он+а был+а д+ома."
+    },
+    {
+     "prompt": "Мы ___ в Москв+е.",
+     "cue": "🙋‍♀️🙋‍♂️ ⬅️📅 🏙️🇷🇺",
+     "english": "We lived in Moscow.",
+     "options": [
+      "жил",
+      "жил+а",
+      "ж+или"
+     ],
+     "correct": 2,
+     "audio": "Мы ж+или в Москв+е."
+    },
+    {
+     "prompt": "Чай с ___.",
+     "cue": "🍵 ➕ 🍬",
+     "english": "Tea with sugar.",
+     "options": [
+      "с+ахар",
+      "с+ахаром"
+     ],
+     "correct": 1,
+     "audio": "Чай с с+ахаром."
+    },
+    {
+     "prompt": "Я ид+у в кин+о с ___.",
+     "cue": "🚶 🎬 ➕ 👧",
+     "english": "I'm going to the cinema with my sister.",
+     "options": [
+      "сестр+а",
+      "сестр+ой",
+      "сестр+у"
+     ],
+     "correct": 1,
+     "audio": "Я ид+у в кин+о с сестр+ой."
+    },
+    {
+     "prompt": "Я в+ижу ___.",
+     "cue": "👀 👧",
+     "english": "I see my sister.",
+     "options": [
+      "сестр+а",
+      "сестр+ой",
+      "сестр+у"
+     ],
+     "correct": 2,
+     "audio": "Я в+ижу сестр+у."
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "Say it",
+   "instruction": "Say it as the person shown.",
+   "items": [
+    {
+     "answer": "Вчер+а я был д+ома.",
+     "cue": "👨 Иван ⬅️📅 🏠",
+     "english": "Yesterday I was at home.",
+     "ask": "Где ты был вчер+а?",
+     "distractors": [
+      "Вчер+а я был+а д+ома."
+     ]
+    },
+    {
+     "answer": "Я жил+а в Москв+е.",
+     "cue": "👩 Анна ⬅️📅 🏙️🇷🇺",
+     "english": "I lived in Moscow.",
+     "ask": "Где ты жил+а?",
+     "distractors": [
+      "Я жил в Москв+е.",
+      "Я жив+у в Москв+е."
+     ]
+    },
+    {
+     "answer": "Мы б+ыли в каф+е.",
+     "cue": "🙋‍♀️🙋‍♂️ ⬅️📅 ☕🍰",
+     "english": "We were at a café.",
+     "ask": "Где вы б+ыли?",
+     "distractors": [
+      "Мы б+ыли в кин+о."
+     ]
+    },
+    {
+     "answer": "К+офе с молок+ом, пож+алуйста.",
+     "cue": "☕ ➕ 🥛 🙏",
+     "english": "Coffee with milk, please.",
+     "ask": "Что вы х+отите?"
+    },
+    {
+     "answer": "Я в+идела к+ошку.",
+     "cue": "👩 Анна ⬅️📅 👀 🐈",
+     "english": "I saw a cat.",
+     "ask": "Что ты в+идела?"
+    },
+    {
+     "answer": "Он+а живёт с бр+атом.",
+     "cue": "👧 🏠 ➕ 👦",
+     "english": "She lives with her brother.",
+     "distractors": [
+      "Он+а живёт с сестр+ой."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "Monday",
+   "instruction": "You are Анна 👩. A colleague asks about your weekend.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "Прив+ет! Что ты д+елала в субб+оту?",
+     "cue": "❓📅 Sat",
+     "english": "Hi! What did you do on Saturday?"
+    },
+    {
+     "answer": "Я был+а в кин+о с бр+атом.",
+     "cue": "🎬 ➕ 👦",
+     "english": "I was at the cinema with my brother.",
+     "distractors": [
+      "Я был в кин+о с бр+атом."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Теб+е нр+авится кин+о?",
+     "cue": "❓🎬",
+     "english": "Do you like the cinema?"
+    },
+    {
+     "answer": "Да, +очень. А ты? Где ты был?",
+     "cue": "✅ ❓🫵",
+     "english": "Yes, a lot. And you? Where were you?"
+    },
+    {
+     "speaker": "partner",
+     "line": "Я был д+ома.",
+     "cue": "🏠",
+     "english": "I was at home."
+    },
+    {
+     "answer": "Хорош+о!",
+     "cue": "👌",
+     "english": "Nice!"
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "Numbers to 100",
+   "instruction": "Say the number.",
+   "items": [
+    {
+     "answer": "Сто.",
+     "cue": "1️⃣0️⃣0️⃣",
+     "english": "a hundred"
+    },
+    {
+     "answer": "Дв+адцать д+евять.",
+     "cue": "2️⃣9️⃣",
+     "english": "twenty-nine"
+    },
+    {
+     "answer": "Шестьдес+ят чет+ыре.",
+     "cue": "6️⃣4️⃣",
+     "english": "sixty-four"
+    },
+    {
+     "answer": "В+осемьдесят семь.",
+     "cue": "8️⃣7️⃣",
+     "english": "eighty-seven"
+    },
+    {
+     "answer": "Пятьдес+ят три.",
+     "cue": "5️⃣3️⃣",
+     "english": "fifty-three"
+    },
+    {
+     "answer": "С+емьдесят пять.",
+     "cue": "7️⃣5️⃣",
+     "english": "seventy-five"
+    }
+   ]
+  }
+ ]
+}

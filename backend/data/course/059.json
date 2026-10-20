@@ -1,0 +1,259 @@
+{
+ "id": 59,
+ "title": "До свидания!",
+ "goal": "Say goodbye politely, and get through a whole day in Russian.",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 8
+  },
+  {
+   "track": "vocab",
+   "type": "teach",
+   "title": "New words",
+   "instruction": "The polite goodbye, for people you'd say «Здравствуйте» to. Friends get «Пока!».",
+   "items": [
+    {
+     "answer": "До свид+ания!",
+     "cue": "🤝 👋",
+     "english": "Goodbye! (polite)"
+    }
+   ]
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "Polite or friendly?",
+   "instruction": "Who would you say it to?",
+   "items": [
+    {
+     "audio": "До свид+ания!",
+     "options": [
+      "🧑‍🤝‍🧑 a friend",
+      "👔 a stranger or teacher"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Пок+а!",
+     "options": [
+      "🧑‍🤝‍🧑 a friend",
+      "👔 a stranger or teacher"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Здр+авствуйте!",
+     "options": [
+      "🧑‍🤝‍🧑 a friend",
+      "👔 a stranger or teacher"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Прив+ет!",
+     "options": [
+      "🧑‍🤝‍🧑 a friend",
+      "👔 a stranger or teacher"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Как дел+а?",
+     "options": [
+      "🧑‍🤝‍🧑 a friend",
+      "👔 a stranger or teacher"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Извин+ите, где магаз+ин?",
+     "options": [
+      "🧑‍🤝‍🧑 a friend",
+      "👔 a stranger or teacher"
+     ],
+     "correct": 1
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "Morning: the café",
+   "instruction": "You go into a café ☕🍰 on your way to work.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "Здр+авствуйте! Что вы х+отите?",
+     "cue": "🧑‍🍳",
+     "english": "Hello! What would you like?"
+    },
+    {
+     "answer": "Мне к+офе с молок+ом, пож+алуйста.",
+     "cue": "☕ ➕ 🥛 🙏",
+     "english": "A coffee with milk, please.",
+     "distractors": [
+      "Мне чай с молок+ом, пож+алуйста."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Сто рубл+ей.",
+     "cue": "100 ₽",
+     "english": "A hundred roubles."
+    },
+    {
+     "answer": "Пож+алуйста. Спас+ибо!",
+     "cue": "💳 🙏",
+     "english": "Here you are. Thank you!"
+    },
+    {
+     "speaker": "partner",
+     "line": "До свид+ания!",
+     "cue": "👋",
+     "english": "Goodbye!"
+    },
+    {
+     "answer": "До свид+ания!",
+     "cue": "🤝 👋",
+     "english": "Goodbye!",
+     "distractors": [
+      "Пок+а!"
+     ]
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "Afternoon: the street",
+   "instruction": "You need to find a shop.",
+   "items": [
+    {
+     "answer": "Извин+ите, где магаз+ин?",
+     "cue": "🙇 🏪❓",
+     "english": "Excuse me, where's the shop?"
+    },
+    {
+     "speaker": "partner",
+     "line": "Пр+ямо, пот+ом напр+аво и нал+ево.",
+     "cue": "⬆️ ⏭️ ➡️ ➕ ⬅️",
+     "english": "Straight on, then right and left."
+    },
+    {
+     "answer": "Спас+ибо!",
+     "cue": "🙏",
+     "english": "Thank you!"
+    },
+    {
+     "speaker": "partner",
+     "line": "Пож+алуйста!",
+     "cue": "🙂",
+     "english": "You're welcome!"
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "Evening: a friend calls",
+   "instruction": "Your friend calls in the evening.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "Прив+ет! Как дел+а?",
+     "cue": "🧑 ❓🙂",
+     "english": "Hi! How are you?"
+    },
+    {
+     "answer": "Хорош+о, спас+ибо. А у теб+я?",
+     "cue": "🙂 ❓🫵",
+     "english": "Good, thanks. And you?",
+     "distractors": [
+      "Пл+охо."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Норм+ально. Что ты б+удешь д+елать з+автра?",
+     "cue": "😐 ❓➡️📅",
+     "english": "Fine. What are you doing tomorrow?"
+    },
+    {
+     "answer": "З+автра я б+уду раб+отать.",
+     "cue": "➡️📅 💼",
+     "english": "Tomorrow I'll be working.",
+     "distractors": [
+      "Вчер+а я раб+отал."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "А в субб+оту? Ид+ём в кин+о?",
+     "cue": "📅 Sat 🎬❓",
+     "english": "And on Saturday? Shall we go to the cinema?"
+    },
+    {
+     "answer": "Да, кон+ечно! Я любл+ю кин+о.",
+     "cue": "✅ ❤️❤️ 🎬",
+     "english": "Yes, of course! I love the cinema."
+    },
+    {
+     "speaker": "partner",
+     "line": "Хорош+о! Пок+а!",
+     "cue": "👋",
+     "english": "Great! Bye!"
+    },
+    {
+     "answer": "Пок+а!",
+     "cue": "👋",
+     "english": "Bye!",
+     "distractors": [
+      "До свид+ания!"
+     ]
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "Numbers",
+   "instruction": "Say the number.",
+   "items": [
+    {
+     "answer": "Сто.",
+     "cue": "1️⃣0️⃣0️⃣",
+     "english": "a hundred"
+    },
+    {
+     "answer": "Дв+адцать пять.",
+     "cue": "2️⃣5️⃣",
+     "english": "twenty-five"
+    },
+    {
+     "answer": "Пятьдес+ят.",
+     "cue": "5️⃣0️⃣",
+     "english": "fifty"
+    },
+    {
+     "answer": "С+емьдесят пять.",
+     "cue": "7️⃣5️⃣",
+     "english": "seventy-five"
+    },
+    {
+     "answer": "Девян+осто д+евять.",
+     "cue": "9️⃣9️⃣",
+     "english": "ninety-nine"
+    },
+    {
+     "answer": "Од+ин.",
+     "cue": "1️⃣",
+     "english": "one"
+    }
+   ]
+  }
+ ]
+}

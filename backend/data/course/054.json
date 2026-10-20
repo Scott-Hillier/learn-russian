@@ -1,0 +1,340 @@
+{
+ "id": 54,
+ "title": "Хороший, новый",
+ "goal": "More describing words: «хороший день», «новая машина», «плохая погода».",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 6
+  },
+  {
+   "track": "vocab",
+   "type": "teach",
+   "title": "New words",
+   "instruction": "Listen, say it after me, then say it on your own from the picture.",
+   "items": [
+    {
+     "answer": "пог+ода",
+     "cue": "🌦️",
+     "english": "weather"
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "teach",
+   "title": "«Хороший, плохой, новый»",
+   "instruction": "Хороший (good), плохой (bad), новый (new) change like «большой»: хорошая, плохая, новая; хорошее, плохое, новое.",
+   "items": [
+    {
+     "answer": "Сег+одня хор+оший день.",
+     "cue": "📅 👍",
+     "english": "Today is a good day."
+    },
+    {
+     "answer": "+Это н+овая маш+ина.",
+     "cue": "✨ 🚗",
+     "english": "This is a new car."
+    },
+    {
+     "answer": "Сег+одня плох+ая пог+ода.",
+     "cue": "📅 🌧️",
+     "english": "The weather is bad today."
+    },
+    {
+     "answer": "У мен+я н+овый телеф+он.",
+     "cue": "🙋 ✨ 📱",
+     "english": "I have a new phone."
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "choose",
+   "title": "Which ending?",
+   "instruction": "Pick the written form that goes with the noun.",
+   "items": [
+    {
+     "prompt": "___ день",
+     "cue": "📅 👍",
+     "english": "a good day",
+     "options": [
+      "хор+оший",
+      "хор+ошая",
+      "хор+ошее"
+     ],
+     "correct": 0,
+     "audio": "Хор+оший день."
+    },
+    {
+     "prompt": "___ пог+ода",
+     "cue": "☀️",
+     "english": "good weather",
+     "options": [
+      "хор+оший",
+      "хор+ошая",
+      "хор+ошее"
+     ],
+     "correct": 1,
+     "audio": "Хор+ошая пог+ода."
+    },
+    {
+     "prompt": "___ окн+о",
+     "cue": "✨ 🪟",
+     "english": "a new window",
+     "options": [
+      "н+овый",
+      "н+овая",
+      "н+овое"
+     ],
+     "correct": 2,
+     "audio": "Н+овое окн+о."
+    },
+    {
+     "prompt": "___ кн+ига",
+     "cue": "✨ 📖",
+     "english": "a new book",
+     "options": [
+      "н+овый",
+      "н+овая",
+      "н+овое"
+     ],
+     "correct": 1,
+     "audio": "Н+овая кн+ига."
+    },
+    {
+     "prompt": "___ стул",
+     "cue": "👎 🪑",
+     "english": "a bad chair",
+     "options": [
+      "плох+ой",
+      "плох+ая",
+      "плох+ое"
+     ],
+     "correct": 0,
+     "audio": "Плох+ой стул."
+    },
+    {
+     "prompt": "Пог+ода ___.",
+     "cue": "🌧️",
+     "english": "The weather is bad.",
+     "options": [
+      "плох+ая",
+      "пл+охо"
+     ],
+     "correct": 0,
+     "audio": "Пог+ода плох+ая."
+    }
+   ]
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "Good or bad?",
+   "instruction": "Listen and pick.",
+   "items": [
+    {
+     "audio": "Сег+одня хор+ошая пог+ода.",
+     "options": [
+      "☀️ good",
+      "🌧️ bad"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Сег+одня плох+ая пог+ода.",
+     "options": [
+      "☀️ good",
+      "🌧️ bad"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "+Это хор+оший телеф+он.",
+     "options": [
+      "👍 good",
+      "👎 bad"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "+Это плох+ой стул.",
+     "options": [
+      "👍 good",
+      "👎 bad"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Как дел+а? Пл+охо.",
+     "options": [
+      "👍 good",
+      "👎 bad"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "+Это н+овая маш+ина.",
+     "options": [
+      "✨ new",
+      "🏚️ old"
+     ],
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "Describe it",
+   "instruction": "Say it from the picture.",
+   "items": [
+    {
+     "answer": "Сег+одня хор+ошая пог+ода.",
+     "cue": "📅 ☀️",
+     "english": "The weather is good today.",
+     "ask": "Как+ая сег+одня пог+ода?",
+     "distractors": [
+      "Сег+одня плох+ая пог+ода."
+     ]
+    },
+    {
+     "answer": "У мен+я н+овая с+умка.",
+     "cue": "🙋 ✨ 👜",
+     "english": "I have a new bag.",
+     "distractors": [
+      "У мен+я больш+ая с+умка."
+     ]
+    },
+    {
+     "answer": "+Это хор+оший телеф+он.",
+     "cue": "👍 📱",
+     "english": "This is a good phone.",
+     "distractors": [
+      "+Это плох+ой телеф+он."
+     ]
+    },
+    {
+     "answer": "Пл+охо.",
+     "cue": "😞",
+     "english": "Bad.",
+     "ask": "Как дел+а?",
+     "distractors": [
+      "Хорош+о."
+     ]
+    },
+    {
+     "answer": "+Это н+овый дом.",
+     "cue": "✨ 🏠",
+     "english": "This is a new house.",
+     "ask": "Что +это?",
+     "distractors": [
+      "+Это больш+ой дом."
+     ]
+    },
+    {
+     "answer": "З+автра я б+уду д+ома.",
+     "cue": "➡️📅 🏠",
+     "english": "Tomorrow I'll be at home.",
+     "ask": "Где ты б+удешь з+автра?"
+    },
+    {
+     "answer": "У мен+я м+аленькая к+ошка.",
+     "cue": "🙋 🔽 🐈",
+     "english": "I have a small cat.",
+     "distractors": [
+      "У мен+я больш+ая к+ошка."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "Numbers",
+   "instruction": "Say the number.",
+   "items": [
+    {
+     "answer": "Сто.",
+     "cue": "1️⃣0️⃣0️⃣",
+     "english": "a hundred"
+    },
+    {
+     "answer": "Дв+адцать чет+ыре.",
+     "cue": "2️⃣4️⃣",
+     "english": "twenty-four"
+    },
+    {
+     "answer": "Шестьдес+ят семь.",
+     "cue": "6️⃣7️⃣",
+     "english": "sixty-seven"
+    },
+    {
+     "answer": "В+осемьдесят од+ин.",
+     "cue": "8️⃣1️⃣",
+     "english": "eighty-one"
+    },
+    {
+     "answer": "Тр+идцать д+евять.",
+     "cue": "3️⃣9️⃣",
+     "english": "thirty-nine"
+    },
+    {
+     "answer": "Пятьдес+ят шесть.",
+     "cue": "5️⃣6️⃣",
+     "english": "fifty-six"
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "Conversation",
+   "instruction": "A colleague on a rainy Monday.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "Прив+ет! Как дел+а?",
+     "cue": "🧑 ❓🙂",
+     "english": "Hi! How are you?"
+    },
+    {
+     "answer": "Пл+охо. Сег+одня плох+ая пог+ода.",
+     "cue": "😞 🌧️",
+     "english": "Bad. The weather's bad today.",
+     "distractors": [
+      "Хорош+о, спас+ибо."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Да. А у теб+я н+овая маш+ина?",
+     "cue": "✨ 🚗❓",
+     "english": "Yes. And do you have a new car?"
+    },
+    {
+     "answer": "Да, +это н+овая маш+ина.",
+     "cue": "✅ ✨ 🚗",
+     "english": "Yes, it's a new car.",
+     "distractors": [
+      "Нет, у мен+я нет маш+ины."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Хор+ошая маш+ина!",
+     "cue": "👍 🚗",
+     "english": "Nice car!"
+    },
+    {
+     "answer": "Спас+ибо!",
+     "cue": "🙏",
+     "english": "Thanks!"
+    }
+   ]
+  }
+ ]
+}

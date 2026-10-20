@@ -91,3 +91,23 @@ def test_chat_routes(monkeypatch):
         raise chat.ChatUnavailable("Can't reach Ollama")
     monkeypatch.setattr(chat, "_post", down)
     assert client.post("/api/chat/check", json={"text": "Я хочу чай"}).status_code == 503
+
+
+def test_lessons_level_sticks_to_taught_words(monkeypatch):
+    course = {"words": ["привет", "я", "ты", "звать", "как", "кошка", "это"], "grammar": ["Это …: name things"]}
+    strays = {"reply": "Привет! Ты любишь кошек?", "translation": "Hi! Do you like cats?", "suggestions": []}
+    fits = {"reply": "Привет! Это кошка. Как тебя зовут?", "translation": "Hi! This is a cat. What's your name?",
+            "suggestions": []}
+    fake = FakeOllama(strays, fits)
+    monkeypatch.setattr(chat, "_post", fake)
+    out = chat.reply(CAFE, [{"role": "learner", "text": "Привет!"}], "lessons", course)
+    assert out["reply"] == fits["reply"] and out["unknown"] == []
+    system = fake.requests[0]["messages"][0]["content"]
+    assert "кошка" in system and "Это …" in system
+    assert "любишь" in fake.requests[1]["messages"][-1]["content"]  # the retry names the unknown word
+    # if every try strays, the reply with the fewest unknown words is kept and they're flagged
+    fake = FakeOllama(strays, strays, {"reply": "Привет, Иван! Двадцать кошек.", "translation": "", "suggestions": []})
+    monkeypatch.setattr(chat, "_post", fake)
+    out = chat.reply(CAFE, [], "lessons", course)
+    assert out["unknown"] == [] and out["reply"].startswith("Привет, Иван")
+    assert chat.unknown_words("Ты любишь кошек?", set(course["words"])) == ["любишь"]

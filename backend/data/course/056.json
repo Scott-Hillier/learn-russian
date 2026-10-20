@@ -1,0 +1,334 @@
+{
+ "id": 56,
+ "title": "Я люблю …",
+ "goal": "Say what you love: «Я люблю чай.» «Я люблю Москву.» «Ты любишь кофе?»",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 6
+  },
+  {
+   "track": "frames",
+   "type": "teach",
+   "title": "«Любить» — to love, to really like",
+   "instruction": "«Я люблю …» = I love … (it's used for food and places too). я люблю, ты любишь, он / она любит. Unlike «нравится», the thing takes the «-у» form: «Я люблю Москву».",
+   "items": [
+    {
+     "answer": "Я любл+ю чай.",
+     "cue": "🙋 ❤️❤️ 🍵",
+     "english": "I love tea."
+    },
+    {
+     "answer": "Я любл+ю Москв+у.",
+     "cue": "🙋 ❤️❤️ 🏙️🇷🇺",
+     "english": "I love Moscow.",
+     "distractors": [
+      "Я любл+ю Москв+а."
+     ]
+    },
+    {
+     "answer": "Ты л+юбишь к+офе?",
+     "cue": "❓🫵 ❤️❤️ ☕",
+     "english": "Do you love coffee?"
+    },
+    {
+     "answer": "Он+а л+юбит соб+ак.",
+     "cue": "👧 ❤️❤️ 🐕🐕",
+     "english": "She loves dogs."
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "choose",
+   "title": "«Люблю» or «нравится»?",
+   "instruction": "«Я люблю Москву», but «Мне нравится Москва».",
+   "items": [
+    {
+     "prompt": "Я любл+ю ___.",
+     "cue": "❤️❤️ 🏙️🇷🇺",
+     "english": "I love Moscow.",
+     "options": [
+      "Москв+а",
+      "Москв+у"
+     ],
+     "correct": 1,
+     "audio": "Я любл+ю Москв+у."
+    },
+    {
+     "prompt": "Мне нр+авится ___.",
+     "cue": "❤️ 🏙️🇷🇺",
+     "english": "I like Moscow.",
+     "options": [
+      "Москв+а",
+      "Москв+у"
+     ],
+     "correct": 0,
+     "audio": "Мне нр+авится Москв+а."
+    },
+    {
+     "prompt": "___ любл+ю чай.",
+     "cue": "❤️❤️ 🍵",
+     "english": "I love tea.",
+     "options": [
+      "Я",
+      "Мне"
+     ],
+     "correct": 0,
+     "audio": "Я любл+ю чай."
+    },
+    {
+     "prompt": "Ты ___ сыр?",
+     "cue": "❓🫵 ❤️❤️ 🧀",
+     "english": "Do you love cheese?",
+     "options": [
+      "любл+ю",
+      "л+юбишь",
+      "л+юбит"
+     ],
+     "correct": 1,
+     "audio": "Ты л+юбишь сыр?"
+    },
+    {
+     "prompt": "П+апа ___ раб+оту.",
+     "cue": "👨 ❤️❤️ 💼",
+     "english": "Dad loves his job.",
+     "options": [
+      "любл+ю",
+      "л+юбишь",
+      "л+юбит"
+     ],
+     "correct": 2,
+     "audio": "П+апа л+юбит раб+оту."
+    },
+    {
+     "prompt": "Я любл+ю ___.",
+     "cue": "❤️❤️ 👩",
+     "english": "I love mum.",
+     "options": [
+      "м+ама",
+      "м+аму"
+     ],
+     "correct": 1,
+     "audio": "Я любл+ю м+аму."
+    }
+   ]
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "What do they love?",
+   "instruction": "Listen and pick the picture.",
+   "items": [
+    {
+     "audio": "Я любл+ю к+офе.",
+     "options": [
+      "☕",
+      "🍵",
+      "🧃"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Он+а л+юбит к+ошек.",
+     "options": [
+      "🐈🐈",
+      "🐕🐕",
+      "🐟🐟"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Он+и л+юбят Л+ондон.",
+     "options": [
+      "🏙️🇷🇺",
+      "🏙️🇬🇧",
+      "🏠"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Ты л+юбишь чай?",
+     "options": [
+      "☕",
+      "🍵",
+      "🧃"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Я любл+ю кин+о.",
+     "options": [
+      "🎬",
+      "☕🍰",
+      "🏪"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Брат л+юбит сыр.",
+     "options": [
+      "🧀",
+      "🍞",
+      "🍎"
+     ],
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "What do you love?",
+   "instruction": "Say it from the picture.",
+   "items": [
+    {
+     "answer": "Я любл+ю к+офе.",
+     "cue": "❤️❤️ ☕",
+     "english": "I love coffee.",
+     "ask": "Что ты л+юбишь?",
+     "distractors": [
+      "Я любл+ю чай."
+     ]
+    },
+    {
+     "answer": "Я любл+ю Л+ондон.",
+     "cue": "❤️❤️ 🏙️🇬🇧",
+     "english": "I love London.",
+     "distractors": [
+      "Я жив+у в Л+ондоне."
+     ]
+    },
+    {
+     "answer": "Ты л+юбишь кин+о?",
+     "cue": "❓🫵 ❤️❤️ 🎬",
+     "english": "Ask: Do you love the cinema?",
+     "distractors": [
+      "Ты б+удешь в кин+о?"
+     ]
+    },
+    {
+     "answer": "Да, я +очень любл+ю чай.",
+     "cue": "✅ ❤️❤️ 🍵",
+     "english": "Yes, I really love tea.",
+     "ask": "Ты л+юбишь чай?",
+     "distractors": [
+      "Нет, я не любл+ю чай."
+     ]
+    },
+    {
+     "answer": "Он л+юбит соб+ак.",
+     "cue": "👦 ❤️❤️ 🐕🐕",
+     "english": "He loves dogs.",
+     "distractors": [
+      "Он+а л+юбит соб+ак."
+     ]
+    },
+    {
+     "answer": "Мне нр+авится н+овый дом.",
+     "cue": "❤️ ✨ 🏠",
+     "english": "I like the new house.",
+     "distractors": [
+      "Я любл+ю н+овый дом."
+     ]
+    },
+    {
+     "answer": "Я не любл+ю плох+ую пог+оду.",
+     "cue": "🙋 👎 🌧️",
+     "english": "I don't like bad weather.",
+     "distractors": [
+      "Я любл+ю плох+ую пог+оду."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "Numbers",
+   "instruction": "Say the number.",
+   "items": [
+    {
+     "answer": "Сто.",
+     "cue": "1️⃣0️⃣0️⃣",
+     "english": "a hundred"
+    },
+    {
+     "answer": "Од+иннадцать.",
+     "cue": "1️⃣1️⃣",
+     "english": "eleven"
+    },
+    {
+     "answer": "Тр+идцать пять.",
+     "cue": "3️⃣5️⃣",
+     "english": "thirty-five"
+    },
+    {
+     "answer": "Шестьдес+ят в+осемь.",
+     "cue": "6️⃣8️⃣",
+     "english": "sixty-eight"
+    },
+    {
+     "answer": "С+емьдесят чет+ыре.",
+     "cue": "7️⃣4️⃣",
+     "english": "seventy-four"
+    },
+    {
+     "answer": "Девян+осто д+евять.",
+     "cue": "9️⃣9️⃣",
+     "english": "ninety-nine"
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "Conversation",
+   "instruction": "Getting to know someone at a party.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "Ты л+юбишь Москв+у?",
+     "cue": "❓❤️❤️ 🏙️🇷🇺",
+     "english": "Do you love Moscow?"
+    },
+    {
+     "answer": "Да, я +очень любл+ю Москв+у!",
+     "cue": "✅ ❤️❤️ 🏙️🇷🇺",
+     "english": "Yes, I really love Moscow!",
+     "distractors": [
+      "Нет, я не любл+ю Москв+у."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "А что ты л+юбишь д+елать?",
+     "cue": "❓❤️❤️",
+     "english": "And what do you love doing?"
+    },
+    {
+     "answer": "Я любл+ю чит+ать.",
+     "cue": "❤️❤️ 📖",
+     "english": "I love reading.",
+     "distractors": [
+      "Я любл+ю раб+отать."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Я т+оже!",
+     "cue": "🙋 ➕",
+     "english": "Me too!"
+    },
+    {
+     "answer": "+Очень хорош+о!",
+     "cue": "👌",
+     "english": "Great!"
+    }
+   ]
+  }
+ ]
+}

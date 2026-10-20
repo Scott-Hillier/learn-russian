@@ -1,0 +1,300 @@
+{
+ "id": 25,
+ "title": "Где ты живёшь?",
+ "goal": "Put unit 5 together: where people live, where things are, more than one.",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 8
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "What did you hear?",
+   "instruction": "Listen and pick what it means.",
+   "items": [
+    {
+     "audio": "Мы живём в Москв+е.",
+     "options": [
+      "🙋‍♀️🙋‍♂️ 🏙️🇷🇺",
+      "👥 🏙️🇷🇺",
+      "🙋‍♀️🙋‍♂️ 🏙️🇬🇧"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Кн+иги на стол+е.",
+     "options": [
+      "📖📖 🔝🍽️",
+      "📖 🔝🍽️",
+      "📖📖 📥👜"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Он+и говор+ят по-англ+ийски.",
+     "options": [
+      "👥 🇬🇧",
+      "🙋‍♀️🙋‍♂️ 🇬🇧",
+      "👥 🇷🇺"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Ключ в с+умке.",
+     "options": [
+      "🔑 📥👜",
+      "🔑🔑 📥👜",
+      "🔑 🔝🍽️"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Вы живёте в Л+ондоне?",
+     "options": [
+      "❓🫵🫵 🏙️🇬🇧",
+      "🙋‍♀️🙋‍♂️ 🏙️🇬🇧",
+      "❓🫵🫵 🏙️🇷🇺"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Сто.",
+     "options": [
+      "1️⃣0️⃣0️⃣",
+      "1️⃣0️⃣",
+      "9️⃣0️⃣"
+     ],
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "Say it",
+   "instruction": "Say it from the picture.",
+   "items": [
+    {
+     "answer": "Мы живём в Москв+е.",
+     "cue": "🙋‍♀️🙋‍♂️ 🏙️🇷🇺",
+     "english": "We live in Moscow.",
+     "distractors": [
+      "Он+и жив+ут в Москв+е."
+     ]
+    },
+    {
+     "answer": "Кн+иги на стол+е.",
+     "cue": "📖📖 🔝🍽️",
+     "english": "The books are on the table.",
+     "distractors": [
+      "Кн+ига на стол+е."
+     ]
+    },
+    {
+     "answer": "Он+и говор+ят по-англ+ийски.",
+     "cue": "👥 🇬🇧",
+     "english": "They speak English.",
+     "distractors": [
+      "Мы говор+им по-англ+ийски."
+     ]
+    },
+    {
+     "answer": "Вы говор+ите по-р+усски?",
+     "cue": "❓🫵🫵 🇷🇺",
+     "english": "Ask a stranger: Do you speak Russian?",
+     "distractors": [
+      "Ты говор+ишь по-р+усски?"
+     ]
+    },
+    {
+     "answer": "Мо+и ключ+и в с+умке.",
+     "cue": "🔑🔑 📥👜",
+     "english": "My keys are in the bag.",
+     "distractors": [
+      "Мой ключ в с+умке."
+     ]
+    },
+    {
+     "answer": "Я хоч+у в+оду.",
+     "cue": "💧",
+     "english": "I want water.",
+     "ask": "Что ты х+очешь?",
+     "distractors": [
+      "Я хоч+у вод+а."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "choose",
+   "title": "Which form?",
+   "instruction": "Pick the right form.",
+   "items": [
+    {
+     "prompt": "К+ошка в ___.",
+     "cue": "🐈 📥🚗",
+     "english": "The cat is in the car.",
+     "options": [
+      "маш+ина",
+      "маш+ине",
+      "маш+ину"
+     ],
+     "correct": 1,
+     "audio": "К+ошка в маш+ине."
+    },
+    {
+     "prompt": "Я в+ижу ___.",
+     "cue": "👀 🚗",
+     "english": "I see a car.",
+     "options": [
+      "маш+ина",
+      "маш+ине",
+      "маш+ину"
+     ],
+     "correct": 2,
+     "audio": "Я в+ижу маш+ину."
+    },
+    {
+     "prompt": "+Это ___.",
+     "cue": "🚗🚗",
+     "english": "These are cars.",
+     "options": [
+      "маш+ина",
+      "маш+ины",
+      "маш+ине"
+     ],
+     "correct": 1,
+     "audio": "+Это маш+ины."
+    },
+    {
+     "prompt": "Он+и ___ в Л+ондоне.",
+     "cue": "👥 🏙️🇬🇧",
+     "english": "They live in London.",
+     "options": [
+      "живёт",
+      "живём",
+      "жив+ут"
+     ],
+     "correct": 2,
+     "audio": "Он+и жив+ут в Л+ондоне."
+    },
+    {
+     "prompt": "Мы не ___.",
+     "cue": "🙋‍♀️🙋‍♂️ 😕",
+     "english": "We don't understand.",
+     "options": [
+      "поним+аем",
+      "поним+аете",
+      "поним+ают"
+     ],
+     "correct": 0,
+     "audio": "Мы не поним+аем."
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "A new neighbour",
+   "instruction": "You've just moved in. Your neighbour says hello.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "Здр+авствуйте! Как вас зов+ут?",
+     "cue": "🧑",
+     "english": "Hello! What's your name?"
+    },
+    {
+     "answer": "Мен+я зов+ут +Анна. +Очень при+ятно!",
+     "cue": "👩 Анна",
+     "english": "My name is Anna. Nice to meet you!"
+    },
+    {
+     "speaker": "partner",
+     "line": "+Очень при+ятно! Вы живёте тут?",
+     "cue": "🏠❓",
+     "english": "Nice to meet you! Do you live here?"
+    },
+    {
+     "answer": "Да, я жив+у тут.",
+     "cue": "👇 🏠",
+     "english": "Yes, I live here.",
+     "distractors": [
+      "Нет, я жив+у там."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Вы говор+ите по-р+усски?",
+     "cue": "🇷🇺",
+     "english": "Do you speak Russian?"
+    },
+    {
+     "answer": "Да, немн+ого.",
+     "cue": "🤏",
+     "english": "Yes, a little.",
+     "distractors": [
+      "Нет."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Хорош+о! Пок+а!",
+     "cue": "👋",
+     "english": "Good! Bye!"
+    },
+    {
+     "answer": "Пок+а!",
+     "cue": "👋 🚶",
+     "english": "Bye!",
+     "distractors": [
+      "Прив+ет!"
+     ]
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "Numbers to 100",
+   "instruction": "Say the number.",
+   "items": [
+    {
+     "answer": "Сто.",
+     "cue": "1️⃣0️⃣0️⃣",
+     "english": "a hundred"
+    },
+    {
+     "answer": "Шестьдес+ят чет+ыре.",
+     "cue": "6️⃣4️⃣",
+     "english": "sixty-four"
+    },
+    {
+     "answer": "В+осемьдесят три.",
+     "cue": "8️⃣3️⃣",
+     "english": "eighty-three"
+    },
+    {
+     "answer": "Девян+осто д+евять.",
+     "cue": "9️⃣9️⃣",
+     "english": "ninety-nine"
+    },
+    {
+     "answer": "С+емьдесят од+ин.",
+     "cue": "7️⃣1️⃣",
+     "english": "seventy-one"
+    },
+    {
+     "answer": "Двен+адцать.",
+     "cue": "1️⃣2️⃣",
+     "english": "twelve"
+    }
+   ]
+  }
+ ]
+}

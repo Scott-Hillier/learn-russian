@@ -1,0 +1,356 @@
+{
+ "id": 21,
+ "title": "Мы, вы, они",
+ "goal": "Talk about more people: «мы» (we), «вы» (you: polite, or several people), «они» (they).",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 6
+  },
+  {
+   "track": "frames",
+   "type": "teach",
+   "title": "«Мы, вы, они» — we, you, they",
+   "instruction": "«Мы» = we. «Вы» = you, to several people or politely to one (a stranger, a teacher). «Они» = they. With «говорить»: мы говорим, вы говорите, они говорят.",
+   "items": [
+    {
+     "answer": "Мы говор+им по-р+усски.",
+     "cue": "🙋‍♀️🙋‍♂️ 🇷🇺",
+     "english": "We speak Russian."
+    },
+    {
+     "answer": "Вы говор+ите по-англ+ийски?",
+     "cue": "❓🫵🫵 🇬🇧",
+     "english": "Do you speak English? (polite)"
+    },
+    {
+     "answer": "Он+и говор+ят по-р+усски.",
+     "cue": "👥 🇷🇺",
+     "english": "They speak Russian."
+    },
+    {
+     "answer": "Мы не поним+аем.",
+     "cue": "🙋‍♀️🙋‍♂️ 😕",
+     "english": "We don't understand."
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "choose",
+   "title": "Which ending?",
+   "instruction": "«Знать» and «понимать»: мы -ем, вы -ете, они -ют. They sound alike, so pick the written form.",
+   "items": [
+    {
+     "prompt": "Мы ___.",
+     "cue": "🙋‍♀️🙋‍♂️ 💡",
+     "english": "We know.",
+     "options": [
+      "зн+аем",
+      "зн+аете",
+      "зн+ают"
+     ],
+     "correct": 0,
+     "audio": "Мы зн+аем."
+    },
+    {
+     "prompt": "Вы ___?",
+     "cue": "🫵🫵 💡",
+     "english": "Do you know?",
+     "options": [
+      "зн+аем",
+      "зн+аете",
+      "зн+ают"
+     ],
+     "correct": 1,
+     "audio": "Вы зн+аете?"
+    },
+    {
+     "prompt": "Он+и ___.",
+     "cue": "👥 💡",
+     "english": "They know.",
+     "options": [
+      "зн+аем",
+      "зн+аете",
+      "зн+ают"
+     ],
+     "correct": 2,
+     "audio": "Он+и зн+ают."
+    },
+    {
+     "prompt": "Мы не ___.",
+     "cue": "🙋‍♀️🙋‍♂️ 😕",
+     "english": "We don't understand.",
+     "options": [
+      "поним+аем",
+      "поним+аете",
+      "поним+ают"
+     ],
+     "correct": 0,
+     "audio": "Мы не поним+аем."
+    },
+    {
+     "prompt": "Он+и ___.",
+     "cue": "👥 👍",
+     "english": "They understand.",
+     "options": [
+      "поним+аем",
+      "поним+аете",
+      "поним+ают"
+     ],
+     "correct": 2,
+     "audio": "Он+и поним+ают."
+    },
+    {
+     "prompt": "Вы ___ по-р+усски?",
+     "cue": "🫵🫵 🇷🇺",
+     "english": "Do you speak Russian?",
+     "options": [
+      "говор+им",
+      "говор+ите",
+      "говор+ят"
+     ],
+     "correct": 1,
+     "audio": "Вы говор+ите по-р+усски?"
+    }
+   ]
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "Who?",
+   "instruction": "Listen. Who is it about?",
+   "items": [
+    {
+     "audio": "Он+и зн+ают.",
+     "options": [
+      "🙋‍♀️🙋‍♂️ we",
+      "🫵🫵 you",
+      "👥 they"
+     ],
+     "correct": 2
+    },
+    {
+     "audio": "Мы поним+аем.",
+     "options": [
+      "🙋‍♀️🙋‍♂️ we",
+      "🫵🫵 you",
+      "👥 they"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Вы говор+ите по-англ+ийски?",
+     "options": [
+      "🙋‍♀️🙋‍♂️ we",
+      "🫵🫵 you",
+      "👥 they"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Он+и не поним+ают.",
+     "options": [
+      "🙋‍♀️🙋‍♂️ we",
+      "🫵🫵 you",
+      "👥 they"
+     ],
+     "correct": 2
+    },
+    {
+     "audio": "Мы говор+им по-р+усски.",
+     "options": [
+      "🙋‍♀️🙋‍♂️ we",
+      "🫵🫵 you",
+      "👥 they"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Вы зн+аете?",
+     "options": [
+      "🙋‍♀️🙋‍♂️ we",
+      "🫵🫵 you",
+      "👥 they"
+     ],
+     "correct": 1
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "We, you, they",
+   "instruction": "Say it about the people in the picture.",
+   "items": [
+    {
+     "answer": "Мы говор+им по-англ+ийски.",
+     "cue": "🙋‍♀️🙋‍♂️ 🇬🇧",
+     "english": "We speak English.",
+     "distractors": [
+      "Он+и говор+ят по-англ+ийски.",
+      "Мы говор+им по-р+усски."
+     ]
+    },
+    {
+     "answer": "Он+и говор+ят по-р+усски.",
+     "cue": "👥 🇷🇺",
+     "english": "They speak Russian.",
+     "distractors": [
+      "Мы говор+им по-р+усски."
+     ]
+    },
+    {
+     "answer": "Вы говор+ите по-англ+ийски?",
+     "cue": "❓🫵🫵 🇬🇧",
+     "english": "Ask a stranger: Do you speak English?",
+     "distractors": [
+      "Ты говор+ишь по-англ+ийски?"
+     ]
+    },
+    {
+     "answer": "Да, я немн+ого говор+ю по-р+усски.",
+     "cue": "🙋 🤏 🇷🇺",
+     "english": "Yes, I speak a little Russian.",
+     "ask": "Вы говор+ите по-р+усски?",
+     "distractors": [
+      "Нет, я не говор+ю по-р+усски."
+     ]
+    },
+    {
+     "answer": "Мы не поним+аем.",
+     "cue": "🙋‍♀️🙋‍♂️ 😕",
+     "english": "We don't understand.",
+     "distractors": [
+      "Мы поним+аем."
+     ]
+    },
+    {
+     "answer": "Он+и т+оже говор+ят по-р+усски.",
+     "cue": "👥 ➕ 🇷🇺",
+     "english": "They speak Russian too.",
+     "distractors": [
+      "Он+и говор+ят по-англ+ийски."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "teach",
+   "title": "Numbers 40 and 50",
+   "instruction": "Forty is a word of its own; fifty is “five-ten”.",
+   "items": [
+    {
+     "answer": "С+орок.",
+     "cue": "4️⃣0️⃣",
+     "english": "forty"
+    },
+    {
+     "answer": "Пятьдес+ят.",
+     "cue": "5️⃣0️⃣",
+     "english": "fifty"
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "Numbers to 50",
+   "instruction": "Say the number.",
+   "items": [
+    {
+     "answer": "С+орок.",
+     "cue": "4️⃣0️⃣",
+     "english": "forty"
+    },
+    {
+     "answer": "С+орок два.",
+     "cue": "4️⃣2️⃣",
+     "english": "forty-two"
+    },
+    {
+     "answer": "Пятьдес+ят.",
+     "cue": "5️⃣0️⃣",
+     "english": "fifty"
+    },
+    {
+     "answer": "Пятьдес+ят пять.",
+     "cue": "5️⃣5️⃣",
+     "english": "fifty-five"
+    },
+    {
+     "answer": "Тр+идцать три.",
+     "cue": "3️⃣3️⃣",
+     "english": "thirty-three"
+    },
+    {
+     "answer": "С+орок семь.",
+     "cue": "4️⃣7️⃣",
+     "english": "forty-seven"
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "Conversation",
+   "instruction": "A couple at the next table in a café say hello.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "Здр+авствуйте! Вы говор+ите по-р+усски?",
+     "cue": "👫",
+     "english": "Hello! Do you speak Russian?"
+    },
+    {
+     "answer": "Да, немн+ого.",
+     "cue": "🤏",
+     "english": "Yes, a little.",
+     "distractors": [
+      "Нет."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Мы т+оже говор+им по-англ+ийски.",
+     "cue": "🙋‍♀️🙋‍♂️ 🇬🇧",
+     "english": "We speak English too."
+    },
+    {
+     "answer": "+Очень хорош+о!",
+     "cue": "👌",
+     "english": "Very good!"
+    },
+    {
+     "speaker": "partner",
+     "line": "Мен+я зов+ут Ив+ан. +Очень при+ятно!",
+     "cue": "👨 Иван",
+     "english": "My name is Ivan. Nice to meet you!"
+    },
+    {
+     "answer": "+Очень при+ятно! Мен+я зов+ут +Анна.",
+     "cue": "👩 Анна",
+     "english": "Nice to meet you! My name is Anna."
+    },
+    {
+     "speaker": "partner",
+     "line": "Пок+а!",
+     "cue": "👋",
+     "english": "Bye!"
+    },
+    {
+     "answer": "Пок+а!",
+     "cue": "👋 🚶",
+     "english": "Bye!",
+     "distractors": [
+      "Прив+ет!"
+     ]
+    }
+   ]
+  }
+ ]
+}

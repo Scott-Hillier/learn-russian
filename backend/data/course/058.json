@@ -1,0 +1,337 @@
+{
+ "id": 58,
+ "title": "Сколько тебе лет?",
+ "goal": "Say how old you are: «Мне двадцать пять лет.» «Сколько тебе лет?»",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 6
+  },
+  {
+   "track": "frames",
+   "type": "teach",
+   "title": "«Мне … лет» — I'm … years old",
+   "instruction": "Russian says “to me 25 years”: «Мне двадцать пять лет». «Год» (year) changes like «час»: 1 год, 2–4 года, 5 and up лет: двадцать один год, двадцать два года, тридцать лет.",
+   "items": [
+    {
+     "answer": "Ск+олько теб+е лет?",
+     "cue": "❓🫵 🎂",
+     "english": "How old are you?"
+    },
+    {
+     "answer": "Мне дв+адцать пять лет.",
+     "cue": "🎂 25",
+     "english": "I'm twenty-five.",
+     "ask": "Ск+олько теб+е лет?",
+     "distractors": [
+      "Мне дв+адцать пять г+ода."
+     ]
+    },
+    {
+     "answer": "Мне тр+идцать од+ин год.",
+     "cue": "🎂 31",
+     "english": "I'm thirty-one.",
+     "ask": "Ск+олько теб+е лет?",
+     "distractors": [
+      "Мне тр+идцать од+ин лет."
+     ]
+    },
+    {
+     "answer": "Мне с+орок два г+ода.",
+     "cue": "🎂 42",
+     "english": "I'm forty-two.",
+     "ask": "Ск+олько теб+е лет?",
+     "distractors": [
+      "Мне с+орок два лет."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "choose",
+   "title": "Год, года or лет?",
+   "instruction": "1 → год. 2, 3, 4 → года. 5 and up (and 11–14) → лет.",
+   "items": [
+    {
+     "prompt": "Мне дв+адцать ___.",
+     "cue": "🎂 20",
+     "english": "I'm twenty.",
+     "options": [
+      "год",
+      "г+ода",
+      "лет"
+     ],
+     "correct": 2,
+     "audio": "Мне дв+адцать лет."
+    },
+    {
+     "prompt": "Мне дв+адцать од+ин ___.",
+     "cue": "🎂 21",
+     "english": "I'm twenty-one.",
+     "options": [
+      "год",
+      "г+ода",
+      "лет"
+     ],
+     "correct": 0,
+     "audio": "Мне дв+адцать од+ин год."
+    },
+    {
+     "prompt": "Мне тр+идцать три ___.",
+     "cue": "🎂 33",
+     "english": "I'm thirty-three.",
+     "options": [
+      "год",
+      "г+ода",
+      "лет"
+     ],
+     "correct": 1,
+     "audio": "Мне тр+идцать три г+ода."
+    },
+    {
+     "prompt": "Ем+у пять ___.",
+     "cue": "👦 🎂 5",
+     "english": "He's five.",
+     "options": [
+      "год",
+      "г+ода",
+      "лет"
+     ],
+     "correct": 2,
+     "audio": "Ем+у пять лет."
+    },
+    {
+     "prompt": "Ей двен+адцать ___.",
+     "cue": "👧 🎂 12",
+     "english": "She's twelve.",
+     "options": [
+      "год",
+      "г+ода",
+      "лет"
+     ],
+     "correct": 2,
+     "audio": "Ей двен+адцать лет."
+    },
+    {
+     "prompt": "___ с+орок лет.",
+     "cue": "🎂 40",
+     "english": "I'm forty.",
+     "options": [
+      "Я",
+      "Мне"
+     ],
+     "correct": 1,
+     "audio": "Мне с+орок лет."
+    }
+   ]
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "How old?",
+   "instruction": "Listen and pick the age.",
+   "items": [
+    {
+     "audio": "Мне дв+адцать семь лет.",
+     "options": [
+      "🎂 27",
+      "🎂 37",
+      "🎂 17"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Ем+у пять лет.",
+     "options": [
+      "👦 🎂 5",
+      "👦 🎂 15",
+      "👦 🎂 50"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Мне тр+идцать два г+ода.",
+     "options": [
+      "🎂 23",
+      "🎂 32",
+      "🎂 42"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Ей с+емьдесят лет.",
+     "options": [
+      "👵 🎂 17",
+      "👵 🎂 70",
+      "👵 🎂 77"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Мне с+орок од+ин год.",
+     "options": [
+      "🎂 41",
+      "🎂 14",
+      "🎂 40"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Ск+олько теб+е лет?",
+     "options": [
+      "❓🫵 🎂",
+      "🙋 🎂",
+      "❓🫵 🕰️"
+     ],
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "How old are you?",
+   "instruction": "Answer with the age shown.",
+   "items": [
+    {
+     "answer": "Мне тр+идцать лет.",
+     "cue": "🎂 30",
+     "english": "I'm thirty.",
+     "ask": "Ск+олько теб+е лет?",
+     "distractors": [
+      "Мне тр+идцать г+ода."
+     ]
+    },
+    {
+     "answer": "Мне дв+адцать три г+ода.",
+     "cue": "🎂 23",
+     "english": "I'm twenty-three.",
+     "ask": "Ск+олько теб+е лет?",
+     "distractors": [
+      "Мне дв+адцать три лет."
+     ]
+    },
+    {
+     "answer": "Мне пятьдес+ят од+ин год.",
+     "cue": "🎂 51",
+     "english": "I'm fifty-one.",
+     "ask": "Ск+олько теб+е лет?",
+     "distractors": [
+      "Мне пятьдес+ят од+ин лет."
+     ]
+    },
+    {
+     "answer": "Ск+олько теб+е лет?",
+     "cue": "❓🫵 🎂",
+     "english": "Ask a friend how old they are.",
+     "distractors": [
+      "Как теб+я зов+ут?"
+     ]
+    },
+    {
+     "answer": "Ем+у д+есять лет.",
+     "cue": "👦 🎂 10",
+     "english": "He's ten.",
+     "ask": "Ск+олько лет бр+ату?",
+     "distractors": [
+      "Ей д+есять лет."
+     ]
+    },
+    {
+     "answer": "Я любл+ю мо+ю раб+оту.",
+     "cue": "❤️❤️ 💼",
+     "english": "I love my job.",
+     "distractors": [
+      "Мне нр+авится раб+ота."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "Numbers",
+   "instruction": "Say the number.",
+   "items": [
+    {
+     "answer": "Сто.",
+     "cue": "1️⃣0️⃣0️⃣",
+     "english": "a hundred"
+    },
+    {
+     "answer": "Дв+адцать од+ин.",
+     "cue": "2️⃣1️⃣",
+     "english": "twenty-one"
+    },
+    {
+     "answer": "Тр+идцать два.",
+     "cue": "3️⃣2️⃣",
+     "english": "thirty-two"
+    },
+    {
+     "answer": "С+орок чет+ыре.",
+     "cue": "4️⃣4️⃣",
+     "english": "forty-four"
+    },
+    {
+     "answer": "Шестьдес+ят пять.",
+     "cue": "6️⃣5️⃣",
+     "english": "sixty-five"
+    },
+    {
+     "answer": "С+емьдесят в+осемь.",
+     "cue": "7️⃣8️⃣",
+     "english": "seventy-eight"
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "Conversation",
+   "instruction": "You are Анна 👩, 28. You meet Иван.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "Прив+ет! Как теб+я зов+ут?",
+     "cue": "👨 Иван",
+     "english": "Hi! What's your name?"
+    },
+    {
+     "answer": "Мен+я зов+ут +Анна. А теб+я?",
+     "cue": "👩 Анна ❓🫵",
+     "english": "My name is Anna. And yours?"
+    },
+    {
+     "speaker": "partner",
+     "line": "Ив+ан. Ск+олько теб+е лет?",
+     "cue": "👨 Иван ❓🎂",
+     "english": "Ivan. How old are you?"
+    },
+    {
+     "answer": "Мне дв+адцать в+осемь лет. А теб+е?",
+     "cue": "🎂 28 ❓🫵",
+     "english": "I'm twenty-eight. And you?",
+     "distractors": [
+      "Мне дв+адцать в+осемь г+ода. А теб+е?"
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Мне тр+идцать.",
+     "cue": "🎂 30",
+     "english": "I'm thirty."
+    },
+    {
+     "answer": "+Очень при+ятно!",
+     "cue": "🤝 😊",
+     "english": "Nice to meet you!"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,365 @@
+{
+ "id": 22,
+ "title": "В доме, на столе",
+ "goal": "Say where things are: «Кошка в машине.» «Книга на столе.»",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 6
+  },
+  {
+   "track": "vocab",
+   "type": "teach",
+   "title": "New words",
+   "instruction": "Listen, say it after me, then say it on your own from the picture.",
+   "items": [
+    {
+     "answer": "стол",
+     "cue": "🍽️",
+     "english": "table"
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "teach",
+   "title": "«В» and «на» — in and on",
+   "instruction": "«В» = in (📥), «на» = on (🔝). After them, words end in «-е»: дом → в доме, машина → в машине, стол → на столе.",
+   "items": [
+    {
+     "answer": "К+ошка в д+оме.",
+     "cue": "🐈 📥🏠",
+     "english": "The cat is in the house.",
+     "ask": "Где к+ошка?",
+     "distractors": [
+      "К+ошка в дом."
+     ]
+    },
+    {
+     "answer": "Кн+ига на стол+е.",
+     "cue": "📖 🔝🍽️",
+     "english": "The book is on the table.",
+     "ask": "Где кн+ига?",
+     "distractors": [
+      "Кн+ига на стол."
+     ]
+    },
+    {
+     "answer": "Ключ в с+умке.",
+     "cue": "🔑 📥👜",
+     "english": "The key is in the bag.",
+     "ask": "Где ключ?",
+     "distractors": [
+      "Ключ в с+умка."
+     ]
+    },
+    {
+     "answer": "Телеф+он на ст+уле.",
+     "cue": "📱 🔝🪑",
+     "english": "The phone is on the chair.",
+     "ask": "Где телеф+он?",
+     "distractors": [
+      "Телеф+он на стул."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "choose",
+   "title": "-е after в and на",
+   "instruction": "After «в» and «на», the word ends in «-е». Pick the right form.",
+   "items": [
+    {
+     "prompt": "Ключ в ___.",
+     "cue": "🔑 📥👜",
+     "english": "The key is in the bag.",
+     "options": [
+      "с+умка",
+      "с+умке"
+     ],
+     "correct": 1,
+     "audio": "Ключ в с+умке."
+    },
+    {
+     "prompt": "Сок на ___.",
+     "cue": "🧃 🔝🍽️",
+     "english": "The juice is on the table.",
+     "options": [
+      "стол",
+      "стол+е"
+     ],
+     "correct": 1,
+     "audio": "Сок на стол+е."
+    },
+    {
+     "prompt": "___ там.",
+     "cue": "👉 🍽️",
+     "english": "The table is there.",
+     "options": [
+      "стол",
+      "стол+е"
+     ],
+     "correct": 0,
+     "audio": "Стол там."
+    },
+    {
+     "prompt": "Соб+ака в ___.",
+     "cue": "🐕 📥🚗",
+     "english": "The dog is in the car.",
+     "options": [
+      "маш+ина",
+      "маш+ине"
+     ],
+     "correct": 1,
+     "audio": "Соб+ака в маш+ине."
+    },
+    {
+     "prompt": "Я в+ижу ___.",
+     "cue": "👀 🚗",
+     "english": "I see a car.",
+     "options": [
+      "маш+ину",
+      "маш+ине"
+     ],
+     "correct": 0,
+     "audio": "Я в+ижу маш+ину."
+    },
+    {
+     "prompt": "+Яблоко на ___.",
+     "cue": "🍎 🔝🪟",
+     "english": "The apple is on the windowsill.",
+     "options": [
+      "окн+о",
+      "окн+е"
+     ],
+     "correct": 1,
+     "audio": "+Яблоко на окн+е."
+    }
+   ]
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "In or on?",
+   "instruction": "Listen. Is it in it or on it?",
+   "items": [
+    {
+     "audio": "Кн+ига на стол+е.",
+     "options": [
+      "📥 in",
+      "🔝 on"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "К+ошка в маш+ине.",
+     "options": [
+      "📥 in",
+      "🔝 on"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Ключ на ст+уле.",
+     "options": [
+      "📥 in",
+      "🔝 on"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Телеф+он в с+умке.",
+     "options": [
+      "📥 in",
+      "🔝 on"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Сок на стол+е.",
+     "options": [
+      "📥 in",
+      "🔝 on"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Соб+ака в д+оме.",
+     "options": [
+      "📥 in",
+      "🔝 on"
+     ],
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "Where is it?",
+   "instruction": "Say where it is from the picture: 📥 = in, 🔝 = on.",
+   "items": [
+    {
+     "answer": "Ключ в с+умке.",
+     "cue": "🔑 📥👜",
+     "english": "The key is in the bag.",
+     "ask": "Где ключ?",
+     "distractors": [
+      "Ключ на с+умке.",
+      "Ключ в с+умка."
+     ]
+    },
+    {
+     "answer": "Соб+ака в маш+ине.",
+     "cue": "🐕 📥🚗",
+     "english": "The dog is in the car.",
+     "ask": "Где соб+ака?",
+     "distractors": [
+      "Соб+ака в маш+ина."
+     ]
+    },
+    {
+     "answer": "Кн+ига на стол+е.",
+     "cue": "📖 🔝🍽️",
+     "english": "The book is on the table.",
+     "ask": "Где кн+ига?",
+     "distractors": [
+      "Кн+ига на стол."
+     ]
+    },
+    {
+     "answer": "+Яблоко на окн+е.",
+     "cue": "🍎 🔝🪟",
+     "english": "The apple is on the windowsill.",
+     "ask": "Где +яблоко?"
+    },
+    {
+     "answer": "К+ошка на ст+уле.",
+     "cue": "🐈 🔝🪑",
+     "english": "The cat is on the chair.",
+     "ask": "Где к+ошка?",
+     "distractors": [
+      "К+ошка на стул."
+     ]
+    },
+    {
+     "answer": "Он в д+оме.",
+     "cue": "👦 📥🏠",
+     "english": "He's in the house.",
+     "ask": "Где брат?",
+     "distractors": [
+      "Он+а в д+оме."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "Numbers to 50",
+   "instruction": "Say the number.",
+   "items": [
+    {
+     "answer": "С+орок.",
+     "cue": "4️⃣0️⃣",
+     "english": "forty"
+    },
+    {
+     "answer": "Пятьдес+ят.",
+     "cue": "5️⃣0️⃣",
+     "english": "fifty"
+    },
+    {
+     "answer": "С+орок чет+ыре.",
+     "cue": "4️⃣4️⃣",
+     "english": "forty-four"
+    },
+    {
+     "answer": "Пятьдес+ят од+ин.",
+     "cue": "5️⃣1️⃣",
+     "english": "fifty-one"
+    },
+    {
+     "answer": "Тр+идцать д+евять.",
+     "cue": "3️⃣9️⃣",
+     "english": "thirty-nine"
+    },
+    {
+     "answer": "С+орок в+осемь.",
+     "cue": "4️⃣8️⃣",
+     "english": "forty-eight"
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "Conversation",
+   "instruction": "Your friend is getting ready to go out.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "Где мой ключ?",
+     "cue": "🔑❓",
+     "english": "Where is my key?"
+    },
+    {
+     "answer": "Он в с+умке.",
+     "cue": "📥👜",
+     "english": "It's in the bag.",
+     "distractors": [
+      "Он на с+умке.",
+      "Он+а в с+умке."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Где мой телеф+он?",
+     "cue": "📱❓",
+     "english": "Where is my phone?"
+    },
+    {
+     "answer": "Он на стол+е.",
+     "cue": "🔝🍽️",
+     "english": "It's on the table.",
+     "distractors": [
+      "Он на стол.",
+      "Он в с+умке."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Где мо+я с+умка?",
+     "cue": "👜❓",
+     "english": "Where is my bag?"
+    },
+    {
+     "answer": "Он+а на ст+уле.",
+     "cue": "🔝🪑",
+     "english": "It's on the chair.",
+     "distractors": [
+      "Он на ст+уле."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Спас+ибо!",
+     "cue": "🙂",
+     "english": "Thanks!"
+    },
+    {
+     "answer": "Пож+алуйста!",
+     "cue": "🙂",
+     "english": "You're welcome!",
+     "distractors": [
+      "Спас+ибо!"
+     ]
+    }
+   ]
+  }
+ ]
+}

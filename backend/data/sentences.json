@@ -3,7 +3,7 @@
     {"title": "Introductions", "sentences": [
       {"text": "Мен+я зов+ут | +Анна.", "english": "My name is Anna.",
        "glosses": ["me", "(they) call", "Anna"]},
-      {"text": "Я из Лонд+она.", "english": "I'm from London.",
+      {"text": "Я из Л+ондона.", "english": "I'm from London.",
        "glosses": ["I", "from", "London"]},
       {"text": "Я изуч+аю | р+усский яз+ык.", "english": "I'm learning Russian.",
        "glosses": ["I", "study", "Russian", "language"]},
@@ -61,7 +61,7 @@
        "glosses": ["at", "me", "there is", "brother", "and", "sister"]},
       {"text": "Мо+я м+ама | раб+отает врач+ом.", "english": "My mum works as a doctor.",
        "glosses": ["my", "mum", "works", "as a doctor"]},
-      {"text": "Мо+ему с+ыну | пять лет.", "english": "My son is five years old.",
+      {"text": "Моем+у с+ыну | пять лет.", "english": "My son is five years old.",
        "glosses": ["to my", "son", "five", "years"]},
       {"text": "Мы живём вм+есте.", "english": "We live together.",
        "glosses": ["we", "live", "together"]},

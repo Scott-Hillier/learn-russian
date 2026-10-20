@@ -1,0 +1,330 @@
+{
+ "id": 33,
+ "title": "Который час?",
+ "goal": "Ask and tell the time: «Который час?» — «Сейчас три часа.»",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 6
+  },
+  {
+   "track": "frames",
+   "type": "teach",
+   "title": "«Который час?» — What time is it?",
+   "instruction": "«Час» = hour, o'clock. After 2, 3 and 4 it's «часа»; from 5 on it's «часов». One o'clock is just «час». «Сейчас» = now.",
+   "items": [
+    {
+     "answer": "Кот+орый час?",
+     "cue": "❓🕰️",
+     "english": "What time is it?"
+    },
+    {
+     "answer": "Сейч+ас три час+а.",
+     "cue": "🕒",
+     "english": "It's three o'clock now.",
+     "ask": "Кот+орый час?",
+     "distractors": [
+      "Сейч+ас три час+ов."
+     ]
+    },
+    {
+     "answer": "Сейч+ас пять час+ов.",
+     "cue": "🕔",
+     "english": "It's five o'clock now.",
+     "ask": "Кот+орый час?",
+     "distractors": [
+      "Сейч+ас пять час+а."
+     ]
+    },
+    {
+     "answer": "Сейч+ас час.",
+     "cue": "🕐",
+     "english": "It's one o'clock now.",
+     "ask": "Кот+орый час?"
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "choose",
+   "title": "Часа or часов?",
+   "instruction": "2, 3, 4 → часа. 5 and up → часов.",
+   "items": [
+    {
+     "prompt": "Два ___.",
+     "cue": "🕑",
+     "english": "two o'clock",
+     "options": [
+      "час+а",
+      "час+ов"
+     ],
+     "correct": 0,
+     "audio": "Два час+а."
+    },
+    {
+     "prompt": "Шесть ___.",
+     "cue": "🕕",
+     "english": "six o'clock",
+     "options": [
+      "час+а",
+      "час+ов"
+     ],
+     "correct": 1,
+     "audio": "Шесть час+ов."
+    },
+    {
+     "prompt": "Чет+ыре ___.",
+     "cue": "🕓",
+     "english": "four o'clock",
+     "options": [
+      "час+а",
+      "час+ов"
+     ],
+     "correct": 0,
+     "audio": "Чет+ыре час+а."
+    },
+    {
+     "prompt": "Д+есять ___.",
+     "cue": "🕙",
+     "english": "ten o'clock",
+     "options": [
+      "час+а",
+      "час+ов"
+     ],
+     "correct": 1,
+     "audio": "Д+есять час+ов."
+    },
+    {
+     "prompt": "Од+иннадцать ___.",
+     "cue": "🕚",
+     "english": "eleven o'clock",
+     "options": [
+      "час+а",
+      "час+ов"
+     ],
+     "correct": 1,
+     "audio": "Од+иннадцать час+ов."
+    },
+    {
+     "prompt": "Три ___.",
+     "cue": "🕒",
+     "english": "three o'clock",
+     "options": [
+      "час+а",
+      "час+ов"
+     ],
+     "correct": 0,
+     "audio": "Три час+а."
+    }
+   ]
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "What time is it?",
+   "instruction": "Listen and pick the clock.",
+   "items": [
+    {
+     "audio": "Сейч+ас д+евять час+ов.",
+     "options": [
+      "🕘",
+      "🕔",
+      "🕖"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Сейч+ас два час+а.",
+     "options": [
+      "🕛",
+      "🕑",
+      "🕙"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Сейч+ас семь час+ов.",
+     "options": [
+      "🕕",
+      "🕗",
+      "🕖"
+     ],
+     "correct": 2
+    },
+    {
+     "audio": "Сейч+ас час.",
+     "options": [
+      "🕐",
+      "🕓",
+      "🕚"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Сейч+ас двен+адцать час+ов.",
+     "options": [
+      "🕑",
+      "🕛",
+      "🕚"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Сейч+ас чет+ыре час+а.",
+     "options": [
+      "🕓",
+      "🕔",
+      "🕒"
+     ],
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "What time is it?",
+   "instruction": "Say the time on the clock.",
+   "items": [
+    {
+     "answer": "В+осемь час+ов.",
+     "cue": "🕗",
+     "english": "eight o'clock",
+     "ask": "Кот+орый час?",
+     "distractors": [
+      "В+осемь час+а."
+     ]
+    },
+    {
+     "answer": "Чет+ыре час+а.",
+     "cue": "🕓",
+     "english": "four o'clock",
+     "ask": "Кот+орый час?",
+     "distractors": [
+      "Чет+ыре час+ов."
+     ]
+    },
+    {
+     "answer": "Двен+адцать час+ов.",
+     "cue": "🕛",
+     "english": "twelve o'clock",
+     "ask": "Кот+орый час?"
+    },
+    {
+     "answer": "Семь час+ов.",
+     "cue": "🕖",
+     "english": "seven o'clock",
+     "ask": "Кот+орый час?"
+    },
+    {
+     "answer": "Два час+а.",
+     "cue": "🕑",
+     "english": "two o'clock",
+     "ask": "Кот+орый час?",
+     "distractors": [
+      "Два час+ов."
+     ]
+    },
+    {
+     "answer": "Кот+орый час?",
+     "cue": "❓🕰️",
+     "english": "Ask: What time is it?",
+     "distractors": [
+      "Ск+олько?"
+     ]
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "Conversation",
+   "instruction": "You're at a friend's place in the evening.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "Кот+орый час?",
+     "cue": "❓🕰️",
+     "english": "What time is it?"
+    },
+    {
+     "answer": "Сейч+ас д+евять час+ов.",
+     "cue": "🕘",
+     "english": "It's nine o'clock now.",
+     "distractors": [
+      "Сейч+ас д+евять час+а."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Ты идёшь дом+ой?",
+     "cue": "🚶 🏠❓",
+     "english": "Are you going home?"
+    },
+    {
+     "answer": "Да, я ид+у дом+ой. А ты?",
+     "cue": "✅ 🚶 🏠 ❓🫵",
+     "english": "Yes, I'm going home. And you?",
+     "distractors": [
+      "Нет, я ид+у в магаз+ин."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Я ид+у в магаз+ин. Пок+а!",
+     "cue": "🚶 🏪 👋",
+     "english": "I'm going to the shop. Bye!"
+    },
+    {
+     "answer": "Пок+а!",
+     "cue": "👋",
+     "english": "Bye!",
+     "distractors": [
+      "Прив+ет!"
+     ]
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "Numbers",
+   "instruction": "Say the number.",
+   "items": [
+    {
+     "answer": "Сто.",
+     "cue": "1️⃣0️⃣0️⃣",
+     "english": "a hundred"
+    },
+    {
+     "answer": "Пятьдес+ят два.",
+     "cue": "5️⃣2️⃣",
+     "english": "fifty-two"
+    },
+    {
+     "answer": "Тр+идцать в+осемь.",
+     "cue": "3️⃣8️⃣",
+     "english": "thirty-eight"
+    },
+    {
+     "answer": "В+осемьдесят од+ин.",
+     "cue": "8️⃣1️⃣",
+     "english": "eighty-one"
+    },
+    {
+     "answer": "Шестьдес+ят семь.",
+     "cue": "6️⃣7️⃣",
+     "english": "sixty-seven"
+    },
+    {
+     "answer": "Девян+осто чет+ыре.",
+     "cue": "9️⃣4️⃣",
+     "english": "ninety-four"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,330 @@
+{
+ "id": 41,
+ "title": "Я был, я была",
+ "goal": "Say where you were: «Вчера я был дома.» A woman says «была»: «Я была в магазине.»",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 6
+  },
+  {
+   "track": "vocab",
+   "type": "teach",
+   "title": "New words",
+   "instruction": "Listen, say it after me, then say it on your own from the picture.",
+   "items": [
+    {
+     "answer": "вчер+а",
+     "cue": "⬅️📅",
+     "english": "yesterday"
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "teach",
+   "title": "«Был, была» — was",
+   "instruction": "The past tense shows who it is: a man says «я был», a woman says «я была». Он был, она была. Here you play Иван (👨) or Анна (👩): say it as the person shown.",
+   "items": [
+    {
+     "answer": "Вчер+а я был д+ома.",
+     "cue": "👨 Иван ⬅️📅 🏠",
+     "english": "Yesterday I was at home. (Ivan)",
+     "distractors": [
+      "Вчер+а я был+а д+ома."
+     ]
+    },
+    {
+     "answer": "Вчер+а я был+а в магаз+ине.",
+     "cue": "👩 Анна ⬅️📅 🏪",
+     "english": "Yesterday I was at the shop. (Anna)",
+     "distractors": [
+      "Вчер+а я был в магаз+ине."
+     ]
+    },
+    {
+     "answer": "Где ты был вчер+а?",
+     "cue": "❓👨 Иван ⬅️📅",
+     "english": "Where were you yesterday? (to Ivan)",
+     "distractors": [
+      "Где ты был+а вчер+а?"
+     ]
+    },
+    {
+     "answer": "Он+а был+а на раб+оте.",
+     "cue": "👩 ⬅️📅 💼",
+     "english": "She was at work.",
+     "distractors": [
+      "Он был на раб+оте."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "choose",
+   "title": "Был or была?",
+   "instruction": "A man → был. A woman → была.",
+   "items": [
+    {
+     "prompt": "Ив+ан ___ д+ома.",
+     "cue": "👨 Иван 🏠",
+     "english": "Ivan was at home.",
+     "options": [
+      "был",
+      "был+а"
+     ],
+     "correct": 0,
+     "audio": "Ив+ан был д+ома."
+    },
+    {
+     "prompt": "+Анна ___ в шк+оле.",
+     "cue": "👩 Анна 🏫",
+     "english": "Anna was at school.",
+     "options": [
+      "был",
+      "был+а"
+     ],
+     "correct": 1,
+     "audio": "+Анна был+а в шк+оле."
+    },
+    {
+     "prompt": "Вчер+а м+ама ___ на раб+оте.",
+     "cue": "👩 💼",
+     "english": "Yesterday mum was at work.",
+     "options": [
+      "был",
+      "был+а"
+     ],
+     "correct": 1,
+     "audio": "Вчер+а м+ама был+а на раб+оте."
+    },
+    {
+     "prompt": "П+апа ___ в Москв+е.",
+     "cue": "👨 🏙️🇷🇺",
+     "english": "Dad was in Moscow.",
+     "options": [
+      "был",
+      "был+а"
+     ],
+     "correct": 0,
+     "audio": "П+апа был в Москв+е."
+    },
+    {
+     "prompt": "Где ты ___ вчер+а?",
+     "cue": "❓👩 Анна",
+     "english": "Where were you yesterday? (to Anna)",
+     "options": [
+      "был",
+      "был+а"
+     ],
+     "correct": 1,
+     "audio": "Где ты был+а вчер+а?"
+    },
+    {
+     "prompt": "Я ___ в каф+е.",
+     "cue": "👨 Иван ☕🍰",
+     "english": "I was at a café. (Ivan)",
+     "options": [
+      "был",
+      "был+а"
+     ],
+     "correct": 0,
+     "audio": "Я был в каф+е."
+    }
+   ]
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "Who's speaking?",
+   "instruction": "Listen: a man (был) or a woman (была)?",
+   "items": [
+    {
+     "audio": "Я был+а в Л+ондоне.",
+     "options": [
+      "👩 Анна",
+      "👨 Иван"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Я был д+ома.",
+     "options": [
+      "👩 Анна",
+      "👨 Иван"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Вчер+а я был на раб+оте.",
+     "options": [
+      "👩 Анна",
+      "👨 Иван"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Вчер+а я был+а в шк+оле.",
+     "options": [
+      "👩 Анна",
+      "👨 Иван"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Я был в магаз+ине.",
+     "options": [
+      "👩 Анна",
+      "👨 Иван"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Я был+а в каф+е.",
+     "options": [
+      "👩 Анна",
+      "👨 Иван"
+     ],
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "Where were you?",
+   "instruction": "Answer as the person shown.",
+   "items": [
+    {
+     "answer": "Вчер+а я был+а д+ома.",
+     "cue": "👩 Анна ⬅️📅 🏠",
+     "english": "Yesterday I was at home.",
+     "ask": "Где ты был+а вчер+а?",
+     "distractors": [
+      "Вчер+а я был д+ома.",
+      "Вчер+а я был+а в магаз+ине."
+     ]
+    },
+    {
+     "answer": "Я был на раб+оте.",
+     "cue": "👨 Иван ⬅️📅 💼",
+     "english": "I was at work.",
+     "ask": "Где ты был вчер+а?",
+     "distractors": [
+      "Я был+а на раб+оте."
+     ]
+    },
+    {
+     "answer": "Он был в Москв+е.",
+     "cue": "👨 ⬅️📅 🏙️🇷🇺",
+     "english": "He was in Moscow.",
+     "ask": "Где был п+апа?",
+     "distractors": [
+      "Он+а был+а в Москв+е."
+     ]
+    },
+    {
+     "answer": "Где ты был+а вчер+а?",
+     "cue": "❓👩 Анна ⬅️📅",
+     "english": "Ask Anna: Where were you yesterday?"
+    },
+    {
+     "answer": "Я был+а в каф+е.",
+     "cue": "👩 Анна ⬅️📅 ☕🍰",
+     "english": "I was at a café.",
+     "ask": "Где ты был+а?",
+     "distractors": [
+      "Я был в каф+е."
+     ]
+    },
+    {
+     "answer": "Сег+одня я д+ома.",
+     "cue": "👨 Иван 📅 🏠",
+     "english": "Today I'm at home.",
+     "ask": "Где ты сег+одня?",
+     "distractors": [
+      "Вчер+а я был д+ома."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "Numbers",
+   "instruction": "Say the number.",
+   "items": [
+    {
+     "answer": "Сто.",
+     "cue": "1️⃣0️⃣0️⃣",
+     "english": "a hundred"
+    },
+    {
+     "answer": "Тр+идцать семь.",
+     "cue": "3️⃣7️⃣",
+     "english": "thirty-seven"
+    },
+    {
+     "answer": "Пятьдес+ят чет+ыре.",
+     "cue": "5️⃣4️⃣",
+     "english": "fifty-four"
+    },
+    {
+     "answer": "С+емьдесят шесть.",
+     "cue": "7️⃣6️⃣",
+     "english": "seventy-six"
+    },
+    {
+     "answer": "В+осемьдесят два.",
+     "cue": "8️⃣2️⃣",
+     "english": "eighty-two"
+    },
+    {
+     "answer": "Девятн+адцать.",
+     "cue": "1️⃣9️⃣",
+     "english": "nineteen"
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "Conversation",
+   "instruction": "You are Анна 👩. A friend calls.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "Прив+ет! Где ты был+а вчер+а?",
+     "cue": "❓⬅️📅",
+     "english": "Hi! Where were you yesterday?"
+    },
+    {
+     "answer": "Вчер+а я был+а в магаз+ине.",
+     "cue": "⬅️📅 🏪",
+     "english": "Yesterday I was at the shop.",
+     "distractors": [
+      "Вчер+а я был в магаз+ине."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "А сег+одня?",
+     "cue": "❓📅",
+     "english": "And today?"
+    },
+    {
+     "answer": "Сег+одня я д+ома.",
+     "cue": "📅 🏠",
+     "english": "Today I'm at home.",
+     "distractors": [
+      "Сег+одня я на раб+оте."
+     ]
+    }
+   ]
+  }
+ ]
+}

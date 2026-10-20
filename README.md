@@ -12,9 +12,15 @@ the speech models (about 3 GB). After that the app works fully offline.
 
 Requirements: macOS on Apple Silicon, Python 3.10+, Node 18+, `ffmpeg` (`brew install ffmpeg`).
 
-## 📘 Lessons (start here)
-The app opens on **Lessons**: a Direct Instruction course (see [PLAN.md](PLAN.md)). Do one lesson at a time,
-in order:
+## 🏠 Today (start here)
+The app opens on **Today**. It shows your next step (a lesson, a test or a fix-up lesson); press `Enter` to
+start it. Below that are your path through the course, how often you're right first time on each kind of
+exercise, the things you've missed lately, and your test results. Already know some Russian? Take the
+**placement test** shown there to start further on.
+
+## 📘 Lessons
+**Lessons** is a 60-lesson Direct Instruction course (see [PLAN.md](PLAN.md)), from «Это кошка» to the past
+and future tense, shopping, cafés and asking the way. Do one lesson at a time, in order:
 - **Mixed exercises:** each lesson has short exercises from different tracks: new words, sentence patterns,
   listening, numbers and a mini dialogue. Every lesson also reviews earlier ones.
 - **How new items are taught:** you hear it, say it after the voice, then say it on your own from a picture.
@@ -29,11 +35,22 @@ in order:
   `Space` answers or stops, `R` repeats the question, `1`–`4` pick an answer in listening exercises, and `Esc`
   pauses hands-free.
 - **Answer checking:** your answer is compared with the expected answer and the likely wrong ones (кошка vs
-  кошку, тут vs там). If the checker gets it wrong, **✓ I said it right** (`O`) counts it as right; that is
-  saved separately.
+  кошку, тут vs там). Common English-speaker sounds (ы said as и, a hard consonant instead of a soft one)
+  still count as the right answer; the coloured letters show them so you can work on them. If it isn't
+  clear what you said, you're asked to say it again. If the checker gets it wrong, **✓ I said it right**
+  (`O`) counts it as right; that is saved separately.
+- **Review:** each lesson starts with review. Things you've missed lately come first, then lesson words that
+  are due in your flashcards (answering them there counts as their flashcard review), then older items.
+- **Tests:** every 5 lessons there's a short test: one try at each item, no help. 90% unlocks the next five
+  lessons. Below that, a fix-up lesson goes over what you missed, then you take the test again. You can
+  also take a unit's test early to skip lessons you already know.
+- **Flashcards:** words a lesson teaches are linked to it ("📘 Lesson 3") and join your flashcard schedule
+  when you pass the lesson.
 
 Everything else (letters, flashcards, sentences, sound pairs, conversation, phrases) is under **Practice** in
-the sidebar, for reviewing any content whenever you like.
+the sidebar, for reviewing any content whenever you like. In **🤖 Conversation**, the level "Only words from
+my lessons" keeps the partner to the words and grammar you've been taught; any other word it uses is
+underlined.
 
 ## Letters & Sounds
 The **🔤 Letters & Sounds** screen teaches all 33 Cyrillic letters in 6 lessons. Each lesson

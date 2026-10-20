@@ -1,0 +1,254 @@
+{
+ "id": 34,
+ "title": "Сегодня понедельник",
+ "goal": "Say what day it is: «Какой сегодня день?» — «Сегодня понедельник.»",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 6
+  },
+  {
+   "track": "vocab",
+   "type": "teach",
+   "title": "New words",
+   "instruction": "Listen, say it after me, then say it on your own from the picture.",
+   "items": [
+    {
+     "answer": "понед+ельник",
+     "cue": "📅 Mon",
+     "english": "Monday"
+    },
+    {
+     "answer": "вт+орник",
+     "cue": "📅 Tue",
+     "english": "Tuesday"
+    },
+    {
+     "answer": "сред+а",
+     "cue": "📅 Wed",
+     "english": "Wednesday"
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "teach",
+   "title": "«Сегодня …» — Today is …",
+   "instruction": "«Сегодня» = today. «Какой сегодня день?» = What day is it today?",
+   "items": [
+    {
+     "answer": "Как+ой сег+одня день?",
+     "cue": "❓📅",
+     "english": "What day is it today?"
+    },
+    {
+     "answer": "Сег+одня понед+ельник.",
+     "cue": "📅 Mon",
+     "english": "Today is Monday.",
+     "ask": "Как+ой сег+одня день?"
+    },
+    {
+     "answer": "Сег+одня сред+а.",
+     "cue": "📅 Wed",
+     "english": "Today is Wednesday.",
+     "ask": "Как+ой сег+одня день?"
+    },
+    {
+     "answer": "Сег+одня вт+орник.",
+     "cue": "📅 Tue",
+     "english": "Today is Tuesday.",
+     "ask": "Как+ой сег+одня день?"
+    }
+   ]
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "Which day?",
+   "instruction": "Listen and pick the day.",
+   "items": [
+    {
+     "audio": "Сег+одня вт+орник.",
+     "options": [
+      "📅 Mon",
+      "📅 Tue",
+      "📅 Wed"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Сег+одня понед+ельник.",
+     "options": [
+      "📅 Mon",
+      "📅 Tue",
+      "📅 Wed"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Сег+одня сред+а.",
+     "options": [
+      "📅 Mon",
+      "📅 Tue",
+      "📅 Wed"
+     ],
+     "correct": 2
+    },
+    {
+     "audio": "Сег+одня понед+ельник?",
+     "options": [
+      "📅 Mon",
+      "📅 Tue",
+      "📅 Wed"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Нет, сег+одня сред+а.",
+     "options": [
+      "📅 Mon",
+      "📅 Tue",
+      "📅 Wed"
+     ],
+     "correct": 2
+    },
+    {
+     "audio": "Вт+орник.",
+     "options": [
+      "📅 Mon",
+      "📅 Tue",
+      "📅 Wed"
+     ],
+     "correct": 1
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "What day is it?",
+   "instruction": "Answer from the calendar.",
+   "items": [
+    {
+     "answer": "Сег+одня вт+орник.",
+     "cue": "📅 Tue",
+     "english": "Today is Tuesday.",
+     "ask": "Как+ой сег+одня день?",
+     "distractors": [
+      "Сег+одня понед+ельник.",
+      "Сег+одня сред+а."
+     ]
+    },
+    {
+     "answer": "Нет, сег+одня сред+а.",
+     "cue": "🚫📅 Mon ✅📅 Wed",
+     "english": "No, today is Wednesday.",
+     "ask": "Сег+одня понед+ельник?",
+     "distractors": [
+      "Да, сег+одня понед+ельник."
+     ]
+    },
+    {
+     "answer": "Сег+одня понед+ельник.",
+     "cue": "📅 Mon",
+     "english": "Today is Monday.",
+     "ask": "Как+ой сег+одня день?"
+    },
+    {
+     "answer": "Как+ой сег+одня день?",
+     "cue": "❓📅",
+     "english": "Ask: What day is it today?",
+     "distractors": [
+      "Кот+орый час?"
+     ]
+    },
+    {
+     "answer": "Сейч+ас д+есять час+ов.",
+     "cue": "🕙",
+     "english": "It's ten o'clock now.",
+     "ask": "Кот+орый час?"
+    },
+    {
+     "answer": "Я +еду на раб+оту.",
+     "cue": "🚗 💼",
+     "english": "I'm driving to work.",
+     "ask": "Куд+а ты +едешь?"
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "Numbers",
+   "instruction": "Say the number.",
+   "items": [
+    {
+     "answer": "Сто.",
+     "cue": "1️⃣0️⃣0️⃣",
+     "english": "a hundred"
+    },
+    {
+     "answer": "Дв+адцать шесть.",
+     "cue": "2️⃣6️⃣",
+     "english": "twenty-six"
+    },
+    {
+     "answer": "С+орок д+евять.",
+     "cue": "4️⃣9️⃣",
+     "english": "forty-nine"
+    },
+    {
+     "answer": "В+осемьдесят три.",
+     "cue": "8️⃣3️⃣",
+     "english": "eighty-three"
+    },
+    {
+     "answer": "С+емьдесят.",
+     "cue": "7️⃣0️⃣",
+     "english": "seventy"
+    },
+    {
+     "answer": "Пятн+адцать.",
+     "cue": "1️⃣5️⃣",
+     "english": "fifteen"
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "Conversation",
+   "instruction": "A colleague on Monday morning.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "Прив+ет! Сег+одня понед+ельник!",
+     "cue": "📅 Mon",
+     "english": "Hi! It's Monday today!"
+    },
+    {
+     "answer": "Да. Я +еду на раб+оту.",
+     "cue": "✅ 🚗 💼",
+     "english": "Yes. I'm going to work."
+    },
+    {
+     "speaker": "partner",
+     "line": "Кот+орый час?",
+     "cue": "❓🕰️",
+     "english": "What time is it?"
+    },
+    {
+     "answer": "Сейч+ас в+осемь час+ов.",
+     "cue": "🕗",
+     "english": "It's eight o'clock now.",
+     "distractors": [
+      "Сейч+ас в+осемь час+а."
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -320,6 +320,7 @@ export default function StudySession({ deckId, deckName, learned, onReviewed, on
             {isLearned ? (deckId ? "Practice" : "Learned word") : isNew ? "New word" : "Review"}
           </span>
           {card!.tag && <span className="category">{card!.tag}</span>}
+          {card!.lesson && <span className="category">📘 Lesson {card!.lesson}</span>}
         </div>
 
         {!revealed ? (

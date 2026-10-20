@@ -1,0 +1,306 @@
+{
+ "id": 26,
+ "title": "У меня есть …",
+ "goal": "Say what you have: «У меня есть кошка.» «У тебя есть машина?»",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 6
+  },
+  {
+   "track": "frames",
+   "type": "teach",
+   "title": "«У меня есть …» — I have …",
+   "instruction": "Russian says “at me there is”: «У меня есть кошка» = I have a cat. «У тебя есть …?» = Do you have …? The thing you have keeps its plain form: кошка, not кошку.",
+   "items": [
+    {
+     "answer": "У мен+я есть к+ошка.",
+     "cue": "🙋 🐈",
+     "english": "I have a cat.",
+     "distractors": [
+      "У мен+я есть к+ошку."
+     ]
+    },
+    {
+     "answer": "У мен+я есть брат.",
+     "cue": "🙋 👦",
+     "english": "I have a brother."
+    },
+    {
+     "answer": "У теб+я есть маш+ина?",
+     "cue": "❓🫵 🚗",
+     "english": "Do you have a car?"
+    },
+    {
+     "answer": "Да, у мен+я есть маш+ина.",
+     "cue": "✅ 🚗",
+     "english": "Yes, I have a car.",
+     "ask": "У теб+я есть маш+ина?"
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "choose",
+   "title": "«Есть» or «вижу»?",
+   "instruction": "After «есть», the word stays as it is. After «вижу» and «хочу», «-а» becomes «-у».",
+   "items": [
+    {
+     "prompt": "У мен+я есть ___.",
+     "cue": "🙋 🐈",
+     "english": "I have a cat.",
+     "options": [
+      "к+ошка",
+      "к+ошку"
+     ],
+     "correct": 0,
+     "audio": "У мен+я есть к+ошка."
+    },
+    {
+     "prompt": "Я в+ижу ___.",
+     "cue": "👀 🐈",
+     "english": "I see a cat.",
+     "options": [
+      "к+ошка",
+      "к+ошку"
+     ],
+     "correct": 1,
+     "audio": "Я в+ижу к+ошку."
+    },
+    {
+     "prompt": "У теб+я есть ___?",
+     "cue": "❓🫵 👜",
+     "english": "Do you have a bag?",
+     "options": [
+      "с+умка",
+      "с+умку"
+     ],
+     "correct": 0,
+     "audio": "У теб+я есть с+умка?"
+    },
+    {
+     "prompt": "Я хоч+у ___.",
+     "cue": "🚗",
+     "english": "I want a car.",
+     "options": [
+      "маш+ина",
+      "маш+ину"
+     ],
+     "correct": 1,
+     "audio": "Я хоч+у маш+ину."
+    },
+    {
+     "prompt": "У мен+я есть ___.",
+     "cue": "🙋 👧",
+     "english": "I have a sister.",
+     "options": [
+      "сестр+а",
+      "сестр+у"
+     ],
+     "correct": 0,
+     "audio": "У мен+я есть сестр+а."
+    }
+   ]
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "Telling or asking?",
+   "instruction": "Listen. Is it “I have …” or “do you have …?”",
+   "items": [
+    {
+     "audio": "У теб+я есть соб+ака?",
+     "options": [
+      "🙋 I have",
+      "❓🫵 do you have?"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "У мен+я есть кн+ига.",
+     "options": [
+      "🙋 I have",
+      "❓🫵 do you have?"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "У мен+я есть сестр+а.",
+     "options": [
+      "🙋 I have",
+      "❓🫵 do you have?"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "У теб+я есть брат?",
+     "options": [
+      "🙋 I have",
+      "❓🫵 do you have?"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "У мен+я есть телеф+он.",
+     "options": [
+      "🙋 I have",
+      "❓🫵 do you have?"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "У теб+я есть ключ+и?",
+     "options": [
+      "🙋 I have",
+      "❓🫵 do you have?"
+     ],
+     "correct": 1
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "What do you have?",
+   "instruction": "Say it from the picture.",
+   "items": [
+    {
+     "answer": "У мен+я есть телеф+он.",
+     "cue": "🙋 📱",
+     "english": "I have a phone.",
+     "distractors": [
+      "У теб+я есть телеф+он?"
+     ]
+    },
+    {
+     "answer": "Да, у мен+я есть брат.",
+     "cue": "✅ 👦",
+     "english": "Yes, I have a brother.",
+     "ask": "У теб+я есть брат?"
+    },
+    {
+     "answer": "У теб+я есть соб+ака?",
+     "cue": "❓🫵 🐕",
+     "english": "Ask a friend: Do you have a dog?",
+     "distractors": [
+      "У мен+я есть соб+ака."
+     ]
+    },
+    {
+     "answer": "У мен+я есть сестр+а.",
+     "cue": "🙋 👧",
+     "english": "I have a sister.",
+     "distractors": [
+      "У мен+я есть сестр+у."
+     ]
+    },
+    {
+     "answer": "У мен+я есть кн+иги.",
+     "cue": "🙋 📖📖",
+     "english": "I have books.",
+     "ask": "Что у теб+я есть?",
+     "distractors": [
+      "У мен+я есть кн+ига."
+     ]
+    },
+    {
+     "answer": "Мой брат живёт в Москв+е.",
+     "cue": "👦 🏙️🇷🇺",
+     "english": "My brother lives in Moscow.",
+     "distractors": [
+      "Мой брат живёт в Л+ондоне."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "Numbers",
+   "instruction": "Say the number.",
+   "items": [
+    {
+     "answer": "С+емьдесят.",
+     "cue": "7️⃣0️⃣",
+     "english": "seventy"
+    },
+    {
+     "answer": "В+осемьдесят.",
+     "cue": "8️⃣0️⃣",
+     "english": "eighty"
+    },
+    {
+     "answer": "С+емьдесят чет+ыре.",
+     "cue": "7️⃣4️⃣",
+     "english": "seventy-four"
+    },
+    {
+     "answer": "В+осемьдесят в+осемь.",
+     "cue": "8️⃣8️⃣",
+     "english": "eighty-eight"
+    },
+    {
+     "answer": "Пятьдес+ят д+евять.",
+     "cue": "5️⃣9️⃣",
+     "english": "fifty-nine"
+    },
+    {
+     "answer": "Сто.",
+     "cue": "1️⃣0️⃣0️⃣",
+     "english": "a hundred"
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "Conversation",
+   "instruction": "A new friend asks about your family.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "У теб+я есть соб+ака?",
+     "cue": "🐕❓",
+     "english": "Do you have a dog?"
+    },
+    {
+     "answer": "Нет. У мен+я есть к+ошка.",
+     "cue": "🚫🐕 🐈",
+     "english": "No. I have a cat.",
+     "distractors": [
+      "Да, у мен+я есть соб+ака."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Где он+а?",
+     "cue": "🐈❓",
+     "english": "Where is it?"
+    },
+    {
+     "answer": "Он+а в д+оме.",
+     "cue": "📥🏠",
+     "english": "It's in the house.",
+     "distractors": [
+      "Он в д+оме.",
+      "Он+а на д+оме."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "У теб+я есть брат?",
+     "cue": "👦❓",
+     "english": "Do you have a brother?"
+    },
+    {
+     "answer": "Да, у мен+я есть брат. Он живёт в Л+ондоне.",
+     "cue": "✅ 👦 🏙️🇬🇧",
+     "english": "Yes, I have a brother. He lives in London."
+    }
+   ]
+  }
+ ]
+}

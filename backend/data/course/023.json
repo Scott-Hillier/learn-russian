@@ -1,0 +1,357 @@
+{
+ "id": 23,
+ "title": "Я живу в Москве",
+ "goal": "Say where you live: «Я живу в Лондоне.» «Где ты живёшь?»",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 6
+  },
+  {
+   "track": "vocab",
+   "type": "teach",
+   "title": "New words",
+   "instruction": "Listen, say it after me, then say it on your own from the picture.",
+   "items": [
+    {
+     "answer": "Москв+а",
+     "cue": "🏙️🇷🇺",
+     "english": "Moscow"
+    },
+    {
+     "answer": "Л+ондон",
+     "cue": "🏙️🇬🇧",
+     "english": "London"
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "teach",
+   "title": "«Жить» — to live",
+   "instruction": "«Я живу» = I live. It changes like this: я живу, ты живёшь, он / она живёт, мы живём, вы живёте, они живут. Where? «в» and «-е»: в Москве, в Лондоне.",
+   "items": [
+    {
+     "answer": "Я жив+у в Л+ондоне.",
+     "cue": "🙋 🏙️🇬🇧",
+     "english": "I live in London.",
+     "distractors": [
+      "Я жив+у в Москв+е."
+     ]
+    },
+    {
+     "answer": "Он+а живёт в Москв+е.",
+     "cue": "👧 🏙️🇷🇺",
+     "english": "She lives in Moscow.",
+     "distractors": [
+      "Он+а живёт в Москв+а."
+     ]
+    },
+    {
+     "answer": "Где ты живёшь?",
+     "cue": "❓🫵 🏠",
+     "english": "Where do you live?"
+    },
+    {
+     "answer": "Мы живём в д+оме.",
+     "cue": "🙋‍♀️🙋‍♂️ 🏠",
+     "english": "We live in a house."
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "choose",
+   "title": "Which form?",
+   "instruction": "Pick the right form.",
+   "items": [
+    {
+     "prompt": "Я жив+у в ___.",
+     "cue": "🏙️🇷🇺",
+     "english": "I live in Moscow.",
+     "options": [
+      "Москв+а",
+      "Москв+е"
+     ],
+     "correct": 1,
+     "audio": "Я жив+у в Москв+е."
+    },
+    {
+     "prompt": "Он+и жив+ут в ___.",
+     "cue": "👥 🏙️🇬🇧",
+     "english": "They live in London.",
+     "options": [
+      "Л+ондон",
+      "Л+ондоне"
+     ],
+     "correct": 1,
+     "audio": "Он+и жив+ут в Л+ондоне."
+    },
+    {
+     "prompt": "Ты ___ в Москв+е?",
+     "cue": "❓🫵 🏙️🇷🇺",
+     "english": "Do you live in Moscow?",
+     "options": [
+      "жив+у",
+      "живёшь",
+      "живёт"
+     ],
+     "correct": 1,
+     "audio": "Ты живёшь в Москв+е?"
+    },
+    {
+     "prompt": "Он ___ в Л+ондоне.",
+     "cue": "👦 🏙️🇬🇧",
+     "english": "He lives in London.",
+     "options": [
+      "жив+у",
+      "живёшь",
+      "живёт"
+     ],
+     "correct": 2,
+     "audio": "Он живёт в Л+ондоне."
+    },
+    {
+     "prompt": "Мы ___ в д+оме.",
+     "cue": "🙋‍♀️🙋‍♂️ 🏠",
+     "english": "We live in a house.",
+     "options": [
+      "живём",
+      "живёте",
+      "жив+ут"
+     ],
+     "correct": 0,
+     "audio": "Мы живём в д+оме."
+    },
+    {
+     "prompt": "Я жив+у в ___.",
+     "cue": "🏠",
+     "english": "I live in a house.",
+     "options": [
+      "дом",
+      "д+оме"
+     ],
+     "correct": 1,
+     "audio": "Я жив+у в д+оме."
+    }
+   ]
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "Where?",
+   "instruction": "Listen. Where do they live?",
+   "items": [
+    {
+     "audio": "Мы живём в Л+ондоне.",
+     "options": [
+      "🏙️🇷🇺 Moscow",
+      "🏙️🇬🇧 London"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Мо+я сестр+а живёт в Москв+е.",
+     "options": [
+      "🏙️🇷🇺 Moscow",
+      "🏙️🇬🇧 London"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Он+и жив+ут в Москв+е.",
+     "options": [
+      "🏙️🇷🇺 Moscow",
+      "🏙️🇬🇧 London"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Мой брат живёт в Л+ондоне.",
+     "options": [
+      "🏙️🇷🇺 Moscow",
+      "🏙️🇬🇧 London"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Вы живёте в Л+ондоне?",
+     "options": [
+      "🏙️🇷🇺 Moscow",
+      "🏙️🇬🇧 London"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Я жив+у в Москв+е.",
+     "options": [
+      "🏙️🇷🇺 Moscow",
+      "🏙️🇬🇧 London"
+     ],
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "Where do they live?",
+   "instruction": "Answer from the picture.",
+   "items": [
+    {
+     "answer": "Я жив+у в Л+ондоне.",
+     "cue": "🏙️🇬🇧",
+     "english": "I live in London.",
+     "ask": "Где ты живёшь?",
+     "distractors": [
+      "Я жив+у в Москв+е."
+     ]
+    },
+    {
+     "answer": "Он+а живёт в Москв+е.",
+     "cue": "👧 🏙️🇷🇺",
+     "english": "She lives in Moscow.",
+     "ask": "Где живёт тво+я сестр+а?",
+     "distractors": [
+      "Он+а живёт в Л+ондоне.",
+      "Он живёт в Москв+е."
+     ]
+    },
+    {
+     "answer": "Где ты живёшь?",
+     "cue": "❓🫵 🏠",
+     "english": "Ask a friend: Where do you live?"
+    },
+    {
+     "answer": "Нет, я жив+у в Л+ондоне.",
+     "cue": "🚫🏙️🇷🇺 ✅🏙️🇬🇧",
+     "english": "No, I live in London.",
+     "ask": "Ты живёшь в Москв+е?",
+     "distractors": [
+      "Да, я жив+у в Москв+е."
+     ]
+    },
+    {
+     "answer": "Он+и жив+ут в Москв+е.",
+     "cue": "👥 🏙️🇷🇺",
+     "english": "They live in Moscow.",
+     "distractors": [
+      "Мы живём в Москв+е."
+     ]
+    },
+    {
+     "answer": "Мы живём в д+оме.",
+     "cue": "🙋‍♀️🙋‍♂️ 🏠",
+     "english": "We live in a house.",
+     "ask": "Где вы живёте?"
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "teach",
+   "title": "Numbers 60 and 70",
+   "instruction": "Sixty is “six-ten”, seventy is “seven-ten”.",
+   "items": [
+    {
+     "answer": "Шестьдес+ят.",
+     "cue": "6️⃣0️⃣",
+     "english": "sixty"
+    },
+    {
+     "answer": "С+емьдесят.",
+     "cue": "7️⃣0️⃣",
+     "english": "seventy"
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "Numbers",
+   "instruction": "Say the number.",
+   "items": [
+    {
+     "answer": "Шестьдес+ят.",
+     "cue": "6️⃣0️⃣",
+     "english": "sixty"
+    },
+    {
+     "answer": "С+емьдесят.",
+     "cue": "7️⃣0️⃣",
+     "english": "seventy"
+    },
+    {
+     "answer": "Шестьдес+ят шесть.",
+     "cue": "6️⃣6️⃣",
+     "english": "sixty-six"
+    },
+    {
+     "answer": "С+емьдесят три.",
+     "cue": "7️⃣3️⃣",
+     "english": "seventy-three"
+    },
+    {
+     "answer": "Пятьдес+ят в+осемь.",
+     "cue": "5️⃣8️⃣",
+     "english": "fifty-eight"
+    },
+    {
+     "answer": "С+орок од+ин.",
+     "cue": "4️⃣1️⃣",
+     "english": "forty-one"
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "Conversation",
+   "instruction": "You meet someone at a party.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "Прив+ет! Ты живёшь в Москв+е?",
+     "cue": "🧑",
+     "english": "Hi! Do you live in Moscow?"
+    },
+    {
+     "answer": "Нет, я жив+у в Л+ондоне.",
+     "cue": "🏙️🇬🇧",
+     "english": "No, I live in London.",
+     "distractors": [
+      "Да, я жив+у в Москв+е."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Ты говор+ишь по-англ+ийски?",
+     "cue": "🇬🇧",
+     "english": "Do you speak English?"
+    },
+    {
+     "answer": "Да, я говор+ю по-англ+ийски.",
+     "cue": "✅ 🇬🇧",
+     "english": "Yes, I speak English.",
+     "distractors": [
+      "Нет, я не говор+ю по-англ+ийски."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Мой брат т+оже живёт в Л+ондоне!",
+     "cue": "👦 🏙️🇬🇧",
+     "english": "My brother lives in London too!"
+    },
+    {
+     "answer": "+Очень хорош+о!",
+     "cue": "👌",
+     "english": "Great!"
+    }
+   ]
+  }
+ ]
+}

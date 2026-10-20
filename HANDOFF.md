@@ -1,6 +1,6 @@
 # Handoff: where the Direct Instruction redesign stands
 
-Last updated 2026-10-18. Read this first, then [PLAN.md](PLAN.md). PLAN.md covers the method, the
+Last updated 2026-10-20. Read this first, then [PLAN.md](PLAN.md). PLAN.md covers the method, the
 decisions, the 60-lesson scope and sequence, and implementation notes for each phase.
 
 ## The user and the project
@@ -17,6 +17,9 @@ decisions, the 60-lesson scope and sequence, and implementation notes for each p
   - Lessons of about 20 minutes, but content decides the length.
 - **Display rules:** no transliteration on study screens; English meanings are fine. Letter cards
   are the one exception.
+- **Answer checking:** the user's own recordings can't define what a right answer sounds like, because
+  they aren't a native speaker (their words, 2026-10-20). The checker is tuned on simulated learner
+  speech instead (`backend/scripts/learner_benchmark.py`). Don't ask the user for reference recordings.
 - **Workflow:** after finishing a phase, update PLAN.md's implementation note, commit to `main`, and
   push to `origin` (github.com/Scott-Hillier/learn-russian). The user has authorised this. Commit
   messages end with the Co-Authored-By line used in the existing history.
@@ -27,59 +30,58 @@ decisions, the 60-lesson scope and sequence, and implementation notes for each p
 | 8 | Calibration of answer checking: forced choice on CTC likelihood wins (92% native) | 3251c9c |
 | 9 | Lesson engine: player, correction procedure, firm-up rounds, hard gates, hands-free mic | 9220f4b |
 | 10 | Scope and sequence, curriculum checker, lessons 1–10 | fb29105 |
-| (after 10) | `SAVE_RECORDINGS=1` now also saves lesson answers with their item context (`app/recordings.py`) | this commit |
+| 10a | Answer checking tuned on simulated learners: learner mode, fit gate, "say it again" | e244d69 |
+| 10b | Lessons 11–20; stress fixes (молоко́, телефо́н, четы́рнадцать) | ee38ea9 |
+| 11–13 | Mastery tests, fix-up lessons, placement, error-driven review; Today screen, word links, dashboard; lessons 21–60; conversation limited to taught words; stress fixes in sentences | the commit after ee38ea9 |
 
-## What's left, in order
-1. **Check answer checking on the user's real voice. This is waiting on the user.**
-   - **Why it matters:** the only accent evidence so far is an English TTS voice reading made-up
-     spellings, which scored 9/14. That's too weak to justify writing 50 more lessons.
-   - **The user's step:** they plan to run `SAVE_RECORDINGS=1 ./start.sh` and do lessons 1–3.
-   - **What to look at afterwards:**
-     - `backend/userdata/recordings/*.json` has the target, the verdict, `heard`, the letter
-       score, and the lesson, exercise, item and distractors. The matching `.webm` file sits next
-       to each one. Only the last 60 attempts are kept.
-     - `course_results` in `backend/userdata/progress.db` has `override = 1` wherever the user
-       pressed "I said it right". Those are likely misjudgments.
-   - **What to build:** a small script that replays the saved recordings through
-     `app.speech.answers.check_answer`, so thresholds can be tuned: `MIN_SCORE = 50`, and
-     `HEARD_MATCH = 0.7`, plus whether to add an "uncertain, try again" band.
-   - **Data safety:** never write to the user's `progress.db` or `recordings/` from tests or
-     experiments.
-2. **Phase 10b: lessons 11–20**, following the scope table in PLAN.md:
-   - твой
-   - gender to learn with the word (папа, дверь)
-   - «Меня зовут»
-   - present tense я / ты / он
-   - говорить
-   - хочу + accusative, вижу + accusative
-   - a unit review dialogue
-3. **Phase 11: mastery and review.**
-   - **Mastery test every 5 lessons**, with remedial lessons built from the items missed.
-   - **Placement test.** The user already knows the alphabet and about 60 flashcard words, but
-     the hard gates currently force a start at lesson 1.
-   - **Review driven by errors.** `_review_items` in `app/course.py` is deterministic today.
-     It should draw on `course_results` (error rates per `item_key`) and on FSRS-due cards.
-4. **Phase 12: lessons become the main route.**
-   - A "Today's lesson" home screen.
-   - Link starter-deck words to the lessons that introduce them.
-   - A dashboard showing the lesson path, mastery test results and accuracy per track.
-5. **Phase 13: lessons 21–60, plus a constrained conversation.** Give the Ollama partner the words
-   and grammar taught so far, and flag unknown words in its replies (reduce them to dictionary
-   form with pymorphy3).
+## What's left
+All phases in PLAN.md are built. In order of value:
+1. **The user goes through the course.** Two things to watch:
+   - **Misjudged answers.** `course_results.override = 1` in `backend/userdata/progress.db` marks every
+     "I said it right". Group them by `item_key` to find items the checker misjudges for this learner.
+   - **Content that needs fixing.** `Course.stats()["work_on"]` (the Today screen) shows items the learner
+     keeps missing. In DI, a learner's errors mean the lesson needs fixing.
+
+   Don't write to the user's `progress.db` or `recordings/` from tests or experiments.
+2. **A native speaker's review of lessons 11–60.** I wrote all the Russian. The checks catch typos,
+   missing stress marks, untaught words and form errors, but not unnatural phrasing. The riskiest spots:
+   - dialogue lines
+   - «Мне воду, пожалуйста»
+   - the age and price agreement items
+3. **Known gaps in the player:**
+   - A "say it after me" step moves on after 2 tries even if both were wrong.
+   - The N/M counter only counts the cold final pass during teach exercises.
+4. **Beyond lesson 60:** the next obvious steps are more cases (dative: «мне нужно», «брату»), verbs of
+   motion with «на», «потому что», and «который». Extend the scope table first, then the curriculum
+   checker keeps the content honest.
 
 ## How the course works (code map)
 | File | Role |
 |---|---|
-| `backend/data/course/NNN.json` | One lesson per file. **This is the source of truth.** Lessons 1–10 were produced by a throwaway generator that wasn't kept, so edit the JSON directly. |
+| `backend/data/course/NNN.json` | One lesson per file (1–60). **This is the source of truth.** All lessons came from throwaway generators that weren't kept, so edit the JSON directly. |
 | `backend/data/course/confusables.json` | Groups of words that must be introduced N lessons apart |
-| `backend/app/course.py` | Loads and validates lessons. Fills in distractors (the other answers in the exercise) and `"review": N` exercises (from 1, 2, 3, 5, 8… lessons back). Handles gates, rounds and the 90% pass rule. |
-| `backend/app/curriculum.py` | DI rule checker, run by `tests/test_curriculum.py`. Words are compared by lemma (pymorphy3). |
-| `backend/app/speech/answers.py` | Checks a spoken answer: forced choice on likelihood across answer, `accept` and distractors, plus a letter score of at least `MIN_SCORE`. Reports `heard` only when the model's unsteered reading matches that candidate. |
-| `backend/app/speech/pronunciation.py` | `log_probs`, `likelihood`, `greedy_text` and `score(..., logp=)`: one model pass, many scorings |
-| `backend/app/routes_course.py` | `/api/course`, `/api/course/{id}`, `/{id}/check`, `/{id}/rounds`, `/{id}/restart`. A locked lesson returns 403. |
-| `frontend/src/LessonPlayer.tsx` | Step queue: model, lead, test; the correction procedure (model, repeat, back up 2, delayed re-test 3 later); firm-up rounds; hands-free mic |
-| `frontend/src/CourseView.tsx` | Lesson list and overview. **Lessons** is the default screen; the old screens sit under **Practice** in `Layout.tsx`. |
-| `backend/scripts/answer_check_experiment.py` | The Phase 8 experiment, plus `--lessons`: a native-voice check of every course item |
+| `backend/app/course.py` | See the next table. |
+| `backend/app/curriculum.py` | DI rule checker, run by `tests/test_curriculum.py`. Words are compared by lemma (pymorphy3, with fixes for participles and большая). `introductions()` maps each lemma to its first lesson. |
+| `backend/app/speech/answers.py` | Checks a spoken answer: forced choice on likelihood in learner mode (strict when learner mode makes a distractor sound the same), the fit gate (`MIN_FIT`), the letter score gate (`MIN_SCORE`), and `again` for borderline cases. |
+| `backend/app/speech/pronunciation.py` | `log_probs`, `likelihood(..., learner=)`, `free_likelihood`, `greedy_text` and `score(..., logp=, learner=)`: one model pass, many scorings. `LEARNER_VARIANTS` and `learner_form` live here. |
+| `backend/app/routes_course.py` | Endpoints:<br>• `/api/course`, `/{id}`, `/{id}/rounds`, `/{id}/restart`<br>• `/{src lesson}/check` (form fields `exercise`, `item`, optional `test`)<br>• `/stats`<br>• `/tests/{unit}`, `/tests/{unit}/finish`, `/tests/{unit}/remedial`, `/tests/{unit}/remedial/rounds` |
+| `backend/app/chat.py` | Conversation partner. Level `lessons` passes `Course.taught()` into the prompt, flags `unknown_words`, and retries replies that stray. |
+| `frontend/src/HomeView.tsx` | 🏠 Today: next step, path, accuracy per track, items to work on, tests |
+| `frontend/src/LessonPlayer.tsx` | Step queue: model, lead, test, and the correction procedure. Handles firm-up rounds, the hands-free mic and "say it again". Test mode (`lesson.kind === "test"`): one try per item, no corrections, one result at the end. |
+| `frontend/src/CourseView.tsx` | Lesson and test list, the placement offer, and the fix-up lesson. Opens and starts what Today asks for (`start` prop). |
+| `backend/scripts/answer_check_experiment.py` | The Phase 8 experiment, plus `--lessons [--from N]`: a native-voice check of every course item |
+| `backend/scripts/learner_benchmark.py` | `collect`: simulated learner speech for every course item. `analyse`: replays decision rules. |
+
+**What `course.py` does:**
+
+| Area | Functions |
+|---|---|
+| Loading | Loads and validates lessons. Fills in distractors and spaced `"review": N` items, and gives every item its `src` ([lesson, exercise, item]). |
+| Lessons | Gates, rounds and the 90% pass rule. |
+| Units and tests | `build_test`, `build_remedial`, `Course.test` / `finish_test` / `remedial`, and placement |
+| Review | `Course.review_items`: recent misses first, then flashcards that are due, then spaced items |
+| Word links | `lesson_for`, plus starting the flashcard schedule of a passed lesson's words |
+| Stats and conversation | `Course.stats` and `Course.taught` |
 
 ### Lesson format, briefly
 - **Exercise fields:** `track` (`script`, `frames`, `vocab`, `listening`, `sounds`, `numbers`,
@@ -92,7 +94,8 @@ decisions, the 60-lesson scope and sequence, and implementation notes for each p
     (the full sentence, played after answering).
 - **`dialogue` items:** `{"speaker": "partner", "line": …}` turns, plus learner turns that work like
   `say` items.
-- Copy the patterns in lessons 7–10: `where()` style items, «Сколько?» counting, `form` items.
+- **Role-play:** past-tense and «меня зовут» items use the cues 👩 Анна / 👨 Иван, so the learner knows
+  which gender form to say.
 
 ### Rules new content must pass
 1. `cd backend && .venv/bin/python -m pytest -q`. This includes the curriculum checker:
@@ -103,13 +106,14 @@ decisions, the 60-lesson scope and sequence, and implementation notes for each p
    - each new word back in at least 2 of the next 5 lessons
    - confusable items kept apart
    - no distractor that differs from the answer only by a contrast speech can't judge
-2. `cd backend && .venv/bin/python -m scripts.answer_check_experiment --lessons`. It must report
-   every check "as expected". It takes about 15 minutes for 10 lessons, so run it in the background.
+2. `cd backend && .venv/bin/python -m scripts.answer_check_experiment --lessons --from N`. Every
+   check should come out "as expected", and a rare "say it again" on a right answer is acceptable.
+   It takes about 4 minutes per lesson, so run it in the background.
 3. **Contrasts speech can't judge** go in `form` or listening exercises, never as the only
    difference between a spoken answer and a distractor:
-   - adjective and possessive gender endings
+   - adjective and possessive endings (any two forms of one adjective)
    - мой/моя/моё
-   - -аю / -аем / -ают / -ает
+   - present-tense -аю / -аем / -ают / -ает
 4. **Contrasts speech judges reliably:**
    - case endings
    - plural
@@ -119,6 +123,8 @@ decisions, the 60-lesson scope and sequence, and implementation notes for each p
    - говорю/говорит/говорят
    - тут/там
    - он/она/оно in short sentences
+5. **Stress:** check each new word form by hand. pymorphy3 gives none, and two wrong stresses slipped
+   into lessons 3–10 before (fixed 2026-10-20).
 
 ## Verifying in the real app (no browser tools needed)
 - **Start a test server:**
@@ -126,9 +132,10 @@ decisions, the 60-lesson scope and sequence, and implementation notes for each p
     `backend/`. Poll `/api/health` until `"ready":true`.
   - **Always** set `PROGRESS_DB` to a scratch file, so the user's real progress isn't touched.
   - Rebuild the UI first: `cd frontend && npm run build`. `npx tsc -b` type-checks.
-- **Skip ahead:** `POST /api/course/{id}/rounds` with
-  `{"exercise": i, "results": [{"key": "x", "step": "first", "correct": true}]}` marks an exercise
-  passed.
+- **Skip ahead:**
+  - `POST /api/course/{id}/rounds` with `{"exercise": i, "results": [{"key": "x", "step": "first",
+    "correct": true}]}` marks an exercise passed.
+  - `POST /api/course/tests/{unit}/finish` with every item right passes a test.
 - **Browser driving that worked:**
   - Install `playwright-core` into a scratch folder.
   - Launch the cached Chromium at
@@ -138,17 +145,17 @@ decisions, the 60-lesson scope and sequence, and implementation notes for each p
     and grant the `microphone` permission.
   - For the fake microphone, make a WAV from `/api/tts?text=…` padded with silence. The file
     loops, so every answer in a session is the same audio.
-- **Memory:** the server and the speech experiment each load the models. Don't run both at once
-  on the 8 GB machine.
+- **Memory:** the server, the speech experiment and the learner benchmark each load the models. Run
+  only one at a time on the 8 GB machine.
 
 ## Known gaps and quirks
 - **Repeat steps don't block:** a "say it after me" step moves on after 2 tries, even if both
   were wrong.
 - **Counter during teaching:** the "N/M" counter only counts the cold final pass, so it shows 0/M
   while a teach exercise is introducing items.
-- **Review:** review items are fixed per lesson, not adapted to the learner (see Phase 11).
-- **Content quality:** I wrote all the lesson Russian. The checks catch typos, missing stress
-  marks and form errors, but not unnatural phrasing. A native speaker's review is still worth
-  having.
+- **Content quality:** see "What's left" item 2.
 - **pymorphy3** gives no stress, and stress moves in some forms (вода́ → во́ду). Stress marks are
   written by hand.
+- **The heavy-accent benchmark condition** accepts about 79% of right answers. It's an English TTS voice
+  reading respellings, which is probably harsher than a real learner. The "I said it right" override
+  covers the rest.

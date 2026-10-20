@@ -1,0 +1,348 @@
+{
+ "id": 47,
+ "title": "Я читаю книгу",
+ "goal": "Say what people are reading: «Я читаю книгу.» «Что ты читаешь?»",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 6
+  },
+  {
+   "track": "vocab",
+   "type": "teach",
+   "title": "New words",
+   "instruction": "Listen, say it after me, then say it on your own from the picture.",
+   "items": [
+    {
+     "answer": "газ+ета",
+     "cue": "📰",
+     "english": "newspaper"
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "teach",
+   "title": "«Читать» — to read",
+   "instruction": "«Читать» changes like «работать»: я читаю, ты читаешь, он / она читает. What you read takes the «-у» form: книга → «Я читаю книгу».",
+   "items": [
+    {
+     "answer": "Я чит+аю кн+игу.",
+     "cue": "🙋 📖",
+     "english": "I'm reading a book.",
+     "distractors": [
+      "Я чит+аю кн+ига."
+     ]
+    },
+    {
+     "answer": "Что ты чит+аешь?",
+     "cue": "❓🫵 📖",
+     "english": "What are you reading?"
+    },
+    {
+     "answer": "П+апа чит+ает газ+ету.",
+     "cue": "👨 📰",
+     "english": "Dad is reading the newspaper.",
+     "distractors": [
+      "П+апа чит+ает газ+ета."
+     ]
+    },
+    {
+     "answer": "Я чит+аю по-р+усски.",
+     "cue": "🙋 📖 🇷🇺",
+     "english": "I read in Russian."
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "choose",
+   "title": "Which form?",
+   "instruction": "Pick the right form.",
+   "items": [
+    {
+     "prompt": "Я чит+аю ___.",
+     "cue": "📖",
+     "english": "I'm reading a book.",
+     "options": [
+      "кн+ига",
+      "кн+игу"
+     ],
+     "correct": 1,
+     "audio": "Я чит+аю кн+игу."
+    },
+    {
+     "prompt": "Где мо+я ___?",
+     "cue": "📰❓",
+     "english": "Where is my newspaper?",
+     "options": [
+      "газ+ета",
+      "газ+ету"
+     ],
+     "correct": 0,
+     "audio": "Где мо+я газ+ета?"
+    },
+    {
+     "prompt": "Ты ___ по-англ+ийски?",
+     "cue": "❓🫵 📖 🇬🇧",
+     "english": "Do you read English?",
+     "options": [
+      "чит+аю",
+      "чит+аешь",
+      "чит+ает"
+     ],
+     "correct": 1,
+     "audio": "Ты чит+аешь по-англ+ийски?"
+    },
+    {
+     "prompt": "Он+а ___ газ+ету.",
+     "cue": "👧 📰",
+     "english": "She's reading the newspaper.",
+     "options": [
+      "чит+аю",
+      "чит+аешь",
+      "чит+ает"
+     ],
+     "correct": 2,
+     "audio": "Он+а чит+ает газ+ету."
+    },
+    {
+     "prompt": "Мы ___ кн+иги.",
+     "cue": "🙋‍♀️🙋‍♂️ 📖📖",
+     "english": "We read books.",
+     "options": [
+      "чит+аем",
+      "чит+аете",
+      "чит+ают"
+     ],
+     "correct": 0,
+     "audio": "Мы чит+аем кн+иги."
+    },
+    {
+     "prompt": "Вчер+а я ___ кн+игу.",
+     "cue": "👩 Анна ⬅️📅 📖",
+     "english": "Yesterday I read a book. (Anna)",
+     "options": [
+      "чит+ала",
+      "чит+аю"
+     ],
+     "correct": 0,
+     "audio": "Вчер+а я чит+ала кн+игу."
+    }
+   ]
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "What are they reading?",
+   "instruction": "Listen and pick the picture.",
+   "items": [
+    {
+     "audio": "Я чит+аю газ+ету.",
+     "options": [
+      "📰",
+      "📖",
+      "📱"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Он+а чит+ает кн+игу.",
+     "options": [
+      "📰",
+      "📖",
+      "📱"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "П+апа чит+ает газ+ету.",
+     "options": [
+      "👨 📰",
+      "👩 📰",
+      "👨 📖"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Мы чит+аем по-р+усски.",
+     "options": [
+      "📖 🇷🇺",
+      "📖 🇬🇧",
+      "🗣 🇷🇺"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Что ты чит+аешь?",
+     "options": [
+      "❓🫵 📖",
+      "🙋 📖",
+      "❓🫵 🗣"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Вчер+а я чит+ал газ+ету.",
+     "options": [
+      "👨 Иван ⬅️📅 📰",
+      "👩 Анна ⬅️📅 📰",
+      "👨 Иван 📅 📰"
+     ],
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "What are you reading?",
+   "instruction": "Answer from the picture.",
+   "items": [
+    {
+     "answer": "Я чит+аю газ+ету.",
+     "cue": "📰",
+     "english": "I'm reading the newspaper.",
+     "ask": "Что ты чит+аешь?",
+     "distractors": [
+      "Я чит+аю кн+игу.",
+      "Я чит+аю газ+ета."
+     ]
+    },
+    {
+     "answer": "Он+а чит+ает кн+игу.",
+     "cue": "👧 📖",
+     "english": "She's reading a book.",
+     "ask": "Что чит+ает сестр+а?",
+     "distractors": [
+      "Он+а чит+ает газ+ету."
+     ]
+    },
+    {
+     "answer": "Что ты чит+аешь?",
+     "cue": "❓🫵 📖",
+     "english": "Ask: What are you reading?",
+     "distractors": [
+      "Что ты д+елаешь?"
+     ]
+    },
+    {
+     "answer": "Я чит+аю по-р+усски.",
+     "cue": "📖 🇷🇺",
+     "english": "I read in Russian.",
+     "distractors": [
+      "Я говор+ю по-р+усски."
+     ]
+    },
+    {
+     "answer": "Мне нр+авится кн+ига.",
+     "cue": "❤️ 📖",
+     "english": "I like the book.",
+     "ask": "Теб+е нр+авится кн+ига?",
+     "distractors": [
+      "Мне нр+авится кн+игу."
+     ]
+    },
+    {
+     "answer": "Вчер+а я чит+ал газ+ету.",
+     "cue": "👨 Иван ⬅️📅 📰",
+     "english": "Yesterday I read the newspaper.",
+     "distractors": [
+      "Вчер+а я чит+ала газ+ету."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "Numbers",
+   "instruction": "Say the number.",
+   "items": [
+    {
+     "answer": "Сто.",
+     "cue": "1️⃣0️⃣0️⃣",
+     "english": "a hundred"
+    },
+    {
+     "answer": "С+орок од+ин.",
+     "cue": "4️⃣1️⃣",
+     "english": "forty-one"
+    },
+    {
+     "answer": "С+емьдесят семь.",
+     "cue": "7️⃣7️⃣",
+     "english": "seventy-seven"
+    },
+    {
+     "answer": "Шестьдес+ят три.",
+     "cue": "6️⃣3️⃣",
+     "english": "sixty-three"
+    },
+    {
+     "answer": "Девян+осто пять.",
+     "cue": "9️⃣5️⃣",
+     "english": "ninety-five"
+    },
+    {
+     "answer": "Восемн+адцать.",
+     "cue": "1️⃣8️⃣",
+     "english": "eighteen"
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "Conversation",
+   "instruction": "On a train, someone sits next to you.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "Что вы чит+аете?",
+     "cue": "📖❓",
+     "english": "What are you reading?"
+    },
+    {
+     "answer": "Я чит+аю кн+игу по-р+усски.",
+     "cue": "📖 🇷🇺",
+     "english": "I'm reading a book in Russian.",
+     "distractors": [
+      "Я чит+аю газ+ету."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Вам нр+авится?",
+     "cue": "❓❤️",
+     "english": "Do you like it?"
+    },
+    {
+     "answer": "Да, +очень.",
+     "cue": "❤️❤️",
+     "english": "Yes, a lot.",
+     "distractors": [
+      "Нет, мне не нр+авится."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Вы говор+ите по-р+усски?",
+     "cue": "❓🇷🇺",
+     "english": "Do you speak Russian?"
+    },
+    {
+     "answer": "Да, немн+ого.",
+     "cue": "🤏 🇷🇺",
+     "english": "Yes, a little.",
+     "distractors": [
+      "Нет."
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,344 @@
+{
+ "id": 29,
+ "title": "В магазине",
+ "goal": "Shop for food: «У вас есть сыр?» — «Да, есть.» «Сыр и хлеб, пожалуйста.»",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 6
+  },
+  {
+   "track": "vocab",
+   "type": "teach",
+   "title": "New words",
+   "instruction": "«И» means “and”. Listen, say it after me, then say it on your own.",
+   "items": [
+    {
+     "answer": "магаз+ин",
+     "cue": "🏪",
+     "english": "shop"
+    },
+    {
+     "answer": "сыр",
+     "cue": "🧀",
+     "english": "cheese"
+    },
+    {
+     "answer": "Сыр и хлеб.",
+     "cue": "🧀 ➕ 🍞",
+     "english": "Cheese and bread."
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "teach",
+   "title": "In a shop",
+   "instruction": "Ask «У вас есть …?». The answer is «Да, есть» (yes, we do), or «Нет, … нет» with the «нет» form: «Сыра нет» = There's no cheese.",
+   "items": [
+    {
+     "answer": "У вас есть сыр?",
+     "cue": "❓🧀",
+     "english": "Do you have cheese?"
+    },
+    {
+     "answer": "Да, есть.",
+     "cue": "✅",
+     "english": "Yes, we do.",
+     "ask": "У вас есть сыр?",
+     "distractors": [
+      "Нет, с+ыра нет."
+     ]
+    },
+    {
+     "answer": "Нет, молок+а нет.",
+     "cue": "🚫🥛",
+     "english": "No, there's no milk.",
+     "ask": "У вас есть молок+о?",
+     "distractors": [
+      "Нет, молок+о нет.",
+      "Да, есть."
+     ]
+    },
+    {
+     "answer": "Сыр и хлеб, пож+алуйста.",
+     "cue": "🧀 ➕ 🍞 🙏",
+     "english": "Cheese and bread, please."
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "choose",
+   "title": "Which form?",
+   "instruction": "Pick the right form.",
+   "items": [
+    {
+     "prompt": "У вас есть ___?",
+     "cue": "❓🧀",
+     "english": "Do you have cheese?",
+     "options": [
+      "сыр",
+      "с+ыра"
+     ],
+     "correct": 0,
+     "audio": "У вас есть сыр?"
+    },
+    {
+     "prompt": "Нет, ___ нет.",
+     "cue": "🚫🧀",
+     "english": "No, there's no cheese.",
+     "options": [
+      "сыр",
+      "с+ыра"
+     ],
+     "correct": 1,
+     "audio": "Нет, с+ыра нет."
+    },
+    {
+     "prompt": "Нет, ___ нет.",
+     "cue": "🚫🥛",
+     "english": "No, there's no milk.",
+     "options": [
+      "молок+о",
+      "молок+а"
+     ],
+     "correct": 1,
+     "audio": "Нет, молок+а нет."
+    },
+    {
+     "prompt": "Нет, ___ нет.",
+     "cue": "🚫💧",
+     "english": "No, there's no water.",
+     "options": [
+      "вод+а",
+      "вод+ы"
+     ],
+     "correct": 1,
+     "audio": "Нет, вод+ы нет."
+    },
+    {
+     "prompt": "Я хоч+у ___.",
+     "cue": "💧",
+     "english": "I want water.",
+     "options": [
+      "в+оду",
+      "вод+ы"
+     ],
+     "correct": 0,
+     "audio": "Я хоч+у в+оду."
+    },
+    {
+     "prompt": "Где ___?",
+     "cue": "🏪❓",
+     "english": "Where is the shop?",
+     "options": [
+      "магаз+ин",
+      "магаз+ина"
+     ],
+     "correct": 0,
+     "audio": "Где магаз+ин?"
+    }
+   ]
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "Do they have it?",
+   "instruction": "You're in a shop. Listen to the answer.",
+   "items": [
+    {
+     "audio": "Нет, хл+еба нет.",
+     "options": [
+      "✅ yes",
+      "🚫 no"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Да, есть.",
+     "options": [
+      "✅ yes",
+      "🚫 no"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Нет, с+ыра нет.",
+     "options": [
+      "✅ yes",
+      "🚫 no"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Да, у нас есть сок.",
+     "options": [
+      "✅ yes",
+      "🚫 no"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Нет, молок+а нет.",
+     "options": [
+      "✅ yes",
+      "🚫 no"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Да, есть. Пож+алуйста!",
+     "options": [
+      "✅ yes",
+      "🚫 no"
+     ],
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "Shopping",
+   "instruction": "Say what you need from the picture.",
+   "items": [
+    {
+     "answer": "У вас есть сыр?",
+     "cue": "❓🧀",
+     "english": "Ask: Do you have cheese?",
+     "ask": "Здр+авствуйте! Что вы х+отите?",
+     "distractors": [
+      "У вас есть хлеб?"
+     ]
+    },
+    {
+     "answer": "Да, есть.",
+     "cue": "✅",
+     "english": "You work in the shop. Say yes, you have it.",
+     "ask": "У вас есть хлеб?",
+     "distractors": [
+      "Нет, хл+еба нет."
+     ]
+    },
+    {
+     "answer": "Нет, молок+а нет.",
+     "cue": "🚫🥛",
+     "english": "You work in the shop. Say there's no milk.",
+     "ask": "У вас есть молок+о?",
+     "distractors": [
+      "Да, есть."
+     ]
+    },
+    {
+     "answer": "Сыр и хлеб, пож+алуйста.",
+     "cue": "🧀 ➕ 🍞 🙏",
+     "english": "Ask for cheese and bread.",
+     "distractors": [
+      "Сыр и сок, пож+алуйста."
+     ]
+    },
+    {
+     "answer": "Где магаз+ин?",
+     "cue": "🏪❓",
+     "english": "Ask: Where is the shop?"
+    },
+    {
+     "answer": "Он там.",
+     "cue": "👉 🏪",
+     "english": "It's there.",
+     "ask": "Где магаз+ин?",
+     "distractors": [
+      "Он+а там.",
+      "Он тут."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "Numbers",
+   "instruction": "Say the number.",
+   "items": [
+    {
+     "answer": "Сто.",
+     "cue": "1️⃣0️⃣0️⃣",
+     "english": "a hundred"
+    },
+    {
+     "answer": "Девян+осто д+евять.",
+     "cue": "9️⃣9️⃣",
+     "english": "ninety-nine"
+    },
+    {
+     "answer": "Пятьдес+ят.",
+     "cue": "5️⃣0️⃣",
+     "english": "fifty"
+    },
+    {
+     "answer": "Дв+адцать пять.",
+     "cue": "2️⃣5️⃣",
+     "english": "twenty-five"
+    },
+    {
+     "answer": "С+емьдесят пять.",
+     "cue": "7️⃣5️⃣",
+     "english": "seventy-five"
+    },
+    {
+     "answer": "Восемн+адцать.",
+     "cue": "1️⃣8️⃣",
+     "english": "eighteen"
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "In the shop",
+   "instruction": "You go into a small shop.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "Здр+авствуйте!",
+     "cue": "🧑‍🍳",
+     "english": "Hello!"
+    },
+    {
+     "answer": "Здр+авствуйте! У вас есть сыр?",
+     "cue": "🤝 ❓🧀",
+     "english": "Hello! Do you have cheese?",
+     "distractors": [
+      "Прив+ет! У вас есть сыр?"
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Да, есть.",
+     "cue": "✅🧀",
+     "english": "Yes, we do."
+    },
+    {
+     "answer": "Сыр и хлеб, пож+алуйста.",
+     "cue": "🧀 ➕ 🍞 🙏",
+     "english": "Cheese and bread, please."
+    },
+    {
+     "speaker": "partner",
+     "line": "Хл+еба нет.",
+     "cue": "🚫🍞",
+     "english": "There's no bread."
+    },
+    {
+     "answer": "Хорош+о. Спас+ибо!",
+     "cue": "👌 🙏",
+     "english": "OK. Thank you!"
+    }
+   ]
+  }
+ ]
+}

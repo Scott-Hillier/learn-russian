@@ -6,9 +6,11 @@ import {
   type CourseExercise,
   type CourseItem,
   type CourseLesson,
+  type CourseNext,
   type ItemResult,
   type ResultStep,
   type RoundResult,
+  type TestResult,
 } from "./api";
 import { usePref } from "./prefs";
 import Stressed from "./Stressed";
@@ -26,6 +28,9 @@ import { Letters } from "./WordFeedback";
  * A wrong answer gets the correction procedure: model the answer, repeat it, back up two items, and test the
  * missed item again a few steps later. A round passes at the lesson's pass accuracy on first tries; otherwise
  * the exercise is firmed up with another (shuffled) round.
+ *
+ * A mastery test (lesson.kind "test") runs every exercise straight through: one try per item, no modelling and
+ * no corrections, and one result for the whole test at the end. A fix-up lesson ("remedial") runs like a lesson.
  */
 
 type Step =
@@ -51,8 +56,10 @@ function shuffled<T>(xs: T[]): T[] {
   return out;
 }
 
-export function buildRound(ex: CourseExercise, round: number): Step[] {
+export function buildRound(ex: CourseExercise, round: number, test = false): Step[] {
   const idx = ex.items.map((_, i) => i);
+  if (test)
+    return idx.map((i) => ({ kind: ex.type === "choose" ? "choose" : "test", item: i, step: "first" }));
   if (ex.type === "dialogue")
     return idx.map((i) =>
       ex.items[i].speaker === "partner"
@@ -124,28 +131,28 @@ function useClip() {
 interface Props {
   lesson: CourseLesson;
   onExit: () => void;
-  onLessonPassed: (next: number | null) => void;
+  /** The lesson, fix-up lesson or test is over; `next` is what to go to (null: stay on the course page). */
+  onDone: (next: CourseNext | null) => void;
 }
 
-export default function LessonPlayer({
-  lesson,
-  onExit,
-  onLessonPassed,
-}: Props) {
+export default function LessonPlayer({ lesson, onExit, onDone }: Props) {
+  const isTest = lesson.kind === "test";
   const [exIndex, setExIndex] = useState(
     lesson.exercise >= lesson.exercises.length ? 0 : lesson.exercise,
   );
   const [round, setRound] = useState(0);
   const [queue, setQueue] = useState<Step[]>(() =>
-    buildRound(lesson.exercises[exIndex], 0),
+    buildRound(lesson.exercises[exIndex], 0, isTest),
   );
   const [pos, setPos] = useState(0);
   const [phase, setPhase] = useState<Phase>("prompt");
   const [check, setCheck] = useState<AnswerCheck | null>(null);
   const [picked, setPicked] = useState<number | null>(null);
   const [summary, setSummary] = useState<RoundResult | null>(null);
+  const [testResult, setTestResult] = useState<TestResult | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [silentTries, setSilentTries] = useState(0);
+  const [unclear, setUnclear] = useState(false); // this step already got one "say it again"
   const [leadTries, setLeadTries] = useState(0);
   const [handsFree, setHandsFree] = usePref("handsfree", true);
   const [paused, setPaused] = useState(false);
@@ -168,29 +175,37 @@ export default function LessonPlayer({
     setPicked(null);
     setLeadTries(0);
     setSilentTries(0);
+    setUnclear(false);
     setPhase("prompt");
     setPos((p) => p + 1);
   }, []);
 
   const finishRound = useCallback(async () => {
     try {
-      setSummary(await api.courseRound(lesson.id, exIndex, results.current));
+      if (isTest && exIndex + 1 < lesson.exercises.length)
+        return startExercise(exIndex + 1, 0, true); // a test runs straight on; results are kept until the end
+      if (isTest) setTestResult(await api.courseTestFinish(lesson.id, results.current));
+      else if (lesson.kind === "remedial")
+        setSummary(await api.courseRemedialRound(lesson.id, exIndex, results.current));
+      else setSummary(await api.courseRound(lesson.id, exIndex, results.current));
     } catch (e) {
       setError(e instanceof Error ? e.message : "Couldn't save your results.");
     }
-  }, [lesson.id, exIndex]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lesson.id, lesson.kind, exIndex]);
 
+  const finished = summary !== null || testResult !== null;
   useEffect(() => {
-    if (pos >= queue.length && !summary) void finishRound();
-  }, [pos, queue.length, summary, finishRound]);
+    if (pos >= queue.length && !finished) void finishRound();
+  }, [pos, queue.length, finished, finishRound]);
 
-  const startExercise = (index: number, roundNo: number) => {
-    results.current = [];
+  const startExercise = (index: number, roundNo: number, keepResults = false) => {
+    if (!keepResults) results.current = [];
     lastFirst.current = null;
     setSummary(null);
     setExIndex(index);
     setRound(roundNo);
-    setQueue(buildRound(lesson.exercises[index], roundNo));
+    setQueue(buildRound(lesson.exercises[index], roundNo, isTest));
     setPos(0);
     setPhase("prompt");
     setCheck(null);
@@ -198,16 +213,17 @@ export default function LessonPlayer({
   };
 
   const continueAfterSummary = () => {
+    if (testResult) return onDone(testResult.next_test ? { kind: "test", id: testResult.next_test } : testResult.next);
     if (!summary) return;
     if (!summary.passed) return startExercise(exIndex, round + 1);
     if (summary.lesson_passed && exIndex + 1 >= lesson.exercises.length)
-      return onLessonPassed(summary.next_lesson);
+      return onDone(summary.next ?? (summary.next_lesson ? { kind: "lesson", id: summary.next_lesson } : null));
     startExercise(exIndex + 1, 0);
   };
 
   // Insert the correction procedure after a miss: repeat it, back up, and a delayed re-test.
   const correct = (missedResult: number | null) => {
-    if (!step || step.kind === "partner") return;
+    if (!step || step.kind === "partner" || isTest) return;
     const tag = missedResult ?? -1;
     const extra: Step[] = [];
     if (step.kind === "choose") {
@@ -278,7 +294,11 @@ export default function LessonPlayer({
       setPhase("checking");
       let result: AnswerCheck;
       try {
-        result = await api.courseCheck(lesson.id, exIndex, step.item, blob);
+        result = await api.courseCheck(
+          item.src ?? [lesson.id, exIndex, step.item],
+          blob,
+          isTest ? lesson.id : undefined,
+        );
       } catch (e) {
         setError(e instanceof Error ? e.message : "Checking failed.");
         setPhase("ready");
@@ -287,6 +307,13 @@ export default function LessonPlayer({
       if (result.silent) {
         setSilentTries((n) => n + 1);
         setPhase("ready");
+        return;
+      }
+      if (result.again && !unclear) {
+        // Borderline: probably right, but not clear enough to count either way. Ask once more.
+        setUnclear(true);
+        setPhase("ready");
+        if (listenFirst) void recorder.start();
         return;
       }
       setCheck(result);
@@ -310,6 +337,7 @@ export default function LessonPlayer({
         step: step.step,
         correct: result.correct,
         score: result.score,
+        card: step.step === "first" ? item.card : undefined,
       });
       if (result.correct) {
         setPhase("right");
@@ -320,14 +348,14 @@ export default function LessonPlayer({
       }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [step, item, lesson.id, exIndex, leadTries, pos, queue],
+    [step, item, lesson.id, exIndex, leadTries, pos, queue, isTest, unclear, listenFirst],
   );
 
   const recorder = useRecorder(onAudio);
 
   // Prompt: play what this step needs, then open the mic (hands-free) or wait.
   useEffect(() => {
-    if (!step || !item || phase !== "prompt" || summary) return;
+    if (!step || !item || phase !== "prompt" || finished) return;
     let live = true;
     (async () => {
       if (step.kind === "partner") {
@@ -356,7 +384,7 @@ export default function LessonPlayer({
       live = false;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pos, phase === "prompt", summary, queue.length]);
+  }, [pos, phase === "prompt", finished, queue.length]);
 
   useEffect(() => {
     if (recorder.recording) setPhase((p) => (p === "ready" ? "listening" : p));
@@ -382,7 +410,8 @@ export default function LessonPlayer({
     let timer: number | undefined;
     let live = true;
     if (phase === "right") timer = window.setTimeout(next, ADVANCE_MS);
-    if (phase === "wrong" && item) {
+    if (phase === "wrong" && isTest) timer = window.setTimeout(next, 2 * ADVANCE_MS); // a test doesn't teach
+    else if (phase === "wrong" && item) {
       const text = step.kind === "choose" ? item.audio?.text : item.answer!.text;
       const played = text ? clip.play(api.ttsUrl(text, "normal")) : Promise.resolve(true);
       void played.then(() => {
@@ -452,7 +481,7 @@ export default function LessonPlayer({
   };
 
   useHotkeys((key) => {
-    if (summary) {
+    if (finished) {
       if (key === "enter") return (continueAfterSummary(), true);
       return false;
     }
@@ -466,9 +495,76 @@ export default function LessonPlayer({
   });
 
   const firsts = results.current.filter((r) => r.step === "first");
-  const counted = buildRound(ex, round).filter(
-    (s) => s.kind !== "partner" && s.step === "first",
-  ).length;
+  const counted = isTest
+    ? lesson.exercises.reduce((n, e) => n + e.items.length, 0)
+    : buildRound(ex, round).filter(
+        (s) => s.kind !== "partner" && s.step === "first",
+      ).length;
+
+  if (testResult) {
+    const { passed, kind } = testResult;
+    const percent = Math.round(testResult.accuracy * 100);
+    const units = lesson.title.replace(/^Test: /, "");
+    return (
+      <div className="lesson-player">
+        <div className="card player-card">
+          <div className="player-summary">
+            <div className={`summary-mark ${passed ? "good" : "close"}`}>
+              {passed ? "✓" : "↻"}
+            </div>
+            <h2>
+              {passed
+                ? kind === "placement"
+                  ? `You've tested out of ${units}`
+                  : "Test passed!"
+                : kind === "placement"
+                  ? "Good to know where to start"
+                  : "Not quite there yet"}
+            </h2>
+            <p>
+              {percent}% right ({testResult.total - testResult.missed} of {testResult.total}
+              {passed ? "" : `, ${PASS_PERCENT}% needed`}).
+            </p>
+            <p>
+              {passed
+                ? testResult.next_test
+                  ? "Want to try the next test too, or start the lessons from here?"
+                  : testResult.next?.kind === "lesson"
+                    ? `Lesson ${testResult.next.id} is unlocked.`
+                    : "That's every lesson so far."
+                : testResult.remedial
+                  ? `${testResult.missed} item${testResult.missed === 1 ? "" : "s"} need more work. A short fix-up lesson goes over them, then you take the test again.`
+                  : testResult.next?.kind === "lesson"
+                    ? `Start with lesson ${testResult.next.id}: those lessons will fill the gaps.`
+                    : "Keep going with the lessons."}
+            </p>
+          </div>
+        </div>
+        <ActionBar
+          left={<button onClick={onExit}>← Lessons</button>}
+          center={
+            <>
+              {testResult.next_test && testResult.next?.kind === "lesson" && (
+                <button onClick={() => onDone(testResult.next)}>
+                  Start lesson {testResult.next.id}
+                </button>
+              )}
+              <button className="primary" onClick={continueAfterSummary}>
+                {testResult.next_test
+                  ? "Next test →"
+                  : testResult.remedial
+                    ? "Start the fix-up →"
+                    : testResult.next?.kind === "lesson"
+                      ? `Lesson ${testResult.next.id} →`
+                      : "Finish"}
+              </button>
+            </>
+          }
+          hint="Enter: continue"
+        />
+      </div>
+    );
+  }
 
   if (summary) {
     const lessonDone =
@@ -484,7 +580,9 @@ export default function LessonPlayer({
             </div>
             <h2>
               {lessonDone
-                ? "Lesson passed!"
+                ? lesson.kind === "remedial"
+                  ? "Fix-up done!"
+                  : "Lesson passed!"
                 : summary.passed
                   ? `${ex.title}: passed`
                   : "Let's firm that up"}
@@ -497,9 +595,13 @@ export default function LessonPlayer({
             </p>
             {lessonDone && (
               <p>
-                {summary.next_lesson
-                  ? "The next lesson is unlocked."
-                  : "That's every lesson so far."}
+                {lesson.kind === "remedial"
+                  ? "Now take the test again."
+                  : summary.next?.kind === "test"
+                    ? "That's the unit done. Next comes its test: pass it to unlock the next unit."
+                    : summary.next_lesson
+                      ? "The next lesson is unlocked."
+                      : "That's every lesson so far."}
               </p>
             )}
           </div>
@@ -509,9 +611,11 @@ export default function LessonPlayer({
           center={
             <button className="primary" onClick={continueAfterSummary}>
               {lessonDone
-                ? summary.next_lesson
-                  ? "Next lesson →"
-                  : "Finish"
+                ? summary.next?.kind === "test"
+                  ? "Take the test →"
+                  : summary.next_lesson
+                    ? "Next lesson →"
+                    : "Finish"
                 : summary.passed
                   ? "Next exercise →"
                   : "Try again →"}
@@ -538,8 +642,9 @@ export default function LessonPlayer({
         <div className="player-title">
           <strong>{ex.title}</strong>
           {round > 0 && <span className="pill close">firm-up {round}</span>}
+          {isTest && <span className="pill">test</span>}
           <span className="muted">
-            {firsts.filter((r) => r.correct).length}/{counted}
+            {isTest ? results.current.length : firsts.filter((r) => r.correct).length}/{counted}
           </span>
         </div>
         <p className={`player-instruction ${pos > 0 ? "muted" : ""}`}>
@@ -558,9 +663,13 @@ export default function LessonPlayer({
             check={check}
             picked={picked}
             onChoose={choose}
+            isTest={isTest}
           />
           {silentTries > 0 && phase === "ready" && (
             <p className="hint">I didn't hear anything. Say it again.</p>
+          )}
+          {unclear && silentTries === 0 && (phase === "ready" || phase === "listening") && (
+            <p className="hint">I didn't catch that clearly. Say it again.</p>
           )}
         </div>
       )}
@@ -635,6 +744,7 @@ function StepView({
   check,
   picked,
   onChoose,
+  isTest,
 }: {
   step: Step;
   item: CourseItem;
@@ -642,6 +752,7 @@ function StepView({
   check: AnswerCheck | null;
   picked: number | null;
   onChoose: (i: number) => void;
+  isTest: boolean;
 }) {
   if (step.kind === "partner")
     return (
@@ -697,7 +808,9 @@ function StepView({
     step.kind === "lead" || phase === "right" || phase === "wrong";
   const label =
     phase === "wrong"
-      ? "Not quite. Listen:"
+      ? isTest
+        ? "Not quite. The answer was:"
+        : "Not quite. Listen:"
       : step.kind === "lead"
         ? step.step === "retest"
           ? "Say it after me:"

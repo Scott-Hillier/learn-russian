@@ -1,0 +1,281 @@
+{
+ "id": 55,
+ "title": "Что ты будешь делать завтра?",
+ "goal": "Put unit 11 together: plans for later and describing things.",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 8
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "What did you hear?",
+   "instruction": "Listen and pick what it means.",
+   "items": [
+    {
+     "audio": "З+автра мы б+удем в Москв+е.",
+     "options": [
+      "🙋‍♀️🙋‍♂️ ➡️📅 🏙️🇷🇺",
+      "🙋‍♀️🙋‍♂️ ⬅️📅 🏙️🇷🇺",
+      "👥 ➡️📅 🏙️🇷🇺"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "+Это больш+ая соб+ака.",
+     "options": [
+      "🔼 🐕",
+      "🔽 🐕",
+      "🔼 🐈"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Сег+одня плох+ая пог+ода.",
+     "options": [
+      "🌧️",
+      "☀️"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Пот+ом я б+уду чит+ать.",
+     "options": [
+      "⏭️ 📖",
+      "📅 📖",
+      "⬅️📅 📖"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "У мен+я н+овый телеф+он.",
+     "options": [
+      "✨ 📱",
+      "🏚️ 📱",
+      "✨ 🚗"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Норм+ально, спас+ибо.",
+     "options": [
+      "😐",
+      "🙂",
+      "😞"
+     ],
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "choose",
+   "title": "Which form?",
+   "instruction": "Pick the right form.",
+   "items": [
+    {
+     "prompt": "___ маш+ина",
+     "cue": "✨ 🚗",
+     "english": "a new car",
+     "options": [
+      "н+овый",
+      "н+овая",
+      "н+овое"
+     ],
+     "correct": 1,
+     "audio": "Н+овая маш+ина."
+    },
+    {
+     "prompt": "З+автра он+а ___ раб+отать.",
+     "cue": "👧 ➡️📅 💼",
+     "english": "Tomorrow she'll be working.",
+     "options": [
+      "б+уду",
+      "б+удет",
+      "был+а"
+     ],
+     "correct": 1,
+     "audio": "З+автра он+а б+удет раб+отать."
+    },
+    {
+     "prompt": "___ +яблоко",
+     "cue": "🔽 🍎",
+     "english": "a small apple",
+     "options": [
+      "м+аленький",
+      "м+аленькая",
+      "м+аленькое"
+     ],
+     "correct": 2,
+     "audio": "М+аленькое +яблоко."
+    },
+    {
+     "prompt": "Вчер+а он+а ___ д+ома.",
+     "cue": "👧 ⬅️📅 🏠",
+     "english": "Yesterday she was at home.",
+     "options": [
+      "б+удет",
+      "был+а"
+     ],
+     "correct": 1,
+     "audio": "Вчер+а он+а был+а д+ома."
+    },
+    {
+     "prompt": "Я б+уду ___ газ+ету.",
+     "cue": "➡️📅 📰",
+     "english": "I'll read the newspaper.",
+     "options": [
+      "чит+ать",
+      "чит+аю"
+     ],
+     "correct": 0,
+     "audio": "Я б+уду чит+ать газ+ету."
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "Say it",
+   "instruction": "Say it from the picture.",
+   "items": [
+    {
+     "answer": "З+автра я б+уду в Л+ондоне.",
+     "cue": "➡️📅 🏙️🇬🇧",
+     "english": "Tomorrow I'll be in London.",
+     "ask": "Где ты б+удешь з+автра?",
+     "distractors": [
+      "Вчер+а я был в Л+ондоне."
+     ]
+    },
+    {
+     "answer": "+Это больш+ой магаз+ин.",
+     "cue": "🔼 🏪",
+     "english": "It's a big shop.",
+     "distractors": [
+      "+Это м+аленький магаз+ин."
+     ]
+    },
+    {
+     "answer": "Сег+одня хор+ошая пог+ода.",
+     "cue": "📅 ☀️",
+     "english": "The weather is good today.",
+     "distractors": [
+      "Сег+одня плох+ая пог+ода."
+     ]
+    },
+    {
+     "answer": "Пот+ом я б+уду раб+отать.",
+     "cue": "⏭️ 💼",
+     "english": "Later I'll work.",
+     "ask": "Что ты б+удешь д+елать пот+ом?"
+    },
+    {
+     "answer": "У мен+я н+овая кн+ига.",
+     "cue": "🙋 ✨ 📖",
+     "english": "I have a new book.",
+     "distractors": [
+      "У мен+я нет кн+иги."
+     ]
+    },
+    {
+     "answer": "Как дел+а?",
+     "cue": "❓🙂",
+     "english": "Ask a friend how they are.",
+     "distractors": [
+      "Кот+орый час?"
+     ]
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "Weekend plans",
+   "instruction": "Your friend calls on Friday evening.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "Прив+ет! Как дел+а?",
+     "cue": "🧑 ❓🙂",
+     "english": "Hi! How are you?"
+    },
+    {
+     "answer": "Норм+ально. А у теб+я?",
+     "cue": "😐 ❓🫵",
+     "english": "Fine. And you?",
+     "distractors": [
+      "Пл+охо."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Хорош+о! Что ты б+удешь д+елать з+автра?",
+     "cue": "🙂 ❓➡️📅",
+     "english": "Good! What will you do tomorrow?"
+    },
+    {
+     "answer": "З+автра я б+уду д+ома. Пот+ом б+уду чит+ать.",
+     "cue": "➡️📅 🏠 ⏭️ 📖",
+     "english": "Tomorrow I'll be at home. Then I'll read."
+    },
+    {
+     "speaker": "partner",
+     "line": "Сег+одня хор+ошая пог+ода. Ид+ём в каф+е?",
+     "cue": "☀️ ☕🍰❓",
+     "english": "The weather is nice today. Shall we go to a café?"
+    },
+    {
+     "answer": "Да, кон+ечно!",
+     "cue": "✅👌",
+     "english": "Yes, of course!",
+     "distractors": [
+      "Нет, спас+ибо."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "Numbers to 100",
+   "instruction": "Say the number.",
+   "items": [
+    {
+     "answer": "Сто.",
+     "cue": "1️⃣0️⃣0️⃣",
+     "english": "a hundred"
+    },
+    {
+     "answer": "Восемн+адцать.",
+     "cue": "1️⃣8️⃣",
+     "english": "eighteen"
+    },
+    {
+     "answer": "С+орок три.",
+     "cue": "4️⃣3️⃣",
+     "english": "forty-three"
+    },
+    {
+     "answer": "Шестьдес+ят д+евять.",
+     "cue": "6️⃣9️⃣",
+     "english": "sixty-nine"
+    },
+    {
+     "answer": "В+осемьдесят семь.",
+     "cue": "8️⃣7️⃣",
+     "english": "eighty-seven"
+    },
+    {
+     "answer": "Девян+осто два.",
+     "cue": "9️⃣2️⃣",
+     "english": "ninety-two"
+    }
+   ]
+  }
+ ]
+}

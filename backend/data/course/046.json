@@ -1,0 +1,327 @@
+{
+ "id": 46,
+ "title": "Я работаю",
+ "goal": "Say where people work: «Я работаю в школе.» «Где ты работаешь?»",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 6
+  },
+  {
+   "track": "frames",
+   "type": "teach",
+   "title": "«Работать» — to work",
+   "instruction": "«Работать» changes like «знать»: я работаю, ты работаешь, он / она работает. Where? «в» and «-е»: в школе, в магазине. «Кафе» never changes: в кафе.",
+   "items": [
+    {
+     "answer": "Я раб+отаю в шк+оле.",
+     "cue": "🙋 💼 🏫",
+     "english": "I work at a school.",
+     "distractors": [
+      "Я раб+отаю в шк+олу."
+     ]
+    },
+    {
+     "answer": "Где ты раб+отаешь?",
+     "cue": "❓🫵 💼",
+     "english": "Where do you work?"
+    },
+    {
+     "answer": "Он раб+отает в магаз+ине.",
+     "cue": "👦 💼 🏪",
+     "english": "He works in a shop.",
+     "distractors": [
+      "Я раб+отаю в магаз+ине."
+     ]
+    },
+    {
+     "answer": "Он+а раб+отает в каф+е.",
+     "cue": "👧 💼 ☕🍰",
+     "english": "She works in a café."
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "choose",
+   "title": "Which form?",
+   "instruction": "The endings sound alike, so pick the written form.",
+   "items": [
+    {
+     "prompt": "Я ___ в Москв+е.",
+     "cue": "🙋 💼 🏙️🇷🇺",
+     "english": "I work in Moscow.",
+     "options": [
+      "раб+отаю",
+      "раб+отаешь",
+      "раб+отает"
+     ],
+     "correct": 0,
+     "audio": "Я раб+отаю в Москв+е."
+    },
+    {
+     "prompt": "Где ты ___?",
+     "cue": "❓🫵 💼",
+     "english": "Where do you work?",
+     "options": [
+      "раб+отаю",
+      "раб+отаешь",
+      "раб+отает"
+     ],
+     "correct": 1,
+     "audio": "Где ты раб+отаешь?"
+    },
+    {
+     "prompt": "М+ама ___ в шк+оле.",
+     "cue": "👩 💼 🏫",
+     "english": "Mum works at a school.",
+     "options": [
+      "раб+отаю",
+      "раб+отаешь",
+      "раб+отает"
+     ],
+     "correct": 2,
+     "audio": "М+ама раб+отает в шк+оле."
+    },
+    {
+     "prompt": "Мы ___ д+ома.",
+     "cue": "🙋‍♀️🙋‍♂️ 💼 🏠",
+     "english": "We work at home.",
+     "options": [
+      "раб+отаем",
+      "раб+отаете",
+      "раб+отают"
+     ],
+     "correct": 0,
+     "audio": "Мы раб+отаем д+ома."
+    },
+    {
+     "prompt": "Он+и ___ в Л+ондоне.",
+     "cue": "👥 💼 🏙️🇬🇧",
+     "english": "They work in London.",
+     "options": [
+      "раб+отаем",
+      "раб+отаете",
+      "раб+отают"
+     ],
+     "correct": 2,
+     "audio": "Он+и раб+отают в Л+ондоне."
+    },
+    {
+     "prompt": "Вчер+а я ___ д+ома.",
+     "cue": "👨 Иван ⬅️📅 🏠",
+     "english": "Yesterday I worked at home. (Ivan)",
+     "options": [
+      "раб+отал",
+      "раб+отаю"
+     ],
+     "correct": 0,
+     "audio": "Вчер+а я раб+отал д+ома."
+    }
+   ]
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "Where do they work?",
+   "instruction": "Listen and pick the place.",
+   "items": [
+    {
+     "audio": "Он+а раб+отает в шк+оле.",
+     "options": [
+      "🏫",
+      "🏪",
+      "☕🍰"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Я раб+отаю в каф+е.",
+     "options": [
+      "🏫",
+      "🏪",
+      "☕🍰"
+     ],
+     "correct": 2
+    },
+    {
+     "audio": "П+апа раб+отает в магаз+ине.",
+     "options": [
+      "🏫",
+      "🏪",
+      "☕🍰"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Мы раб+отаем д+ома.",
+     "options": [
+      "🏠",
+      "🏪",
+      "🏫"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Он+и раб+отают в Москв+е.",
+     "options": [
+      "🏙️🇷🇺",
+      "🏙️🇬🇧",
+      "🏠"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Мой брат раб+отает в Л+ондоне.",
+     "options": [
+      "🏙️🇷🇺",
+      "🏙️🇬🇧",
+      "🏠"
+     ],
+     "correct": 1
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "Where do you work?",
+   "instruction": "Answer from the picture.",
+   "items": [
+    {
+     "answer": "Я раб+отаю в магаз+ине.",
+     "cue": "💼 🏪",
+     "english": "I work in a shop.",
+     "ask": "Где ты раб+отаешь?",
+     "distractors": [
+      "Я раб+отаю в шк+оле.",
+      "Я ид+у в магаз+ин."
+     ]
+    },
+    {
+     "answer": "Он+а раб+отает в шк+оле.",
+     "cue": "👩 💼 🏫",
+     "english": "She works at a school.",
+     "ask": "Где раб+отает м+ама?",
+     "distractors": [
+      "Он+а в шк+оле."
+     ]
+    },
+    {
+     "answer": "Где ты раб+отаешь?",
+     "cue": "❓🫵 💼",
+     "english": "Ask a friend: Where do you work?",
+     "distractors": [
+      "Где ты живёшь?"
+     ]
+    },
+    {
+     "answer": "Я раб+отаю д+ома.",
+     "cue": "💼 🏠",
+     "english": "I work at home.",
+     "ask": "Где ты раб+отаешь?"
+    },
+    {
+     "answer": "Мне нр+авится раб+ота.",
+     "cue": "❤️ 💼",
+     "english": "I like my job.",
+     "ask": "Теб+е нр+авится раб+ота?"
+    },
+    {
+     "answer": "Он раб+отает в Москв+е.",
+     "cue": "👦 💼 🏙️🇷🇺",
+     "english": "He works in Moscow.",
+     "ask": "Где раб+отает брат?",
+     "distractors": [
+      "Он живёт в Москв+е."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "Numbers",
+   "instruction": "Say the number.",
+   "items": [
+    {
+     "answer": "Сто.",
+     "cue": "1️⃣0️⃣0️⃣",
+     "english": "a hundred"
+    },
+    {
+     "answer": "Тр+идцать в+осемь.",
+     "cue": "3️⃣8️⃣",
+     "english": "thirty-eight"
+    },
+    {
+     "answer": "Шестьдес+ят д+евять.",
+     "cue": "6️⃣9️⃣",
+     "english": "sixty-nine"
+    },
+    {
+     "answer": "В+осемьдесят чет+ыре.",
+     "cue": "8️⃣4️⃣",
+     "english": "eighty-four"
+    },
+    {
+     "answer": "Дв+адцать два.",
+     "cue": "2️⃣2️⃣",
+     "english": "twenty-two"
+    },
+    {
+     "answer": "Пятьдес+ят семь.",
+     "cue": "5️⃣7️⃣",
+     "english": "fifty-seven"
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "Conversation",
+   "instruction": "Someone at a party asks what you do.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "Где ты раб+отаешь?",
+     "cue": "❓💼",
+     "english": "Where do you work?"
+    },
+    {
+     "answer": "Я раб+отаю в шк+оле. А ты?",
+     "cue": "💼 🏫 ❓🫵",
+     "english": "I work at a school. And you?",
+     "distractors": [
+      "Я раб+отаю в магаз+ине. А ты?"
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Я раб+отаю в каф+е.",
+     "cue": "💼 ☕🍰",
+     "english": "I work in a café."
+    },
+    {
+     "answer": "Теб+е нр+авится раб+ота?",
+     "cue": "❓❤️ 💼",
+     "english": "Do you like your job?"
+    },
+    {
+     "speaker": "partner",
+     "line": "Да, +очень!",
+     "cue": "❤️❤️",
+     "english": "Yes, a lot!"
+    },
+    {
+     "answer": "Хорош+о!",
+     "cue": "👌",
+     "english": "Nice!"
+    }
+   ]
+  }
+ ]
+}

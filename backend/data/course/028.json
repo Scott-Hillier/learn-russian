@@ -1,0 +1,332 @@
+{
+ "id": 28,
+ "title": "У него, у неё",
+ "goal": "Say what others have: «У него есть собака.» «У неё нет машины.» «У вас есть …?»",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 6
+  },
+  {
+   "track": "frames",
+   "type": "teach",
+   "title": "«У него», «у неё», «у вас»",
+   "instruction": "After «у», он becomes «него» and она becomes «неё»: «У него есть собака» = He has a dog. «У вас есть …?» asks politely (or several people): Do you have …?",
+   "items": [
+    {
+     "answer": "У нег+о есть соб+ака.",
+     "cue": "👦 🐕",
+     "english": "He has a dog.",
+     "distractors": [
+      "У неё есть соб+ака."
+     ]
+    },
+    {
+     "answer": "У неё нет маш+ины.",
+     "cue": "👧 🚫🚗",
+     "english": "She doesn't have a car.",
+     "distractors": [
+      "У нег+о нет маш+ины."
+     ]
+    },
+    {
+     "answer": "У вас есть хлеб?",
+     "cue": "❓🫵🫵 🍞",
+     "english": "Do you have bread? (polite)"
+    },
+    {
+     "answer": "У нег+о нет телеф+она.",
+     "cue": "👦 🚫📱",
+     "english": "He doesn't have a phone.",
+     "distractors": [
+      "У нег+о есть телеф+он."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "choose",
+   "title": "Which form?",
+   "instruction": "Pick the right form.",
+   "items": [
+    {
+     "prompt": "У ___ есть брат.",
+     "cue": "👦 ➕ 👦",
+     "english": "He has a brother.",
+     "options": [
+      "он",
+      "нег+о"
+     ],
+     "correct": 1,
+     "audio": "У нег+о есть брат."
+    },
+    {
+     "prompt": "У ___ нет к+ошки.",
+     "cue": "👧 🚫🐈",
+     "english": "She doesn't have a cat.",
+     "options": [
+      "он+а",
+      "неё"
+     ],
+     "correct": 1,
+     "audio": "У неё нет к+ошки."
+    },
+    {
+     "prompt": "___ живёт в Москв+е.",
+     "cue": "👦 🏙️🇷🇺",
+     "english": "He lives in Moscow.",
+     "options": [
+      "Он",
+      "Нег+о"
+     ],
+     "correct": 0,
+     "audio": "Он живёт в Москв+е."
+    },
+    {
+     "prompt": "У нег+о нет ___.",
+     "cue": "👦 🚫🧃",
+     "english": "He doesn't have juice.",
+     "options": [
+      "сок",
+      "с+ока"
+     ],
+     "correct": 1,
+     "audio": "У нег+о нет с+ока."
+    },
+    {
+     "prompt": "У вас есть ___?",
+     "cue": "❓💧",
+     "english": "Do you have water?",
+     "options": [
+      "вод+а",
+      "вод+ы"
+     ],
+     "correct": 0,
+     "audio": "У вас есть вод+а?"
+    },
+    {
+     "prompt": "Нет, ___ нет.",
+     "cue": "🚫💧",
+     "english": "No, there's no water.",
+     "options": [
+      "вод+а",
+      "вод+ы"
+     ],
+     "correct": 1,
+     "audio": "Нет, вод+ы нет."
+    }
+   ]
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "He or she?",
+   "instruction": "Listen. Who is it about?",
+   "items": [
+    {
+     "audio": "У неё есть сестр+а.",
+     "options": [
+      "👦 he",
+      "👧 she",
+      "🫵🫵 you"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "У нег+о нет маш+ины.",
+     "options": [
+      "👦 he",
+      "👧 she",
+      "🫵🫵 you"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "У вас есть сок?",
+     "options": [
+      "👦 he",
+      "👧 she",
+      "🫵🫵 you"
+     ],
+     "correct": 2
+    },
+    {
+     "audio": "У нег+о есть к+ошка.",
+     "options": [
+      "👦 he",
+      "👧 she",
+      "🫵🫵 you"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "У неё нет телеф+она.",
+     "options": [
+      "👦 he",
+      "👧 she",
+      "🫵🫵 you"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "У вас есть ключ?",
+     "options": [
+      "👦 he",
+      "👧 she",
+      "🫵🫵 you"
+     ],
+     "correct": 2
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "Who has what?",
+   "instruction": "Say it from the picture.",
+   "items": [
+    {
+     "answer": "У нег+о есть соб+ака.",
+     "cue": "👦 🐕",
+     "english": "He has a dog.",
+     "distractors": [
+      "У неё есть соб+ака.",
+      "У нег+о нет соб+аки."
+     ]
+    },
+    {
+     "answer": "У неё нет маш+ины.",
+     "cue": "👧 🚫🚗",
+     "english": "She doesn't have a car.",
+     "distractors": [
+      "У неё есть маш+ина."
+     ]
+    },
+    {
+     "answer": "Нет, у нег+о нет бр+ата.",
+     "cue": "🚫👦",
+     "english": "No, he doesn't have a brother.",
+     "ask": "У нег+о есть брат?",
+     "distractors": [
+      "Да, у нег+о есть брат."
+     ]
+    },
+    {
+     "answer": "У вас есть хлеб?",
+     "cue": "❓🫵🫵 🍞",
+     "english": "Ask in a shop: Do you have bread?",
+     "distractors": [
+      "У теб+я есть хлеб?"
+     ]
+    },
+    {
+     "answer": "Да, у неё есть кн+ига.",
+     "cue": "✅ 📖",
+     "english": "Yes, she has a book.",
+     "ask": "У неё есть кн+ига?",
+     "distractors": [
+      "Нет, у неё нет кн+иги."
+     ]
+    },
+    {
+     "answer": "Он живёт в Л+ондоне.",
+     "cue": "👦 🏙️🇬🇧",
+     "english": "He lives in London.",
+     "ask": "Где живёт твой брат?",
+     "distractors": [
+      "Он живёт в Москв+е."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "Numbers",
+   "instruction": "Say the number.",
+   "items": [
+    {
+     "answer": "Сто.",
+     "cue": "1️⃣0️⃣0️⃣",
+     "english": "a hundred"
+    },
+    {
+     "answer": "С+емьдесят два.",
+     "cue": "7️⃣2️⃣",
+     "english": "seventy-two"
+    },
+    {
+     "answer": "В+осемьдесят шесть.",
+     "cue": "8️⃣6️⃣",
+     "english": "eighty-six"
+    },
+    {
+     "answer": "Девян+осто чет+ыре.",
+     "cue": "9️⃣4️⃣",
+     "english": "ninety-four"
+    },
+    {
+     "answer": "Пятьдес+ят семь.",
+     "cue": "5️⃣7️⃣",
+     "english": "fifty-seven"
+    },
+    {
+     "answer": "Тр+идцать од+ин.",
+     "cue": "3️⃣1️⃣",
+     "english": "thirty-one"
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "Conversation",
+   "instruction": "Your friend asks about your brother.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "У теб+я есть брат?",
+     "cue": "👦❓",
+     "english": "Do you have a brother?"
+    },
+    {
+     "answer": "Да, у мен+я есть брат.",
+     "cue": "✅ 👦",
+     "english": "Yes, I have a brother.",
+     "distractors": [
+      "Нет, у мен+я нет бр+ата."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Где он живёт?",
+     "cue": "🏠❓",
+     "english": "Where does he live?"
+    },
+    {
+     "answer": "Он живёт в Л+ондоне.",
+     "cue": "🏙️🇬🇧",
+     "english": "He lives in London.",
+     "distractors": [
+      "Он живёт в Москв+е."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "У нег+о есть соб+ака?",
+     "cue": "🐕❓",
+     "english": "Does he have a dog?"
+    },
+    {
+     "answer": "Нет, у нег+о нет соб+аки. У нег+о есть к+ошка.",
+     "cue": "🚫🐕 🐈",
+     "english": "No, he doesn't have a dog. He has a cat."
+    }
+   ]
+  }
+ ]
+}

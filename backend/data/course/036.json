@@ -1,0 +1,322 @@
+{
+ "id": 36,
+ "title": "Мне нравится …",
+ "goal": "Say what you like: «Мне нравится Москва.» «Тебе нравится кофе?»",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 6
+  },
+  {
+   "track": "frames",
+   "type": "teach",
+   "title": "«Мне нравится …» — I like …",
+   "instruction": "Russian says “to me is pleasing”: «Мне нравится кофе» = I like coffee. So it's «мне» (to me), not «я», and «тебе» (to you). The thing you like keeps its plain form.",
+   "items": [
+    {
+     "answer": "Мне нр+авится к+офе.",
+     "cue": "🙋 ❤️ ☕",
+     "english": "I like coffee.",
+     "distractors": [
+      "Мен+я нр+авится к+офе."
+     ]
+    },
+    {
+     "answer": "Мне не нр+авится чай.",
+     "cue": "🙋 👎 🍵",
+     "english": "I don't like tea.",
+     "distractors": [
+      "Мне нр+авится чай."
+     ]
+    },
+    {
+     "answer": "Теб+е нр+авится Москв+а?",
+     "cue": "❓🫵 ❤️ 🏙️🇷🇺",
+     "english": "Do you like Moscow?"
+    },
+    {
+     "answer": "Мне +очень нр+авится Л+ондон.",
+     "cue": "🙋 ❤️❤️ 🏙️🇬🇧",
+     "english": "I really like London."
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "choose",
+   "title": "Мне or я?",
+   "instruction": "«Мне нравится …», but «Я хочу …» and «Я вижу …».",
+   "items": [
+    {
+     "prompt": "___ нр+авится сыр.",
+     "cue": "❤️ 🧀",
+     "english": "I like cheese.",
+     "options": [
+      "Я",
+      "Мне"
+     ],
+     "correct": 1,
+     "audio": "Мне нр+авится сыр."
+    },
+    {
+     "prompt": "___ хоч+у сыр.",
+     "cue": "🧀",
+     "english": "I want cheese.",
+     "options": [
+      "Я",
+      "Мне"
+     ],
+     "correct": 0,
+     "audio": "Я хоч+у сыр."
+    },
+    {
+     "prompt": "___ нр+авится чай?",
+     "cue": "❓❤️ 🍵",
+     "english": "Do you like tea?",
+     "options": [
+      "Ты",
+      "Теб+е"
+     ],
+     "correct": 1,
+     "audio": "Теб+е нр+авится чай?"
+    },
+    {
+     "prompt": "Мне нр+авится ___.",
+     "cue": "❤️ 🏙️🇷🇺",
+     "english": "I like Moscow.",
+     "options": [
+      "Москв+а",
+      "Москв+у"
+     ],
+     "correct": 0,
+     "audio": "Мне нр+авится Москв+а."
+    },
+    {
+     "prompt": "Я +еду в ___.",
+     "cue": "✈️ 🏙️🇷🇺",
+     "english": "I'm going to Moscow.",
+     "options": [
+      "Москв+а",
+      "Москв+у"
+     ],
+     "correct": 1,
+     "audio": "Я +еду в Москв+у."
+    },
+    {
+     "prompt": "___ в+ижу Москв+у.",
+     "cue": "👀 🏙️🇷🇺",
+     "english": "I can see Moscow.",
+     "options": [
+      "Я",
+      "Мне"
+     ],
+     "correct": 0,
+     "audio": "Я в+ижу Москв+у."
+    }
+   ]
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "Like it or not?",
+   "instruction": "Listen for «не».",
+   "items": [
+    {
+     "audio": "Мне нр+авится сыр.",
+     "options": [
+      "❤️ likes it",
+      "👎 doesn't"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Мне не нр+авится к+офе.",
+     "options": [
+      "❤️ likes it",
+      "👎 doesn't"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Мне +очень нр+авится Москв+а.",
+     "options": [
+      "❤️ likes it",
+      "👎 doesn't"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Мне не нр+авится раб+ота.",
+     "options": [
+      "❤️ likes it",
+      "👎 doesn't"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Мне нр+авится шк+ола.",
+     "options": [
+      "❤️ likes it",
+      "👎 doesn't"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Мне не нр+авится молок+о.",
+     "options": [
+      "❤️ likes it",
+      "👎 doesn't"
+     ],
+     "correct": 1
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "Do you like it?",
+   "instruction": "Answer from the picture: ❤️ = like, 👎 = don't like.",
+   "items": [
+    {
+     "answer": "Да, мне нр+авится к+офе.",
+     "cue": "✅ ❤️ ☕",
+     "english": "Yes, I like coffee.",
+     "ask": "Теб+е нр+авится к+офе?",
+     "distractors": [
+      "Нет, мне не нр+авится к+офе."
+     ]
+    },
+    {
+     "answer": "Нет, мне не нр+авится сыр.",
+     "cue": "👎 🧀",
+     "english": "No, I don't like cheese.",
+     "ask": "Теб+е нр+авится сыр?",
+     "distractors": [
+      "Да, мне нр+авится сыр."
+     ]
+    },
+    {
+     "answer": "Мне +очень нр+авится Москв+а.",
+     "cue": "❤️❤️ 🏙️🇷🇺",
+     "english": "I really like Moscow.",
+     "distractors": [
+      "Мне не нр+авится Москв+а."
+     ]
+    },
+    {
+     "answer": "Теб+е нр+авится чай?",
+     "cue": "❓🫵 ❤️ 🍵",
+     "english": "Ask: Do you like tea?",
+     "distractors": [
+      "Ты х+очешь чай?"
+     ]
+    },
+    {
+     "answer": "Мне нр+авится раб+ота.",
+     "cue": "❤️ 💼",
+     "english": "I like my job."
+    },
+    {
+     "answer": "Я хоч+у сок.",
+     "cue": "🧃",
+     "english": "I want juice.",
+     "ask": "Что ты х+очешь?",
+     "distractors": [
+      "Мне нр+авится сок."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "Numbers",
+   "instruction": "Say the number.",
+   "items": [
+    {
+     "answer": "Сто.",
+     "cue": "1️⃣0️⃣0️⃣",
+     "english": "a hundred"
+    },
+    {
+     "answer": "С+орок два.",
+     "cue": "4️⃣2️⃣",
+     "english": "forty-two"
+    },
+    {
+     "answer": "Шестьдес+ят шесть.",
+     "cue": "6️⃣6️⃣",
+     "english": "sixty-six"
+    },
+    {
+     "answer": "С+емьдесят д+евять.",
+     "cue": "7️⃣9️⃣",
+     "english": "seventy-nine"
+    },
+    {
+     "answer": "В+осемьдесят в+осемь.",
+     "cue": "8️⃣8️⃣",
+     "english": "eighty-eight"
+    },
+    {
+     "answer": "Трин+адцать.",
+     "cue": "1️⃣3️⃣",
+     "english": "thirteen"
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "Conversation",
+   "instruction": "A friend shows you round Moscow.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "Теб+е нр+авится Москв+а?",
+     "cue": "🏙️🇷🇺❓",
+     "english": "Do you like Moscow?"
+    },
+    {
+     "answer": "Да, мне +очень нр+авится Москв+а!",
+     "cue": "❤️❤️ 🏙️🇷🇺",
+     "english": "Yes, I really like Moscow!",
+     "distractors": [
+      "Нет, мне не нр+авится Москв+а."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Ты х+очешь к+офе?",
+     "cue": "☕❓",
+     "english": "Do you want coffee?"
+    },
+    {
+     "answer": "Нет, спас+ибо. Мне не нр+авится к+офе.",
+     "cue": "🚫☕ 👎",
+     "english": "No, thanks. I don't like coffee.",
+     "distractors": [
+      "Да, спас+ибо."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "А чай?",
+     "cue": "🍵❓",
+     "english": "And tea?"
+    },
+    {
+     "answer": "Да, я хоч+у чай.",
+     "cue": "✅ 🍵",
+     "english": "Yes, I want tea.",
+     "distractors": [
+      "Да, мне нр+авится чай."
+     ]
+    }
+   ]
+  }
+ ]
+}

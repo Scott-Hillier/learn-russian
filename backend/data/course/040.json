@@ -1,0 +1,278 @@
+{
+ "id": 40,
+ "title": "Что ты делаешь в субботу?",
+ "goal": "Put unit 8 together: likes, plans for the week, prices and a café.",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 8
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "What did you hear?",
+   "instruction": "Listen and pick what it means.",
+   "items": [
+    {
+     "audio": "Мне не нр+авится чай.",
+     "options": [
+      "👎 🍵",
+      "❤️ 🍵",
+      "👎 ☕"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "В п+ятницу я +еду в Москв+у.",
+     "options": [
+      "📅 Fri 🏙️🇷🇺",
+      "📅 Sat 🏙️🇷🇺",
+      "📅 Fri 🏙️🇬🇧"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Сыр ст+оит сто рубл+ей.",
+     "options": [
+      "🧀 100 ₽",
+      "🧀 10 ₽",
+      "🍞 100 ₽"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Сейч+ас семь час+ов.",
+     "options": [
+      "🕖",
+      "🕗",
+      "🕔"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Мне к+офе, пож+алуйста.",
+     "options": [
+      "☕ 🙏",
+      "🍵 🙏",
+      "🧾 🙏"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Теб+е нр+авится Л+ондон?",
+     "options": [
+      "❓❤️ 🏙️🇬🇧",
+      "❓❤️ 🏙️🇷🇺",
+      "❤️ 🏙️🇬🇧"
+     ],
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "choose",
+   "title": "Which form?",
+   "instruction": "Pick the right form.",
+   "items": [
+    {
+     "prompt": "___ нр+авится шк+ола.",
+     "cue": "❤️ 🏫",
+     "english": "I like school.",
+     "options": [
+      "Я",
+      "Мне"
+     ],
+     "correct": 1,
+     "audio": "Мне нр+авится шк+ола."
+    },
+    {
+     "prompt": "Пять ___.",
+     "cue": "5 ₽",
+     "english": "five roubles",
+     "options": [
+      "рубль",
+      "рубл+я",
+      "рубл+ей"
+     ],
+     "correct": 2,
+     "audio": "Пять рубл+ей."
+    },
+    {
+     "prompt": "В ___ я д+ома.",
+     "cue": "📅 Sat 🏠",
+     "english": "On Saturday I'm at home.",
+     "options": [
+      "субб+ота",
+      "субб+оту"
+     ],
+     "correct": 1,
+     "audio": "В субб+оту я д+ома."
+    },
+    {
+     "prompt": "Я ид+у в ___.",
+     "cue": "🚶 🏪",
+     "english": "I'm going to the shop.",
+     "options": [
+      "магаз+ин",
+      "магаз+ине"
+     ],
+     "correct": 0,
+     "audio": "Я ид+у в магаз+ин."
+    },
+    {
+     "prompt": "Мне ___, пож+алуйста.",
+     "cue": "💧 🙏",
+     "english": "Water for me, please.",
+     "options": [
+      "вод+а",
+      "в+оду"
+     ],
+     "correct": 1,
+     "audio": "Мне в+оду, пож+алуйста."
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "Say it",
+   "instruction": "Say it from the picture.",
+   "items": [
+    {
+     "answer": "Мне нр+авится шк+ола.",
+     "cue": "❤️ 🏫",
+     "english": "I like school.",
+     "distractors": [
+      "Мне не нр+авится шк+ола."
+     ]
+    },
+    {
+     "answer": "В воскрес+енье я д+ома.",
+     "cue": "📅 Sun 🏠",
+     "english": "On Sunday I'm at home.",
+     "ask": "Что ты д+елаешь в воскрес+енье?",
+     "distractors": [
+      "В субб+оту я д+ома."
+     ]
+    },
+    {
+     "answer": "Ск+олько ст+оит хлеб?",
+     "cue": "❓₽ 🍞",
+     "english": "Ask: How much is the bread?"
+    },
+    {
+     "answer": "Пять рубл+ей.",
+     "cue": "5 ₽",
+     "english": "Five roubles.",
+     "ask": "Ск+олько ст+оит +яблоко?",
+     "distractors": [
+      "Пять рубл+я."
+     ]
+    },
+    {
+     "answer": "Счёт, пож+алуйста.",
+     "cue": "🧾 🙏",
+     "english": "Ask for the bill."
+    },
+    {
+     "answer": "Сейч+ас д+есять час+ов.",
+     "cue": "🕙",
+     "english": "It's ten o'clock now.",
+     "ask": "Кот+орый час?"
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "Weekend plans",
+   "instruction": "Your friend calls on Thursday.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "Прив+ет! Что ты д+елаешь в субб+оту?",
+     "cue": "❓📅 Sat",
+     "english": "Hi! What are you doing on Saturday?"
+    },
+    {
+     "answer": "В субб+оту я ид+у в каф+е.",
+     "cue": "📅 Sat 🚶 ☕",
+     "english": "On Saturday I'm going to a café.",
+     "distractors": [
+      "В субб+оту я ид+у в магаз+ин."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Теб+е нр+авится к+офе?",
+     "cue": "❓❤️ ☕",
+     "english": "Do you like coffee?"
+    },
+    {
+     "answer": "Да, мне +очень нр+авится к+офе.",
+     "cue": "❤️❤️ ☕",
+     "english": "Yes, I really like coffee.",
+     "distractors": [
+      "Нет, мне не нр+авится к+офе."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Я т+оже ид+у! Кот+орый час?",
+     "cue": "🙋 ❓🕰️",
+     "english": "I'm coming too! What time?"
+    },
+    {
+     "answer": "Сейч+ас три час+а.",
+     "cue": "🕒",
+     "english": "It's three o'clock now.",
+     "distractors": [
+      "Сейч+ас три час+ов."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "Numbers to 100",
+   "instruction": "Say the number.",
+   "items": [
+    {
+     "answer": "Сто.",
+     "cue": "1️⃣0️⃣0️⃣",
+     "english": "a hundred"
+    },
+    {
+     "answer": "В+осемьдесят пять.",
+     "cue": "8️⃣5️⃣",
+     "english": "eighty-five"
+    },
+    {
+     "answer": "С+орок семь.",
+     "cue": "4️⃣7️⃣",
+     "english": "forty-seven"
+    },
+    {
+     "answer": "Шестьдес+ят два.",
+     "cue": "6️⃣2️⃣",
+     "english": "sixty-two"
+    },
+    {
+     "answer": "Тр+идцать три.",
+     "cue": "3️⃣3️⃣",
+     "english": "thirty-three"
+    },
+    {
+     "answer": "Девян+осто од+ин.",
+     "cue": "9️⃣1️⃣",
+     "english": "ninety-one"
+    }
+   ]
+  }
+ ]
+}

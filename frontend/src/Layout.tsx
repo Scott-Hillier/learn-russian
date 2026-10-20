@@ -2,9 +2,12 @@ import { useEffect, useRef, type ReactNode } from "react";
 import type { Health } from "./api";
 import Stressed from "./Stressed";
 
-export type Mode = "course" | "alphabet" | "flashcards" | "sentences" | "pairs" | "conversation" | "phrases" | "progress";
+export type Mode = "home" | "course" | "alphabet" | "flashcards" | "sentences" | "pairs" | "conversation" | "phrases" | "progress";
 
-const LESSONS: { id: Mode; label: string } = { id: "course", label: "📘 Lessons" };
+const MAIN: { id: Mode; label: string }[] = [
+  { id: "home", label: "🏠 Today" },
+  { id: "course", label: "📘 Lessons" },
+];
 const PRACTICE: { id: Mode; label: string }[] = [
   { id: "alphabet", label: "🔤 Letters & Sounds" },
   { id: "flashcards", label: "🃏 Flashcards" },
@@ -46,9 +49,11 @@ export default function Layout({ mode, onMode, health, sidebar, children }: Prop
           <Stressed text="Говори́!" /> <small>Speak Russian</small>
         </h1>
         <nav className="modes">
-          <button className={mode === LESSONS.id ? "active" : ""} onClick={() => onMode(LESSONS.id)}>
-            {LESSONS.label}
-          </button>
+          {MAIN.map((m) => (
+            <button key={m.id} className={mode === m.id ? "active" : ""} onClick={() => onMode(m.id)}>
+              {m.label}
+            </button>
+          ))}
           <div className="modes-label">Practice</div>
           {PRACTICE.map((m) => (
             <button key={m.id} className={mode === m.id ? "active" : ""} onClick={() => onMode(m.id)}>

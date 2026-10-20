@@ -6,6 +6,7 @@ from fastapi import APIRouter, File, HTTPException, UploadFile
 from pydantic import BaseModel, Field
 
 from . import chat, config
+from .course import course
 from .speech.asr import asr
 from .speech.audio import decode_to_pcm16k, peak_level, trim_and_pad
 from .speech.compare import build_feedback
@@ -68,8 +69,9 @@ def scenarios():
 async def reply(body: ReplyIn):
     scenario = _scenario(body.scenario_id)
     history = [{"role": t.role, "text": strip_stress(t.text)} for t in body.history]
+    taught = course.taught() if body.level == "lessons" else None
     try:
-        return await asyncio.to_thread(chat.reply, scenario, history, body.level)
+        return await asyncio.to_thread(chat.reply, scenario, history, body.level, taught)
     except chat.ChatUnavailable as e:
         raise HTTPException(503, str(e))
 

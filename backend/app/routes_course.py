@@ -5,7 +5,7 @@ from fastapi import APIRouter, File, Form, HTTPException, UploadFile
 from pydantic import BaseModel, Field
 
 from . import config, progress, recordings
-from .course import LessonLocked, course, lessons
+from .course import LessonLocked, NotAvailable, course, item_at
 from .speech.answers import check_answer
 from .speech.audio import decode_to_pcm16k, peak_level, trim_and_pad
 
@@ -19,10 +19,15 @@ class ResultIn(BaseModel):
     correct: bool
     override: bool = False
     score: int | None = Field(None, ge=0, le=100)
+    card: int | None = None  # a due flashcard practised in a review block
 
 
 class RoundIn(BaseModel):
     exercise: int
+    results: list[ResultIn] = Field(max_length=500)
+
+
+class TestIn(BaseModel):
     results: list[ResultIn] = Field(max_length=500)
 
 
@@ -31,13 +36,42 @@ def _call(fn, *args):
         return fn(*args)
     except LessonLocked:
         raise HTTPException(403, "This lesson is locked. Pass the lesson before it first.")
+    except NotAvailable as e:
+        message = {"locked": "Pass the test before this one first.",
+                   "remedial": "Do the fix-up lesson first, then take the test again."}.get(str(e), "Not available now.")
+        raise HTTPException(403, message)
     except KeyError:
-        raise HTTPException(404, "No such lesson or exercise.")
+        raise HTTPException(404, "No such lesson, test or exercise.")
 
 
 @router.get("")
 def overview():
     return course.overview()
+
+
+@router.get("/stats")
+def stats():
+    return course.stats()
+
+
+@router.get("/tests/{unit}")
+def test(unit: int):
+    return _call(course.test, unit)
+
+
+@router.post("/tests/{unit}/finish")
+def finish_test(unit: int, body: TestIn):
+    return _call(course.finish_test, unit, [r.model_dump() for r in body.results])
+
+
+@router.get("/tests/{unit}/remedial")
+def remedial(unit: int):
+    return _call(course.remedial, unit)
+
+
+@router.post("/tests/{unit}/remedial/rounds")
+def finish_remedial_round(unit: int, body: RoundIn):
+    return _call(course.finish_remedial_round, unit, body.exercise, [r.model_dump() for r in body.results])
 
 
 @router.get("/{lesson_id}")
@@ -57,15 +91,20 @@ def restart(lesson_id: int):
 
 
 @router.post("/{lesson_id}/check")
-async def check(lesson_id: int, exercise: int = Form(...), item: int = Form(...), audio: UploadFile = File(...)):
-    """Is the spoken answer to this item right? Scored against the item's answer and its likely wrong answers."""
-    _call(course.lesson, lesson_id)  # enforces the lock
+async def check(lesson_id: int, exercise: int = Form(...), item: int = Form(...), test: int | None = Form(None),
+                audio: UploadFile = File(...)):
+    """Is the spoken answer to an item right? Scored against the item's answer and its likely wrong answers.
+
+    The item is the one written at lesson / exercise / item (its "src"), wherever it is being practised. Items
+    in locked lessons can only be checked while taking that unit's test (`test`).
+    """
+    src = [lesson_id, exercise, item]
     try:
-        if exercise < 0 or item < 0:
-            raise IndexError
-        spec = next(l for l in lessons() if l["id"] == lesson_id)["exercises"][exercise]["items"][item]
-    except (IndexError, StopIteration):
+        spec = item_at(src)
+    except KeyError:
         raise HTTPException(404, "No such item.")
+    if not course.can_check(src, test):
+        raise HTTPException(403, "This lesson is locked. Pass the lesson before it first.")
     if "answer" not in spec:
         raise HTTPException(400, "This item isn't answered by speaking.")
     data = await audio.read()

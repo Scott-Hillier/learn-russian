@@ -24,6 +24,7 @@ LATIN = re.compile(r"[a-z]", re.IGNORECASE)
 MAX_HISTORY = 16  # most recent messages sent to the model
 
 LEVELS = {
+    "lessons": "1-2 very short sentences, at most 6 words each, using ONLY the words and grammar listed below",
     "beginner": "1-2 short sentences, at most 8 words each, only very common words, mostly present tense",
     "elementary": "1-3 sentences, at most 12 words each, common everyday words",
 }
@@ -112,8 +113,14 @@ def _clean_russian(text: str) -> str:
     return expand_numbers(text)
 
 
-def system_prompt(scenario: dict, level: str) -> str:
+def system_prompt(scenario: dict, level: str, course: dict | None = None) -> str:
     goals = "; ".join(scenario["goals"])
+    taught = ""
+    if level == "lessons" and course:
+        taught = f"""
+The learner has only learned these words (any grammatical form of them is fine): {", ".join(course["words"])}.
+Grammar they know: {"; ".join(course["grammar"])}.
+Use only those words, except for names. If you need another word, rephrase with known words instead."""
     return f"""You are role-playing {scenario['role']}, talking with a learner of Russian.
 {scenario['setting']}
 The learner's goals: {goals}.
@@ -124,27 +131,59 @@ Rules:
 - Respond directly to what the learner just said and move the conversation forward, usually ending with a simple question.
 - If the learner writes in English or seems lost, reply with an even simpler Russian sentence.
 - "translation": the English translation of your reply.
-- "suggestions": exactly 2 short, correct Russian sentences the learner could say next (fitting your reply), each with English."""
+- "suggestions": exactly 2 short, correct Russian sentences the learner could say next (fitting your reply), each with English.{taught}"""
 
 
-def reply(scenario: dict, history: list[dict], level: str = "beginner") -> dict:
-    """Next line from the conversation partner. `history` is [{role: "partner"|"learner", text}]."""
-    messages = [{"role": "system", "content": system_prompt(scenario, level)}]
+def unknown_words(text: str, known: set[str]) -> list[str]:
+    """Words in a Russian text whose lemma isn't in `known` (names and numbers count as known)."""
+    from .curriculum import _morph, lemma
+
+    out = []
+    for w in _words(text):
+        if not CYRILLIC.search(w):
+            continue
+        parse = _morph().parse(w)[0]
+        if lemma(w) in known or {"Name", "Surn", "Patr", "NUMR"} & set(parse.tag.grammemes):
+            continue
+        if w not in out:
+            out.append(w)
+    return out
+
+
+def reply(scenario: dict, history: list[dict], level: str = "beginner", course: dict | None = None) -> dict:
+    """Next line from the conversation partner. `history` is [{role: "partner"|"learner", text}].
+
+    With level "lessons", `course` gives the words (lemmas) and grammar taught so far: the partner is asked to
+    stick to them, words outside them are listed in "unknown", and a reply that strays gets one retry.
+    """
+    messages = [{"role": "system", "content": system_prompt(scenario, level, course)}]
     for turn in history[-MAX_HISTORY:]:
         role = "assistant" if turn["role"] == "partner" else "user"
         messages.append({"role": role, "content": turn["text"]})
-    for attempt in range(2):
+    known = set(course["words"]) if level == "lessons" and course else None
+    best = None
+    for attempt in range(3):
         data = _structured_chat(messages, REPLY_SCHEMA, temperature=0.5 if attempt == 0 else 0.2)
         text = _clean_russian(data.get("reply", ""))
-        if CYRILLIC.search(text) and not LATIN.search(text):
+        if not CYRILLIC.search(text) or LATIN.search(text):
+            log.warning("Chat reply wasn't Russian (%r); retrying", text[:80])
+            continue
+        unknown = unknown_words(text, known) if known is not None else []
+        if best is None or len(unknown) < len(best[1]):
+            best = (data, unknown, text)
+        if not unknown or attempt == 2:
             break
-        log.warning("Chat reply wasn't Russian (%r); retrying", text[:80])
-    else:
+        messages = [*messages, {"role": "assistant", "content": text},
+                    {"role": "user", "content": f"(Teacher's note, not part of the conversation: the learner doesn't "
+                                                f"know {', '.join(unknown)}. Say it again using only known words.)"}]
+    if best is None:
         raise ChatUnavailable("The chat model didn't reply in Russian. Try again.")
+    data, unknown, text = best
     suggestions = [{"russian": _clean_russian(s.get("russian", "")), "english": s.get("english", "").strip()}
                    for s in data.get("suggestions", [])]
     suggestions = [s for s in suggestions if CYRILLIC.search(s["russian"]) and not LATIN.search(s["russian"])]
-    return {"reply": text, "translation": data.get("translation", "").strip(), "suggestions": suggestions[:2]}
+    return {"reply": text, "translation": data.get("translation", "").strip(), "suggestions": suggestions[:2],
+            "unknown": unknown}
 
 
 def _words(text: str) -> list[str]:

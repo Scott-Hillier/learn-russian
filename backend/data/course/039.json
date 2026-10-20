@@ -1,0 +1,278 @@
+{
+ "id": 39,
+ "title": "В кафе",
+ "goal": "Order in a café: «Мне кофе, пожалуйста.» «Счёт, пожалуйста.»",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 6
+  },
+  {
+   "track": "vocab",
+   "type": "teach",
+   "title": "New words",
+   "instruction": "Listen, say it after me, then say it on your own from the picture.",
+   "items": [
+    {
+     "answer": "каф+е",
+     "cue": "☕🍰",
+     "english": "café"
+    },
+    {
+     "answer": "счёт",
+     "cue": "🧾",
+     "english": "the bill"
+    },
+    {
+     "answer": "Счёт, пож+алуйста.",
+     "cue": "🧾 🙏",
+     "english": "The bill, please."
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "teach",
+   "title": "«Мне …, пожалуйста» — … for me, please",
+   "instruction": "To order, say what you want for yourself: «Мне кофе, пожалуйста» = A coffee for me, please. The waiter asks «Что вы хотите?».",
+   "items": [
+    {
+     "answer": "Мне к+офе, пож+алуйста.",
+     "cue": "☕ 🙏",
+     "english": "A coffee for me, please.",
+     "ask": "Что вы х+отите?",
+     "distractors": [
+      "Мне чай, пож+алуйста."
+     ]
+    },
+    {
+     "answer": "Мне чай и сыр, пож+алуйста.",
+     "cue": "🍵 ➕ 🧀 🙏",
+     "english": "Tea and cheese for me, please.",
+     "ask": "Что вы х+отите?"
+    },
+    {
+     "answer": "Ск+олько ст+оит чай?",
+     "cue": "❓₽ 🍵",
+     "english": "How much is the tea?"
+    },
+    {
+     "answer": "Счёт, пож+алуйста.",
+     "cue": "🧾 🙏",
+     "english": "The bill, please."
+    }
+   ]
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "What did they order?",
+   "instruction": "Listen and pick the order.",
+   "items": [
+    {
+     "audio": "Мне к+офе, пож+алуйста.",
+     "options": [
+      "☕",
+      "🍵",
+      "🧃"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Мне сок, пож+алуйста.",
+     "options": [
+      "☕",
+      "🍵",
+      "🧃"
+     ],
+     "correct": 2
+    },
+    {
+     "audio": "Мне чай и хлеб, пож+алуйста.",
+     "options": [
+      "🍵 ➕ 🍞",
+      "🍵 ➕ 🧀",
+      "☕ ➕ 🍞"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Счёт, пож+алуйста.",
+     "options": [
+      "🧾",
+      "☕",
+      "❓₽"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Ск+олько ст+оит к+офе?",
+     "options": [
+      "🧾",
+      "☕",
+      "❓₽"
+     ],
+     "correct": 2
+    },
+    {
+     "audio": "Мне в+оду, пож+алуйста.",
+     "options": [
+      "💧",
+      "🥛",
+      "🧃"
+     ],
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "Ordering",
+   "instruction": "Order from the picture.",
+   "items": [
+    {
+     "answer": "Мне сок, пож+алуйста.",
+     "cue": "🧃 🙏",
+     "english": "A juice for me, please.",
+     "ask": "Что вы х+отите?",
+     "distractors": [
+      "Мне чай, пож+алуйста."
+     ]
+    },
+    {
+     "answer": "Мне в+оду, пож+алуйста.",
+     "cue": "💧 🙏",
+     "english": "Water for me, please.",
+     "ask": "Что вы х+отите?",
+     "distractors": [
+      "Мне вод+а, пож+алуйста."
+     ]
+    },
+    {
+     "answer": "Мне к+офе и хлеб, пож+алуйста.",
+     "cue": "☕ ➕ 🍞 🙏",
+     "english": "Coffee and bread for me, please.",
+     "ask": "Что вы х+отите?"
+    },
+    {
+     "answer": "Счёт, пож+алуйста.",
+     "cue": "🧾 🙏",
+     "english": "Ask for the bill."
+    },
+    {
+     "answer": "Ск+олько ст+оит сыр?",
+     "cue": "❓₽ 🧀",
+     "english": "Ask: How much is the cheese?"
+    },
+    {
+     "answer": "Мне +очень нр+авится к+офе.",
+     "cue": "❤️❤️ ☕",
+     "english": "I really like coffee.",
+     "distractors": [
+      "Мне не нр+авится к+офе."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "In a café",
+   "instruction": "You go into a café ☕🍰.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "Здр+авствуйте! Что вы х+отите?",
+     "cue": "🧑‍🍳",
+     "english": "Hello! What would you like?"
+    },
+    {
+     "answer": "Здр+авствуйте! Мне к+офе, пож+алуйста.",
+     "cue": "🤝 ☕ 🙏",
+     "english": "Hello! A coffee for me, please.",
+     "distractors": [
+      "Здр+авствуйте! Мне чай, пож+алуйста."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Хорош+о. Что ещё?",
+     "cue": "👌 ❓",
+     "english": "OK. What else?"
+    },
+    {
+     "answer": "Да, сыр и хлеб, пож+алуйста.",
+     "cue": "🧀 ➕ 🍞",
+     "english": "Yes, cheese and bread, please."
+    },
+    {
+     "speaker": "partner",
+     "line": "Пож+алуйста!",
+     "cue": "☕ 🧀 🍞",
+     "english": "Here you are!"
+    },
+    {
+     "answer": "Спас+ибо! Счёт, пож+алуйста.",
+     "cue": "🙏 🧾",
+     "english": "Thank you! The bill, please."
+    },
+    {
+     "speaker": "partner",
+     "line": "Сто пятьдес+ят рубл+ей.",
+     "cue": "150 ₽",
+     "english": "A hundred and fifty roubles."
+    },
+    {
+     "answer": "Пож+алуйста.",
+     "cue": "💳",
+     "english": "Here you are.",
+     "distractors": [
+      "Спас+ибо."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "Numbers",
+   "instruction": "Say the number.",
+   "items": [
+    {
+     "answer": "Сто.",
+     "cue": "1️⃣0️⃣0️⃣",
+     "english": "a hundred"
+    },
+    {
+     "answer": "Дв+адцать.",
+     "cue": "2️⃣0️⃣",
+     "english": "twenty"
+    },
+    {
+     "answer": "С+орок.",
+     "cue": "4️⃣0️⃣",
+     "english": "forty"
+    },
+    {
+     "answer": "Шестьдес+ят.",
+     "cue": "6️⃣0️⃣",
+     "english": "sixty"
+    },
+    {
+     "answer": "В+осемьдесят.",
+     "cue": "8️⃣0️⃣",
+     "english": "eighty"
+    },
+    {
+     "answer": "Пятьдес+ят.",
+     "cue": "5️⃣0️⃣",
+     "english": "fifty"
+    }
+   ]
+  }
+ ]
+}

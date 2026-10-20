@@ -1,0 +1,318 @@
+{
+ "id": 52,
+ "title": "Сейчас и потом",
+ "goal": "Say what happens next: «Сейчас я работаю, потом буду читать.»",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 6
+  },
+  {
+   "track": "vocab",
+   "type": "teach",
+   "title": "New words",
+   "instruction": "Listen, say it after me, then say it on your own from the picture.",
+   "items": [
+    {
+     "answer": "пот+ом",
+     "cue": "⏭️",
+     "english": "then, later"
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "teach",
+   "title": "«Потом» — then",
+   "instruction": "«Потом» = then, later. «Сейчас я работаю, потом буду читать» = I'm working now, then I'll read.",
+   "items": [
+    {
+     "answer": "Сейч+ас я раб+отаю, пот+ом б+уду чит+ать.",
+     "cue": "📅 💼 ⏭️ 📖",
+     "english": "I'm working now, then I'll read."
+    },
+    {
+     "answer": "Пот+ом мы б+удем в каф+е.",
+     "cue": "⏭️ 🙋‍♀️🙋‍♂️ ☕🍰",
+     "english": "Later we'll be at the café."
+    },
+    {
+     "answer": "Что ты б+удешь д+елать пот+ом?",
+     "cue": "❓🫵 ⏭️",
+     "english": "What will you do later?"
+    },
+    {
+     "answer": "Пот+ом я ид+у дом+ой.",
+     "cue": "⏭️ 🚶 🏠",
+     "english": "Then I'm going home."
+    }
+   ]
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "What comes next?",
+   "instruction": "Listen. What's happening later?",
+   "items": [
+    {
+     "audio": "Сейч+ас я чит+аю, пот+ом б+уду раб+отать.",
+     "options": [
+      "📖",
+      "💼"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Сейч+ас мы в каф+е, пот+ом ид+ём в кин+о.",
+     "options": [
+      "☕🍰",
+      "🎬"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Пот+ом он+а б+удет д+ома.",
+     "options": [
+      "🏠",
+      "🏪"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Сейч+ас я раб+отаю, пот+ом ид+у в магаз+ин.",
+     "options": [
+      "💼",
+      "🏪"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Пот+ом мы +едем в Москв+у.",
+     "options": [
+      "🏙️🇷🇺",
+      "🏙️🇬🇧"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Сейч+ас он в шк+оле, пот+ом б+удет д+ома.",
+     "options": [
+      "🏫",
+      "🏠"
+     ],
+     "correct": 1
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "choose",
+   "title": "Which form?",
+   "instruction": "Pick the right form.",
+   "items": [
+    {
+     "prompt": "Пот+ом я б+уду ___.",
+     "cue": "⏭️ 💼",
+     "english": "Later I'll work.",
+     "options": [
+      "раб+отать",
+      "раб+отаю",
+      "раб+отал"
+     ],
+     "correct": 0,
+     "audio": "Пот+ом я б+уду раб+отать."
+    },
+    {
+     "prompt": "Сейч+ас я ___.",
+     "cue": "📅 💼",
+     "english": "I'm working now.",
+     "options": [
+      "раб+отать",
+      "раб+отаю",
+      "раб+отал"
+     ],
+     "correct": 1,
+     "audio": "Сейч+ас я раб+отаю."
+    },
+    {
+     "prompt": "Вчер+а я ___.",
+     "cue": "👨 Иван ⬅️📅 💼",
+     "english": "Yesterday I worked. (Ivan)",
+     "options": [
+      "раб+отать",
+      "раб+отаю",
+      "раб+отал"
+     ],
+     "correct": 2,
+     "audio": "Вчер+а я раб+отал."
+    },
+    {
+     "prompt": "Пот+ом мы ___ в каф+е.",
+     "cue": "⏭️ 🙋‍♀️🙋‍♂️ ☕🍰",
+     "english": "Later we'll be at the café.",
+     "options": [
+      "б+удем",
+      "б+удут"
+     ],
+     "correct": 0,
+     "audio": "Пот+ом мы б+удем в каф+е."
+    },
+    {
+     "prompt": "Пот+ом он+и ___ д+ома.",
+     "cue": "⏭️ 👥 🏠",
+     "english": "Later they'll be at home.",
+     "options": [
+      "б+удем",
+      "б+удут"
+     ],
+     "correct": 1,
+     "audio": "Пот+ом он+и б+удут д+ома."
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "Now and later",
+   "instruction": "Say it from the picture: 📅 = now, ⏭️ = later.",
+   "items": [
+    {
+     "answer": "Сейч+ас я раб+отаю, пот+ом б+уду чит+ать.",
+     "cue": "📅 💼 ⏭️ 📖",
+     "english": "I'm working now, then I'll read.",
+     "distractors": [
+      "Сейч+ас я чит+аю, пот+ом б+уду раб+отать."
+     ]
+    },
+    {
+     "answer": "Пот+ом я ид+у дом+ой.",
+     "cue": "⏭️ 🚶 🏠",
+     "english": "Then I'm going home.",
+     "ask": "Что ты б+удешь д+елать пот+ом?",
+     "distractors": [
+      "Пот+ом я ид+у в магаз+ин."
+     ]
+    },
+    {
+     "answer": "Пот+ом мы б+удем в каф+е.",
+     "cue": "⏭️ 🙋‍♀️🙋‍♂️ ☕🍰",
+     "english": "Later we'll be at the café.",
+     "distractors": [
+      "Сейч+ас мы в каф+е."
+     ]
+    },
+    {
+     "answer": "Что ты б+удешь д+елать пот+ом?",
+     "cue": "❓🫵 ⏭️",
+     "english": "Ask: What will you do later?"
+    },
+    {
+     "answer": "Сейч+ас д+есять час+ов.",
+     "cue": "🕙",
+     "english": "It's ten o'clock now.",
+     "ask": "Кот+орый час?"
+    },
+    {
+     "answer": "Да, кон+ечно.",
+     "cue": "✅👌",
+     "english": "Yes, of course.",
+     "ask": "Мож+но?",
+     "distractors": [
+      "Нет, спас+ибо."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "Numbers",
+   "instruction": "Say the number.",
+   "items": [
+    {
+     "answer": "Сто.",
+     "cue": "1️⃣0️⃣0️⃣",
+     "english": "a hundred"
+    },
+    {
+     "answer": "Дв+адцать семь.",
+     "cue": "2️⃣7️⃣",
+     "english": "twenty-seven"
+    },
+    {
+     "answer": "Пятьдес+ят в+осемь.",
+     "cue": "5️⃣8️⃣",
+     "english": "fifty-eight"
+    },
+    {
+     "answer": "Шестьдес+ят три.",
+     "cue": "6️⃣3️⃣",
+     "english": "sixty-three"
+    },
+    {
+     "answer": "Девян+осто чет+ыре.",
+     "cue": "9️⃣4️⃣",
+     "english": "ninety-four"
+    },
+    {
+     "answer": "С+орок.",
+     "cue": "4️⃣0️⃣",
+     "english": "forty"
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "Conversation",
+   "instruction": "A friend calls in the afternoon.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "Прив+ет! Что ты д+елаешь?",
+     "cue": "❓📅",
+     "english": "Hi! What are you doing?"
+    },
+    {
+     "answer": "Сейч+ас я раб+отаю.",
+     "cue": "📅 💼",
+     "english": "I'm working at the moment.",
+     "distractors": [
+      "Сейч+ас я чит+аю."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "А пот+ом? Ты б+удешь д+ома?",
+     "cue": "❓⏭️ 🏠",
+     "english": "And later? Will you be at home?"
+    },
+    {
+     "answer": "Нет, пот+ом я ид+у в кин+о.",
+     "cue": "⏭️ 🚶 🎬",
+     "english": "No, later I'm going to the cinema.",
+     "distractors": [
+      "Да, пот+ом я б+уду д+ома."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Хорош+о. Пок+а!",
+     "cue": "👋",
+     "english": "OK. Bye!"
+    },
+    {
+     "answer": "Пок+а!",
+     "cue": "👋",
+     "english": "Bye!",
+     "distractors": [
+      "Прив+ет!"
+     ]
+    }
+   ]
+  }
+ ]
+}

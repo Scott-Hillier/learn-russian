@@ -1,0 +1,330 @@
+{
+ "id": 51,
+ "title": "Я буду работать",
+ "goal": "Talk about the future: «Завтра я буду работать.» «Что ты будешь делать?»",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 6
+  },
+  {
+   "track": "frames",
+   "type": "teach",
+   "title": "«Буду» — will",
+   "instruction": "For the future, put «буду» before the verb's dictionary form: «Я буду работать» = I will work. я буду, ты будешь, он / она будет, мы будем. On its own it means “will be”: «Я буду дома».",
+   "items": [
+    {
+     "answer": "З+автра я б+уду раб+отать.",
+     "cue": "🙋 ➡️📅 💼",
+     "english": "Tomorrow I'll be working.",
+     "distractors": [
+      "Вчер+а я раб+отал."
+     ]
+    },
+    {
+     "answer": "Что ты б+удешь д+елать?",
+     "cue": "❓🫵 ➡️📅",
+     "english": "What will you do?"
+    },
+    {
+     "answer": "В субб+оту я б+уду д+ома.",
+     "cue": "📅 Sat 🏠",
+     "english": "On Saturday I'll be at home.",
+     "distractors": [
+      "В субб+оту я был д+ома."
+     ]
+    },
+    {
+     "answer": "Мы б+удем чит+ать.",
+     "cue": "🙋‍♀️🙋‍♂️ ➡️📅 📖",
+     "english": "We'll read."
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "choose",
+   "title": "Past, now or future?",
+   "instruction": "Pick the form that fits the time.",
+   "items": [
+    {
+     "prompt": "Вчер+а я ___ д+ома.",
+     "cue": "👨 Иван ⬅️📅 🏠",
+     "english": "Yesterday I was at home.",
+     "options": [
+      "был",
+      "б+уду"
+     ],
+     "correct": 0,
+     "audio": "Вчер+а я был д+ома."
+    },
+    {
+     "prompt": "З+автра я ___ д+ома.",
+     "cue": "➡️📅 🏠",
+     "english": "Tomorrow I'll be at home.",
+     "options": [
+      "был",
+      "б+уду"
+     ],
+     "correct": 1,
+     "audio": "З+автра я б+уду д+ома."
+    },
+    {
+     "prompt": "Что ты ___ д+елать?",
+     "cue": "❓🫵 ➡️📅",
+     "english": "What will you do?",
+     "options": [
+      "б+уду",
+      "б+удешь",
+      "б+удет"
+     ],
+     "correct": 1,
+     "audio": "Что ты б+удешь д+елать?"
+    },
+    {
+     "prompt": "Он+а ___ раб+отать.",
+     "cue": "👧 ➡️📅 💼",
+     "english": "She'll be working.",
+     "options": [
+      "б+уду",
+      "б+удешь",
+      "б+удет"
+     ],
+     "correct": 2,
+     "audio": "Он+а б+удет раб+отать."
+    },
+    {
+     "prompt": "Я б+уду ___.",
+     "cue": "➡️📅 📖",
+     "english": "I'll read.",
+     "options": [
+      "чит+ать",
+      "чит+аю"
+     ],
+     "correct": 0,
+     "audio": "Я б+уду чит+ать."
+    },
+    {
+     "prompt": "Сег+одня я ___.",
+     "cue": "📅 📖",
+     "english": "Today I'm reading.",
+     "options": [
+      "чит+ать",
+      "чит+аю"
+     ],
+     "correct": 1,
+     "audio": "Сег+одня я чит+аю."
+    }
+   ]
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "When?",
+   "instruction": "Listen. Did it happen, is it happening, or will it happen?",
+   "items": [
+    {
+     "audio": "З+автра я б+уду раб+отать.",
+     "options": [
+      "⬅️📅 past",
+      "📅 now",
+      "➡️📅 future"
+     ],
+     "correct": 2
+    },
+    {
+     "audio": "Вчер+а я раб+отал.",
+     "options": [
+      "⬅️📅 past",
+      "📅 now",
+      "➡️📅 future"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Сег+одня я раб+отаю.",
+     "options": [
+      "⬅️📅 past",
+      "📅 now",
+      "➡️📅 future"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Мы б+удем д+ома.",
+     "options": [
+      "⬅️📅 past",
+      "📅 now",
+      "➡️📅 future"
+     ],
+     "correct": 2
+    },
+    {
+     "audio": "Он+и б+ыли в кин+о.",
+     "options": [
+      "⬅️📅 past",
+      "📅 now",
+      "➡️📅 future"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Ты б+удешь чит+ать?",
+     "options": [
+      "⬅️📅 past",
+      "📅 now",
+      "➡️📅 future"
+     ],
+     "correct": 2
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "What will you do?",
+   "instruction": "Answer from the picture. ➡️📅 = tomorrow / later.",
+   "items": [
+    {
+     "answer": "З+автра я б+уду раб+отать.",
+     "cue": "➡️📅 💼",
+     "english": "Tomorrow I'll be working.",
+     "ask": "Что ты б+удешь д+елать з+автра?",
+     "distractors": [
+      "З+автра я б+уду чит+ать."
+     ]
+    },
+    {
+     "answer": "В воскрес+енье я б+уду д+ома.",
+     "cue": "📅 Sun 🏠",
+     "english": "On Sunday I'll be at home.",
+     "ask": "Где ты б+удешь в воскрес+енье?",
+     "distractors": [
+      "В воскрес+енье я был д+ома."
+     ]
+    },
+    {
+     "answer": "Что ты б+удешь д+елать?",
+     "cue": "❓🫵 ➡️📅",
+     "english": "Ask: What will you do?",
+     "distractors": [
+      "Что ты д+елаешь?"
+     ]
+    },
+    {
+     "answer": "Мы б+удем в Москв+е.",
+     "cue": "🙋‍♀️🙋‍♂️ ➡️📅 🏙️🇷🇺",
+     "english": "We'll be in Moscow.",
+     "distractors": [
+      "Мы б+ыли в Москв+е."
+     ]
+    },
+    {
+     "answer": "Он+а б+удет чит+ать газ+ету.",
+     "cue": "👧 ➡️📅 📰",
+     "english": "She'll read the newspaper.",
+     "distractors": [
+      "Он+а чит+ает газ+ету."
+     ]
+    },
+    {
+     "answer": "Норм+ально, спас+ибо.",
+     "cue": "😐 🙏",
+     "english": "Fine, thanks.",
+     "ask": "Как дел+а?",
+     "distractors": [
+      "Пл+охо."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "Numbers",
+   "instruction": "Say the number.",
+   "items": [
+    {
+     "answer": "Сто.",
+     "cue": "1️⃣0️⃣0️⃣",
+     "english": "a hundred"
+    },
+    {
+     "answer": "Пятн+адцать.",
+     "cue": "1️⃣5️⃣",
+     "english": "fifteen"
+    },
+    {
+     "answer": "С+орок д+евять.",
+     "cue": "4️⃣9️⃣",
+     "english": "forty-nine"
+    },
+    {
+     "answer": "С+емьдесят два.",
+     "cue": "7️⃣2️⃣",
+     "english": "seventy-two"
+    },
+    {
+     "answer": "В+осемьдесят шесть.",
+     "cue": "8️⃣6️⃣",
+     "english": "eighty-six"
+    },
+    {
+     "answer": "Тр+идцать од+ин.",
+     "cue": "3️⃣1️⃣",
+     "english": "thirty-one"
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "Conversation",
+   "instruction": "A friend asks about your weekend plans.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "Прив+ет! Как дел+а?",
+     "cue": "🧑 ❓🙂",
+     "english": "Hi! How are you?"
+    },
+    {
+     "answer": "Хорош+о, спас+ибо.",
+     "cue": "🙂 🙏",
+     "english": "Good, thanks.",
+     "distractors": [
+      "Пл+охо."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Что ты б+удешь д+елать в субб+оту?",
+     "cue": "❓📅 Sat",
+     "english": "What will you do on Saturday?"
+    },
+    {
+     "answer": "В субб+оту я б+уду раб+отать.",
+     "cue": "📅 Sat 💼",
+     "english": "On Saturday I'll be working.",
+     "distractors": [
+      "В субб+оту я б+уду д+ома."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "А в воскрес+енье?",
+     "cue": "❓📅 Sun",
+     "english": "And on Sunday?"
+    },
+    {
+     "answer": "В воскрес+енье я б+уду д+ома.",
+     "cue": "📅 Sun 🏠",
+     "english": "On Sunday I'll be at home."
+    }
+   ]
+  }
+ ]
+}

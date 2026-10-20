@@ -1,0 +1,342 @@
+{
+ "id": 32,
+ "title": "Я еду в Москву",
+ "goal": "Going by car, bus or plane: «Я еду в Москву.» «Он едет на работу.»",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 6
+  },
+  {
+   "track": "vocab",
+   "type": "teach",
+   "title": "New words",
+   "instruction": "Listen, say it after me, then say it on your own from the picture.",
+   "items": [
+    {
+     "answer": "раб+ота",
+     "cue": "💼",
+     "english": "work"
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "teach",
+   "title": "«Ехать» — to go by transport",
+   "instruction": "«Идти» is on foot; «ехать» is by car, bus or plane: я еду, ты едешь, он / она едет. «Работа» takes «на», not «в»: на работу (where to), на работе (where).",
+   "items": [
+    {
+     "answer": "Я +еду в Москв+у.",
+     "cue": "🙋 ✈️ 🏙️🇷🇺",
+     "english": "I'm going to Moscow.",
+     "distractors": [
+      "Я +еду в Москв+е."
+     ]
+    },
+    {
+     "answer": "Он +едет на раб+оту.",
+     "cue": "👦 🚗 💼",
+     "english": "He's driving to work.",
+     "distractors": [
+      "Он +едет на раб+оте."
+     ]
+    },
+    {
+     "answer": "Он+а на раб+оте.",
+     "cue": "👧 📍💼",
+     "english": "She's at work.",
+     "distractors": [
+      "Он+а на раб+оту."
+     ]
+    },
+    {
+     "answer": "Ты +едешь в Л+ондон?",
+     "cue": "❓🫵 ✈️ 🏙️🇬🇧",
+     "english": "Are you going to London?"
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "choose",
+   "title": "Which word?",
+   "instruction": "Pick the right word.",
+   "items": [
+    {
+     "prompt": "Я ___ в Москв+у.",
+     "cue": "✈️ 🏙️🇷🇺",
+     "english": "I'm going to Moscow.",
+     "options": [
+      "ид+у",
+      "+еду"
+     ],
+     "correct": 1,
+     "audio": "Я +еду в Москв+у."
+    },
+    {
+     "prompt": "Я ___ в магаз+ин.",
+     "cue": "🚶 🏪",
+     "english": "I'm walking to the shop.",
+     "options": [
+      "ид+у",
+      "+еду"
+     ],
+     "correct": 0,
+     "audio": "Я ид+у в магаз+ин."
+    },
+    {
+     "prompt": "Он +едет на ___.",
+     "cue": "🚗 💼",
+     "english": "He's driving to work.",
+     "options": [
+      "раб+ота",
+      "раб+оту",
+      "раб+оте"
+     ],
+     "correct": 1,
+     "audio": "Он +едет на раб+оту."
+    },
+    {
+     "prompt": "Мы на ___.",
+     "cue": "🙋‍♀️🙋‍♂️ 📍💼",
+     "english": "We're at work.",
+     "options": [
+      "раб+ота",
+      "раб+оту",
+      "раб+оте"
+     ],
+     "correct": 2,
+     "audio": "Мы на раб+оте."
+    },
+    {
+     "prompt": "Он+и +едут в ___.",
+     "cue": "👥 ✈️ 🏙️🇬🇧",
+     "english": "They're going to London.",
+     "options": [
+      "Л+ондон",
+      "Л+ондоне"
+     ],
+     "correct": 0,
+     "audio": "Он+и +едут в Л+ондон."
+    },
+    {
+     "prompt": "Он+и жив+ут в ___.",
+     "cue": "👥 🏠 🏙️🇬🇧",
+     "english": "They live in London.",
+     "options": [
+      "Л+ондон",
+      "Л+ондоне"
+     ],
+     "correct": 1,
+     "audio": "Он+и жив+ут в Л+ондоне."
+    }
+   ]
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "On foot or by transport?",
+   "instruction": "Listen. Walking, or by car / plane?",
+   "items": [
+    {
+     "audio": "Я +еду на раб+оту.",
+     "options": [
+      "🚶 on foot",
+      "🚗 by transport"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Он+а идёт в шк+олу.",
+     "options": [
+      "🚶 on foot",
+      "🚗 by transport"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Мы +едем в Москв+у.",
+     "options": [
+      "🚶 on foot",
+      "🚗 by transport"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Я ид+у дом+ой.",
+     "options": [
+      "🚶 on foot",
+      "🚗 by transport"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Ты +едешь в Л+ондон?",
+     "options": [
+      "🚶 on foot",
+      "🚗 by transport"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Он+и ид+ут в магаз+ин.",
+     "options": [
+      "🚶 on foot",
+      "🚗 by transport"
+     ],
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "Where to?",
+   "instruction": "Answer from the picture.",
+   "items": [
+    {
+     "answer": "Я +еду в Москв+у.",
+     "cue": "✈️ 🏙️🇷🇺",
+     "english": "I'm going to Moscow.",
+     "ask": "Куд+а ты +едешь?",
+     "distractors": [
+      "Я +еду в Л+ондон.",
+      "Я ид+у в Москв+у."
+     ]
+    },
+    {
+     "answer": "Он +едет на раб+оту.",
+     "cue": "👦 🚗 💼",
+     "english": "He's driving to work.",
+     "ask": "Куд+а +едет п+апа?",
+     "distractors": [
+      "Он идёт на раб+оту."
+     ]
+    },
+    {
+     "answer": "Он+а на раб+оте.",
+     "cue": "👩 📍💼",
+     "english": "She's at work.",
+     "ask": "Где м+ама?",
+     "distractors": [
+      "Он+а на раб+оту."
+     ]
+    },
+    {
+     "answer": "Я ид+у в шк+олу.",
+     "cue": "🚶 🏫",
+     "english": "I'm walking to school.",
+     "ask": "Куд+а ты идёшь?",
+     "distractors": [
+      "Я +еду в шк+олу."
+     ]
+    },
+    {
+     "answer": "Ты +едешь в Л+ондон?",
+     "cue": "❓🫵 ✈️ 🏙️🇬🇧",
+     "english": "Ask: Are you going to London?"
+    },
+    {
+     "answer": "Мы +едем дом+ой.",
+     "cue": "🙋‍♀️🙋‍♂️ 🚗 🏠",
+     "english": "We're driving home.",
+     "distractors": [
+      "Мы ид+ём дом+ой."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "Numbers",
+   "instruction": "Say the number.",
+   "items": [
+    {
+     "answer": "Сто.",
+     "cue": "1️⃣0️⃣0️⃣",
+     "english": "a hundred"
+    },
+    {
+     "answer": "Шестьдес+ят три.",
+     "cue": "6️⃣3️⃣",
+     "english": "sixty-three"
+    },
+    {
+     "answer": "В+осемьдесят семь.",
+     "cue": "8️⃣7️⃣",
+     "english": "eighty-seven"
+    },
+    {
+     "answer": "С+орок пять.",
+     "cue": "4️⃣5️⃣",
+     "english": "forty-five"
+    },
+    {
+     "answer": "Девян+осто д+евять.",
+     "cue": "9️⃣9️⃣",
+     "english": "ninety-nine"
+    },
+    {
+     "answer": "С+емьдесят два.",
+     "cue": "7️⃣2️⃣",
+     "english": "seventy-two"
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "Conversation",
+   "instruction": "At the airport, someone sits down next to you.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "Здр+авствуйте! Куд+а вы +едете?",
+     "cue": "🧑 ✈️❓",
+     "english": "Hello! Where are you going?"
+    },
+    {
+     "answer": "Я +еду в Москв+у. А вы?",
+     "cue": "✈️ 🏙️🇷🇺 ❓🫵🫵",
+     "english": "I'm going to Moscow. And you?",
+     "distractors": [
+      "Я +еду в Л+ондон. А вы?"
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Я т+оже! Я жив+у в Москв+е.",
+     "cue": "🙋 🏙️🇷🇺",
+     "english": "Me too! I live in Moscow."
+    },
+    {
+     "answer": "Я жив+у в Л+ондоне.",
+     "cue": "🏙️🇬🇧",
+     "english": "I live in London.",
+     "distractors": [
+      "Я жив+у в Москв+е."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Вы +едете на раб+оту?",
+     "cue": "💼❓",
+     "english": "Are you going for work?"
+    },
+    {
+     "answer": "Нет, я +еду дом+ой.",
+     "cue": "🚫💼 🏠",
+     "english": "No, I'm going home.",
+     "distractors": [
+      "Да, на раб+оту."
+     ]
+    }
+   ]
+  }
+ ]
+}

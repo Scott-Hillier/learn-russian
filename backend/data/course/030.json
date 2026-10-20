@@ -1,0 +1,301 @@
+{
+ "id": 30,
+ "title": "У тебя есть …?",
+ "goal": "Put unit 6 together: what people have and don't have, and shopping.",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 8
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "What did you hear?",
+   "instruction": "Listen and pick what it means.",
+   "items": [
+    {
+     "audio": "У нег+о нет маш+ины.",
+     "options": [
+      "👦 🚫🚗",
+      "👦 ✅🚗",
+      "👧 🚫🚗"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "У неё есть соб+ака.",
+     "options": [
+      "👧 ✅🐕",
+      "👦 ✅🐕",
+      "👧 🚫🐕"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "У вас есть сыр?",
+     "options": [
+      "❓🫵🫵 🧀",
+      "🙋 ✅🧀",
+      "❓🫵🫵 🍞"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Нет, хл+еба нет.",
+     "options": [
+      "🚫🍞",
+      "✅🍞",
+      "🚫🧀"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Мо+и ключ+и в с+умке.",
+     "options": [
+      "🔑🔑 📥👜",
+      "🔑 📥👜",
+      "🔑🔑 🔝🍽️"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Мы живём в Л+ондоне.",
+     "options": [
+      "🙋‍♀️🙋‍♂️ 🏙️🇬🇧",
+      "👥 🏙️🇬🇧",
+      "🙋‍♀️🙋‍♂️ 🏙️🇷🇺"
+     ],
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "choose",
+   "title": "Which form?",
+   "instruction": "Pick the right form.",
+   "items": [
+    {
+     "prompt": "У мен+я нет ___.",
+     "cue": "🚫👦",
+     "english": "I don't have a brother.",
+     "options": [
+      "брат",
+      "бр+ата",
+      "бр+ату"
+     ],
+     "correct": 1,
+     "audio": "У мен+я нет бр+ата."
+    },
+    {
+     "prompt": "У мен+я есть ___.",
+     "cue": "✅🐈",
+     "english": "I have a cat.",
+     "options": [
+      "к+ошка",
+      "к+ошки",
+      "к+ошку"
+     ],
+     "correct": 0,
+     "audio": "У мен+я есть к+ошка."
+    },
+    {
+     "prompt": "Я в+ижу ___.",
+     "cue": "👀 🐈",
+     "english": "I see a cat.",
+     "options": [
+      "к+ошка",
+      "к+ошки",
+      "к+ошку"
+     ],
+     "correct": 2,
+     "audio": "Я в+ижу к+ошку."
+    },
+    {
+     "prompt": "+Это ___.",
+     "cue": "🐈🐈",
+     "english": "These are cats.",
+     "options": [
+      "к+ошка",
+      "к+ошки",
+      "к+ошку"
+     ],
+     "correct": 1,
+     "audio": "+Это к+ошки."
+    },
+    {
+     "prompt": "Ключ в ___.",
+     "cue": "🔑 📥👜",
+     "english": "The key is in the bag.",
+     "options": [
+      "с+умка",
+      "с+умке",
+      "с+умку"
+     ],
+     "correct": 1,
+     "audio": "Ключ в с+умке."
+    },
+    {
+     "prompt": "У ___ есть сестр+а.",
+     "cue": "👦 👧",
+     "english": "He has a sister.",
+     "options": [
+      "он",
+      "нег+о"
+     ],
+     "correct": 1,
+     "audio": "У нег+о есть сестр+а."
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "Say it",
+   "instruction": "Say it from the picture.",
+   "items": [
+    {
+     "answer": "У мен+я есть брат и сестр+а.",
+     "cue": "🙋 👦 ➕ 👧",
+     "english": "I have a brother and a sister."
+    },
+    {
+     "answer": "У нег+о нет маш+ины.",
+     "cue": "👦 🚫🚗",
+     "english": "He doesn't have a car.",
+     "distractors": [
+      "У нег+о есть маш+ина."
+     ]
+    },
+    {
+     "answer": "Нет, у мен+я нет к+ошки.",
+     "cue": "🚫🐈",
+     "english": "No, I don't have a cat.",
+     "ask": "У теб+я есть к+ошка?",
+     "distractors": [
+      "Да, у мен+я есть к+ошка."
+     ]
+    },
+    {
+     "answer": "У вас есть вод+а?",
+     "cue": "❓💧",
+     "english": "Ask in a shop: Do you have water?",
+     "distractors": [
+      "У вас есть сок?"
+     ]
+    },
+    {
+     "answer": "Я хоч+у к+офе и молок+о.",
+     "cue": "☕ ➕ 🥛",
+     "english": "I want coffee and milk.",
+     "ask": "Что ты х+очешь?"
+    },
+    {
+     "answer": "Он+и жив+ут в Москв+е.",
+     "cue": "👥 🏙️🇷🇺",
+     "english": "They live in Moscow.",
+     "distractors": [
+      "Мы живём в Москв+е."
+     ]
+    },
+    {
+     "answer": "Магаз+ин там.",
+     "cue": "👉 🏪",
+     "english": "The shop is there.",
+     "ask": "Где магаз+ин?",
+     "distractors": [
+      "Магаз+ин тут."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "Visiting a friend",
+   "instruction": "You're at a friend's flat.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "Прив+ет! Ты х+очешь к+офе?",
+     "cue": "☕❓",
+     "english": "Hi! Do you want coffee?"
+    },
+    {
+     "answer": "Да, спас+ибо. У теб+я есть молок+о?",
+     "cue": "✅☕ ❓🥛",
+     "english": "Yes, thanks. Do you have milk?"
+    },
+    {
+     "speaker": "partner",
+     "line": "Нет, молок+а нет. Есть сок.",
+     "cue": "🚫🥛 🧃",
+     "english": "No, there's no milk. There's juice."
+    },
+    {
+     "answer": "Хорош+о. Я хоч+у сок.",
+     "cue": "👌 🧃",
+     "english": "OK. I'll have juice.",
+     "distractors": [
+      "Я хоч+у к+офе."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "У теб+я есть соб+ака?",
+     "cue": "🐕❓",
+     "english": "Do you have a dog?"
+    },
+    {
+     "answer": "Нет, у мен+я нет соб+аки.",
+     "cue": "🚫🐕",
+     "english": "No, I don't have a dog.",
+     "distractors": [
+      "Да, у мен+я есть соб+ака."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "Numbers to 100",
+   "instruction": "Say the number.",
+   "items": [
+    {
+     "answer": "Сто.",
+     "cue": "1️⃣0️⃣0️⃣",
+     "english": "a hundred"
+    },
+    {
+     "answer": "Шестьдес+ят в+осемь.",
+     "cue": "6️⃣8️⃣",
+     "english": "sixty-eight"
+    },
+    {
+     "answer": "В+осемьдесят семь.",
+     "cue": "8️⃣7️⃣",
+     "english": "eighty-seven"
+    },
+    {
+     "answer": "Девян+осто три.",
+     "cue": "9️⃣3️⃣",
+     "english": "ninety-three"
+    },
+    {
+     "answer": "С+орок шесть.",
+     "cue": "4️⃣6️⃣",
+     "english": "forty-six"
+    },
+    {
+     "answer": "Дв+адцать од+ин.",
+     "cue": "2️⃣1️⃣",
+     "english": "twenty-one"
+    }
+   ]
+  }
+ ]
+}

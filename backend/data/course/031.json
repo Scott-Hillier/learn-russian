@@ -1,0 +1,347 @@
+{
+ "id": 31,
+ "title": "Я иду в магазин",
+ "goal": "Say where you're going: «Куда ты идёшь?» — «Я иду в магазин.»",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 6
+  },
+  {
+   "track": "vocab",
+   "type": "teach",
+   "title": "New words",
+   "instruction": "Listen, say it after me, then say it on your own from the picture.",
+   "items": [
+    {
+     "answer": "шк+ола",
+     "cue": "🏫",
+     "english": "school"
+    },
+    {
+     "answer": "дом+ой",
+     "cue": "🚶 🏠",
+     "english": "(going) home"
+    },
+    {
+     "answer": "А ты?",
+     "cue": "❓🫵",
+     "english": "And you?"
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "teach",
+   "title": "«Идти» — to go on foot",
+   "instruction": "«Я иду» = I'm going (walking): я иду, ты идёшь, он / она идёт, мы идём. Where to? «Куда?» Answer with «в» and the same form as after «хочу»: в школу, в магазин. Home is just «домой».",
+   "items": [
+    {
+     "answer": "Я ид+у в магаз+ин.",
+     "cue": "🙋 🚶 🏪",
+     "english": "I'm going to the shop.",
+     "distractors": [
+      "Я ид+у в магаз+ине."
+     ]
+    },
+    {
+     "answer": "Он+а идёт в шк+олу.",
+     "cue": "👧 🚶 🏫",
+     "english": "She's going to school."
+    },
+    {
+     "answer": "Я ид+у дом+ой.",
+     "cue": "🙋 🚶 🏠",
+     "english": "I'm going home."
+    },
+    {
+     "answer": "Куд+а ты идёшь?",
+     "cue": "❓🫵 🚶",
+     "english": "Where are you going?"
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "choose",
+   "title": "«Где» or «куда»?",
+   "instruction": "«Где?» = where is it? → в магазине. «Куда?» = where to? → в магазин.",
+   "items": [
+    {
+     "prompt": "Я ид+у в ___.",
+     "cue": "🚶 🏪",
+     "english": "I'm going to the shop.",
+     "options": [
+      "магаз+ин",
+      "магаз+ине"
+     ],
+     "correct": 0,
+     "audio": "Я ид+у в магаз+ин."
+    },
+    {
+     "prompt": "Я в ___.",
+     "cue": "🙋 📥🏪",
+     "english": "I'm in the shop.",
+     "options": [
+      "магаз+ин",
+      "магаз+ине"
+     ],
+     "correct": 1,
+     "audio": "Я в магаз+ине."
+    },
+    {
+     "prompt": "Он+а идёт в ___.",
+     "cue": "👧 🚶 🏫",
+     "english": "She's going to school.",
+     "options": [
+      "шк+ола",
+      "шк+олу",
+      "шк+оле"
+     ],
+     "correct": 1,
+     "audio": "Он+а идёт в шк+олу."
+    },
+    {
+     "prompt": "Он+а в ___.",
+     "cue": "👧 📥🏫",
+     "english": "She's at school.",
+     "options": [
+      "шк+ола",
+      "шк+олу",
+      "шк+оле"
+     ],
+     "correct": 2,
+     "audio": "Он+а в шк+оле."
+    },
+    {
+     "prompt": "___ ты идёшь?",
+     "cue": "❓🚶",
+     "english": "Where are you going?",
+     "options": [
+      "Где",
+      "Куд+а"
+     ],
+     "correct": 1,
+     "audio": "Куд+а ты идёшь?"
+    },
+    {
+     "prompt": "___ ты живёшь?",
+     "cue": "❓🏠",
+     "english": "Where do you live?",
+     "options": [
+      "Где",
+      "Куд+а"
+     ],
+     "correct": 0,
+     "audio": "Где ты живёшь?"
+    }
+   ]
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "Going there, or there already?",
+   "instruction": "Listen. Is it where to, or where?",
+   "items": [
+    {
+     "audio": "Я ид+у в магаз+ин.",
+     "options": [
+      "🚶➡️ going there",
+      "📍 there already"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Я в магаз+ине.",
+     "options": [
+      "🚶➡️ going there",
+      "📍 there already"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Он+а идёт в шк+олу.",
+     "options": [
+      "🚶➡️ going there",
+      "📍 there already"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Брат в шк+оле.",
+     "options": [
+      "🚶➡️ going there",
+      "📍 there already"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Мы ид+ём дом+ой.",
+     "options": [
+      "🚶➡️ going there",
+      "📍 there already"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Он+и в Москв+е.",
+     "options": [
+      "🚶➡️ going there",
+      "📍 there already"
+     ],
+     "correct": 1
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "Where are you going?",
+   "instruction": "Answer from the picture.",
+   "items": [
+    {
+     "answer": "Я ид+у в магаз+ин.",
+     "cue": "🚶 🏪",
+     "english": "I'm going to the shop.",
+     "ask": "Куд+а ты идёшь?",
+     "distractors": [
+      "Я ид+у в магаз+ине.",
+      "Я ид+у дом+ой."
+     ]
+    },
+    {
+     "answer": "Он+а идёт в шк+олу.",
+     "cue": "👧 🚶 🏫",
+     "english": "She's going to school.",
+     "ask": "Куд+а идёт сестр+а?",
+     "distractors": [
+      "Он+а в шк+оле."
+     ]
+    },
+    {
+     "answer": "Я ид+у дом+ой.",
+     "cue": "🚶 🏠",
+     "english": "I'm going home.",
+     "ask": "Куд+а ты идёшь?"
+    },
+    {
+     "answer": "Куд+а ты идёшь?",
+     "cue": "❓🫵 🚶",
+     "english": "Ask a friend: Where are you going?",
+     "distractors": [
+      "Где ты живёшь?"
+     ]
+    },
+    {
+     "answer": "Он в шк+оле.",
+     "cue": "👦 📥🏫",
+     "english": "He's at school.",
+     "ask": "Где брат?",
+     "distractors": [
+      "Он в шк+олу."
+     ]
+    },
+    {
+     "answer": "Мы ид+ём в магаз+ин.",
+     "cue": "🙋‍♀️🙋‍♂️ 🚶 🏪",
+     "english": "We're going to the shop.",
+     "ask": "Куд+а вы идёте?",
+     "distractors": [
+      "Он+и ид+ут в магаз+ин."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "Numbers",
+   "instruction": "Say the number.",
+   "items": [
+    {
+     "answer": "Сто.",
+     "cue": "1️⃣0️⃣0️⃣",
+     "english": "a hundred"
+    },
+    {
+     "answer": "Тр+идцать чет+ыре.",
+     "cue": "3️⃣4️⃣",
+     "english": "thirty-four"
+    },
+    {
+     "answer": "Пятьдес+ят шесть.",
+     "cue": "5️⃣6️⃣",
+     "english": "fifty-six"
+    },
+    {
+     "answer": "С+емьдесят в+осемь.",
+     "cue": "7️⃣8️⃣",
+     "english": "seventy-eight"
+    },
+    {
+     "answer": "Девян+осто од+ин.",
+     "cue": "9️⃣1️⃣",
+     "english": "ninety-one"
+    },
+    {
+     "answer": "Дв+адцать д+евять.",
+     "cue": "2️⃣9️⃣",
+     "english": "twenty-nine"
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "Conversation",
+   "instruction": "You bump into a friend in the street.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "Прив+ет! Куд+а ты идёшь?",
+     "cue": "🧑 ❓🚶",
+     "english": "Hi! Where are you going?"
+    },
+    {
+     "answer": "Я ид+у в магаз+ин. А ты?",
+     "cue": "🚶 🏪 ❓🫵",
+     "english": "I'm going to the shop. And you?",
+     "distractors": [
+      "Я ид+у дом+ой. А ты?"
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Я ид+у дом+ой. Что ты х+очешь в магаз+ине?",
+     "cue": "🚶 🏠 ❓🏪",
+     "english": "I'm going home. What do you want at the shop?"
+    },
+    {
+     "answer": "Я хоч+у сыр и хлеб.",
+     "cue": "🧀 ➕ 🍞",
+     "english": "I want cheese and bread.",
+     "distractors": [
+      "Я хоч+у сыр и сок."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Хорош+о. Пок+а!",
+     "cue": "👋",
+     "english": "OK. Bye!"
+    },
+    {
+     "answer": "Пок+а!",
+     "cue": "👋",
+     "english": "Bye!",
+     "distractors": [
+      "Прив+ет!"
+     ]
+    }
+   ]
+  }
+ ]
+}

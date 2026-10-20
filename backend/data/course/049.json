@@ -1,0 +1,267 @@
+{
+ "id": 49,
+ "title": "Как дела?",
+ "goal": "Ask how someone is: «Как дела?» — «Хорошо, спасибо. А у тебя?»",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 6
+  },
+  {
+   "track": "frames",
+   "type": "teach",
+   "title": "«Как дела?» — How are you?",
+   "instruction": "«Как дела?» = How are things? Answer «Хорошо», «Нормально» (fine) or «Плохо» (bad), then ask back: «А у тебя?» (to a friend) or «А у вас?» (polite).",
+   "items": [
+    {
+     "answer": "Как дел+а?",
+     "cue": "❓🙂",
+     "english": "How are you?"
+    },
+    {
+     "answer": "Хорош+о, спас+ибо. А у теб+я?",
+     "cue": "🙂 🙏 ❓🫵",
+     "english": "Good, thanks. And you?",
+     "ask": "Как дел+а?"
+    },
+    {
+     "answer": "Норм+ально.",
+     "cue": "😐",
+     "english": "Fine. / OK.",
+     "ask": "Как дел+а?",
+     "distractors": [
+      "Хорош+о."
+     ]
+    },
+    {
+     "answer": "Пл+охо.",
+     "cue": "😞",
+     "english": "Bad.",
+     "ask": "Как дел+а?",
+     "distractors": [
+      "Хорош+о."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "How are they?",
+   "instruction": "Listen and pick the face.",
+   "items": [
+    {
+     "audio": "Хорош+о, спас+ибо!",
+     "options": [
+      "🙂",
+      "😐",
+      "😞"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Норм+ально.",
+     "options": [
+      "🙂",
+      "😐",
+      "😞"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Пл+охо.",
+     "options": [
+      "🙂",
+      "😐",
+      "😞"
+     ],
+     "correct": 2
+    },
+    {
+     "audio": "+Очень хорош+о!",
+     "options": [
+      "🙂",
+      "😐",
+      "😞"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Как дел+а?",
+     "options": [
+      "❓ asking",
+      "💬 answering"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Норм+ально, спас+ибо.",
+     "options": [
+      "❓ asking",
+      "💬 answering"
+     ],
+     "correct": 1
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "How are you?",
+   "instruction": "Answer from the face, or ask.",
+   "items": [
+    {
+     "answer": "Хорош+о, спас+ибо. А у теб+я?",
+     "cue": "🙂 ❓🫵",
+     "english": "Good, thanks. And you?",
+     "ask": "Как дел+а?",
+     "distractors": [
+      "Пл+охо."
+     ]
+    },
+    {
+     "answer": "Норм+ально.",
+     "cue": "😐",
+     "english": "Fine.",
+     "ask": "Как дел+а?",
+     "distractors": [
+      "Хорош+о.",
+      "Пл+охо."
+     ]
+    },
+    {
+     "answer": "Как дел+а?",
+     "cue": "❓🙂",
+     "english": "Ask a friend how they are.",
+     "distractors": [
+      "Как теб+я зов+ут?"
+     ]
+    },
+    {
+     "answer": "Хорош+о, спас+ибо. А у вас?",
+     "cue": "🙂 ❓🫵🫵",
+     "english": "Good, thanks. And you? (polite)",
+     "ask": "Как дел+а?",
+     "distractors": [
+      "Хорош+о, спас+ибо. А у теб+я?"
+     ]
+    },
+    {
+     "answer": "Пл+охо.",
+     "cue": "😞",
+     "english": "Bad.",
+     "ask": "Как дел+а?",
+     "distractors": [
+      "Хорош+о."
+     ]
+    },
+    {
+     "answer": "Мне нр+авится раб+ота.",
+     "cue": "❤️ 💼",
+     "english": "I like my job.",
+     "ask": "Как раб+ота?"
+    },
+    {
+     "answer": "Да, кон+ечно.",
+     "cue": "✅👌",
+     "english": "Yes, of course.",
+     "ask": "Мож+но?",
+     "distractors": [
+      "Нет, спас+ибо."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "Numbers",
+   "instruction": "Say the number.",
+   "items": [
+    {
+     "answer": "Сто.",
+     "cue": "1️⃣0️⃣0️⃣",
+     "english": "a hundred"
+    },
+    {
+     "answer": "Двен+адцать.",
+     "cue": "1️⃣2️⃣",
+     "english": "twelve"
+    },
+    {
+     "answer": "С+орок семь.",
+     "cue": "4️⃣7️⃣",
+     "english": "forty-seven"
+    },
+    {
+     "answer": "Пятьдес+ят в+осемь.",
+     "cue": "5️⃣8️⃣",
+     "english": "fifty-eight"
+    },
+    {
+     "answer": "В+осемьдесят три.",
+     "cue": "8️⃣3️⃣",
+     "english": "eighty-three"
+    },
+    {
+     "answer": "Дв+адцать шесть.",
+     "cue": "2️⃣6️⃣",
+     "english": "twenty-six"
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "Meeting a friend",
+   "instruction": "You meet a friend in the street.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "Прив+ет! Как дел+а?",
+     "cue": "🧑 ❓🙂",
+     "english": "Hi! How are you?"
+    },
+    {
+     "answer": "Хорош+о, спас+ибо. А у теб+я?",
+     "cue": "🙂 ❓🫵",
+     "english": "Good, thanks. And you?",
+     "distractors": [
+      "Пл+охо."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Норм+ально. Куд+а ты идёшь?",
+     "cue": "😐 ❓🚶",
+     "english": "Fine. Where are you going?"
+    },
+    {
+     "answer": "Я ид+у в кин+о с сестр+ой.",
+     "cue": "🚶 🎬 ➕ 👧",
+     "english": "I'm going to the cinema with my sister.",
+     "distractors": [
+      "Я ид+у в магаз+ин."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Хорош+о! Пок+а!",
+     "cue": "👋",
+     "english": "Nice! Bye!"
+    },
+    {
+     "answer": "Пок+а!",
+     "cue": "👋",
+     "english": "Bye!",
+     "distractors": [
+      "Прив+ет!"
+     ]
+    }
+   ]
+  }
+ ]
+}

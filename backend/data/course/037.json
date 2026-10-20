@@ -1,0 +1,313 @@
+{
+ "id": 37,
+ "title": "В субботу …",
+ "goal": "Say what happens on which day: «В субботу я иду в магазин.» «Что ты делаешь?»",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 6
+  },
+  {
+   "track": "frames",
+   "type": "teach",
+   "title": "«В субботу» — on Saturday",
+   "instruction": "“On” a day is «в» with the «-у» form: в субботу, в среду, в пятницу. Days ending in a consonant stay the same: в понедельник, в четверг (and it's «во вторник»). «Что ты делаешь?» = What are you doing?",
+   "items": [
+    {
+     "answer": "В субб+оту я ид+у в магаз+ин.",
+     "cue": "📅 Sat 🚶 🏪",
+     "english": "On Saturday I'm going to the shop.",
+     "distractors": [
+      "В субб+ота я ид+у в магаз+ин."
+     ]
+    },
+    {
+     "answer": "В п+ятницу я +еду в Москв+у.",
+     "cue": "📅 Fri ✈️ 🏙️🇷🇺",
+     "english": "On Friday I'm going to Moscow."
+    },
+    {
+     "answer": "Что ты д+елаешь в воскрес+енье?",
+     "cue": "❓🫵 📅 Sun",
+     "english": "What are you doing on Sunday?"
+    },
+    {
+     "answer": "В понед+ельник я на раб+оте.",
+     "cue": "📅 Mon 📍💼",
+     "english": "On Monday I'm at work."
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "choose",
+   "title": "Which form?",
+   "instruction": "Pick the right form of the day.",
+   "items": [
+    {
+     "prompt": "В ___ я ид+у в шк+олу.",
+     "cue": "📅 Wed 🚶 🏫",
+     "english": "On Wednesday I'm going to school.",
+     "options": [
+      "сред+а",
+      "сред+у"
+     ],
+     "correct": 1,
+     "audio": "В сред+у я ид+у в шк+олу."
+    },
+    {
+     "prompt": "Сег+одня ___.",
+     "cue": "📅 Wed",
+     "english": "Today is Wednesday.",
+     "options": [
+      "сред+а",
+      "сред+у"
+     ],
+     "correct": 0,
+     "audio": "Сег+одня сред+а."
+    },
+    {
+     "prompt": "В ___ я на раб+оте.",
+     "cue": "📅 Thu 📍💼",
+     "english": "On Thursday I'm at work.",
+     "options": [
+      "четв+ерг",
+      "четв+ерга"
+     ],
+     "correct": 0,
+     "audio": "В четв+ерг я на раб+оте."
+    },
+    {
+     "prompt": "В ___ мы +едем дом+ой.",
+     "cue": "📅 Fri 🚗 🏠",
+     "english": "On Friday we're driving home.",
+     "options": [
+      "п+ятница",
+      "п+ятницу"
+     ],
+     "correct": 1,
+     "audio": "В п+ятницу мы +едем дом+ой."
+    },
+    {
+     "prompt": "З+автра ___.",
+     "cue": "➡️ 📅 Sat",
+     "english": "Tomorrow is Saturday.",
+     "options": [
+      "субб+ота",
+      "субб+оту"
+     ],
+     "correct": 0,
+     "audio": "З+автра субб+ота."
+    },
+    {
+     "prompt": "Что ты ___?",
+     "cue": "❓🫵",
+     "english": "What are you doing?",
+     "options": [
+      "д+елаю",
+      "д+елаешь"
+     ],
+     "correct": 1,
+     "audio": "Что ты д+елаешь?"
+    }
+   ]
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "Which day?",
+   "instruction": "Listen and pick the day.",
+   "items": [
+    {
+     "audio": "В субб+оту я ид+у в магаз+ин.",
+     "options": [
+      "📅 Fri",
+      "📅 Sat",
+      "📅 Sun"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "В понед+ельник он на раб+оте.",
+     "options": [
+      "📅 Mon",
+      "📅 Tue",
+      "📅 Thu"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Во вт+орник мы +едем в Москв+у.",
+     "options": [
+      "📅 Mon",
+      "📅 Tue",
+      "📅 Wed"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "В сред+у он+а в шк+оле.",
+     "options": [
+      "📅 Wed",
+      "📅 Thu",
+      "📅 Fri"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Что ты д+елаешь в воскрес+енье?",
+     "options": [
+      "📅 Fri",
+      "📅 Sat",
+      "📅 Sun"
+     ],
+     "correct": 2
+    },
+    {
+     "audio": "В четв+ерг я +еду дом+ой.",
+     "options": [
+      "📅 Tue",
+      "📅 Thu",
+      "📅 Sat"
+     ],
+     "correct": 1
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "What are you doing?",
+   "instruction": "Answer from the picture.",
+   "items": [
+    {
+     "answer": "В субб+оту я ид+у в магаз+ин.",
+     "cue": "📅 Sat 🚶 🏪",
+     "english": "On Saturday I'm going to the shop.",
+     "ask": "Что ты д+елаешь в субб+оту?",
+     "distractors": [
+      "В п+ятницу я ид+у в магаз+ин."
+     ]
+    },
+    {
+     "answer": "В п+ятницу я +еду в Л+ондон.",
+     "cue": "📅 Fri ✈️ 🏙️🇬🇧",
+     "english": "On Friday I'm going to London.",
+     "ask": "Что ты д+елаешь в п+ятницу?",
+     "distractors": [
+      "В п+ятницу я +еду в Москв+у."
+     ]
+    },
+    {
+     "answer": "Что ты д+елаешь в воскрес+енье?",
+     "cue": "❓🫵 📅 Sun",
+     "english": "Ask: What are you doing on Sunday?"
+    },
+    {
+     "answer": "В понед+ельник я на раб+оте.",
+     "cue": "📅 Mon 📍💼",
+     "english": "On Monday I'm at work.",
+     "distractors": [
+      "В понед+ельник я ид+у на раб+оту."
+     ]
+    },
+    {
+     "answer": "Сег+одня четв+ерг.",
+     "cue": "📅 Thu",
+     "english": "Today is Thursday.",
+     "ask": "Как+ой сег+одня день?"
+    },
+    {
+     "answer": "Мне нр+авится субб+ота.",
+     "cue": "❤️ 📅 Sat",
+     "english": "I like Saturday."
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "Numbers",
+   "instruction": "Say the number.",
+   "items": [
+    {
+     "answer": "Сто.",
+     "cue": "1️⃣0️⃣0️⃣",
+     "english": "a hundred"
+    },
+    {
+     "answer": "Дв+адцать три.",
+     "cue": "2️⃣3️⃣",
+     "english": "twenty-three"
+    },
+    {
+     "answer": "Пятьдес+ят в+осемь.",
+     "cue": "5️⃣8️⃣",
+     "english": "fifty-eight"
+    },
+    {
+     "answer": "С+емьдесят од+ин.",
+     "cue": "7️⃣1️⃣",
+     "english": "seventy-one"
+    },
+    {
+     "answer": "В+осемьдесят д+евять.",
+     "cue": "8️⃣9️⃣",
+     "english": "eighty-nine"
+    },
+    {
+     "answer": "С+орок чет+ыре.",
+     "cue": "4️⃣4️⃣",
+     "english": "forty-four"
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "Conversation",
+   "instruction": "Making plans with a friend.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "Что ты д+елаешь в субб+оту?",
+     "cue": "❓📅 Sat",
+     "english": "What are you doing on Saturday?"
+    },
+    {
+     "answer": "В субб+оту я ид+у в магаз+ин.",
+     "cue": "🚶 🏪",
+     "english": "On Saturday I'm going to the shop.",
+     "distractors": [
+      "В субб+оту я +еду в Москв+у."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "А в воскрес+енье?",
+     "cue": "❓📅 Sun",
+     "english": "And on Sunday?"
+    },
+    {
+     "answer": "В воскрес+енье я д+ома.",
+     "cue": "📅 Sun 🏠",
+     "english": "On Sunday I'm at home."
+    },
+    {
+     "speaker": "partner",
+     "line": "Хорош+о! В воскрес+енье я т+оже д+ома.",
+     "cue": "👌 🏠",
+     "english": "Great! I'm at home on Sunday too."
+    },
+    {
+     "answer": "+Очень хорош+о!",
+     "cue": "👌",
+     "english": "Very good!"
+    }
+   ]
+  }
+ ]
+}

@@ -1,6 +1,20 @@
 {
   "scenarios": [
     {
+      "id": "friend", "emoji": "🏠", "title": "At a friend's place",
+      "role": "a friendly Russian friend who has invited the learner home",
+      "setting": "Chat about things in the room: what things are, where they are, whose they are. Offer tea, coffee or water. Ask simple questions the learner can answer from the lessons. Use the informal “ты”.",
+      "goals": ["Say your name", "Say what things are", "Say where things are", "Say what you want to drink", "Say what languages you speak"],
+      "opening": {"text": "Прив+ет! Как теб+я зов+ут?", "english": "Hi! What's your name?"},
+      "phrases": [
+        {"text": "Мен+я зов+ут +Анна.", "english": "My name is Anna."},
+        {"text": "+Это мой телеф+он.", "english": "This is my phone."},
+        {"text": "Я хоч+у чай, пож+алуйста.", "english": "I'd like tea, please."},
+        {"text": "Я немн+ого говор+ю по-р+усски.", "english": "I speak a little Russian."},
+        {"text": "Ещё раз, пож+алуйста.", "english": "Once more, please."}
+      ]
+    },
+    {
       "id": "cafe", "emoji": "☕", "title": "At the café",
       "role": "a friendly waiter in a small café in Moscow",
       "setting": "The learner is a customer. Help them order a drink and something to eat, tell them prices in roubles, and bring the bill when asked.",
@@ -20,7 +34,7 @@
       "goals": ["Say hello", "Say your name", "Say where you're from", "Say you're learning Russian", "Say goodbye"],
       "opening": {"text": "Прив+ет! Как теб+я зов+ут?", "english": "Hi! What's your name?"},
       "phrases": [
-        {"text": "Я из Лонд+она.", "english": "I'm from London."},
+        {"text": "Я из Л+ондона.", "english": "I'm from London."},
         {"text": "Я изуч+аю р+усский яз+ык.", "english": "I'm learning Russian."},
         {"text": "+Очень при+ятно!", "english": "Nice to meet you!"},
         {"text": "А теб+я?", "english": "And you? (what's your name)"}

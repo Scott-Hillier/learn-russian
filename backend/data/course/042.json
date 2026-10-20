@@ -1,0 +1,328 @@
+{
+ "id": 42,
+ "title": "Я жил, я жила",
+ "goal": "Say what you did: «Я жил в Лондоне.» «Я видела кошку.» «Что ты делала?»",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 6
+  },
+  {
+   "track": "frames",
+   "type": "teach",
+   "title": "-л and -ла",
+   "instruction": "Other verbs work like «был»: take «-ть» off the verb and add «-л» (a man) or «-ла» (a woman). жить → жил, жила. видеть → видел, видела. делать → делал, делала.",
+   "items": [
+    {
+     "answer": "Я жил в Л+ондоне.",
+     "cue": "👨 Иван ⬅️📅 🏙️🇬🇧",
+     "english": "I lived in London. (Ivan)",
+     "distractors": [
+      "Я жил+а в Л+ондоне."
+     ]
+    },
+    {
+     "answer": "Я жил+а в Москв+е.",
+     "cue": "👩 Анна ⬅️📅 🏙️🇷🇺",
+     "english": "I lived in Moscow. (Anna)",
+     "distractors": [
+      "Я жил в Москв+е."
+     ]
+    },
+    {
+     "answer": "Вчер+а я в+идел к+ошку.",
+     "cue": "👨 Иван ⬅️📅 👀 🐈",
+     "english": "Yesterday I saw a cat. (Ivan)"
+    },
+    {
+     "answer": "Что ты д+елала вчер+а?",
+     "cue": "❓👩 Анна ⬅️📅",
+     "english": "What did you do yesterday? (to Anna)",
+     "distractors": [
+      "Что ты д+елал вчер+а?"
+     ]
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "choose",
+   "title": "-л or -ла?",
+   "instruction": "A man → -л. A woman → -ла.",
+   "items": [
+    {
+     "prompt": "+Анна ___ в Л+ондоне.",
+     "cue": "👩 Анна 🏙️🇬🇧",
+     "english": "Anna lived in London.",
+     "options": [
+      "жил",
+      "жил+а"
+     ],
+     "correct": 1,
+     "audio": "+Анна жил+а в Л+ондоне."
+    },
+    {
+     "prompt": "Ив+ан ___ соб+аку.",
+     "cue": "👨 Иван 👀 🐕",
+     "english": "Ivan saw a dog.",
+     "options": [
+      "в+идел",
+      "в+идела"
+     ],
+     "correct": 0,
+     "audio": "Ив+ан в+идел соб+аку."
+    },
+    {
+     "prompt": "М+ама ___ по-англ+ийски.",
+     "cue": "👩 🇬🇧",
+     "english": "Mum spoke English.",
+     "options": [
+      "говор+ил",
+      "говор+ила"
+     ],
+     "correct": 1,
+     "audio": "М+ама говор+ила по-англ+ийски."
+    },
+    {
+     "prompt": "Я не ___.",
+     "cue": "👨 Иван 🤷",
+     "english": "I didn't know. (Ivan)",
+     "options": [
+      "знал",
+      "зн+ала"
+     ],
+     "correct": 0,
+     "audio": "Я не знал."
+    },
+    {
+     "prompt": "Я не ___.",
+     "cue": "👩 Анна 🤷",
+     "english": "I didn't know. (Anna)",
+     "options": [
+      "знал",
+      "зн+ала"
+     ],
+     "correct": 1,
+     "audio": "Я не зн+ала."
+    },
+    {
+     "prompt": "Что ты ___ вчер+а?",
+     "cue": "❓👨 Иван ⬅️📅",
+     "english": "What did you do yesterday? (to Ivan)",
+     "options": [
+      "д+елал",
+      "д+елала"
+     ],
+     "correct": 0,
+     "audio": "Что ты д+елал вчер+а?"
+    }
+   ]
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "Now or before?",
+   "instruction": "Listen. Is it happening now, or did it happen before?",
+   "items": [
+    {
+     "audio": "Я жив+у в Москв+е.",
+     "options": [
+      "📅 now",
+      "⬅️📅 before"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Я жил в Москв+е.",
+     "options": [
+      "📅 now",
+      "⬅️📅 before"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Он+а в+идела соб+аку.",
+     "options": [
+      "📅 now",
+      "⬅️📅 before"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Я в+ижу соб+аку.",
+     "options": [
+      "📅 now",
+      "⬅️📅 before"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Мы говор+им по-р+усски.",
+     "options": [
+      "📅 now",
+      "⬅️📅 before"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Он говор+ил по-р+усски.",
+     "options": [
+      "📅 now",
+      "⬅️📅 before"
+     ],
+     "correct": 1
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "What did you do?",
+   "instruction": "Answer as the person shown.",
+   "items": [
+    {
+     "answer": "Я жил+а в Л+ондоне.",
+     "cue": "👩 Анна ⬅️📅 🏙️🇬🇧",
+     "english": "I lived in London.",
+     "ask": "Где ты жил+а?",
+     "distractors": [
+      "Я жил в Л+ондоне.",
+      "Я жив+у в Л+ондоне."
+     ]
+    },
+    {
+     "answer": "Я в+идел соб+аку.",
+     "cue": "👨 Иван ⬅️📅 👀 🐕",
+     "english": "I saw a dog.",
+     "ask": "Что ты в+идел?",
+     "distractors": [
+      "Я в+идела соб+аку.",
+      "Я в+ижу соб+аку."
+     ]
+    },
+    {
+     "answer": "Я не зн+ала.",
+     "cue": "👩 Анна ⬅️📅 🤷",
+     "english": "I didn't know.",
+     "distractors": [
+      "Я не знал.",
+      "Я не зн+аю."
+     ]
+    },
+    {
+     "answer": "Я был в магаз+ине.",
+     "cue": "👨 Иван ⬅️📅 🏪",
+     "english": "I was at the shop.",
+     "ask": "Что ты д+елал вчер+а?",
+     "distractors": [
+      "Я был+а в магаз+ине."
+     ]
+    },
+    {
+     "answer": "Что ты д+елала вчер+а?",
+     "cue": "❓👩 Анна ⬅️📅",
+     "english": "Ask Anna: What did you do yesterday?",
+     "distractors": [
+      "Что ты д+елаешь сег+одня?"
+     ]
+    },
+    {
+     "answer": "Он говор+ил по-р+усски.",
+     "cue": "👨 ⬅️📅 🇷🇺",
+     "english": "He spoke Russian.",
+     "distractors": [
+      "Он говор+ит по-р+усски."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "Numbers",
+   "instruction": "Say the number.",
+   "items": [
+    {
+     "answer": "Сто.",
+     "cue": "1️⃣0️⃣0️⃣",
+     "english": "a hundred"
+    },
+    {
+     "answer": "Дв+адцать в+осемь.",
+     "cue": "2️⃣8️⃣",
+     "english": "twenty-eight"
+    },
+    {
+     "answer": "Шестьдес+ят пять.",
+     "cue": "6️⃣5️⃣",
+     "english": "sixty-five"
+    },
+    {
+     "answer": "С+орок три.",
+     "cue": "4️⃣3️⃣",
+     "english": "forty-three"
+    },
+    {
+     "answer": "Девян+осто семь.",
+     "cue": "9️⃣7️⃣",
+     "english": "ninety-seven"
+    },
+    {
+     "answer": "Пятьдес+ят.",
+     "cue": "5️⃣0️⃣",
+     "english": "fifty"
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "Conversation",
+   "instruction": "You are Иван 👨. A new friend asks about you.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "Ты жил в Москв+е?",
+     "cue": "❓🏙️🇷🇺",
+     "english": "Did you live in Moscow?"
+    },
+    {
+     "answer": "Нет, я жил в Л+ондоне.",
+     "cue": "🚫🏙️🇷🇺 🏙️🇬🇧",
+     "english": "No, I lived in London.",
+     "distractors": [
+      "Да, я жил в Москв+е."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Ты говор+ил по-р+усски?",
+     "cue": "❓🇷🇺",
+     "english": "Did you speak Russian?"
+    },
+    {
+     "answer": "Нет, я не говор+ил по-р+усски.",
+     "cue": "🚫🇷🇺",
+     "english": "No, I didn't speak Russian.",
+     "distractors": [
+      "Да, я говор+ил по-р+усски."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "А сейч+ас?",
+     "cue": "❓📅",
+     "english": "And now?"
+    },
+    {
+     "answer": "Сейч+ас я немн+ого говор+ю по-р+усски.",
+     "cue": "📅 🤏 🇷🇺",
+     "english": "Now I speak a little Russian."
+    }
+   ]
+  }
+ ]
+}

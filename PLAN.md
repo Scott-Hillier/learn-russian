@@ -300,24 +300,111 @@ and a dialogue.
 | 9 | оно (-о), then all three contrasted | молоко, яблоко, окно | counting |
 | 10 | мой / моя / моё (form choice, plus whole sentences) | | counting |
 | 11 | твой / твоя / твоё; «Это твой …?» — «Да, это мой …» | | 11–12 |
-| 12 | Gender to learn with the word: папа (он), дверь, ночь (она) | папа, дверь | 13–15 |
-| 13 | «Как тебя зовут?» — «Меня зовут …»; я / ты | | 16–20 |
-| 14 | Present tense, я form: я знаю, я понимаю, я не понимаю | | |
-| 15 | ты form: ты знаешь? ты понимаешь? | | |
-| 16 | он/она form, then я/ты/он contrasted | | |
-| 17 | говорить: говорю / говоришь / говорит; по-русски, по-английски | | |
-| 18 | «Я хочу …» with accusative -а → -у (воду, рыбу), masculine unchanged | чай, кофе | |
-| 19 | «Я вижу …» with accusative for people and animals (маму, кошку) | | 20–30 |
-| 20 | Unit review dialogue: meeting someone | | |
-| 21–30 | мы/вы/они verb forms (listening and form choice only: speech can't tell them apart); в/на + prepositional (в машине, на столе); «Я живу в …»; nominative plural; «У меня есть …» / «У меня нет …» + genitive | | 30–100 |
-| 31–40 | идти / ехать + в + accusative; times and days; «Мне нравится …» (мне/тебе) | | prices |
-| 41–50 | Past tense (был/была, -л/-ла); с + instrumental (с молоком); café and shop dialogues | | |
-| 51–60 | Future (буду + infinitive); adjectives (большой/маленький; form choice for endings); unit reviews; conversation limited to taught content | | |
-11. **Mastery and review.** Mastery tests, placement, remediation, and FSRS-due items in each
-    lesson's review block.
-12. **Lessons become the main route.**
-    - Home becomes "Today's lesson"; the old screens move under Practice
-    - Starter words are linked to the lessons that introduce them
-    - The dashboard shows the lesson path, mastery test results and per-track accuracy
-13. **Lessons 21–60 and constrained conversation.** The partner is told the taught words and
-    grammar, and unknown words in its replies are flagged.
+| 12 | Gender to learn with the word: папа (он), дверь (она) | папа, дверь | 13–15 |
+| 13 | «Как тебя зовут?» — «Меня зовут …»; я / ты (played as Анна / Иван) | | 16–17 |
+| 14 | Present tense, я form: я знаю, я понимаю, я не понимаю | | 18–19 |
+| 15 | ты form: ты знаешь? ты понимаешь? | ещё раз, хорошо | 20 |
+| 16 | он/она form, then я/ты/он contrasted | тоже | counting |
+| 17 | говорить: говорю / говоришь / говорит | по-русски, по-английски, немного | counting |
+| 18 | «Я хочу …» with accusative -а → -у (воду, рыбу), masculine unchanged | чай, кофе | counting |
+| 19 | «Я вижу …» with accusative for people and animals (маму, папу, кошку) | | 20–30 |
+| 20 | Unit review dialogues: meeting someone, at a friend's | пока, очень приятно | 1–30 |
+| 21 | мы / вы / они (говорить spoken; знать/понимать endings by form choice) | | 40, 50 |
+| 22 | в / на + prepositional: в доме, на столе | стол | to 50 |
+| 23 | «Я живу в …»: жить, в Москве / в Лондоне | Москва, Лондон | 60, 70 |
+| 24 | Nominative plural (-ы / -и), мои, они | | 80–100 |
+| 25 | Unit review: где ты живёшь? | | to 100 |
+| 26 | «У меня есть …» (the thing stays nominative) | | |
+| 27 | «У меня нет …» + genitive | | |
+| 28 | у него / у неё / у вас | | |
+| 29 | In a shop: «У вас есть …?», «… нет», и | магазин, сыр | |
+| 30 | Unit review | | |
+| 31 | идти + в + accusative; где vs куда; домой; «А ты?» | школа | |
+| 32 | ехать; на работу / на работе | работа | |
+| 33 | «Который час?» — час / часа / часов | | |
+| 34 | «Какой сегодня день?» | понедельник, вторник, среда | |
+| 35 | The rest of the week, завтра; unit review | четверг … воскресенье | |
+| 36 | «Мне нравится …» (мне / тебе) | | |
+| 37 | в субботу (days with в + accusative); делать | | |
+| 38 | «Сколько стоит?» — рубль / рубля / рублей | | prices |
+| 39 | In a café: «Мне …, пожалуйста», «Счёт, пожалуйста» | кафе, счёт | |
+| 40 | Unit review | | |
+| 41 | Past tense: был / была (as Иван / Анна) | вчера | |
+| 42 | -л / -ла with known verbs | | |
+| 43 | -ли for more than one; были | кино | |
+| 44 | с + instrumental: кофе с молоком, с братом | сахар | |
+| 45 | Unit review | | |
+| 46 | работать (endings by form choice) | | |
+| 47 | читать + accusative | газета | |
+| 48 | «Можно …?» — «Да, конечно» | | |
+| 49 | «Как дела?» — хорошо / нормально / плохо | | |
+| 50 | Unit review: coffee with a friend | | |
+| 51 | Future: буду + infinitive; past / present / future contrasted | | |
+| 52 | «Сейчас …, потом …» | потом | |
+| 53 | большой / маленький (endings by form choice) | | |
+| 54 | хороший / плохой / новый | погода | |
+| 55 | Unit review | | |
+| 56 | любить + accusative, contrasted with «нравится» | | |
+| 57 | Asking the way: извините, налево, направо, прямо | | |
+| 58 | «Сколько тебе лет?» — год / года / лет | | |
+| 59 | «До свидания»; a day out in three dialogues | | |
+| 60 | Final review | | |
+11. **Mastery and review ✅ (done 2026-10-20).**
+    - **Units and tests:** every 5 lessons make a unit, and each unit ends with a **mastery test**
+      (`course.build_test`):
+      - 3 spoken and 2 listening/reading items from each lesson, sentences first
+      - one try each, no modelling and no corrections
+      - 90% to pass
+      - each attempt gets a fixed sample, and a retest always includes the items missed last time
+
+      Lesson 5n+1 unlocks only once unit n's test is passed (`course_tests` table).
+    - **Remediation:** a failed mastery test gives a **fix-up lesson** built from the missed items: spoken
+      ones are taught again (model, lead, test), and the rest are redone. After it, the test is retaken.
+    - **Placement:** any unit's test can be taken once the unit before it is passed, so a learner can
+      **test out**.
+      - **Pass:** the unit's lessons are marked passed (`placed`), and the next test can be tried straight
+        away.
+      - **Fail:** just start that unit, with no fix-up lesson.
+
+      A fresh learner is offered this on the Today screen and above lesson 1.
+    - **Answer checks:** every item records where it was written (`src`), so answers given in reviews,
+      tests and fix-ups are checked against their original item. Items in locked lessons can only be
+      checked inside their unit's test.
+    - **Review driven by errors:** a lesson's review block (`Course.review_items`) is filled in this order:
+      1. Items missed in their last few counted tries (first tries, delayed re-tests, test answers), worst
+         first. These take up to half the block.
+      2. Lesson words that are **due in the flashcards**, up to a third. Answering one there counts as its
+         flashcard review (Good, or Again if wrong).
+      3. The spaced items, from 1, 2, 3, 5, 8… lessons back.
+12. **Lessons become the main route ✅ (done 2026-10-20).**
+    - **🏠 Today** is the new home screen. It shows:
+      - the next step (lesson, test or fix-up), started with Enter
+      - due flashcards
+      - the lesson path, with tests between units
+      - right-first-time accuracy per track (`/api/course/stats`)
+      - the items to work on
+      - test history
+    - **Starter words are linked to lessons:** `course.lesson_for` matches a single word to the lesson that
+      first introduces it, by lemma (67 starter words so far).
+      - Flashcards show "📘 Lesson N".
+      - Passing a lesson, or testing out of its unit, starts the schedule of its still-new built-in cards.
+        They're rated Easy without counting as a review, because the lesson already drilled them.
+13. **Lessons 21–60 and constrained conversation ✅ (done 2026-10-20).**
+    - **Lessons 21–60** follow the scope table above.
+      - **Curriculum checker:** every lesson passes.
+      - **Native-voice speech check:** 8,397 of 8,404 checks came out as expected.
+      - **The misses:** six hinged on a short ending: unstressed final а/у (в школу / в школа,
+        нравится работа / работу, нет брата / брат) or видел/видела before кошку.
+      - **The fix:** those six explicit distractors were removed. The same contrasts are still taught by
+        choosing the written form.
+    - **Curriculum checker fixes:**
+      - Past-tense gender (знал/знала) is no longer flagged as unhearable; only present-tense -ать endings
+        are.
+      - Any two forms of one adjective or possessive are flagged.
+      - Lemmas prefer the verb over a participle (читаем), and большая is read as большой.
+    - **Conversation:** the 🤖 partner has a new default level, "Only words from my lessons".
+      - The partner is given the lemmas and the lesson goals from the lessons passed so far.
+      - Words in its reply outside that set are listed in `unknown` and underlined in the chat.
+      - A reply with unknown words gets up to two retries that name them, and the reply with the fewest is
+        kept.
+      - A new scenario, "At a friend's place", uses lesson content.

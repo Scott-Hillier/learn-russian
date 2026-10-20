@@ -1,0 +1,331 @@
+{
+ "id": 43,
+ "title": "Мы были в кино",
+ "goal": "More than one person in the past: «Мы были в кино.» «Они жили в Москве.»",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 6
+  },
+  {
+   "track": "vocab",
+   "type": "teach",
+   "title": "New words",
+   "instruction": "Listen, say it after me, then say it on your own from the picture.",
+   "items": [
+    {
+     "answer": "кин+о",
+     "cue": "🎬",
+     "english": "cinema"
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "teach",
+   "title": "«Были», «-ли» — more than one",
+   "instruction": "For more than one person (мы, вы, они) the past ends in «-ли», whoever they are: мы были, они жили, вы видели.",
+   "items": [
+    {
+     "answer": "Вчер+а мы б+ыли в кин+о.",
+     "cue": "🙋‍♀️🙋‍♂️ ⬅️📅 🎬",
+     "english": "Yesterday we were at the cinema.",
+     "distractors": [
+      "Вчер+а мы был в кин+о."
+     ]
+    },
+    {
+     "answer": "Он+и ж+или в Москв+е.",
+     "cue": "👥 ⬅️📅 🏙️🇷🇺",
+     "english": "They lived in Moscow.",
+     "distractors": [
+      "Он+и жив+ут в Москв+е."
+     ]
+    },
+    {
+     "answer": "Где вы б+ыли?",
+     "cue": "❓🫵🫵 ⬅️📅",
+     "english": "Where were you? (several people)"
+    },
+    {
+     "answer": "Мы б+ыли д+ома.",
+     "cue": "🙋‍♀️🙋‍♂️ ⬅️📅 🏠",
+     "english": "We were at home."
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "choose",
+   "title": "Был, была or были?",
+   "instruction": "One man → был. One woman → была. More than one → были.",
+   "items": [
+    {
+     "prompt": "Мы ___ в кин+о.",
+     "cue": "🙋‍♀️🙋‍♂️ 🎬",
+     "english": "We were at the cinema.",
+     "options": [
+      "был",
+      "был+а",
+      "б+ыли"
+     ],
+     "correct": 2,
+     "audio": "Мы б+ыли в кин+о."
+    },
+    {
+     "prompt": "М+ама ___ д+ома.",
+     "cue": "👩 🏠",
+     "english": "Mum was at home.",
+     "options": [
+      "был",
+      "был+а",
+      "б+ыли"
+     ],
+     "correct": 1,
+     "audio": "М+ама был+а д+ома."
+    },
+    {
+     "prompt": "Он+и ___ в Л+ондоне.",
+     "cue": "👥 🏙️🇬🇧",
+     "english": "They were in London.",
+     "options": [
+      "был",
+      "был+а",
+      "б+ыли"
+     ],
+     "correct": 2,
+     "audio": "Он+и б+ыли в Л+ондоне."
+    },
+    {
+     "prompt": "Брат ___ в шк+оле.",
+     "cue": "👦 🏫",
+     "english": "My brother was at school.",
+     "options": [
+      "был",
+      "был+а",
+      "б+ыли"
+     ],
+     "correct": 0,
+     "audio": "Брат был в шк+оле."
+    },
+    {
+     "prompt": "Вы ___ в Москв+е?",
+     "cue": "❓🫵🫵 🏙️🇷🇺",
+     "english": "Did you live in Moscow?",
+     "options": [
+      "ж+или",
+      "жил+а",
+      "жил"
+     ],
+     "correct": 0,
+     "audio": "Вы ж+или в Москв+е?"
+    },
+    {
+     "prompt": "Он+и ___ к+ошку.",
+     "cue": "👥 👀 🐈",
+     "english": "They saw a cat.",
+     "options": [
+      "в+идели",
+      "в+идела",
+      "в+идел"
+     ],
+     "correct": 0,
+     "audio": "Он+и в+идели к+ошку."
+    }
+   ]
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "One or more?",
+   "instruction": "Listen. One person, or more than one?",
+   "items": [
+    {
+     "audio": "Мы б+ыли в кин+о.",
+     "options": [
+      "👤 one",
+      "👥 more"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Он был в кин+о.",
+     "options": [
+      "👤 one",
+      "👥 more"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Он+и ж+или в Л+ондоне.",
+     "options": [
+      "👤 one",
+      "👥 more"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Он+а жил+а в Л+ондоне.",
+     "options": [
+      "👤 one",
+      "👥 more"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Вы б+ыли д+ома?",
+     "options": [
+      "👤 one",
+      "👥 more"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Я был+а д+ома.",
+     "options": [
+      "👤 one",
+      "👥 more"
+     ],
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "Where were they?",
+   "instruction": "Answer from the picture.",
+   "items": [
+    {
+     "answer": "Мы б+ыли в кин+о.",
+     "cue": "🙋‍♀️🙋‍♂️ ⬅️📅 🎬",
+     "english": "We were at the cinema.",
+     "ask": "Где вы б+ыли вчер+а?",
+     "distractors": [
+      "Мы б+ыли в каф+е.",
+      "Я был в кин+о."
+     ]
+    },
+    {
+     "answer": "Он+и ж+или в Л+ондоне.",
+     "cue": "👥 ⬅️📅 🏙️🇬🇧",
+     "english": "They lived in London.",
+     "ask": "Где ж+или он+и?",
+     "distractors": [
+      "Он+и ж+или в Москв+е."
+     ]
+    },
+    {
+     "answer": "Где вы б+ыли?",
+     "cue": "❓🫵🫵 ⬅️📅",
+     "english": "Ask your friends: Where were you?",
+     "distractors": [
+      "Где ты был?"
+     ]
+    },
+    {
+     "answer": "Мы б+ыли д+ома.",
+     "cue": "🙋‍♀️🙋‍♂️ ⬅️📅 🏠",
+     "english": "We were at home.",
+     "ask": "Где вы б+ыли в субб+оту?",
+     "distractors": [
+      "Мы д+ома."
+     ]
+    },
+    {
+     "answer": "Мне нр+авится кин+о.",
+     "cue": "❤️ 🎬",
+     "english": "I like the cinema.",
+     "distractors": [
+      "Мне не нр+авится кин+о."
+     ]
+    },
+    {
+     "answer": "В п+ятницу мы ид+ём в кин+о.",
+     "cue": "📅 Fri 🙋‍♀️🙋‍♂️ 🚶 🎬",
+     "english": "On Friday we're going to the cinema.",
+     "distractors": [
+      "В п+ятницу мы б+ыли в кин+о."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "Numbers",
+   "instruction": "Say the number.",
+   "items": [
+    {
+     "answer": "Сто.",
+     "cue": "1️⃣0️⃣0️⃣",
+     "english": "a hundred"
+    },
+    {
+     "answer": "С+емьдесят чет+ыре.",
+     "cue": "7️⃣4️⃣",
+     "english": "seventy-four"
+    },
+    {
+     "answer": "Тр+идцать шесть.",
+     "cue": "3️⃣6️⃣",
+     "english": "thirty-six"
+    },
+    {
+     "answer": "Пятьдес+ят д+евять.",
+     "cue": "5️⃣9️⃣",
+     "english": "fifty-nine"
+    },
+    {
+     "answer": "В+осемьдесят в+осемь.",
+     "cue": "8️⃣8️⃣",
+     "english": "eighty-eight"
+    },
+    {
+     "answer": "Дв+адцать од+ин.",
+     "cue": "2️⃣1️⃣",
+     "english": "twenty-one"
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "Conversation",
+   "instruction": "Monday morning at work.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "Прив+ет! Где вы б+ыли в субб+оту?",
+     "cue": "❓🫵🫵 📅 Sat",
+     "english": "Hi! Where were you on Saturday?"
+    },
+    {
+     "answer": "Мы б+ыли в кин+о.",
+     "cue": "🙋‍♀️🙋‍♂️ 🎬",
+     "english": "We were at the cinema.",
+     "distractors": [
+      "Мы б+ыли в каф+е."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Теб+е нр+авится кин+о?",
+     "cue": "❓🎬",
+     "english": "Do you like the cinema?"
+    },
+    {
+     "answer": "Да, +очень!",
+     "cue": "✅ ❤️❤️",
+     "english": "Yes, a lot!",
+     "distractors": [
+      "Нет."
+     ]
+    }
+   ]
+  }
+ ]
+}

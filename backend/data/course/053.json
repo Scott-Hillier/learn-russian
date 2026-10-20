@@ -1,0 +1,308 @@
+{
+ "id": 53,
+ "title": "Большой и маленький",
+ "goal": "Describe things: «большой дом», «маленькая кошка». The ending follows он, она, оно.",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 6
+  },
+  {
+   "track": "frames",
+   "type": "teach",
+   "title": "«Большой, маленький» — big, small",
+   "instruction": "Describing words take the ending of their noun's group: он-words → «большой», она-words → «большая», оно-words → «большое». Маленький → маленькая → маленькое.",
+   "items": [
+    {
+     "answer": "+Это больш+ой дом.",
+     "cue": "🔼 🏠",
+     "english": "This is a big house."
+    },
+    {
+     "answer": "+Это м+аленькая к+ошка.",
+     "cue": "🔽 🐈",
+     "english": "This is a small cat."
+    },
+    {
+     "answer": "+Это больш+ое окн+о.",
+     "cue": "🔼 🪟",
+     "english": "This is a big window."
+    },
+    {
+     "answer": "У мен+я м+аленькая маш+ина.",
+     "cue": "🙋 🔽 🚗",
+     "english": "I have a small car."
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "choose",
+   "title": "Which ending?",
+   "instruction": "He-words -ой/-ий, she-words -ая, it-words -ое. Pick the written form.",
+   "items": [
+    {
+     "prompt": "___ дом",
+     "cue": "🔼 🏠",
+     "english": "a big house",
+     "options": [
+      "больш+ой",
+      "больш+ая",
+      "больш+ое"
+     ],
+     "correct": 0,
+     "audio": "Больш+ой дом."
+    },
+    {
+     "prompt": "___ соб+ака",
+     "cue": "🔼 🐕",
+     "english": "a big dog",
+     "options": [
+      "больш+ой",
+      "больш+ая",
+      "больш+ое"
+     ],
+     "correct": 1,
+     "audio": "Больш+ая соб+ака."
+    },
+    {
+     "prompt": "___ +яблоко",
+     "cue": "🔼 🍎",
+     "english": "a big apple",
+     "options": [
+      "больш+ой",
+      "больш+ая",
+      "больш+ое"
+     ],
+     "correct": 2,
+     "audio": "Больш+ое +яблоко."
+    },
+    {
+     "prompt": "___ стол",
+     "cue": "🔽 🍽️",
+     "english": "a small table",
+     "options": [
+      "м+аленький",
+      "м+аленькая",
+      "м+аленькое"
+     ],
+     "correct": 0,
+     "audio": "М+аленький стол."
+    },
+    {
+     "prompt": "___ с+умка",
+     "cue": "🔽 👜",
+     "english": "a small bag",
+     "options": [
+      "м+аленький",
+      "м+аленькая",
+      "м+аленькое"
+     ],
+     "correct": 1,
+     "audio": "М+аленькая с+умка."
+    },
+    {
+     "prompt": "___ окн+о",
+     "cue": "🔽 🪟",
+     "english": "a small window",
+     "options": [
+      "м+аленький",
+      "м+аленькая",
+      "м+аленькое"
+     ],
+     "correct": 2,
+     "audio": "М+аленькое окн+о."
+    }
+   ]
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "Big or small?",
+   "instruction": "Listen and pick.",
+   "items": [
+    {
+     "audio": "+Это больш+ая маш+ина.",
+     "options": [
+      "🔼 🚗",
+      "🔽 🚗"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "+Это м+аленький дом.",
+     "options": [
+      "🔼 🏠",
+      "🔽 🏠"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "У мен+я больш+ая соб+ака.",
+     "options": [
+      "🔼 🐕",
+      "🔽 🐕"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Мой брат м+аленький.",
+     "options": [
+      "🔼 👦",
+      "🔽 👦"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "+Это больш+ой стол.",
+     "options": [
+      "🔼 🍽️",
+      "🔽 🍽️"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "У неё м+аленькая к+ошка.",
+     "options": [
+      "🔼 🐈",
+      "🔽 🐈"
+     ],
+     "correct": 1
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "Big or small?",
+   "instruction": "Say it from the picture: 🔼 = big, 🔽 = small.",
+   "items": [
+    {
+     "answer": "+Это больш+ая соб+ака.",
+     "cue": "🔼 🐕",
+     "english": "This is a big dog.",
+     "ask": "Что +это?",
+     "distractors": [
+      "+Это м+аленькая соб+ака."
+     ]
+    },
+    {
+     "answer": "+Это м+аленький дом.",
+     "cue": "🔽 🏠",
+     "english": "This is a small house.",
+     "ask": "Что +это?",
+     "distractors": [
+      "+Это больш+ой дом."
+     ]
+    },
+    {
+     "answer": "У мен+я больш+ая с+умка.",
+     "cue": "🙋 🔼 👜",
+     "english": "I have a big bag.",
+     "distractors": [
+      "У мен+я м+аленькая с+умка."
+     ]
+    },
+    {
+     "answer": "Москв+а больш+ая.",
+     "cue": "🏙️🇷🇺 🔼",
+     "english": "Moscow is big.",
+     "distractors": [
+      "Москв+а м+аленькая."
+     ]
+    },
+    {
+     "answer": "+Это м+аленькое +яблоко.",
+     "cue": "🔽 🍎",
+     "english": "This is a small apple.",
+     "ask": "Что +это?",
+     "distractors": [
+      "+Это больш+ое +яблоко."
+     ]
+    },
+    {
+     "answer": "Сейч+ас я раб+отаю, пот+ом б+уду д+ома.",
+     "cue": "📅 💼 ⏭️ 🏠",
+     "english": "I'm working now, later I'll be at home."
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "Numbers",
+   "instruction": "Say the number.",
+   "items": [
+    {
+     "answer": "Сто.",
+     "cue": "1️⃣0️⃣0️⃣",
+     "english": "a hundred"
+    },
+    {
+     "answer": "Девятн+адцать.",
+     "cue": "1️⃣9️⃣",
+     "english": "nineteen"
+    },
+    {
+     "answer": "С+орок шесть.",
+     "cue": "4️⃣6️⃣",
+     "english": "forty-six"
+    },
+    {
+     "answer": "С+емьдесят пять.",
+     "cue": "7️⃣5️⃣",
+     "english": "seventy-five"
+    },
+    {
+     "answer": "В+осемьдесят три.",
+     "cue": "8️⃣3️⃣",
+     "english": "eighty-three"
+    },
+    {
+     "answer": "Пятьдес+ят два.",
+     "cue": "5️⃣2️⃣",
+     "english": "fifty-two"
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "Conversation",
+   "instruction": "A friend looks at photos of your home.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "+Это твой дом?",
+     "cue": "🏠❓",
+     "english": "Is this your house?"
+    },
+    {
+     "answer": "Да. +Это м+аленький дом.",
+     "cue": "✅ 🔽 🏠",
+     "english": "Yes. It's a small house.",
+     "distractors": [
+      "Да. +Это больш+ой дом."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "А +это тво+я соб+ака?",
+     "cue": "🐕❓",
+     "english": "And is this your dog?"
+    },
+    {
+     "answer": "Да, +это мо+я соб+ака. Он+а больш+ая!",
+     "cue": "✅ 🐕 🔼",
+     "english": "Yes, that's my dog. She's big!",
+     "distractors": [
+      "Нет, +это не мо+я соб+ака."
+     ]
+    }
+   ]
+  }
+ ]
+}

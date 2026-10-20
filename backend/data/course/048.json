@@ -1,0 +1,307 @@
+{
+ "id": 48,
+ "title": "Можно?",
+ "goal": "Ask for things politely: «Можно воду?» — «Да, конечно.»",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 6
+  },
+  {
+   "track": "frames",
+   "type": "teach",
+   "title": "«Можно …?» — May I …? / Can I have …?",
+   "instruction": "«Можно?» asks if something is OK. «Можно воду?» = Can I have some water? The thing takes the «-у» form. «Конечно» = of course.",
+   "items": [
+    {
+     "answer": "Мож+но в+оду?",
+     "cue": "💧❓",
+     "english": "Can I have some water?",
+     "distractors": [
+      "Мож+но вод+а?"
+     ]
+    },
+    {
+     "answer": "Да, кон+ечно.",
+     "cue": "✅👌",
+     "english": "Yes, of course.",
+     "ask": "Мож+но?"
+    },
+    {
+     "answer": "Мож+но счёт?",
+     "cue": "🧾❓",
+     "english": "Can I have the bill?"
+    },
+    {
+     "answer": "Мож+но?",
+     "cue": "🚪❓",
+     "english": "May I? (come in, sit down)"
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "choose",
+   "title": "Which form?",
+   "instruction": "After «можно», «-а» becomes «-у», like after «хочу».",
+   "items": [
+    {
+     "prompt": "Мож+но ___?",
+     "cue": "📰❓",
+     "english": "Can I have the newspaper?",
+     "options": [
+      "газ+ета",
+      "газ+ету"
+     ],
+     "correct": 1,
+     "audio": "Мож+но газ+ету?"
+    },
+    {
+     "prompt": "Мож+но ___?",
+     "cue": "💧❓",
+     "english": "Can I have some water?",
+     "options": [
+      "вод+а",
+      "в+оду"
+     ],
+     "correct": 1,
+     "audio": "Мож+но в+оду?"
+    },
+    {
+     "prompt": "Мож+но ___?",
+     "cue": "📖❓",
+     "english": "Can I have the book?",
+     "options": [
+      "кн+ига",
+      "кн+игу"
+     ],
+     "correct": 1,
+     "audio": "Мож+но кн+игу?"
+    },
+    {
+     "prompt": "Тут ___.",
+     "cue": "👇 📰",
+     "english": "The newspaper is here.",
+     "options": [
+      "газ+ета",
+      "газ+ету"
+     ],
+     "correct": 0,
+     "audio": "Тут газ+ета."
+    },
+    {
+     "prompt": "Мож+но ___?",
+     "cue": "👜❓",
+     "english": "Can I have the bag?",
+     "options": [
+      "с+умка",
+      "с+умку"
+     ],
+     "correct": 1,
+     "audio": "Мож+но с+умку?"
+    }
+   ]
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "What are they asking for?",
+   "instruction": "Listen and pick the picture.",
+   "items": [
+    {
+     "audio": "Мож+но счёт?",
+     "options": [
+      "🧾",
+      "💧",
+      "📰"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Мож+но в+оду?",
+     "options": [
+      "🧾",
+      "💧",
+      "📰"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Мож+но газ+ету?",
+     "options": [
+      "🧾",
+      "💧",
+      "📰"
+     ],
+     "correct": 2
+    },
+    {
+     "audio": "Да, кон+ечно.",
+     "options": [
+      "✅ yes",
+      "🚫 no"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Нет, у нас нет в+оды.",
+     "options": [
+      "✅ yes",
+      "🚫 no"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Мож+но к+офе с молок+ом?",
+     "options": [
+      "☕ ➕ 🥛",
+      "☕",
+      "🍵 ➕ 🥛"
+     ],
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "Asking politely",
+   "instruction": "Ask for what's in the picture, or answer.",
+   "items": [
+    {
+     "answer": "Мож+но в+оду?",
+     "cue": "💧❓",
+     "english": "Ask for some water.",
+     "distractors": [
+      "Мож+но вод+а?",
+      "Мож+но сок?"
+     ]
+    },
+    {
+     "answer": "Мож+но счёт?",
+     "cue": "🧾❓",
+     "english": "Ask for the bill.",
+     "distractors": [
+      "Мож+но в+оду?"
+     ]
+    },
+    {
+     "answer": "Да, кон+ечно.",
+     "cue": "✅👌",
+     "english": "Say: yes, of course.",
+     "ask": "Мож+но?",
+     "distractors": [
+      "Нет, спас+ибо."
+     ]
+    },
+    {
+     "answer": "Мож+но газ+ету?",
+     "cue": "📰❓",
+     "english": "Ask for the newspaper.",
+     "distractors": [
+      "Мож+но газ+ета?"
+     ]
+    },
+    {
+     "answer": "Мож+но чай с с+ахаром?",
+     "cue": "🍵 ➕ 🍬 ❓",
+     "english": "Ask for tea with sugar.",
+     "distractors": [
+      "Мож+но чай с молок+ом?"
+     ]
+    },
+    {
+     "answer": "Кон+ечно, мне нр+авится к+офе.",
+     "cue": "👌 ❤️ ☕",
+     "english": "Of course, I like coffee.",
+     "ask": "Теб+е нр+авится к+офе?"
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "Numbers",
+   "instruction": "Say the number.",
+   "items": [
+    {
+     "answer": "Сто.",
+     "cue": "1️⃣0️⃣0️⃣",
+     "english": "a hundred"
+    },
+    {
+     "answer": "Тр+идцать три.",
+     "cue": "3️⃣3️⃣",
+     "english": "thirty-three"
+    },
+    {
+     "answer": "Шестьдес+ят шесть.",
+     "cue": "6️⃣6️⃣",
+     "english": "sixty-six"
+    },
+    {
+     "answer": "Девян+осто д+евять.",
+     "cue": "9️⃣9️⃣",
+     "english": "ninety-nine"
+    },
+    {
+     "answer": "С+орок чет+ыре.",
+     "cue": "4️⃣4️⃣",
+     "english": "forty-four"
+    },
+    {
+     "answer": "С+емьдесят семь.",
+     "cue": "7️⃣7️⃣",
+     "english": "seventy-seven"
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "In a café",
+   "instruction": "You're in a café ☕🍰.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "Здр+авствуйте! Что вы х+отите?",
+     "cue": "🧑‍🍳",
+     "english": "Hello! What would you like?"
+    },
+    {
+     "answer": "Мож+но к+офе с молок+ом?",
+     "cue": "☕ ➕ 🥛 ❓",
+     "english": "Can I have a coffee with milk?",
+     "distractors": [
+      "Мож+но чай?"
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Кон+ечно!",
+     "cue": "👌",
+     "english": "Of course!"
+    },
+    {
+     "answer": "И мож+но в+оду?",
+     "cue": "💧❓",
+     "english": "And can I have some water?"
+    },
+    {
+     "speaker": "partner",
+     "line": "Да, пож+алуйста.",
+     "cue": "💧",
+     "english": "Yes, here you are."
+    },
+    {
+     "answer": "Спас+ибо! Мож+но счёт?",
+     "cue": "🙏 🧾❓",
+     "english": "Thank you! Can I have the bill?"
+    }
+   ]
+  }
+ ]
+}

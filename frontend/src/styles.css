@@ -569,6 +569,11 @@ circle.viz-s2 { fill: var(--viz-s2); }
   color: var(--muted);
 }
 .lesson-list button.locked { opacity: 0.6; }
+.lesson-list button.test-entry { margin: 2px 0 8px; border: 1px dashed var(--line); }
+.lesson-list button.test-entry.available,
+.lesson-list button.test-entry.remedial { border-style: solid; border-color: var(--accent); }
+.placement-card { margin-bottom: 12px; }
+.placement-card button { margin-left: 6px; }
 .exercise-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
 .exercise-list li {
   display: flex; align-items: center; gap: 12px; background: var(--panel); border: 1px solid var(--line);
@@ -617,3 +622,28 @@ circle.viz-s2 { fill: var(--viz-s2); }
 .summary-mark { font-size: 3rem; font-weight: 700; }
 .summary-mark.good { color: var(--good); }
 .summary-mark.close { color: var(--close); }
+
+/* Today (home) */
+.next-step h3 { margin: 4px 0 6px; font-size: 1.4rem; }
+.next-step p { margin: 4px 0; }
+.due-words { font-size: 0.95rem; }
+.path { list-style: none; margin: 8px 0 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.path-unit { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.path-unit > .muted { min-width: 92px; font-size: 0.82rem; }
+.path-steps { display: flex; gap: 6px; flex-wrap: wrap; }
+.path-step {
+  width: 30px; height: 30px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
+  font-size: 0.8rem; font-weight: 600; border: 2px solid var(--line); color: var(--muted); background: var(--panel);
+}
+.path-step.passed { background: var(--good); border-color: var(--good); color: #fff; }
+.path-step.available, .path-step.skip, .path-step.remedial { border-color: var(--accent); color: var(--accent); }
+.path-step.test { border-radius: 8px; }
+.path-step.next { box-shadow: 0 0 0 3px var(--accent-soft); background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.track-bars, .work-on { list-style: none; margin: 8px 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.track-bars li { display: grid; grid-template-columns: 120px 1fr 90px; align-items: center; gap: 8px; font-size: 0.9rem; }
+.work-on li { display: grid; grid-template-columns: 48px 1fr 1fr; gap: 8px; align-items: baseline; font-size: 0.95rem; }
+.work-on .cue { font-size: 1rem; }
+@media (max-width: 640px) {
+  .track-bars li { grid-template-columns: 100px 1fr 70px; }
+}
+.unknown-word { background: none; color: inherit; text-decoration: underline wavy var(--close); text-underline-offset: 3px; }

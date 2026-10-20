@@ -68,6 +68,16 @@ def format_interval(delta: timedelta) -> str:
     return f"{days / 365:.1f}y".replace(".0y", "y")
 
 
+def _lesson_for(russian: str) -> int | None:
+    """The course lesson that introduces this card's word, if any."""
+    from .course import lesson_for
+
+    try:
+        return lesson_for(russian)
+    except Exception:  # the course is optional for flashcards
+        return None
+
+
 def _validate_card_fields(russian: str, english: str) -> tuple[str, str]:
     russian, english = russian.strip(), english.strip()
     if not russian or not english:
@@ -186,6 +196,7 @@ class FlashcardStore:
             "notes": r["notes"], "tag": r["tag"], "suspended": bool(r["suspended"]), "state": state,
             "due": r["due"], "is_due": r["reps"] > 0 and r["due"] <= now, "reps": r["reps"], "lapses": r["lapses"],
             "needs_stress": needs_stress_mark(r["russian"]), "builtin": r["source_key"] is not None,
+            "lesson": _lesson_for(r["russian"]),
         }
 
     def list_cards(self, deck_id: int) -> list[dict]:
@@ -394,6 +405,23 @@ class FlashcardStore:
             learned = conn.execute("SELECT COUNT(*) FROM cards WHERE reps > 0 AND suspended = 0").fetchone()[0]
         return {"due": due, "new": min(new_cards, group["left"]), "new_total": new_cards, "group": group,
                 "learned_words": learned}
+
+    def schedule_learned(self, taught) -> int:
+        """Start the schedule of new built-in cards whose word was mastered in a lesson (`taught(russian)` says
+        which). They're rated Easy without counting as a review: the lesson already drilled them."""
+        now = datetime.now(timezone.utc)
+        with connect(self.path) as conn:
+            rows = conn.execute("SELECT c.* FROM cards c JOIN decks d ON d.id = c.deck_id "
+                                "WHERE d.builtin = 1 AND c.reps = 0 AND c.suspended = 0").fetchall()
+            started = 0
+            for row in rows:
+                if not taught(row["russian"]):
+                    continue
+                after, _ = _scheduler.review_card(self._fsrs_card(row), Rating.Easy, now)
+                conn.execute("UPDATE cards SET fsrs = ?, due = ?, reps = 1 WHERE id = ?",
+                             (json.dumps(after.to_dict()), after.due.timestamp(), row["id"]))
+                started += 1
+        return started
 
     @staticmethod
     def _fsrs_card(row) -> Card:

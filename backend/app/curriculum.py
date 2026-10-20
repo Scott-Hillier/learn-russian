@@ -26,8 +26,16 @@ def _morph():
     return pymorphy3.MorphAnalyzer()
 
 
+LEMMA_FIXES = {"больший": "большой"}  # pymorphy3 reads «большая» as the comparative «больший»
+
+
 def lemma(word: str) -> str:
-    return _morph().parse(word)[0].normal_form.replace("ё", "е")
+    parses = _morph().parse(word)
+    best = parses[0]
+    if best.tag.POS in ("ADJS", "PRTS", "PRTF"):  # «читаем» is the verb, not «читаемый»
+        best = next((p for p in parses if p.tag.POS == "VERB"), best)
+    form = best.normal_form.replace("ё", "е")
+    return LEMMA_FIXES.get(form, form)
 
 
 def _words(text: str) -> list[str]:
@@ -51,13 +59,31 @@ def _confusables() -> list[dict]:
 def _unreliable_pair(a: str, b: str) -> bool:
     """Two forms of one word that the speech checker can't reliably tell apart (see PLAN.md, Phase 8)."""
     pa, pb = _morph().parse(a)[0], _morph().parse(b)[0]
-    if pa.normal_form != pb.normal_form:
+    if lemma(a) != lemma(b):
         return False
-    if pa.normal_form in POSSESSIVES or {pa.tag.POS, pb.tag.POS} <= {"ADJF", "ADJS"}:
-        return pa.tag.gender != pb.tag.gender  # новый/новая/новое, мой/моя/моё
+    if lemma(a) in POSSESSIVES or {pa.tag.POS, pb.tag.POS} <= {"ADJF", "ADJS"}:
+        return a != b  # новый/новая/новое, мой/моя/моё: the endings are short and unstressed
     if pa.tag.POS == pb.tag.POS == "VERB" and pa.normal_form.endswith(("ать", "ять")):
-        return True  # читаю/читаем/читают/читает differ only in a quiet ending
+        # читаю/читаем/читают/читает differ only in a quiet ending; past-tense gender (читал/читала) is reliable
+        return pa.tag.tense == pb.tag.tense == "pres"
     return False
+
+
+def introductions(lessons: tuple[dict, ...]) -> dict[str, int]:
+    """Lemma → the lesson it first appears in (said, heard or read)."""
+    out: dict[str, int] = {}
+    for lesson in lessons:
+        for ex in lesson["exercises"]:
+            for item in ex["items"]:
+                produced, heard = _texts(item)
+                for text in produced + heard:
+                    for w in _words(text):
+                        out.setdefault(lemma(w), lesson["id"])
+    return out
+
+
+def word_lemmas(text: str) -> list[str]:
+    return [lemma(w) for w in _words(text)]
 
 
 def check(lessons: tuple[dict, ...]) -> list[str]:

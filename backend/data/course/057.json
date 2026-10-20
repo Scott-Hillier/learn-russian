@@ -1,0 +1,279 @@
+{
+ "id": 57,
+ "title": "Извините, где …?",
+ "goal": "Ask the way and understand the answer: «Извините, где магазин?» — «Налево.»",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 6
+  },
+  {
+   "track": "vocab",
+   "type": "teach",
+   "title": "New words",
+   "instruction": "Listen, say it after me, then say it on your own from the picture.",
+   "items": [
+    {
+     "answer": "Извин+ите!",
+     "cue": "🙇",
+     "english": "Excuse me! / Sorry!"
+    },
+    {
+     "answer": "нал+ево",
+     "cue": "⬅️",
+     "english": "(to the) left"
+    },
+    {
+     "answer": "напр+аво",
+     "cue": "➡️",
+     "english": "(to the) right"
+    },
+    {
+     "answer": "пр+ямо",
+     "cue": "⬆️",
+     "english": "straight on"
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "teach",
+   "title": "Asking the way",
+   "instruction": "Start with «Извините» (excuse me) and ask «Где …?». The answer is often «налево», «направо» or «прямо», plus «там».",
+   "items": [
+    {
+     "answer": "Извин+ите, где магаз+ин?",
+     "cue": "🙇 🏪❓",
+     "english": "Excuse me, where is the shop?"
+    },
+    {
+     "answer": "Нал+ево.",
+     "cue": "⬅️",
+     "english": "On the left.",
+     "ask": "Где каф+е?",
+     "distractors": [
+      "Напр+аво."
+     ]
+    },
+    {
+     "answer": "Шк+ола там, напр+аво.",
+     "cue": "🏫 👉 ➡️",
+     "english": "The school is there, on the right.",
+     "ask": "Где шк+ола?",
+     "distractors": [
+      "Шк+ола там, нал+ево."
+     ]
+    },
+    {
+     "answer": "Пр+ямо и нал+ево.",
+     "cue": "⬆️ ➕ ⬅️",
+     "english": "Straight on and then left.",
+     "distractors": [
+      "Пр+ямо и напр+аво."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "Which way?",
+   "instruction": "Listen and pick the arrow.",
+   "items": [
+    {
+     "audio": "Каф+е нал+ево.",
+     "options": [
+      "⬅️",
+      "➡️",
+      "⬆️"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Магаз+ин напр+аво.",
+     "options": [
+      "⬅️",
+      "➡️",
+      "⬆️"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Шк+ола пр+ямо.",
+     "options": [
+      "⬅️",
+      "➡️",
+      "⬆️"
+     ],
+     "correct": 2
+    },
+    {
+     "audio": "Пр+ямо и напр+аво.",
+     "options": [
+      "⬆️⬅️",
+      "⬆️➡️",
+      "⬅️➡️"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Кин+о там, нал+ево.",
+     "options": [
+      "⬅️",
+      "➡️",
+      "⬆️"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Пр+ямо и нал+ево.",
+     "options": [
+      "⬆️⬅️",
+      "⬆️➡️",
+      "⬅️➡️"
+     ],
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "Where is it?",
+   "instruction": "Ask the way, or answer from the arrow.",
+   "items": [
+    {
+     "answer": "Извин+ите, где кин+о?",
+     "cue": "🙇 🎬❓",
+     "english": "Ask the way to the cinema.",
+     "distractors": [
+      "Извин+ите, где каф+е?"
+     ]
+    },
+    {
+     "answer": "Напр+аво.",
+     "cue": "➡️",
+     "english": "On the right.",
+     "ask": "Где магаз+ин?",
+     "distractors": [
+      "Нал+ево.",
+      "Пр+ямо."
+     ]
+    },
+    {
+     "answer": "Каф+е там, нал+ево.",
+     "cue": "☕🍰 👉 ⬅️",
+     "english": "The café is there, on the left.",
+     "ask": "Где каф+е?",
+     "distractors": [
+      "Каф+е там, напр+аво."
+     ]
+    },
+    {
+     "answer": "Пр+ямо.",
+     "cue": "⬆️",
+     "english": "Straight on.",
+     "ask": "Где шк+ола?",
+     "distractors": [
+      "Нал+ево."
+     ]
+    },
+    {
+     "answer": "Извин+ите, я не поним+аю.",
+     "cue": "🙇 😕",
+     "english": "Sorry, I don't understand.",
+     "distractors": [
+      "Спас+ибо, я поним+аю."
+     ]
+    },
+    {
+     "answer": "Ещё раз, пож+алуйста.",
+     "cue": "🔁 🙏",
+     "english": "Once more, please."
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "Numbers",
+   "instruction": "Say the number.",
+   "items": [
+    {
+     "answer": "Сто.",
+     "cue": "1️⃣0️⃣0️⃣",
+     "english": "a hundred"
+    },
+    {
+     "answer": "Шестн+адцать.",
+     "cue": "1️⃣6️⃣",
+     "english": "sixteen"
+    },
+    {
+     "answer": "Пятьдес+ят три.",
+     "cue": "5️⃣3️⃣",
+     "english": "fifty-three"
+    },
+    {
+     "answer": "С+емьдесят семь.",
+     "cue": "7️⃣7️⃣",
+     "english": "seventy-seven"
+    },
+    {
+     "answer": "В+осемьдесят два.",
+     "cue": "8️⃣2️⃣",
+     "english": "eighty-two"
+    },
+    {
+     "answer": "С+орок пять.",
+     "cue": "4️⃣5️⃣",
+     "english": "forty-five"
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "In the street",
+   "instruction": "You're looking for a café.",
+   "items": [
+    {
+     "answer": "Извин+ите, где каф+е?",
+     "cue": "🙇 ☕🍰❓",
+     "english": "Excuse me, where's the café?"
+    },
+    {
+     "speaker": "partner",
+     "line": "Пр+ямо и нал+ево.",
+     "cue": "⬆️ ➕ ⬅️",
+     "english": "Straight on and left."
+    },
+    {
+     "answer": "Ещё раз, пож+алуйста.",
+     "cue": "🔁 🙏",
+     "english": "Once more, please."
+    },
+    {
+     "speaker": "partner",
+     "line": "Пр+ямо и пот+ом нал+ево.",
+     "cue": "⬆️ ⏭️ ⬅️",
+     "english": "Straight on and then left."
+    },
+    {
+     "answer": "Спас+ибо!",
+     "cue": "🙏",
+     "english": "Thank you!"
+    },
+    {
+     "speaker": "partner",
+     "line": "Пож+алуйста!",
+     "cue": "🙂",
+     "english": "You're welcome!"
+    }
+   ]
+  }
+ ]
+}

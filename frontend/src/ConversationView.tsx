@@ -15,6 +15,7 @@ interface Message {
   text: string;
   english?: string;
   suggestions?: { russian: string; english: string }[];
+  unknown?: string[]; // partner words the lessons haven't taught yet (level "lessons")
   clarity?: AttemptResult | null; // spoken learner messages
   check?: ChatCheck | "pending" | "failed";
 }
@@ -32,7 +33,7 @@ export default function ConversationView({ layout }: { layout: LayoutProps }) {
   const [scenarios, setScenarios] = useState<Scenario[]>([]);
   const [scenarioId, setScenarioId] = useState<string | null>(null);
   const [chats, setChats] = useState<Record<string, Message[]>>({});
-  const [level, setLevel] = useState("beginner");
+  const [level, setLevel] = useState("lessons");
   const [showEnglish, setShowEnglish] = useState(true);
   const [autoPlay, setAutoPlay] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -75,6 +76,7 @@ export default function ConversationView({ layout }: { layout: LayoutProps }) {
       <label className="setting">
         Level
         <select value={level} onChange={(e) => setLevel(e.target.value)}>
+          <option value="lessons">Only words from my lessons</option>
           <option value="beginner">Beginner</option>
           <option value="elementary">Elementary</option>
         </select>
@@ -189,7 +191,14 @@ function Chat({ scenario, messages, setMessages, level, showEnglish, autoPlay, o
       const r = await replyRequest;
       setMessages((ms) => [
         ...ms,
-        { id: nextId++, role: "partner", text: r.reply, english: r.translation, suggestions: r.suggestions },
+        {
+          id: nextId++,
+          role: "partner",
+          text: r.reply,
+          english: r.translation,
+          suggestions: r.suggestions,
+          unknown: r.unknown,
+        },
       ]);
       if (autoPlay) audio.play(api.ttsUrl(r.reply, "normal"));
     } catch (e) {
@@ -289,8 +298,11 @@ function Chat({ scenario, messages, setMessages, level, showEnglish, autoPlay, o
           <div key={m.id} className={`bubble-row ${m.role}`}>
             <div className={`bubble ${m.role}`}>
               <div className="bubble-text" lang="ru">
-                {m.text}
+                {m.unknown?.length ? <MarkUnknown text={m.text} unknown={m.unknown} /> : m.text}
               </div>
+              {m.unknown && m.unknown.length > 0 && (
+                <div className="bubble-english muted">New word{m.unknown.length > 1 ? "s" : ""}, not in your lessons yet: {m.unknown.join(", ")}</div>
+              )}
               {m.role === "partner" && showEnglish && m.english && <div className="bubble-english">{m.english}</div>}
               {m.role === "partner" && (
                 <div className="bubble-actions">
@@ -437,6 +449,24 @@ function LearnerNotes({ message }: { message: Message }) {
               ))}
           </span>
         </div>
+      )}
+    </>
+  );
+}
+
+/** The partner's text with words the lessons haven't taught yet highlighted. */
+function MarkUnknown({ text, unknown }: { text: string; unknown: string[] }) {
+  const set = new Set(unknown);
+  return (
+    <>
+      {text.split(/([А-Яа-яЁё-]+)/).map((part, i) =>
+        set.has(part.toLowerCase().replace(/ё/g, "е")) ? (
+          <mark key={i} className="unknown-word" title="Not in your lessons yet">
+            {part}
+          </mark>
+        ) : (
+          part
+        ),
       )}
     </>
   );

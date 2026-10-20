@@ -259,6 +259,7 @@ export default function DeckPage({ deck, decks, onChanged, onStudy, onReviewAll,
                 <td>
                   {c.english}
                   {c.tag && <div className="muted">{c.tag}</div>}
+                  {c.lesson && <div className="muted">📘 Lesson {c.lesson}</div>}
                 </td>
                 <td>
                   <span className={`state-badge ${c.state}`}>{STATE_LABEL[c.state]}</span>

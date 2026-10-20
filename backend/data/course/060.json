@@ -1,0 +1,319 @@
+{
+ "id": 60,
+ "title": "Говори!",
+ "goal": "The final review: everything from the course, then on to free conversation.",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 10
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "What did you hear?",
+   "instruction": "Listen and pick what it means.",
+   "items": [
+    {
+     "audio": "До свид+ания!",
+     "options": [
+      "👋 goodbye",
+      "👋 hello"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Мне дв+адцать лет.",
+     "options": [
+      "🎂 20",
+      "🎂 12",
+      "🎂 2"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Магаз+ин нал+ево.",
+     "options": [
+      "🏪 ⬅️",
+      "🏪 ➡️",
+      "☕🍰 ⬅️"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Вчер+а я был+а в Москв+е.",
+     "options": [
+      "👩 Анна ⬅️📅 🏙️🇷🇺",
+      "👨 Иван ⬅️📅 🏙️🇷🇺",
+      "👩 Анна ➡️📅 🏙️🇷🇺"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "З+автра мы б+удем д+ома.",
+     "options": [
+      "🙋‍♀️🙋‍♂️ ➡️📅 🏠",
+      "🙋‍♀️🙋‍♂️ ⬅️📅 🏠",
+      "👥 ➡️📅 🏠"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "У нег+о нет маш+ины.",
+     "options": [
+      "👦 🚫🚗",
+      "👦 ✅🚗",
+      "👧 🚫🚗"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Каф+е пр+ямо и напр+аво.",
+     "options": [
+      "⬆️➡️",
+      "⬆️⬅️",
+      "⬅️➡️"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Сег+одня плох+ая пог+ода.",
+     "options": [
+      "🌧️",
+      "☀️"
+     ],
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "choose",
+   "title": "Which form?",
+   "instruction": "Pick the right form.",
+   "items": [
+    {
+     "prompt": "Я любл+ю ___.",
+     "cue": "❤️❤️ 🐈",
+     "english": "I love my cat.",
+     "options": [
+      "к+ошка",
+      "к+ошку",
+      "к+ошки"
+     ],
+     "correct": 1,
+     "audio": "Я любл+ю к+ошку."
+    },
+    {
+     "prompt": "У мен+я нет ___.",
+     "cue": "🚫🐈",
+     "english": "I don't have a cat.",
+     "options": [
+      "к+ошка",
+      "к+ошку",
+      "к+ошки"
+     ],
+     "correct": 2,
+     "audio": "У мен+я нет к+ошки."
+    },
+    {
+     "prompt": "Мне дв+адцать два ___.",
+     "cue": "🎂 22",
+     "english": "I'm twenty-two.",
+     "options": [
+      "год",
+      "г+ода",
+      "лет"
+     ],
+     "correct": 1,
+     "audio": "Мне дв+адцать два г+ода."
+    },
+    {
+     "prompt": "Я ид+у в ___.",
+     "cue": "🚶 🎬",
+     "english": "I'm going to the cinema.",
+     "options": [
+      "кин+о",
+      "магаз+ине"
+     ],
+     "correct": 0,
+     "audio": "Я ид+у в кин+о."
+    },
+    {
+     "prompt": "___ кн+ига",
+     "cue": "✨ 📖",
+     "english": "a new book",
+     "options": [
+      "н+овый",
+      "н+овая",
+      "н+овое"
+     ],
+     "correct": 1,
+     "audio": "Н+овая кн+ига."
+    },
+    {
+     "prompt": "К+офе с ___.",
+     "cue": "☕ ➕ 🥛",
+     "english": "coffee with milk",
+     "options": [
+      "молок+о",
+      "молок+ом"
+     ],
+     "correct": 1,
+     "audio": "К+офе с молок+ом."
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "Say it",
+   "instruction": "Say it from the picture.",
+   "items": [
+    {
+     "answer": "Мен+я зов+ут +Анна. Мне дв+адцать в+осемь лет.",
+     "cue": "👩 Анна 🎂 28",
+     "english": "My name is Anna. I'm twenty-eight.",
+     "ask": "Как теб+я зов+ут?"
+    },
+    {
+     "answer": "Я жив+у в Л+ондоне и раб+отаю в шк+оле.",
+     "cue": "🏠 🏙️🇬🇧 ➕ 💼 🏫",
+     "english": "I live in London and work at a school.",
+     "ask": "Где ты живёшь?"
+    },
+    {
+     "answer": "Я немн+ого говор+ю по-р+усски.",
+     "cue": "🤏 🇷🇺",
+     "english": "I speak a little Russian.",
+     "ask": "Ты говор+ишь по-р+усски?",
+     "distractors": [
+      "Я не говор+ю по-р+усски."
+     ]
+    },
+    {
+     "answer": "Я любл+ю чай с молок+ом.",
+     "cue": "❤️❤️ 🍵 ➕ 🥛",
+     "english": "I love tea with milk.",
+     "ask": "Что ты л+юбишь?"
+    },
+    {
+     "answer": "Вчер+а я был+а в кин+о.",
+     "cue": "👩 Анна ⬅️📅 🎬",
+     "english": "Yesterday I was at the cinema.",
+     "ask": "Где ты был+а вчер+а?",
+     "distractors": [
+      "Вчер+а я был в кин+о."
+     ]
+    },
+    {
+     "answer": "З+автра я б+уду д+ома.",
+     "cue": "➡️📅 🏠",
+     "english": "Tomorrow I'll be at home.",
+     "ask": "Где ты б+удешь з+автра?",
+     "distractors": [
+      "Вчер+а я был+а д+ома."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "Meeting someone new",
+   "instruction": "You are Анна 👩. Someone sits next to you on a train.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "Здр+авствуйте! Вы говор+ите по-р+усски?",
+     "cue": "🧑 ❓🇷🇺",
+     "english": "Hello! Do you speak Russian?"
+    },
+    {
+     "answer": "Да, немн+ого.",
+     "cue": "🤏 🇷🇺",
+     "english": "Yes, a little.",
+     "distractors": [
+      "Нет."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Как вас зов+ут?",
+     "cue": "❓",
+     "english": "What's your name?"
+    },
+    {
+     "answer": "Мен+я зов+ут +Анна. А вас?",
+     "cue": "👩 Анна ❓🫵🫵",
+     "english": "My name is Anna. And yours?"
+    },
+    {
+     "speaker": "partner",
+     "line": "Ив+ан. +Очень при+ятно! Куд+а вы +едете?",
+     "cue": "👨 Иван ❓✈️",
+     "english": "Ivan. Nice to meet you! Where are you going?"
+    },
+    {
+     "answer": "Я +еду в Москв+у. Я любл+ю Москв+у!",
+     "cue": "✈️ 🏙️🇷🇺 ❤️❤️",
+     "english": "I'm going to Moscow. I love Moscow!"
+    },
+    {
+     "speaker": "partner",
+     "line": "Я т+оже! До свид+ания!",
+     "cue": "🙋 👋",
+     "english": "Me too! Goodbye!"
+    },
+    {
+     "answer": "До свид+ания!",
+     "cue": "🤝 👋",
+     "english": "Goodbye!",
+     "distractors": [
+      "Пок+а!"
+     ]
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "Numbers to 100",
+   "instruction": "Say the number.",
+   "items": [
+    {
+     "answer": "Сто.",
+     "cue": "1️⃣0️⃣0️⃣",
+     "english": "a hundred"
+    },
+    {
+     "answer": "Шестьдес+ят.",
+     "cue": "6️⃣0️⃣",
+     "english": "sixty"
+    },
+    {
+     "answer": "Тр+идцать.",
+     "cue": "3️⃣0️⃣",
+     "english": "thirty"
+    },
+    {
+     "answer": "Девян+осто.",
+     "cue": "9️⃣0️⃣",
+     "english": "ninety"
+    },
+    {
+     "answer": "Пятн+адцать.",
+     "cue": "1️⃣5️⃣",
+     "english": "fifteen"
+    },
+    {
+     "answer": "С+орок в+осемь.",
+     "cue": "4️⃣8️⃣",
+     "english": "forty-eight"
+    }
+   ]
+  }
+ ]
+}

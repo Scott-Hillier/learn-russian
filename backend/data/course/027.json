@@ -1,0 +1,326 @@
+{
+ "id": 27,
+ "title": "У меня нет …",
+ "goal": "Say what you don't have: «У меня нет машины.» «У меня нет брата.»",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 6
+  },
+  {
+   "track": "frames",
+   "type": "teach",
+   "title": "«У меня нет …» — I don't have …",
+   "instruction": "After «нет» (there's no …) the word changes: «-а» becomes «-ы», or «-и» after к, г, ч, ш, ж (машина → нет машины, кошка → нет кошки). Consonant words add «-а»: брат → нет брата.",
+   "items": [
+    {
+     "answer": "У мен+я нет маш+ины.",
+     "cue": "🙋 🚫🚗",
+     "english": "I don't have a car.",
+     "distractors": [
+      "У мен+я нет маш+ина."
+     ]
+    },
+    {
+     "answer": "У мен+я нет к+ошки.",
+     "cue": "🙋 🚫🐈",
+     "english": "I don't have a cat.",
+     "distractors": [
+      "У мен+я есть к+ошка."
+     ]
+    },
+    {
+     "answer": "У мен+я нет бр+ата.",
+     "cue": "🙋 🚫👦",
+     "english": "I don't have a brother."
+    },
+    {
+     "answer": "Нет, у мен+я нет соб+аки.",
+     "cue": "🚫🐕",
+     "english": "No, I don't have a dog.",
+     "ask": "У теб+я есть соб+ака?",
+     "distractors": [
+      "Да, у мен+я есть соб+ака."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "choose",
+   "title": "After «нет»",
+   "instruction": "Pick the right form.",
+   "items": [
+    {
+     "prompt": "У мен+я нет ___.",
+     "cue": "🚫🚗",
+     "english": "I don't have a car.",
+     "options": [
+      "маш+ина",
+      "маш+ины"
+     ],
+     "correct": 1,
+     "audio": "У мен+я нет маш+ины."
+    },
+    {
+     "prompt": "У мен+я нет ___.",
+     "cue": "🚫📱",
+     "english": "I don't have a phone.",
+     "options": [
+      "телеф+он",
+      "телеф+она"
+     ],
+     "correct": 1,
+     "audio": "У мен+я нет телеф+она."
+    },
+    {
+     "prompt": "У мен+я есть ___.",
+     "cue": "✅ 📱",
+     "english": "I have a phone.",
+     "options": [
+      "телеф+он",
+      "телеф+она"
+     ],
+     "correct": 0,
+     "audio": "У мен+я есть телеф+он."
+    },
+    {
+     "prompt": "У мен+я нет ___.",
+     "cue": "🚫👜",
+     "english": "I don't have a bag.",
+     "options": [
+      "с+умка",
+      "с+умки"
+     ],
+     "correct": 1,
+     "audio": "У мен+я нет с+умки."
+    },
+    {
+     "prompt": "У мен+я нет ___.",
+     "cue": "🚫🔑",
+     "english": "I don't have a key.",
+     "options": [
+      "ключ",
+      "ключ+а"
+     ],
+     "correct": 1,
+     "audio": "У мен+я нет ключ+а."
+    },
+    {
+     "prompt": "Я в+ижу ___.",
+     "cue": "👀 👜",
+     "english": "I see a bag.",
+     "options": [
+      "с+умку",
+      "с+умки"
+     ],
+     "correct": 0,
+     "audio": "Я в+ижу с+умку."
+    }
+   ]
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "Has it or not?",
+   "instruction": "Listen for «есть» or «нет».",
+   "items": [
+    {
+     "audio": "У мен+я нет маш+ины.",
+     "options": [
+      "✅ has it",
+      "🚫 doesn't have it"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "У мен+я есть соб+ака.",
+     "options": [
+      "✅ has it",
+      "🚫 doesn't have it"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "У мен+я нет бр+ата.",
+     "options": [
+      "✅ has it",
+      "🚫 doesn't have it"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "У мен+я есть ключ.",
+     "options": [
+      "✅ has it",
+      "🚫 doesn't have it"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "У мен+я нет п+аспорта.",
+     "options": [
+      "✅ has it",
+      "🚫 doesn't have it"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "У мен+я есть сестр+а.",
+     "options": [
+      "✅ has it",
+      "🚫 doesn't have it"
+     ],
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "Do you have it?",
+   "instruction": "Answer from the picture: ✅ = yes, 🚫 = no.",
+   "items": [
+    {
+     "answer": "Да, у мен+я есть телеф+он.",
+     "cue": "✅ 📱",
+     "english": "Yes, I have a phone.",
+     "ask": "У теб+я есть телеф+он?",
+     "distractors": [
+      "Нет, у мен+я нет телеф+она."
+     ]
+    },
+    {
+     "answer": "Нет, у мен+я нет ключ+а.",
+     "cue": "🚫🔑",
+     "english": "No, I don't have a key.",
+     "ask": "У теб+я есть ключ?",
+     "distractors": [
+      "Нет, у мен+я нет ключ.",
+      "Да, у мен+я есть ключ."
+     ]
+    },
+    {
+     "answer": "Нет, у мен+я нет п+аспорта.",
+     "cue": "🚫🛂",
+     "english": "No, I don't have a passport.",
+     "ask": "У теб+я есть п+аспорт?",
+     "distractors": [
+      "Нет, у мен+я нет п+аспорт."
+     ]
+    },
+    {
+     "answer": "У мен+я нет с+умки.",
+     "cue": "🚫👜",
+     "english": "I don't have a bag.",
+     "distractors": [
+      "У мен+я нет с+умка."
+     ]
+    },
+    {
+     "answer": "Да, у мен+я есть сестр+а.",
+     "cue": "✅ 👧",
+     "english": "Yes, I have a sister.",
+     "ask": "У теб+я есть сестр+а?"
+    },
+    {
+     "answer": "Он+а живёт в Москв+е.",
+     "cue": "👧 🏙️🇷🇺",
+     "english": "She lives in Moscow.",
+     "ask": "Где живёт тво+я сестр+а?",
+     "distractors": [
+      "Он+а живёт в Л+ондоне."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "Numbers",
+   "instruction": "Say the number.",
+   "items": [
+    {
+     "answer": "Девян+осто.",
+     "cue": "9️⃣0️⃣",
+     "english": "ninety"
+    },
+    {
+     "answer": "С+емьдесят семь.",
+     "cue": "7️⃣7️⃣",
+     "english": "seventy-seven"
+    },
+    {
+     "answer": "В+осемьдесят од+ин.",
+     "cue": "8️⃣1️⃣",
+     "english": "eighty-one"
+    },
+    {
+     "answer": "Сто.",
+     "cue": "1️⃣0️⃣0️⃣",
+     "english": "a hundred"
+    },
+    {
+     "answer": "Шестьдес+ят пять.",
+     "cue": "6️⃣5️⃣",
+     "english": "sixty-five"
+    },
+    {
+     "answer": "С+орок три.",
+     "cue": "4️⃣3️⃣",
+     "english": "forty-three"
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "Conversation",
+   "instruction": "At the airport, your friend is checking you have everything.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "У теб+я есть п+аспорт?",
+     "cue": "🛂❓",
+     "english": "Do you have your passport?"
+    },
+    {
+     "answer": "Да, он в с+умке.",
+     "cue": "✅ 📥👜",
+     "english": "Yes, it's in the bag.",
+     "distractors": [
+      "Нет, у мен+я нет п+аспорта."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "У теб+я есть телеф+он?",
+     "cue": "📱❓",
+     "english": "Do you have your phone?"
+    },
+    {
+     "answer": "Нет, у мен+я нет телеф+она.",
+     "cue": "🚫📱",
+     "english": "No, I don't have my phone.",
+     "distractors": [
+      "Да, у мен+я есть телеф+он."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Он тут, на ст+уле!",
+     "cue": "👇 🔝🪑",
+     "english": "It's here, on the chair!"
+    },
+    {
+     "answer": "Спас+ибо!",
+     "cue": "🙏",
+     "english": "Thanks!"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,317 @@
+{
+ "id": 35,
+ "title": "Пятница, суббота …",
+ "goal": "The rest of the week and «завтра» (tomorrow), then unit 7 put together.",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 6
+  },
+  {
+   "track": "vocab",
+   "type": "teach",
+   "title": "New words",
+   "instruction": "Four more days, and «завтра» (tomorrow). Listen, say it after me, then say it on your own.",
+   "items": [
+    {
+     "answer": "четв+ерг",
+     "cue": "📅 Thu",
+     "english": "Thursday"
+    },
+    {
+     "answer": "п+ятница",
+     "cue": "📅 Fri",
+     "english": "Friday"
+    },
+    {
+     "answer": "субб+ота",
+     "cue": "📅 Sat",
+     "english": "Saturday"
+    },
+    {
+     "answer": "воскрес+енье",
+     "cue": "📅 Sun",
+     "english": "Sunday"
+    },
+    {
+     "answer": "З+автра субб+ота.",
+     "cue": "➡️ 📅 Sat",
+     "english": "Tomorrow is Saturday."
+    }
+   ]
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "Which day?",
+   "instruction": "Listen and pick the day.",
+   "items": [
+    {
+     "audio": "Сег+одня п+ятница.",
+     "options": [
+      "📅 Thu",
+      "📅 Fri",
+      "📅 Sat"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "З+автра воскрес+енье.",
+     "options": [
+      "📅 Fri",
+      "📅 Sat",
+      "📅 Sun"
+     ],
+     "correct": 2
+    },
+    {
+     "audio": "Сег+одня четв+ерг.",
+     "options": [
+      "📅 Tue",
+      "📅 Thu",
+      "📅 Fri"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "З+автра субб+ота.",
+     "options": [
+      "📅 Sat",
+      "📅 Sun",
+      "📅 Wed"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Сег+одня вт+орник.",
+     "options": [
+      "📅 Tue",
+      "📅 Thu",
+      "📅 Mon"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "З+автра понед+ельник.",
+     "options": [
+      "📅 Sun",
+      "📅 Mon",
+      "📅 Tue"
+     ],
+     "correct": 1
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "Today and tomorrow",
+   "instruction": "Answer from the calendar. ➡️ = tomorrow.",
+   "items": [
+    {
+     "answer": "Сег+одня п+ятница.",
+     "cue": "📅 Fri",
+     "english": "Today is Friday.",
+     "ask": "Как+ой сег+одня день?",
+     "distractors": [
+      "Сег+одня четв+ерг.",
+      "Сег+одня субб+ота."
+     ]
+    },
+    {
+     "answer": "З+автра субб+ота.",
+     "cue": "➡️ 📅 Sat",
+     "english": "Tomorrow is Saturday.",
+     "distractors": [
+      "Сег+одня субб+ота."
+     ]
+    },
+    {
+     "answer": "Сег+одня воскрес+енье.",
+     "cue": "📅 Sun",
+     "english": "Today is Sunday.",
+     "ask": "Как+ой сег+одня день?"
+    },
+    {
+     "answer": "З+автра четв+ерг.",
+     "cue": "➡️ 📅 Thu",
+     "english": "Tomorrow is Thursday.",
+     "distractors": [
+      "З+автра вт+орник."
+     ]
+    },
+    {
+     "answer": "Я ид+у в шк+олу.",
+     "cue": "🚶 🏫",
+     "english": "I'm going to school.",
+     "ask": "Куд+а ты идёшь?",
+     "distractors": [
+      "Я в шк+оле."
+     ]
+    },
+    {
+     "answer": "Сейч+ас шесть час+ов.",
+     "cue": "🕕",
+     "english": "It's six o'clock now.",
+     "ask": "Кот+орый час?",
+     "distractors": [
+      "Сейч+ас шесть час+а."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "choose",
+   "title": "Unit 7 forms",
+   "instruction": "Pick the right form.",
+   "items": [
+    {
+     "prompt": "Я ид+у в ___.",
+     "cue": "🚶 🏫",
+     "english": "I'm going to school.",
+     "options": [
+      "шк+ола",
+      "шк+олу",
+      "шк+оле"
+     ],
+     "correct": 1,
+     "audio": "Я ид+у в шк+олу."
+    },
+    {
+     "prompt": "Он+а на ___.",
+     "cue": "👧 📍💼",
+     "english": "She's at work.",
+     "options": [
+      "раб+ота",
+      "раб+оту",
+      "раб+оте"
+     ],
+     "correct": 2,
+     "audio": "Он+а на раб+оте."
+    },
+    {
+     "prompt": "Пять ___.",
+     "cue": "🕔",
+     "english": "five o'clock",
+     "options": [
+      "час+а",
+      "час+ов"
+     ],
+     "correct": 1,
+     "audio": "Пять час+ов."
+    },
+    {
+     "prompt": "Мы ___ в Москв+у.",
+     "cue": "🙋‍♀️🙋‍♂️ ✈️ 🏙️🇷🇺",
+     "english": "We're going to Moscow.",
+     "options": [
+      "ид+ём",
+      "+едем"
+     ],
+     "correct": 1,
+     "audio": "Мы +едем в Москв+у."
+    },
+    {
+     "prompt": "___ ты идёшь?",
+     "cue": "❓🚶",
+     "english": "Where are you going?",
+     "options": [
+      "Где",
+      "Куд+а"
+     ],
+     "correct": 1,
+     "audio": "Куд+а ты идёшь?"
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "Weekend plans",
+   "instruction": "Your friend calls on Friday.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "Прив+ет! Как+ой сег+одня день?",
+     "cue": "❓📅",
+     "english": "Hi! What day is it today?"
+    },
+    {
+     "answer": "Сег+одня п+ятница.",
+     "cue": "📅 Fri",
+     "english": "Today is Friday.",
+     "distractors": [
+      "Сег+одня субб+ота."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "З+автра ты идёшь на раб+оту?",
+     "cue": "➡️ 💼❓",
+     "english": "Are you going to work tomorrow?"
+    },
+    {
+     "answer": "Нет. З+автра субб+ота!",
+     "cue": "🚫💼 ➡️ 📅 Sat",
+     "english": "No. Tomorrow is Saturday!"
+    },
+    {
+     "speaker": "partner",
+     "line": "Куд+а ты +едешь в субб+оту?",
+     "cue": "🚗❓",
+     "english": "Where are you going on Saturday?"
+    },
+    {
+     "answer": "Я +еду в Москв+у.",
+     "cue": "✈️ 🏙️🇷🇺",
+     "english": "I'm going to Moscow.",
+     "distractors": [
+      "Я +еду в Л+ондон."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "Numbers to 100",
+   "instruction": "Say the number.",
+   "items": [
+    {
+     "answer": "Сто.",
+     "cue": "1️⃣0️⃣0️⃣",
+     "english": "a hundred"
+    },
+    {
+     "answer": "Пятьдес+ят семь.",
+     "cue": "5️⃣7️⃣",
+     "english": "fifty-seven"
+    },
+    {
+     "answer": "В+осемьдесят чет+ыре.",
+     "cue": "8️⃣4️⃣",
+     "english": "eighty-four"
+    },
+    {
+     "answer": "Тр+идцать д+евять.",
+     "cue": "3️⃣9️⃣",
+     "english": "thirty-nine"
+    },
+    {
+     "answer": "Шестьдес+ят од+ин.",
+     "cue": "6️⃣1️⃣",
+     "english": "sixty-one"
+    },
+    {
+     "answer": "Девян+осто шесть.",
+     "cue": "9️⃣6️⃣",
+     "english": "ninety-six"
+    }
+   ]
+  }
+ ]
+}

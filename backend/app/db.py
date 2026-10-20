@@ -63,14 +63,26 @@ CREATE TABLE IF NOT EXISTS course_progress (
     lesson_id INTEGER PRIMARY KEY,
     exercise INTEGER NOT NULL DEFAULT 0,  -- index of the first exercise not yet passed
     started_at REAL NOT NULL,
-    passed_at REAL                        -- set once every exercise has been passed
+    passed_at REAL,                       -- set once every exercise has been passed
+    placed INTEGER NOT NULL DEFAULT 0     -- passed by passing its unit's test rather than the lesson itself
+);
+CREATE TABLE IF NOT EXISTS course_tests (
+    id INTEGER PRIMARY KEY,
+    unit INTEGER NOT NULL,                -- unit n covers lessons 5n-4 … 5n
+    kind TEXT NOT NULL,                   -- mastery (after the unit's lessons) | placement (testing out)
+    accuracy REAL NOT NULL,
+    passed INTEGER NOT NULL,
+    missed TEXT NOT NULL DEFAULT '[]',    -- JSON list of item keys answered wrongly
+    remedial_exercise INTEGER NOT NULL DEFAULT 0,
+    remedial_passed_at REAL,
+    created_at REAL NOT NULL
 );
 CREATE TABLE IF NOT EXISTS course_results (
     id INTEGER PRIMARY KEY,
     lesson_id INTEGER NOT NULL,
     exercise INTEGER NOT NULL,
     item_key TEXT NOT NULL,               -- e.g. "say:это кошка", "hear:кошка"
-    step TEXT NOT NULL,                   -- first | practice | retest | delayed
+    step TEXT NOT NULL,                   -- first | practice | retest | delayed | test
     correct INTEGER NOT NULL,
     override INTEGER NOT NULL DEFAULT 0,  -- learner said the checker was wrong
     score INTEGER,
@@ -84,6 +96,16 @@ CREATE TABLE IF NOT EXISTS settings (
 """
 
 
+# Columns added after a table was first created: (table, column, definition).
+MIGRATIONS = [("course_progress", "placed", "INTEGER NOT NULL DEFAULT 0")]
+
+
+def _migrate(conn: sqlite3.Connection) -> None:
+    for table, column, definition in MIGRATIONS:
+        if column not in {r["name"] for r in conn.execute(f"PRAGMA table_info({table})")}:
+            conn.execute(f"ALTER TABLE {table} ADD COLUMN {column} {definition}")
+
+
 @contextmanager
 def connect(path: Path | None = None):
     """Serialised connection with foreign keys on; commits on success."""
@@ -95,6 +117,7 @@ def connect(path: Path | None = None):
             conn.execute("PRAGMA foreign_keys = ON")
             if path not in _initialised:
                 conn.executescript(SCHEMA)
+                _migrate(conn)
                 _initialised.add(path)
             yield conn
             conn.commit()

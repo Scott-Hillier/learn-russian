@@ -1,0 +1,390 @@
+{
+ "id": 24,
+ "title": "Кошки, книги",
+ "goal": "Talk about more than one: «Это кошки.» «Где мои ключи?» — «Они в сумке.»",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 6
+  },
+  {
+   "track": "frames",
+   "type": "teach",
+   "title": "More than one: -ы, -и",
+   "instruction": "For more than one, «-а» becomes «-ы» (машина → машины) and consonant words add «-ы» (стол → столы). After к, г, ч, ш, ж it's «-и»: кошки, книги, ключи. More than one is «они», and “my” is «мои».",
+   "items": [
+    {
+     "answer": "+Это маш+ины.",
+     "cue": "🚗🚗",
+     "english": "These are cars.",
+     "ask": "Что +это?",
+     "distractors": [
+      "+Это маш+ина."
+     ]
+    },
+    {
+     "answer": "+Это стол+ы.",
+     "cue": "🍽️🍽️",
+     "english": "These are tables.",
+     "ask": "Что +это?",
+     "distractors": [
+      "+Это стол."
+     ]
+    },
+    {
+     "answer": "+Это к+ошки.",
+     "cue": "🐈🐈",
+     "english": "These are cats.",
+     "ask": "Кто +это?",
+     "distractors": [
+      "+Это к+ошка."
+     ]
+    },
+    {
+     "answer": "+Это ключ+и.",
+     "cue": "🔑🔑",
+     "english": "These are keys.",
+     "ask": "Что +это?",
+     "distractors": [
+      "+Это ключ."
+     ]
+    },
+    {
+     "answer": "Где мо+и ключ+и?",
+     "cue": "🔑🔑❓",
+     "english": "Where are my keys?"
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "choose",
+   "title": "One or more?",
+   "instruction": "Look at the picture and pick the right form.",
+   "items": [
+    {
+     "prompt": "+Это ___.",
+     "cue": "📖📖",
+     "english": "These are books.",
+     "options": [
+      "кн+ига",
+      "кн+иги"
+     ],
+     "correct": 1,
+     "audio": "+Это кн+иги."
+    },
+    {
+     "prompt": "+Это ___.",
+     "cue": "🐕",
+     "english": "This is a dog.",
+     "options": [
+      "соб+ака",
+      "соб+аки"
+     ],
+     "correct": 0,
+     "audio": "+Это соб+ака."
+    },
+    {
+     "prompt": "+Это ___.",
+     "cue": "📱📱",
+     "english": "These are phones.",
+     "options": [
+      "телеф+он",
+      "телеф+оны"
+     ],
+     "correct": 1,
+     "audio": "+Это телеф+оны."
+    },
+    {
+     "prompt": "Где ___?",
+     "cue": "👜👜❓",
+     "english": "Where are the bags?",
+     "options": [
+      "с+умка",
+      "с+умки"
+     ],
+     "correct": 1,
+     "audio": "Где с+умки?"
+    },
+    {
+     "prompt": "+Это ___.",
+     "cue": "🔑",
+     "english": "This is a key.",
+     "options": [
+      "ключ",
+      "ключ+и"
+     ],
+     "correct": 0,
+     "audio": "+Это ключ."
+    },
+    {
+     "prompt": "Где ___ ключ+и?",
+     "cue": "🔑🔑❓",
+     "english": "Where are my keys?",
+     "options": [
+      "мой",
+      "мо+и"
+     ],
+     "correct": 1,
+     "audio": "Где мо+и ключ+и?"
+    }
+   ]
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "One or more?",
+   "instruction": "Listen. One, or more than one?",
+   "items": [
+    {
+     "audio": "+Это соб+аки.",
+     "options": [
+      "1️⃣ one",
+      "🔢 more"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "+Это кн+ига.",
+     "options": [
+      "1️⃣ one",
+      "🔢 more"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "+Это стол+ы.",
+     "options": [
+      "1️⃣ one",
+      "🔢 more"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Где мой ключ?",
+     "options": [
+      "1️⃣ one",
+      "🔢 more"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Где мо+и ключ+и?",
+     "options": [
+      "1️⃣ one",
+      "🔢 more"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "+Это маш+ина.",
+     "options": [
+      "1️⃣ one",
+      "🔢 more"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Мой друг живёт в Л+ондоне.",
+     "options": [
+      "1️⃣ one",
+      "🔢 more"
+     ],
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "What are these?",
+   "instruction": "Answer from the picture.",
+   "items": [
+    {
+     "answer": "+Это телеф+оны.",
+     "cue": "📱📱",
+     "english": "These are phones.",
+     "ask": "Что +это?",
+     "distractors": [
+      "+Это телеф+он."
+     ]
+    },
+    {
+     "answer": "+Это соб+аки.",
+     "cue": "🐕🐕",
+     "english": "These are dogs.",
+     "ask": "Кто +это?",
+     "distractors": [
+      "+Это соб+ака."
+     ]
+    },
+    {
+     "answer": "Он+и тут.",
+     "cue": "👇 🔑🔑",
+     "english": "They're here.",
+     "ask": "Где мо+и ключ+и?",
+     "distractors": [
+      "Он тут.",
+      "Он+и там."
+     ]
+    },
+    {
+     "answer": "Он+и на стол+е.",
+     "cue": "📖📖 🔝🍽️",
+     "english": "They're on the table.",
+     "ask": "Где кн+иги?",
+     "distractors": [
+      "Он+а на стол+е.",
+      "Он+и в стол+е."
+     ]
+    },
+    {
+     "answer": "+Это с+умки.",
+     "cue": "👜👜",
+     "english": "These are bags.",
+     "ask": "Что +это?",
+     "distractors": [
+      "+Это с+умка."
+     ]
+    },
+    {
+     "answer": "Мо+и ключ+и в с+умке.",
+     "cue": "🔑🔑 📥👜",
+     "english": "My keys are in the bag.",
+     "distractors": [
+      "Мой ключ в с+умке."
+     ]
+    },
+    {
+     "answer": "Мы живём в Москв+е.",
+     "cue": "🙋‍♀️🙋‍♂️ 🏙️🇷🇺",
+     "english": "We live in Moscow.",
+     "ask": "Где вы живёте?",
+     "distractors": [
+      "Мы живём в Л+ондоне."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "teach",
+   "title": "Numbers 80–100",
+   "instruction": "Eighty is “eight-ten”. Ninety and a hundred are their own words.",
+   "items": [
+    {
+     "answer": "В+осемьдесят.",
+     "cue": "8️⃣0️⃣",
+     "english": "eighty"
+    },
+    {
+     "answer": "Девян+осто.",
+     "cue": "9️⃣0️⃣",
+     "english": "ninety"
+    },
+    {
+     "answer": "Сто.",
+     "cue": "1️⃣0️⃣0️⃣",
+     "english": "a hundred"
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "Numbers",
+   "instruction": "Say the number.",
+   "items": [
+    {
+     "answer": "В+осемьдесят.",
+     "cue": "8️⃣0️⃣",
+     "english": "eighty"
+    },
+    {
+     "answer": "Девян+осто.",
+     "cue": "9️⃣0️⃣",
+     "english": "ninety"
+    },
+    {
+     "answer": "Сто.",
+     "cue": "1️⃣0️⃣0️⃣",
+     "english": "a hundred"
+    },
+    {
+     "answer": "В+осемьдесят пять.",
+     "cue": "8️⃣5️⃣",
+     "english": "eighty-five"
+    },
+    {
+     "answer": "Девян+осто два.",
+     "cue": "9️⃣2️⃣",
+     "english": "ninety-two"
+    },
+    {
+     "answer": "С+емьдесят шесть.",
+     "cue": "7️⃣6️⃣",
+     "english": "seventy-six"
+    },
+    {
+     "answer": "Шестьдес+ят три.",
+     "cue": "6️⃣3️⃣",
+     "english": "sixty-three"
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "Conversation",
+   "instruction": "Your friend can't find anything this morning.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "Где мо+и ключ+и?",
+     "cue": "🔑🔑❓",
+     "english": "Where are my keys?"
+    },
+    {
+     "answer": "Он+и в с+умке.",
+     "cue": "📥👜",
+     "english": "They're in the bag.",
+     "distractors": [
+      "Он в с+умке.",
+      "Он+и на с+умке."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Где мо+и кн+иги?",
+     "cue": "📖📖❓",
+     "english": "Where are my books?"
+    },
+    {
+     "answer": "Он+и на стол+е.",
+     "cue": "🔝🍽️",
+     "english": "They're on the table.",
+     "distractors": [
+      "Он+а на стол+е."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Спас+ибо!",
+     "cue": "🙂",
+     "english": "Thanks!"
+    },
+    {
+     "answer": "Пож+алуйста!",
+     "cue": "🙂",
+     "english": "You're welcome!",
+     "distractors": [
+      "Спас+ибо!"
+     ]
+    }
+   ]
+  }
+ ]
+}

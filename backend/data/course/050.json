@@ -1,0 +1,293 @@
+{
+ "id": 50,
+ "title": "В кафе с другом",
+ "goal": "Put unit 10 together: work, reading, polite requests and small talk.",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 8
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "What did you hear?",
+   "instruction": "Listen and pick what it means.",
+   "items": [
+    {
+     "audio": "Он+а раб+отает в магаз+ине.",
+     "options": [
+      "👧 💼 🏪",
+      "👧 💼 🏫",
+      "👦 💼 🏪"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Мож+но счёт?",
+     "options": [
+      "🧾❓",
+      "💧❓",
+      "📰❓"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Норм+ально, спас+ибо.",
+     "options": [
+      "😐",
+      "🙂",
+      "😞"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Я чит+аю газ+ету.",
+     "options": [
+      "📰",
+      "📖",
+      "📱"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Вчер+а мы б+ыли в каф+е.",
+     "options": [
+      "🙋‍♀️🙋‍♂️ ⬅️📅 ☕🍰",
+      "🙋‍♀️🙋‍♂️ 📅 ☕🍰",
+      "🙋‍♀️🙋‍♂️ ⬅️📅 🎬"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Да, кон+ечно.",
+     "options": [
+      "✅",
+      "🚫"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Пл+охо.",
+     "options": [
+      "😐",
+      "🙂",
+      "😞"
+     ],
+     "correct": 2
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "choose",
+   "title": "Which form?",
+   "instruction": "Pick the right form.",
+   "items": [
+    {
+     "prompt": "Он+и ___ в шк+оле.",
+     "cue": "👥 💼 🏫",
+     "english": "They work at a school.",
+     "options": [
+      "раб+отаем",
+      "раб+отаете",
+      "раб+отают"
+     ],
+     "correct": 2,
+     "audio": "Он+и раб+отают в шк+оле."
+    },
+    {
+     "prompt": "Мож+но ___?",
+     "cue": "📰❓",
+     "english": "Can I have the newspaper?",
+     "options": [
+      "газ+ета",
+      "газ+ету"
+     ],
+     "correct": 1,
+     "audio": "Мож+но газ+ету?"
+    },
+    {
+     "prompt": "Ты ___ по-р+усски?",
+     "cue": "❓🫵 📖 🇷🇺",
+     "english": "Do you read Russian?",
+     "options": [
+      "чит+аю",
+      "чит+аешь",
+      "чит+ает"
+     ],
+     "correct": 1,
+     "audio": "Ты чит+аешь по-р+усски?"
+    },
+    {
+     "prompt": "Я ид+у в каф+е с ___.",
+     "cue": "🚶 ☕🍰 ➕ 🧑‍🤝‍🧑",
+     "english": "I'm going to a café with a friend.",
+     "options": [
+      "друг",
+      "др+угом",
+      "др+уга"
+     ],
+     "correct": 1,
+     "audio": "Я ид+у в каф+е с др+угом."
+    },
+    {
+     "prompt": "У мен+я нет ___.",
+     "cue": "🚫📰",
+     "english": "I don't have a newspaper.",
+     "options": [
+      "газ+ета",
+      "газ+ету",
+      "газ+еты"
+     ],
+     "correct": 2,
+     "audio": "У мен+я нет газ+еты."
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "Say it",
+   "instruction": "Say it from the picture.",
+   "items": [
+    {
+     "answer": "Я раб+отаю в каф+е.",
+     "cue": "💼 ☕🍰",
+     "english": "I work in a café.",
+     "ask": "Где ты раб+отаешь?",
+     "distractors": [
+      "Я раб+отаю в магаз+ине."
+     ]
+    },
+    {
+     "answer": "Мож+но в+оду?",
+     "cue": "💧❓",
+     "english": "Ask for some water.",
+     "distractors": [
+      "Мож+но счёт?"
+     ]
+    },
+    {
+     "answer": "Хорош+о, спас+ибо. А у теб+я?",
+     "cue": "🙂 ❓🫵",
+     "english": "Good, thanks. And you?",
+     "ask": "Как дел+а?"
+    },
+    {
+     "answer": "Я чит+аю кн+игу.",
+     "cue": "📖",
+     "english": "I'm reading a book.",
+     "ask": "Что ты чит+аешь?",
+     "distractors": [
+      "Я чит+аю газ+ету."
+     ]
+    },
+    {
+     "answer": "Вчер+а я раб+отала д+ома.",
+     "cue": "👩 Анна ⬅️📅 💼 🏠",
+     "english": "Yesterday I worked at home. (Anna)",
+     "distractors": [
+      "Вчер+а я раб+отал д+ома."
+     ]
+    },
+    {
+     "answer": "Да, кон+ечно.",
+     "cue": "✅👌",
+     "english": "Say: yes, of course.",
+     "ask": "Мож+но?"
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "Coffee with a friend",
+   "instruction": "You meet a friend in a café ☕🍰.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "Прив+ет! Как дел+а?",
+     "cue": "🧑 ❓🙂",
+     "english": "Hi! How are you?"
+    },
+    {
+     "answer": "Норм+ально. А у теб+я?",
+     "cue": "😐 ❓🫵",
+     "english": "Fine. And you?",
+     "distractors": [
+      "Пл+охо."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Хорош+о! Что ты х+очешь?",
+     "cue": "🙂 ❓",
+     "english": "Good! What would you like?"
+    },
+    {
+     "answer": "Мне к+офе с молок+ом.",
+     "cue": "☕ ➕ 🥛",
+     "english": "A coffee with milk for me.",
+     "distractors": [
+      "Мне чай с молок+ом."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Ты сейч+ас раб+отаешь?",
+     "cue": "❓💼",
+     "english": "Are you working at the moment?"
+    },
+    {
+     "answer": "Да, я раб+отаю в шк+оле.",
+     "cue": "✅ 💼 🏫",
+     "english": "Yes, I work at a school.",
+     "distractors": [
+      "Нет, я не раб+отаю."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "Numbers to 100",
+   "instruction": "Say the number.",
+   "items": [
+    {
+     "answer": "Сто.",
+     "cue": "1️⃣0️⃣0️⃣",
+     "english": "a hundred"
+    },
+    {
+     "answer": "Тр+идцать чет+ыре.",
+     "cue": "3️⃣4️⃣",
+     "english": "thirty-four"
+    },
+    {
+     "answer": "С+емьдесят од+ин.",
+     "cue": "7️⃣1️⃣",
+     "english": "seventy-one"
+    },
+    {
+     "answer": "Пятьдес+ят шесть.",
+     "cue": "5️⃣6️⃣",
+     "english": "fifty-six"
+    },
+    {
+     "answer": "В+осемьдесят д+евять.",
+     "cue": "8️⃣9️⃣",
+     "english": "eighty-nine"
+    },
+    {
+     "answer": "С+орок два.",
+     "cue": "4️⃣2️⃣",
+     "english": "forty-two"
+    }
+   ]
+  }
+ ]
+}

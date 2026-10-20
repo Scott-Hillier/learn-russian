@@ -1,0 +1,350 @@
+{
+ "id": 44,
+ "title": "Кофе с молоком",
+ "goal": "Say “with”: «Кофе с молоком.» «Я иду в кино с братом.»",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 6
+  },
+  {
+   "track": "vocab",
+   "type": "teach",
+   "title": "New words",
+   "instruction": "Listen, say it after me, then say it on your own from the picture.",
+   "items": [
+    {
+     "answer": "с+ахар",
+     "cue": "🍬",
+     "english": "sugar"
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "teach",
+   "title": "«С» — with",
+   "instruction": "«С» = with. After it, words change: «-а» → «-ой» (мама → с мамой), consonants and «-о» add «-ом» (брат → с братом, молоко → с молоком).",
+   "items": [
+    {
+     "answer": "К+офе с молок+ом, пож+алуйста.",
+     "cue": "☕ ➕ 🥛 🙏",
+     "english": "Coffee with milk, please.",
+     "distractors": [
+      "К+офе с молок+о, пож+алуйста."
+     ]
+    },
+    {
+     "answer": "Чай с с+ахаром.",
+     "cue": "🍵 ➕ 🍬",
+     "english": "Tea with sugar.",
+     "distractors": [
+      "Чай с с+ахар."
+     ]
+    },
+    {
+     "answer": "Я ид+у в кин+о с бр+атом.",
+     "cue": "🚶 🎬 ➕ 👦",
+     "english": "I'm going to the cinema with my brother.",
+     "distractors": [
+      "Я ид+у в кин+о с брат."
+     ]
+    },
+    {
+     "answer": "Он+а живёт с м+амой.",
+     "cue": "👧 🏠 ➕ 👩",
+     "english": "She lives with her mum.",
+     "distractors": [
+      "Он+а живёт с м+ама."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "choose",
+   "title": "With what?",
+   "instruction": "After «с»: «-а» → «-ой», others add «-ом».",
+   "items": [
+    {
+     "prompt": "Чай с ___.",
+     "cue": "🍵 ➕ 🥛",
+     "english": "Tea with milk.",
+     "options": [
+      "молок+о",
+      "молок+ом"
+     ],
+     "correct": 1,
+     "audio": "Чай с молок+ом."
+    },
+    {
+     "prompt": "Хлеб с ___.",
+     "cue": "🍞 ➕ 🧀",
+     "english": "Bread with cheese.",
+     "options": [
+      "сыр",
+      "с+ыром"
+     ],
+     "correct": 1,
+     "audio": "Хлеб с с+ыром."
+    },
+    {
+     "prompt": "Я ид+у в магаз+ин с ___.",
+     "cue": "🚶 🏪 ➕ 👩",
+     "english": "I'm going to the shop with mum.",
+     "options": [
+      "м+ама",
+      "м+амой"
+     ],
+     "correct": 1,
+     "audio": "Я ид+у в магаз+ин с м+амой."
+    },
+    {
+     "prompt": "Он живёт с ___.",
+     "cue": "👦 🏠 ➕ 🧑‍🤝‍🧑",
+     "english": "He lives with a friend.",
+     "options": [
+      "др+угом",
+      "друг"
+     ],
+     "correct": 0,
+     "audio": "Он живёт с др+угом."
+    },
+    {
+     "prompt": "Мне нр+авится ___.",
+     "cue": "❤️ 🥛",
+     "english": "I like milk.",
+     "options": [
+      "молок+о",
+      "молок+ом"
+     ],
+     "correct": 0,
+     "audio": "Мне нр+авится молок+о."
+    },
+    {
+     "prompt": "Я в+ижу ___.",
+     "cue": "👀 👧",
+     "english": "I see my sister.",
+     "options": [
+      "сестр+у",
+      "сестр+ой"
+     ],
+     "correct": 0,
+     "audio": "Я в+ижу сестр+у."
+    }
+   ]
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "With or without?",
+   "instruction": "Listen and pick the picture.",
+   "items": [
+    {
+     "audio": "К+офе с молок+ом.",
+     "options": [
+      "☕ ➕ 🥛",
+      "☕",
+      "🍵 ➕ 🥛"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Чай с с+ахаром.",
+     "options": [
+      "🍵 ➕ 🍬",
+      "🍵",
+      "☕ ➕ 🍬"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Я ид+у в кин+о с сестр+ой.",
+     "options": [
+      "🎬 ➕ 👧",
+      "🎬 ➕ 👦",
+      "🎬"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Хлеб с с+ыром.",
+     "options": [
+      "🍞 ➕ 🧀",
+      "🍞",
+      "🧀"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Он живёт с бр+атом.",
+     "options": [
+      "🏠 ➕ 👦",
+      "🏠 ➕ 👧",
+      "🏠"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Я хоч+у к+офе.",
+     "options": [
+      "☕ ➕ 🥛",
+      "☕",
+      "🍵"
+     ],
+     "correct": 1
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "With what? With whom?",
+   "instruction": "Say it from the picture.",
+   "items": [
+    {
+     "answer": "К+офе с молок+ом, пож+алуйста.",
+     "cue": "☕ ➕ 🥛 🙏",
+     "english": "Coffee with milk, please.",
+     "ask": "Что вы х+отите?",
+     "distractors": [
+      "К+офе, пож+алуйста.",
+      "Чай с молок+ом, пож+алуйста."
+     ]
+    },
+    {
+     "answer": "Чай с с+ахаром.",
+     "cue": "🍵 ➕ 🍬",
+     "english": "Tea with sugar.",
+     "ask": "Что ты х+очешь?",
+     "distractors": [
+      "Чай с молок+ом."
+     ]
+    },
+    {
+     "answer": "Я ид+у в кин+о с сестр+ой.",
+     "cue": "🚶 🎬 ➕ 👧",
+     "english": "I'm going to the cinema with my sister.",
+     "ask": "Куд+а ты идёшь?",
+     "distractors": [
+      "Я ид+у в кин+о с бр+атом."
+     ]
+    },
+    {
+     "answer": "Хлеб с с+ыром.",
+     "cue": "🍞 ➕ 🧀",
+     "english": "Bread with cheese.",
+     "ask": "Что ты х+очешь?",
+     "distractors": [
+      "Хлеб и сыр."
+     ]
+    },
+    {
+     "answer": "Он живёт с м+амой.",
+     "cue": "👦 🏠 ➕ 👩",
+     "english": "He lives with his mum.",
+     "ask": "С кем он живёт?",
+     "distractors": [
+      "Он живёт с п+апой."
+     ]
+    },
+    {
+     "answer": "Я был+а в кин+о с др+угом.",
+     "cue": "👩 Анна ⬅️📅 🎬 ➕ 🧑‍🤝‍🧑",
+     "english": "I was at the cinema with a friend. (Anna)",
+     "distractors": [
+      "Я был в кин+о с др+угом."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "Numbers",
+   "instruction": "Say the number.",
+   "items": [
+    {
+     "answer": "Сто.",
+     "cue": "1️⃣0️⃣0️⃣",
+     "english": "a hundred"
+    },
+    {
+     "answer": "С+орок в+осемь.",
+     "cue": "4️⃣8️⃣",
+     "english": "forty-eight"
+    },
+    {
+     "answer": "С+емьдесят три.",
+     "cue": "7️⃣3️⃣",
+     "english": "seventy-three"
+    },
+    {
+     "answer": "Дв+адцать шесть.",
+     "cue": "2️⃣6️⃣",
+     "english": "twenty-six"
+    },
+    {
+     "answer": "Девян+осто пять.",
+     "cue": "9️⃣5️⃣",
+     "english": "ninety-five"
+    },
+    {
+     "answer": "Шестьдес+ят од+ин.",
+     "cue": "6️⃣1️⃣",
+     "english": "sixty-one"
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "In a café",
+   "instruction": "You order in a café ☕🍰.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "Здр+авствуйте! Что вы х+отите?",
+     "cue": "🧑‍🍳",
+     "english": "Hello! What would you like?"
+    },
+    {
+     "answer": "Мне к+офе с молок+ом, пож+алуйста.",
+     "cue": "☕ ➕ 🥛 🙏",
+     "english": "A coffee with milk for me, please.",
+     "distractors": [
+      "Мне к+офе, пож+алуйста."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "С с+ахаром?",
+     "cue": "🍬❓",
+     "english": "With sugar?"
+    },
+    {
+     "answer": "Нет, спас+ибо.",
+     "cue": "🚫🍬 🙏",
+     "english": "No, thank you.",
+     "distractors": [
+      "Да, пож+алуйста."
+     ]
+    },
+    {
+     "speaker": "partner",
+     "line": "Что ещё?",
+     "cue": "❓",
+     "english": "What else?"
+    },
+    {
+     "answer": "Хлеб с с+ыром, пож+алуйста.",
+     "cue": "🍞 ➕ 🧀 🙏",
+     "english": "Bread with cheese, please."
+    }
+   ]
+  }
+ ]
+}

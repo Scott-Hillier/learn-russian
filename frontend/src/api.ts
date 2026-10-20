@@ -115,6 +115,7 @@ export interface ChatReply {
   reply: string;
   translation: string;
   suggestions: { russian: string; english: string }[];
+  unknown?: string[]; // level "lessons": words in the reply that the lessons haven't taught yet
 }
 
 export interface ChatCheck {
@@ -168,6 +169,7 @@ export interface FlashCard extends Described {
   lapses: number;
   needs_stress: boolean;
   builtin: boolean;
+  lesson: number | null; // the course lesson that introduces this word
 }
 
 export type RatingName = "again" | "hard" | "good" | "easy";
@@ -197,6 +199,8 @@ export type LessonStatus = "passed" | "available" | "locked";
 /** One item of a course exercise. Which fields are set depends on the exercise type. */
 export interface CourseItem {
   key?: string; // stable identity for results (not set on partner turns)
+  src?: [number, number, number]; // where the item was written: lesson, exercise, item (used to check answers)
+  card?: number; // review blocks: the due flashcard this item practises
   cue?: string; // emoji / picture prompt
   english?: string;
   answer?: Described; // what the learner should say (teach, say, dialogue "you" turns)
@@ -224,26 +228,56 @@ export interface CourseLessonSummary {
   status: LessonStatus;
   exercises: number;
   exercise: number; // first exercise not yet passed
+  placed: boolean; // passed by testing out of its unit
+  unit: number;
   tracks: CourseTrack[];
+}
+
+/** passed · remedial (fix-up lesson first) · available (unit done: test due) · skip (test out) · locked */
+export type TestStatus = "passed" | "remedial" | "available" | "skip" | "locked";
+
+export interface CourseTestSummary {
+  unit: number;
+  first: number; // first and last lesson of the unit
+  last: number;
+  status: TestStatus;
+  attempts: number;
+  best: number | null;
+  last_accuracy: number | null;
+}
+
+export type CourseKind = "lesson" | "test" | "remedial";
+
+export interface CourseNext {
+  kind: CourseKind;
+  id: number; // lesson id, or unit for tests and fix-up lessons
 }
 
 export interface CourseOverview {
   lessons: CourseLessonSummary[];
+  tests: CourseTestSummary[];
   current: number | null;
+  next: CourseNext | null;
+  started: boolean;
   pass_accuracy: number;
+  test_pass_accuracy: number;
+  unit_size: number;
 }
 
 export interface CourseLesson {
-  id: number;
+  id: number; // lesson id, or unit for tests and fix-up lessons
+  kind: CourseKind;
   title: string;
   goal: string;
-  status: LessonStatus;
+  status: LessonStatus | TestStatus;
   exercise: number;
   exercises: CourseExercise[];
+  attempt?: number; // tests: which try this is
 }
 
 export interface AnswerCheck {
   correct: boolean;
+  again?: boolean; // unclear: probably the answer, but ask for it again rather than mark it wrong
   heard: string | null; // the candidate answer that matched best (display form)
   score: number; // pronunciation of the expected answer, 0–100
   words: WordResult[];
@@ -258,6 +292,23 @@ export interface ItemResult {
   correct: boolean;
   override?: boolean;
   score?: number | null;
+  card?: number; // a due flashcard answered in a review block (its flashcard review)
+}
+
+export interface CourseStats {
+  tracks: { track: CourseTrack; tries: number; accuracy: number; recent_accuracy: number }[];
+  tests: { unit: number; kind: "mastery" | "placement"; accuracy: number; passed: number; created_at: number }[];
+  work_on: {
+    key: string;
+    track: CourseTrack;
+    miss_rate: number;
+    display: string;
+    english: string;
+    cue: string;
+    src: [number, number, number];
+  }[];
+  first_tries: number;
+  items_seen: number;
 }
 
 export interface RoundResult {
@@ -266,6 +317,18 @@ export interface RoundResult {
   exercise: number;
   lesson_passed: boolean;
   next_lesson: number | null;
+  next?: CourseNext | null;
+}
+
+export interface TestResult {
+  passed: boolean;
+  accuracy: number;
+  kind: "mastery" | "placement";
+  missed: number;
+  total: number;
+  remedial: boolean; // a fix-up lesson comes before the retest
+  next: CourseNext | null;
+  next_test: number | null; // placement: the next unit's test can be tried straight away
 }
 
 async function send<T>(url: string, method: string, body?: unknown): Promise<T> {
@@ -395,16 +458,25 @@ export const api = {
   progressSummary: () => fetch("/api/progress/summary").then((r) => json<ProgressSummary>(r)),
   course: () => fetch("/api/course").then((r) => json<CourseOverview>(r)),
   courseLesson: (id: number) => fetch(`/api/course/${id}`).then((r) => json<CourseLesson>(r)),
-  courseCheck: (lessonId: number, exercise: number, item: number, audio: Blob) => {
+  courseCheck: (src: [number, number, number], audio: Blob, testUnit?: number) => {
+    const [lessonId, exercise, item] = src;
     const form = new FormData();
     form.append("exercise", String(exercise));
     form.append("item", String(item));
+    if (testUnit !== undefined) form.append("test", String(testUnit));
     form.append("audio", audio, "answer");
     return fetch(`/api/course/${lessonId}/check`, { method: "POST", body: form }).then((r) => json<AnswerCheck>(r));
   },
   courseRound: (lessonId: number, exercise: number, results: ItemResult[]) =>
     send<RoundResult>(`/api/course/${lessonId}/rounds`, "POST", { exercise, results }),
   courseRestart: (lessonId: number) => send<{ ok: boolean }>(`/api/course/${lessonId}/restart`, "POST"),
+  courseStats: () => fetch("/api/course/stats").then((r) => json<CourseStats>(r)),
+  courseTest: (unit: number) => fetch(`/api/course/tests/${unit}`).then((r) => json<CourseLesson>(r)),
+  courseTestFinish: (unit: number, results: ItemResult[]) =>
+    send<TestResult>(`/api/course/tests/${unit}/finish`, "POST", { results }),
+  courseRemedial: (unit: number) => fetch(`/api/course/tests/${unit}/remedial`).then((r) => json<CourseLesson>(r)),
+  courseRemedialRound: (unit: number, exercise: number, results: ItemResult[]) =>
+    send<RoundResult>(`/api/course/tests/${unit}/remedial/rounds`, "POST", { exercise, results }),
   attempt: (target: string, audio: Blob, source: AttemptSource, timing = false, intonation = false) => {
     const form = new FormData();
     form.append("target", target);

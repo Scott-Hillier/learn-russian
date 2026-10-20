@@ -141,6 +141,7 @@ export default function LearnedPage({ onReview, decks, onDecksChanged }: Props) 
                   <td>
                     {c.english}
                     {c.tag && <div className="muted">{c.tag}</div>}
+                    {c.lesson && <div className="muted">📘 Lesson {c.lesson}</div>}
                   </td>
                   <td className="muted">{c.lapses > 0 ? `${c.lapses}×` : "—"}</td>
                   <td className="row-actions">

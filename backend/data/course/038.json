@@ -1,0 +1,328 @@
+{
+ "id": 38,
+ "title": "Сколько стоит?",
+ "goal": "Ask and say prices: «Сколько стоит сыр?» — «Сто рублей.»",
+ "exercises": [
+  {
+   "track": "review",
+   "type": "say",
+   "title": "Review",
+   "instruction": "Things from earlier lessons. Answer from memory.",
+   "review": 6
+  },
+  {
+   "track": "frames",
+   "type": "teach",
+   "title": "«Сколько стоит?» — How much is it?",
+   "instruction": "«Рубль» changes after numbers, like «час»: 1 рубль, 2–4 рубля, 5 and up рублей: сто рублей.",
+   "items": [
+    {
+     "answer": "Ск+олько ст+оит сыр?",
+     "cue": "❓₽ 🧀",
+     "english": "How much is the cheese?"
+    },
+    {
+     "answer": "Сто рубл+ей.",
+     "cue": "100 ₽",
+     "english": "A hundred roubles.",
+     "ask": "Ск+олько ст+оит сыр?",
+     "distractors": [
+      "Сто рубл+я."
+     ]
+    },
+    {
+     "answer": "Два рубл+я.",
+     "cue": "2 ₽",
+     "english": "Two roubles.",
+     "ask": "Ск+олько ст+оит?",
+     "distractors": [
+      "Два рубл+ей."
+     ]
+    },
+    {
+     "answer": "Пятьдес+ят рубл+ей.",
+     "cue": "50 ₽",
+     "english": "Fifty roubles.",
+     "ask": "Ск+олько ст+оит хлеб?"
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "choose",
+   "title": "Рубль, рубля or рублей?",
+   "instruction": "1 → рубль. 2, 3, 4 → рубля. 5 and up → рублей.",
+   "items": [
+    {
+     "prompt": "Три ___.",
+     "cue": "3 ₽",
+     "english": "three roubles",
+     "options": [
+      "рубль",
+      "рубл+я",
+      "рубл+ей"
+     ],
+     "correct": 1,
+     "audio": "Три рубл+я."
+    },
+    {
+     "prompt": "Д+есять ___.",
+     "cue": "10 ₽",
+     "english": "ten roubles",
+     "options": [
+      "рубль",
+      "рубл+я",
+      "рубл+ей"
+     ],
+     "correct": 2,
+     "audio": "Д+есять рубл+ей."
+    },
+    {
+     "prompt": "Од+ин ___.",
+     "cue": "1 ₽",
+     "english": "one rouble",
+     "options": [
+      "рубль",
+      "рубл+я",
+      "рубл+ей"
+     ],
+     "correct": 0,
+     "audio": "Од+ин рубль."
+    },
+    {
+     "prompt": "Сто ___.",
+     "cue": "100 ₽",
+     "english": "a hundred roubles",
+     "options": [
+      "рубль",
+      "рубл+я",
+      "рубл+ей"
+     ],
+     "correct": 2,
+     "audio": "Сто рубл+ей."
+    },
+    {
+     "prompt": "Чет+ыре ___.",
+     "cue": "4 ₽",
+     "english": "four roubles",
+     "options": [
+      "рубль",
+      "рубл+я",
+      "рубл+ей"
+     ],
+     "correct": 1,
+     "audio": "Чет+ыре рубл+я."
+    },
+    {
+     "prompt": "Дв+адцать ___.",
+     "cue": "20 ₽",
+     "english": "twenty roubles",
+     "options": [
+      "рубль",
+      "рубл+я",
+      "рубл+ей"
+     ],
+     "correct": 2,
+     "audio": "Дв+адцать рубл+ей."
+    }
+   ]
+  },
+  {
+   "track": "listening",
+   "type": "choose",
+   "title": "How much?",
+   "instruction": "Listen and pick the price.",
+   "items": [
+    {
+     "audio": "Сто рубл+ей.",
+     "options": [
+      "100 ₽",
+      "10 ₽",
+      "50 ₽"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Пятьдес+ят рубл+ей.",
+     "options": [
+      "15 ₽",
+      "50 ₽",
+      "5 ₽"
+     ],
+     "correct": 1
+    },
+    {
+     "audio": "Два рубл+я.",
+     "options": [
+      "2 ₽",
+      "12 ₽",
+      "20 ₽"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "С+орок рубл+ей.",
+     "options": [
+      "14 ₽",
+      "4 ₽",
+      "40 ₽"
+     ],
+     "correct": 2
+    },
+    {
+     "audio": "Дв+адцать рубл+ей.",
+     "options": [
+      "20 ₽",
+      "12 ₽",
+      "2 ₽"
+     ],
+     "correct": 0
+    },
+    {
+     "audio": "Девян+осто рубл+ей.",
+     "options": [
+      "9 ₽",
+      "90 ₽",
+      "19 ₽"
+     ],
+     "correct": 1
+    }
+   ]
+  },
+  {
+   "track": "frames",
+   "type": "say",
+   "title": "In the shop",
+   "instruction": "You work in the shop. Say the price on the label.",
+   "items": [
+    {
+     "answer": "Сто рубл+ей.",
+     "cue": "🧀 100 ₽",
+     "english": "A hundred roubles.",
+     "ask": "Ск+олько ст+оит сыр?",
+     "distractors": [
+      "Сто рубл+я."
+     ]
+    },
+    {
+     "answer": "Пятьдес+ят рубл+ей.",
+     "cue": "🍞 50 ₽",
+     "english": "Fifty roubles.",
+     "ask": "Ск+олько ст+оит хлеб?",
+     "distractors": [
+      "Пятн+адцать рубл+ей."
+     ]
+    },
+    {
+     "answer": "Три рубл+я.",
+     "cue": "🍎 3 ₽",
+     "english": "Three roubles.",
+     "ask": "Ск+олько ст+оит +яблоко?",
+     "distractors": [
+      "Три рубл+ей."
+     ]
+    },
+    {
+     "answer": "Ск+олько ст+оит сок?",
+     "cue": "❓₽ 🧃",
+     "english": "Ask: How much is the juice?",
+     "distractors": [
+      "Ск+олько ст+оит сыр?"
+     ]
+    },
+    {
+     "answer": "С+емьдесят рубл+ей.",
+     "cue": "🥛 70 ₽",
+     "english": "Seventy roubles.",
+     "ask": "Ск+олько ст+оит молок+о?"
+    },
+    {
+     "answer": "Од+ин рубль.",
+     "cue": "1 ₽",
+     "english": "One rouble.",
+     "ask": "Ск+олько ст+оит?",
+     "distractors": [
+      "Од+ин рубл+я."
+     ]
+    },
+    {
+     "answer": "Я в магаз+ине.",
+     "cue": "📍🏪",
+     "english": "I'm at the shop.",
+     "ask": "Прив+ет! Что ты д+елаешь?",
+     "distractors": [
+      "Я ид+у в магаз+ин."
+     ]
+    }
+   ]
+  },
+  {
+   "track": "dialogue",
+   "type": "dialogue",
+   "title": "In the shop",
+   "instruction": "You're buying breakfast.",
+   "items": [
+    {
+     "speaker": "partner",
+     "line": "Здр+авствуйте! Что вы х+отите?",
+     "cue": "🧑‍🍳",
+     "english": "Hello! What would you like?"
+    },
+    {
+     "answer": "Хлеб и сыр, пож+алуйста. Ск+олько ст+оит сыр?",
+     "cue": "🍞 ➕ 🧀 ❓₽",
+     "english": "Bread and cheese, please. How much is the cheese?"
+    },
+    {
+     "speaker": "partner",
+     "line": "Сыр сто рубл+ей, хлеб пятьдес+ят.",
+     "cue": "🧀 100 ₽ · 🍞 50 ₽",
+     "english": "Cheese is 100 roubles, bread 50."
+    },
+    {
+     "answer": "Хорош+о. Спас+ибо!",
+     "cue": "👌 🙏",
+     "english": "OK. Thank you!"
+    }
+   ]
+  },
+  {
+   "track": "numbers",
+   "type": "say",
+   "title": "Numbers",
+   "instruction": "Say the number.",
+   "items": [
+    {
+     "answer": "Сто.",
+     "cue": "1️⃣0️⃣0️⃣",
+     "english": "a hundred"
+    },
+    {
+     "answer": "Тр+идцать.",
+     "cue": "3️⃣0️⃣",
+     "english": "thirty"
+    },
+    {
+     "answer": "Шестьдес+ят.",
+     "cue": "6️⃣0️⃣",
+     "english": "sixty"
+    },
+    {
+     "answer": "Девян+осто.",
+     "cue": "9️⃣0️⃣",
+     "english": "ninety"
+    },
+    {
+     "answer": "С+орок пять.",
+     "cue": "4️⃣5️⃣",
+     "english": "forty-five"
+    },
+    {
+     "answer": "С+емьдесят пять.",
+     "cue": "7️⃣5️⃣",
+     "english": "seventy-five"
+    }
+   ]
+  }
+ ]
+}
