@@ -481,7 +481,10 @@ export default function LessonPlayer({ lesson, onExit, onDone }: Props) {
 
   useHotkeys((key) => {
     if (finished) {
-      if (key === "enter") return (continueAfterSummary(), true);
+      // Space takes the default: go again after a round below the mark, otherwise move on. Enter always moves on.
+      if (key === "space" && summary && !summary.passed)
+        return (startExercise(exIndex, round + 1), true);
+      if (key === "space" || key === "enter") return (continueAfterSummary(), true);
       return false;
     }
     if (key === "space") return (toggleMic(), true);
@@ -562,7 +565,7 @@ export default function LessonPlayer({ lesson, onExit, onDone }: Props) {
               </button>
             </>
           }
-          hint="Enter: continue"
+          hint="Space or Enter: continue"
         />
       </div>
     );
@@ -578,7 +581,7 @@ export default function LessonPlayer({ lesson, onExit, onDone }: Props) {
             <div
               className={`summary-mark ${summary.passed ? "good" : "close"}`}
             >
-              {summary.passed ? "✓" : "→"}
+              {summary.passed ? "✓" : "↻"}
             </div>
             <h2>
               {lessonDone
@@ -593,7 +596,7 @@ export default function LessonPlayer({ lesson, onExit, onDone }: Props) {
               {Math.round(summary.accuracy * 100)}% right first time
               {summary.passed
                 ? ""
-                : ` (${PASS_PERCENT}% to pass). The ones you missed will come back in review, or you can go again now.`}
+                : ` (${PASS_PERCENT}% to pass). Go again now, or move on: the ones you missed will come back in review.`}
             </p>
             {lessonDone && (
               <p>
@@ -613,9 +616,11 @@ export default function LessonPlayer({ lesson, onExit, onDone }: Props) {
           center={
             <>
               {!summary.passed && (
-                <button onClick={() => startExercise(exIndex, round + 1)}>Go again</button>
+                <button className="primary" onClick={() => startExercise(exIndex, round + 1)}>
+                  ↻ Go again
+                </button>
               )}
-              <button className="primary" onClick={continueAfterSummary}>
+              <button className={summary.passed ? "primary" : ""} onClick={continueAfterSummary}>
                 {lessonDone
                   ? summary.next?.kind === "test"
                     ? "Take the test →"
@@ -626,7 +631,7 @@ export default function LessonPlayer({ lesson, onExit, onDone }: Props) {
               </button>
             </>
           }
-          hint="Enter: continue"
+          hint={summary.passed ? "Space or Enter: continue" : "Space: go again · Enter: move on"}
         />
       </div>
     );

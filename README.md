@@ -28,8 +28,8 @@ and future tense, shopping, cafés and asking the way. Do one lesson at a time, 
 - **When you get one wrong:** you hear the right answer and say it after the voice. The two items before it
   are asked again, and the missed one comes back a few items later.
 - **Passing:** an exercise passes at **90% right first time**. Below that you can **go again** (the same
-  exercise in a new order) or move on: whatever you missed comes back in review. The next lesson unlocks once
-  you've finished every exercise.
+  exercise in a new order; `Space`) or move on (`Enter`): whatever you missed comes back in review. After a
+  passed exercise, `Space` or `Enter` moves on. The next lesson unlocks once you've finished every exercise.
 - **Choose the right word:** some exercises show a sentence with a gap ("___ сок") and you pick the form
   (мой / моя / моё). These cover differences that speech checking can't hear reliably.
 - **Hands-free** (on by default): the mic opens by itself after each question and stops when you pause.
