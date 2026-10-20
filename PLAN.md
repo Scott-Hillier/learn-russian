@@ -229,6 +229,46 @@ written by hand.
     - **Verified in the real app:** the written-form exercise ran through to a delayed re-test and
       a firm-up round. Two display bugs were fixed: stress marks on options, and a doubled accent on ё.
 
+10a. **Answer checking for a learner's voice ✅ (done 2026-10-20).** The learner can't supply reference
+    recordings (they aren't a native speaker), so the checker was tuned on simulated learner speech instead.
+    - **Benchmark** (`backend/scripts/learner_benchmark.py`): every speaking item in the course is said
+      three ways (the answer, its closest distractor, and an unrelated answer from another lesson) under
+      7 conditions:
+      - **native:** 5 Silero voices and macOS Milena
+      - **slow:** x-slow speech
+      - **pauses:** each word said separately, with 0.3–0.8 s gaps
+      - **syllables:** words sounded out syllable by syllable
+      - **stress:** the stress put on the wrong syllable
+      - **accent:** English-speaker substitutions (ы → и, щ → ш, х → к, no ь)
+      - **english:** 12 English voices reading English-style respellings ("ya vee-zhoo kosh-koo")
+
+      Every recording goes through a random laptop channel (level, mic EQ, room echo, fan noise) and
+      Opus compression, as the browser's recorder does. Scores are saved once (`collect`), so decision
+      rules can be compared offline (`analyse --grid / --fit-grid`).
+    - **What it found (96 items, 2,016 recordings):**
+      - Forced choice was already robust to learner speech: 99% of right answers accepted, 100% of
+        distractors rejected.
+      - The weak spot was the reverse: an unrelated sentence was accepted 7–9% of the time, because the
+        mean letter score is easily fooled ("Машина там" scored 75 as «мама»).
+    - **New rule** (`app/speech/answers.py`):
+      - **Mode:** candidates are scored in *learner mode* (`analyse_word(learner=True)`): ы/и, щ/ш, х/к
+        and й/и are accepted, and ь/ъ may be dropped. If that makes the answer and a distractor sound the
+        same (был/бил), strict spelling is used.
+      - **Fit:** the answer must *fit* the audio. Its forced alignment may fall at most 40 below the model's
+        free reading (log-likelihood per 100 frames).
+      - **Letter score:** at least 30 in learner mode. The feedback shown still uses strict letters.
+      - **"Say it again":** a fit between −55 and −40, or a distractor winning by less than 2.5, gets
+        "say it again" once instead of a verdict.
+
+      | | Before | After |
+      |---|---|---|
+      | Unrelated sentence accepted (native / learner-like) | 8.3% / 7.3% | 1.0% / 0.8% |
+      | Right answer accepted (learner-like) | 99.2% | 99.2% |
+      | Distractor rejected (learner-like) | 100% | 100% |
+      | Right answer accepted (heavy English accent) | 71.9% | 79.2% |
+    - **Lessons 1–20 with native voices:** 3,601/3,602 judged as expected. The miss, «маму» heard as
+      «мама» from one voice, now gets "say it again".
+
 10b. **Lessons 11–20** (твой, gender exceptions, names, present tense я/ты/он, говорить, хочу/вижу +
     accusative, unit review dialogue).
 

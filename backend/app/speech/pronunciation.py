@@ -40,6 +40,11 @@ UNSTRESSED_CLITICS = {"не", "ни", "по", "до", "на", "за", "из", "�
 REDUCTION_VARIANTS = {"о": {"а"}, "а": {"о"}, "е": {"и", "я"}, "я": {"и", "е"}, "э": {"и", "е"}}
 # (cluster, offset within cluster) of letters that are not pronounced
 SILENT_CLUSTERS = [("вств", 0), ("здн", 1), ("стн", 1), ("лнц", 0), ("рдц", 1), ("стл", 1), ("ться", 2)]
+# Sounds an English speaker commonly makes instead of a Russian one (ы → и, щ → ш, х → к, й → и).
+# A lesson checks *which* answer was said, so these count towards the right answer in learner mode;
+# the letter feedback still shows them.
+LEARNER_VARIANTS = {"ы": {"и"}, "щ": {"ш"}, "х": {"к"}, "й": {"и"}}
+LEARNER_OPTIONAL = {"ь", "ъ"}  # softness an English speaker often leaves out
 WORD_EXCEPTIONS = {
     "пожалуйста": {"silent": [5, 6]},       # usually "пожалста"
     "что": {"alts": {0: {"ш"}}},
@@ -58,10 +63,24 @@ class Letter:
     stressed: bool = False
     alts: set[str] = field(default_factory=set)
     silent: bool = False
+    optional: bool = False  # may be left out without counting against the answer (learner mode)
 
 
-def analyse_word(raw: str) -> list[Letter]:
-    """Turn a word with '+' stress marks into letters with pronunciation variants."""
+def learner_form(text: str) -> str:
+    """Spelling with the learner substitutions applied: two answers with the same learner form can't be told
+    apart in learner mode (был/бил, брат/брать)."""
+    plain = "".join(c for c in text.lower().replace("ё", "е") if c.isalpha() or c == " ")
+    for c, alts in LEARNER_VARIANTS.items():
+        plain = plain.replace(c, min(alts))
+    return " ".join("".join(c for c in plain if c not in LEARNER_OPTIONAL).split())
+
+
+def analyse_word(raw: str, learner: bool = False) -> list[Letter]:
+    """Turn a word with '+' stress marks into letters with pronunciation variants.
+
+    learner: also accept the sounds an English speaker commonly uses instead (LEARNER_VARIANTS), and let
+    ь/ъ be left out.
+    """
     letters: list[Letter] = []
     pending = False
     for ch in raw:
@@ -118,6 +137,10 @@ def analyse_word(raw: str) -> list[Letter]:
         letters[idx].silent = True
     for idx, alts in exc.get("alts", {}).items():
         letters[idx].alts |= alts
+    if learner:
+        for l in letters:
+            l.alts |= LEARNER_VARIANTS.get(l.norm, set())
+            l.optional = l.norm in LEARNER_OPTIONAL
     return letters
 
 
@@ -192,9 +215,10 @@ class PronunciationScorer:
             logits = self._model(torch.from_numpy(x.astype(np.float32))[None]).logits[0]
             return torch.log_softmax(logits.float(), dim=-1).numpy()
 
-    def score(self, words: list[str], audio: np.ndarray, logp: np.ndarray | None = None) -> list[dict]:
+    def score(self, words: list[str], audio: np.ndarray, logp: np.ndarray | None = None,
+              learner: bool = False) -> list[dict]:
         """Score each target word (with '+' stress marks) letter by letter."""
-        return self._score_logp(words, self.log_probs(audio) if logp is None else logp)
+        return self._score_logp(words, self.log_probs(audio) if logp is None else logp, learner)
 
     def log_probs(self, audio: np.ndarray) -> np.ndarray:
         """Per-frame letter log-probabilities (one model pass), to reuse across several scorings."""
@@ -212,11 +236,12 @@ class PronunciationScorer:
             prev = i
         return " ".join("".join(out).split())
 
-    def likelihood(self, words: list[str], logp: np.ndarray) -> float:
+    def likelihood(self, words: list[str], logp: np.ndarray, learner: bool = False) -> float:
         """Best-path CTC log-likelihood of the whole utterance being `words`.
 
         Each letter accepts its pronunciation variants (vowel reduction, devoicing…), so comparing this
         across candidate answers asks "which of these did they say?" rather than "how well did they say it?".
+        In learner mode, optional letters (ь) may also be matched by silence (the blank).
         """
         columns: dict[frozenset, int] = {}
         emissions = [logp[:, 0]]  # blank
@@ -229,13 +254,14 @@ class PronunciationScorer:
             return columns[ids]
 
         for raw in words:
-            letters = [l for l in analyse_word(raw) if l.norm in self._vocab]
+            letters = [l for l in analyse_word(raw, learner) if l.norm in self._vocab]
             if not letters:
                 continue
             if tokens:
                 tokens.append(column(frozenset({self._vocab["|"]})))
             for l in letters:
-                tokens.append(column(frozenset(self._vocab[c] for c in {l.norm} | l.alts if c in self._vocab)))
+                ids = {self._vocab[c] for c in {l.norm} | l.alts if c in self._vocab}
+                tokens.append(column(frozenset(ids | {0} if l.optional else ids)))
         if not tokens:
             return -np.inf
         emit = np.stack(emissions, axis=1)
@@ -247,8 +273,12 @@ class PronunciationScorer:
             path[fr] = tok
         return float(emit[np.arange(emit.shape[0]), path].sum())
 
-    def _score_logp(self, words: list[str], logp: np.ndarray) -> list[dict]:
-        analysed = [analyse_word(w) for w in words]
+    def free_likelihood(self, logp: np.ndarray) -> float:
+        """Log-likelihood of the model's own best reading: an upper bound for any target's likelihood."""
+        return float(logp.max(-1).sum())
+
+    def _score_logp(self, words: list[str], logp: np.ndarray, learner: bool = False) -> list[dict]:
+        analysed = [analyse_word(w, learner) for w in words]
         sep = self._vocab["|"]
         tokens, owners = [], []  # owners: (word index, letter index) or None for separators
         for wi, letters in enumerate(analysed):
@@ -290,7 +320,7 @@ class PronunciationScorer:
         for wi, (raw, letters) in enumerate(zip(words, analysed)):
             letter_out, scores = [], []
             for li, l in enumerate(letters):
-                if (wi, li) not in results or l.silent:
+                if (wi, li) not in results or l.silent or l.optional:
                     status, heard, value = ("silent" if l.silent else "unscored"), None, None
                 else:
                     share, heard = results[(wi, li)]

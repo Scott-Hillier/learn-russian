@@ -17,6 +17,7 @@ for an English accent.
 
 Run from backend/:  .venv/bin/python -m scripts.answer_check_experiment
              .venv/bin/python -m scripts.answer_check_experiment --lessons   (check the course's own items)
+             .venv/bin/python -m scripts.answer_check_experiment --lessons --from 11   (only lessons 11 on)
 """
 import json
 import statistics
@@ -150,15 +151,17 @@ def report(name: str, tally: dict) -> None:
               f"when wrong: max {max(t['margins_bad']) if t['margins_bad'] else 0:.3f}")
 
 
-def lesson_items() -> int:
+def lesson_items(first: int = 1) -> int:
     """Every speaking item in the course, as the app checks it: each answer said by native voices must be
     accepted, and each distractor said instead must be rejected."""
     from app.course import lessons
     from app.speech.answers import check_answer
 
-    ok = total = 0
+    ok = total = unclear = 0
     seen = set()
     for lesson in lessons():
+        if lesson["id"] < first:
+            continue
         for e_idx, ex in enumerate(lesson["exercises"]):
             for item in ex["items"]:
                 key = (item.get("answer"), tuple(item.get("accept", [])), tuple(item.get("distractors", [])))
@@ -173,11 +176,13 @@ def lesson_items() -> int:
                         good = result["correct"] == expect
                         ok += good
                         total += 1
+                        unclear += expect and result.get("again", False)
                         if not good:
                             print(f"  ✗ lesson {lesson['id']} ex {e_idx + 1}: answer {strip_stress(item['answer'])!r} "
                                   f"[{spk}] said {strip_stress(spoken)!r} → correct={result['correct']} "
-                                  f"score={result['score']} heard={result['heard']}")
-    print(f"lesson items: {ok}/{total} judged as expected")
+                                  f"score={result['score']} heard={result['heard']} again={result.get('again')}")
+    print(f"lesson items: {ok}/{total} judged as expected "
+          f"({unclear} of the misses were 'say it again' rather than marked wrong)")
     return 0
 
 
@@ -185,7 +190,8 @@ def main() -> int:
     tts.load()
     scorer.load()
     if "--lessons" in sys.argv:
-        return lesson_items()
+        first = int(sys.argv[sys.argv.index("--from") + 1]) if "--from" in sys.argv else 1
+        return lesson_items(first)
     asr.warm_up()
     native = []
     for label, forms in SETS:

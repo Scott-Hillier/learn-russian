@@ -55,3 +55,16 @@ def test_ctc_align_repeated_tokens_need_blank():
     probs = np.array([[0.1, 0.9], [0.9, 0.1], [0.1, 0.9]])
     assert ctc_align(np.log(probs), [1, 1]) == [[0], [2]]
     assert ctc_align(np.log(probs[:1]), [1, 1]) is None
+
+
+def test_learner_mode_accepts_english_speaker_substitutions():
+    from app.speech.pronunciation import learner_form
+
+    strict, learner = analyse_word("р+ыба"), analyse_word("р+ыба", learner=True)
+    assert "и" not in strict[1].alts and "и" in learner[1].alts
+    assert learner[0].alts == strict[0].alts  # р is not relaxed
+    soft = analyse_word("пять", learner=True)
+    assert soft[3].optional and not analyse_word("пять")[3].optional
+    # answers that only differ by those sounds can't be told apart in learner mode
+    assert learner_form("Был") == learner_form("бил") and learner_form("брат") == learner_form("брать")
+    assert learner_form("к+ошка") != learner_form("к+ошку")
