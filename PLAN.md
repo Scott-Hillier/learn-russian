@@ -91,8 +91,11 @@ DI is Engelmann and Becker's design method. It is not the Berlitz "Direct Method
 2. **Old screens stay** as a **Practice** area. All content (letters, decks, sentences, pairs,
    conversation) stays reachable for review at any time. The lesson path becomes the main
    route.
-3. **Hard mastery gates:** the next lesson unlocks only after the current one is passed. A
-   failed mastery test leads to remedial lessons built from the items you missed.
+3. **Mastery gates:** hard at first. On 2026-10-20 the user switched to **soft gates**: lesson 1's first
+   exercise has 3 items, so one miss (67%) failed the round, and the user would rarely get through. Now
+   every finished round moves on, and a round below 90% offers "Go again" instead of forcing it. Taking a
+   unit's mastery test unlocks the next unit, pass or fail. The fix-up lesson and the retake are optional.
+   Misses still drive review.
 4. **Lesson length:** aim for about 20 minutes, but content decides.
 
 ### Tracks
@@ -357,9 +360,10 @@ and a dialogue.
       - 90% to pass
       - each attempt gets a fixed sample, and a retest always includes the items missed last time
 
-      Lesson 5n+1 unlocks only once unit n's test is passed (`course_tests` table).
+      Lesson 5n+1 unlocks once unit n's test has been taken (soft gate since 2026-10-20; `course_tests` table).
     - **Remediation:** a failed mastery test gives a **fix-up lesson** built from the missed items: spoken
-      ones are taught again (model, lead, test), and the rest are redone. After it, the test is retaken.
+      ones are taught again (model, lead, test), and the rest are redone. After it, the test can be retaken.
+      Both are optional since the soft gates of 2026-10-20.
     - **Placement:** any unit's test can be taken once the unit before it is passed, so a learner can
       **test out**.
       - **Pass:** the unit's lessons are marked passed (`placed`), and the next test can be tried straight

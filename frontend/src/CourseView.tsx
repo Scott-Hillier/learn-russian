@@ -170,12 +170,14 @@ export default function CourseView({
                     {test.status === "passed"
                       ? `Passed${test.best !== null ? ` (${Math.round(test.best * 100)}%)` : ""}`
                       : test.status === "remedial"
-                        ? "Fix-up lesson, then the test again"
+                        ? "Optional: fix-up lesson, then retake"
                         : test.status === "skip"
                           ? "Already know these? Test out"
                           : test.status === "available"
-                            ? "Unit done: take the test"
-                            : "Pass the unit first"}
+                            ? test.taken
+                              ? "Retake the test any time"
+                              : "Unit done: take the test"
+                            : "Finish the unit first"}
                   </small>
                 </button>
               )}
@@ -236,9 +238,9 @@ export default function CourseView({
             <div className="card">
               🔒{" "}
               {lessonSummary.id > 1 && (lessonSummary.id - 1) % (overview?.unit_size ?? 5) === 0
-                ? `Pass the test for lessons ${lessonSummary.id - (overview?.unit_size ?? 5)}–${lessonSummary.id - 1} to unlock this one.`
-                : `Pass lesson ${lessonSummary.id - 1} to unlock this one.`}{" "}
-              Lessons build on each other, so each one starts once the last is solid.
+                ? `Take the test for lessons ${lessonSummary.id - (overview?.unit_size ?? 5)}–${lessonSummary.id - 1} to unlock this one.`
+                : `Finish lesson ${lessonSummary.id - 1} to unlock this one.`}{" "}
+              Lessons build on each other, so they open in order.
             </div>
           ) : (
             lesson && <ExerciseList lesson={lesson} done={done} passAccuracy={overview?.pass_accuracy ?? 0.9} />
@@ -253,10 +255,10 @@ export default function CourseView({
             </h2>
             <p>
               {testSummary.status === "remedial"
-                ? "Go over what the test showed wasn't solid yet. Then take the test again."
+                ? "Optional: go over what the test showed wasn't solid yet, then take the test again. The next unit is already open."
                 : testSummary.status === "skip"
                   ? `Already know lessons ${testSummary.first}–${testSummary.last}? Pass this test (${Math.round((overview?.test_pass_accuracy ?? 0.9) * 100)}%) to skip them. If you don't, nothing is lost: you just start the lessons.`
-                  : `One try at a sample of everything in lessons ${testSummary.first}–${testSummary.last}, with no help. ${Math.round((overview?.test_pass_accuracy ?? 0.9) * 100)}% unlocks the next unit.`}
+                  : `One try at a sample of everything in lessons ${testSummary.first}–${testSummary.last}, with no help. Taking it unlocks the next unit; ${Math.round((overview?.test_pass_accuracy ?? 0.9) * 100)}% passes it.`}
             </p>
             {testSummary.attempts > 0 && (
               <p className="muted">
@@ -326,8 +328,8 @@ function ExerciseList({ lesson, done, passAccuracy }: { lesson: CourseLesson; do
         ))}
       </ol>
       <p className="muted small-print">
-        Each exercise needs {Math.round(passAccuracy * 100)}% right first time. If it isn't there yet, you get the
-        same exercise again in a new order until it is.
+        {Math.round(passAccuracy * 100)}% right first time passes an exercise. Below that you can go again or move on:
+        whatever you miss comes back in review.
       </p>
     </>
   );

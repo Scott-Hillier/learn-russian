@@ -26,8 +26,8 @@ import { Letters } from "./WordFeedback";
  * - say / dialogue: each item is tested once (dialogue partner turns are just played).
  * - choose: hear it, pick the picture.
  * A wrong answer gets the correction procedure: model the answer, repeat it, back up two items, and test the
- * missed item again a few steps later. A round passes at the lesson's pass accuracy on first tries; otherwise
- * the exercise is firmed up with another (shuffled) round.
+ * missed item again a few steps later. A round passes at the lesson's pass accuracy on first tries. The gate
+ * is soft: every finished round moves on, and below the mark the learner may go again (a shuffled round).
  *
  * A mastery test (lesson.kind "test") runs every exercise straight through: one try per item, no modelling and
  * no corrections, and one result for the whole test at the end. A fix-up lesson ("remedial") runs like a lesson.
@@ -215,7 +215,6 @@ export default function LessonPlayer({ lesson, onExit, onDone }: Props) {
   const continueAfterSummary = () => {
     if (testResult) return onDone(testResult.next_test ? { kind: "test", id: testResult.next_test } : testResult.next);
     if (!summary) return;
-    if (!summary.passed) return startExercise(exIndex, round + 1);
     if (summary.lesson_passed && exIndex + 1 >= lesson.exercises.length)
       return onDone(summary.next ?? (summary.next_lesson ? { kind: "lesson", id: summary.next_lesson } : null));
     startExercise(exIndex + 1, 0);
@@ -523,7 +522,7 @@ export default function LessonPlayer({ lesson, onExit, onDone }: Props) {
             </h2>
             <p>
               {percent}% right ({testResult.total - testResult.missed} of {testResult.total}
-              {passed ? "" : `, ${PASS_PERCENT}% needed`}).
+              {passed ? "" : `, ${PASS_PERCENT}% to pass`}).
             </p>
             <p>
               {passed
@@ -533,7 +532,7 @@ export default function LessonPlayer({ lesson, onExit, onDone }: Props) {
                     ? `Lesson ${testResult.next.id} is unlocked.`
                     : "That's every lesson so far."
                 : testResult.remedial
-                  ? `${testResult.missed} item${testResult.missed === 1 ? "" : "s"} need more work. A short fix-up lesson goes over them, then you take the test again.`
+                  ? `The ${testResult.missed} item${testResult.missed === 1 ? "" : "s"} you missed will come back in review. ${testResult.next?.kind === "lesson" ? `Lesson ${testResult.next.id} is unlocked. ` : ""}A short fix-up lesson on them is there if you want it, and then you can retake the test.`
                   : testResult.next?.kind === "lesson"
                     ? `Start with lesson ${testResult.next.id}: those lessons will fill the gaps.`
                     : "Keep going with the lessons."}
@@ -549,12 +548,15 @@ export default function LessonPlayer({ lesson, onExit, onDone }: Props) {
                   Start lesson {testResult.next.id}
                 </button>
               )}
+              {testResult.remedial && (
+                <button onClick={() => onDone({ kind: "remedial", id: lesson.id })}>
+                  Fix-up lesson
+                </button>
+              )}
               <button className="primary" onClick={continueAfterSummary}>
                 {testResult.next_test
                   ? "Next test →"
-                  : testResult.remedial
-                    ? "Start the fix-up →"
-                    : testResult.next?.kind === "lesson"
+                  : testResult.next?.kind === "lesson"
                       ? `Lesson ${testResult.next.id} →`
                       : "Finish"}
               </button>
@@ -576,29 +578,29 @@ export default function LessonPlayer({ lesson, onExit, onDone }: Props) {
             <div
               className={`summary-mark ${summary.passed ? "good" : "close"}`}
             >
-              {summary.passed ? "✓" : "↻"}
+              {summary.passed ? "✓" : "→"}
             </div>
             <h2>
               {lessonDone
                 ? lesson.kind === "remedial"
                   ? "Fix-up done!"
-                  : "Lesson passed!"
+                  : "Lesson done!"
                 : summary.passed
                   ? `${ex.title}: passed`
-                  : "Let's firm that up"}
+                  : `${ex.title}: done`}
             </h2>
             <p>
               {Math.round(summary.accuracy * 100)}% right first time
               {summary.passed
                 ? ""
-                : ` (${PASS_PERCENT}% needed). Same exercise again, in a new order.`}
+                : ` (${PASS_PERCENT}% to pass). The ones you missed will come back in review, or you can go again now.`}
             </p>
             {lessonDone && (
               <p>
                 {lesson.kind === "remedial"
                   ? "Now take the test again."
                   : summary.next?.kind === "test"
-                    ? "That's the unit done. Next comes its test: pass it to unlock the next unit."
+                    ? "That's the unit done. Next comes its test: one try at everything in the unit, then the next unit opens."
                     : summary.next_lesson
                       ? "The next lesson is unlocked."
                       : "That's every lesson so far."}
@@ -609,17 +611,20 @@ export default function LessonPlayer({ lesson, onExit, onDone }: Props) {
         <ActionBar
           left={<button onClick={onExit}>← Lessons</button>}
           center={
-            <button className="primary" onClick={continueAfterSummary}>
-              {lessonDone
-                ? summary.next?.kind === "test"
-                  ? "Take the test →"
-                  : summary.next_lesson
-                    ? "Next lesson →"
-                    : "Finish"
-                : summary.passed
-                  ? "Next exercise →"
-                  : "Try again →"}
-            </button>
+            <>
+              {!summary.passed && (
+                <button onClick={() => startExercise(exIndex, round + 1)}>Go again</button>
+              )}
+              <button className="primary" onClick={continueAfterSummary}>
+                {lessonDone
+                  ? summary.next?.kind === "test"
+                    ? "Take the test →"
+                    : summary.next_lesson
+                      ? "Next lesson →"
+                      : "Finish"
+                  : "Next exercise →"}
+              </button>
+            </>
           }
           hint="Enter: continue"
         />

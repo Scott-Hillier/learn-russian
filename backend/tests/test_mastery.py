@@ -63,14 +63,17 @@ def test_finishing_a_unit_needs_its_mastery_test(course):
     assert course.overview()["tests"][0]["status"] == "passed"
 
 
-def test_a_failed_mastery_test_gives_a_fix_up_lesson_then_a_retest(course):
+def test_a_failed_mastery_test_opens_the_next_unit_and_offers_a_fix_up(course):
     _pass_lessons(course, UNIT_SIZE)
     test = course.test(1)
     wrong = {test["exercises"][0]["items"][0]["key"], test["exercises"][0]["items"][1]["key"],
              test["exercises"][1]["items"][0]["key"]}
     out = course.finish_test(1, _answers(test, wrong_keys=wrong))
     assert not out["passed"] and out["remedial"] and out["missed"] == 3
-    assert course.overview()["next"] == {"kind": "remedial", "id": 1}
+    overview = course.overview()
+    assert overview["next"] == {"kind": "lesson", "id": UNIT_SIZE + 1}  # soft gate
+    assert overview["tests"][0]["status"] == "remedial" and overview["tests"][0]["taken"]
+    assert course.lesson(UNIT_SIZE + 1)["status"] == "available"
     with pytest.raises(NotAvailable):
         course.test(1)
     fix = course.remedial(1)
@@ -78,6 +81,7 @@ def test_a_failed_mastery_test_gives_a_fix_up_lesson_then_a_retest(course):
     for i, ex in enumerate(fix["exercises"]):
         r = course.finish_remedial_round(1, i, [{"key": "k", "step": "first", "correct": True}])
     assert r["lesson_passed"] and r["next"] == {"kind": "test", "id": 1}
+    assert course.overview()["next"] == {"kind": "lesson", "id": UNIT_SIZE + 1}  # the retake is optional
     retest = course.test(1)
     assert retest["attempt"] == 2
     assert wrong <= {i["key"] for ex in retest["exercises"] for i in ex["items"]}

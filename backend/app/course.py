@@ -1,4 +1,4 @@
-"""The Direct Instruction course: scripted lessons, hard mastery gates, mastery tests and per-item results.
+"""The Direct Instruction course: scripted lessons, soft mastery gates, mastery tests and per-item results.
 
 Lessons live in data/course/NNN.json. Each lesson is a list of short exercises from different tracks.
 Things filled in when lessons load, so lesson files stay short:
@@ -8,13 +8,17 @@ Things filled in when lessons load, so lesson files stay short:
 - review: an exercise with "review": N gets N spoken items from earlier lessons, spaced 1, 2, 3, 5, 8…
   lessons back (cumulative review). When a learner opens a lesson, items they have missed recently take
   up to half of that block (see Course.review_items).
-An exercise is passed when one round of it reaches PASS_ACCURACY on first tries (corrections and
-re-tests inside the round don't count as first tries). A lesson is passed when all of its exercises
-are, and only then does the next lesson unlock.
+The gates are soft (the learner's choice, 2026-10-20): with only a few items per exercise, a 90% gate
+meant one miss failed the round. Finishing a round always moves the lesson on to the next exercise.
+A round that reaches PASS_ACCURACY on first tries (corrections and re-tests inside the round don't
+count as first tries) is "passed"; below that, the learner may go again, and the items missed come back
+in review either way. A lesson is passed (done) when every exercise has had a round, and only then does
+the next lesson unlock.
 
 Every UNIT_SIZE lessons make a unit, and a unit ends with a mastery test: one try at a sample of the
-unit's items, with no help. Passing it unlocks the next unit. Failing it gives a remedial lesson built
-from the items missed, and then the test again (with a new sample that includes those items). A unit's
+unit's items, with no help. Taking it unlocks the next unit, pass or fail. Failing it offers a remedial
+lesson built from the items missed, and then the test again (with a new sample that includes those
+items), but neither is required: the items missed come back in review anyway. A unit's
 test can also be taken before its lessons, to test out of them (placement): passing marks the unit's
 lessons as passed, and failing just means starting the unit's lessons.
 """
@@ -378,11 +382,11 @@ class Course:
         return out
 
     @staticmethod
-    def _test_status(unit: int, attempts: list[dict], lesson_status: dict[int, str], prev_passed: bool) -> str:
+    def _test_status(unit: int, attempts: list[dict], lesson_status: dict[int, str], prev_done: bool) -> str:
         """passed | remedial (fix-up lesson first) | available (lessons done: test due) | skip (test out) | locked"""
         if any(a["passed"] for a in attempts):
             return "passed"
-        if not prev_passed:
+        if not prev_done:
             return "locked"
         last = attempts[-1] if attempts else None
         if (last and last["kind"] == "mastery" and last["remedial_passed_at"] is None
@@ -397,7 +401,7 @@ class Course:
         tests = self._tests()
         unit_ids = set(units())
         out, statuses, unlocked = [], {}, True
-        test_out, prev_test_passed = [], True
+        test_out, prev_test_done = [], True
         for lesson in lessons():
             p = progress.get(lesson["id"], {})
             passed = p.get("passed_at") is not None
@@ -411,18 +415,21 @@ class Course:
             unit = unit_of(lesson["id"])
             if lesson["id"] % UNIT_SIZE == 0 and unit in unit_ids:
                 attempts = tests.get(unit, [])
-                t_status = self._test_status(unit, attempts, statuses, prev_test_passed)
+                t_status = self._test_status(unit, attempts, statuses, prev_test_done)
                 first = unit_lessons(unit)[0]["id"]
+                taken = any(a["kind"] == "mastery" for a in attempts)
                 test_out.append({"unit": unit, "first": first, "last": lesson["id"], "status": t_status,
-                                 "attempts": len(attempts),
+                                 "attempts": len(attempts), "taken": taken,
                                  "best": max((a["accuracy"] for a in attempts), default=None),
                                  "last_accuracy": attempts[-1]["accuracy"] if attempts else None})
-                prev_test_passed = t_status == "passed"
-                unlocked = unlocked and prev_test_passed
+                # soft gate: a mastery test taken, passed or not, opens the next unit
+                prev_test_done = t_status == "passed" or taken
+                unlocked = unlocked and prev_test_done
         current = next((l["id"] for l in out if l["status"] == "available"), None)
-        due = next((t for t in test_out if t["status"] in ("available", "remedial")), None)
+        # a test not taken yet comes next; after a failed one, the fix-up and retake are optional
+        due = next((t for t in test_out if t["status"] == "available" and not t["taken"]), None)
         if due and (current is None or current > due["last"]):
-            nxt = {"kind": "remedial" if due["status"] == "remedial" else "test", "id": due["unit"]}
+            nxt = {"kind": "test", "id": due["unit"]}
         else:
             nxt = {"kind": "lesson", "id": current} if current else None
         started = bool(progress) or bool(tests)
@@ -571,7 +578,7 @@ class Course:
             if row is None:
                 conn.execute("INSERT INTO course_progress (lesson_id, exercise, started_at) VALUES (?, 0, ?)",
                              (lesson_id, now))
-            if passed and exercise >= current:
+            if exercise >= current:  # soft gate: any finished round moves on
                 current = exercise + 1
                 done = current >= len(lesson["exercises"])
                 conn.execute("UPDATE course_progress SET exercise = ?, passed_at = COALESCE(passed_at, ?) "
@@ -686,7 +693,7 @@ class Course:
         self._rate_cards(results)
         with connect(self.path) as conn:
             _save_results(conn, 0, unit, results, now)
-            if passed and exercise >= current:
+            if exercise >= current:
                 current = exercise + 1
                 done = current >= len(lesson["exercises"])
                 conn.execute("UPDATE course_tests SET remedial_exercise = ?, remedial_passed_at = ? WHERE id = ?",

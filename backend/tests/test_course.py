@@ -1,4 +1,4 @@
-"""Direct Instruction course: lesson files, hard gates and round scoring (no speech models needed)."""
+"""Direct Instruction course: lesson files, soft gates and round scoring (no speech models needed)."""
 import pytest
 from fastapi.testclient import TestClient
 
@@ -52,18 +52,28 @@ def test_only_the_first_lesson_starts_unlocked(course):
         course.finish_round(2, 0, [])
 
 
-def test_round_needs_ninety_percent_of_first_tries(course):
+def test_round_passes_at_ninety_percent_of_first_tries_but_moves_on_either_way(course):
     first = lessons()[0]
     n = len(first["exercises"][0]["items"])
     misses = [{"key": "a", "step": "first", "correct": False}] + \
              [{"key": f"k{i}", "step": "first", "correct": True} for i in range(n - 1)]
     out = course.finish_round(1, 0, misses + [{"key": "a", "step": "retest", "correct": True}])
-    assert not out["passed"] and out["exercise"] == 0
+    assert not out["passed"] and out["exercise"] == 1  # soft gate
+    # going again over an exercise already done doesn't move the lesson back
+    out = course.finish_round(1, 0, misses)
+    assert out["exercise"] == 1
     # practice and re-test steps don't count either way
     ok = [{"key": f"k{i}", "step": "first", "correct": True} for i in range(n)] + \
          [{"key": "x", "step": "practice", "correct": False}]
-    out = course.finish_round(1, 0, ok)
-    assert out["passed"] and out["exercise"] == 1 and not out["lesson_passed"]
+    out = course.finish_round(1, 1, ok)
+    assert out["passed"] and out["exercise"] == 2 and not out["lesson_passed"]
+
+
+def test_a_lesson_with_failed_rounds_still_unlocks_the_next(course):
+    for i, _ in enumerate(lessons()[0]["exercises"]):
+        out = course.finish_round(1, i, [{"key": "a", "step": "first", "correct": False}])
+    assert not out["passed"] and out["lesson_passed"] and out["next_lesson"] == 2
+    assert course.lesson(2)["status"] == "available"
 
 
 def test_overridden_answers_count_as_right(course):

@@ -242,6 +242,7 @@ export interface CourseTestSummary {
   last: number;
   status: TestStatus;
   attempts: number;
+  taken: boolean; // a mastery test was taken: the next unit is open, pass or fail
   best: number | null;
   last_accuracy: number | null;
 }
@@ -326,7 +327,7 @@ export interface TestResult {
   kind: "mastery" | "placement";
   missed: number;
   total: number;
-  remedial: boolean; // a fix-up lesson comes before the retest
+  remedial: boolean; // an optional fix-up lesson is offered before a retake
   next: CourseNext | null;
   next_test: number | null; // placement: the next unit's test can be tried straight away
 }

@@ -79,15 +79,11 @@ export default function HomeView({ layout, onStart }: { layout: LayoutProps; onS
             </>
           ) : nextTest ? (
             <>
-              <span className="muted">{next?.kind === "remedial" ? "Before the retest" : "Unit finished"}</span>
+              <span className="muted">Unit finished</span>
               <h3>
-                {next?.kind === "remedial" ? "Fix-up" : "Test"}: lessons {nextTest.first}–{nextTest.last}
+                Test: lessons {nextTest.first}–{nextTest.last}
               </h3>
-              <p>
-                {next?.kind === "remedial"
-                  ? "A short lesson on what the test showed wasn't solid yet. Then take the test again."
-                  : "One try at a sample of the unit, with no help. Pass it to unlock the next unit."}
-              </p>
+              <p>One try at a sample of the unit, with no help. Taking it unlocks the next unit.</p>
             </>
           ) : (
             <>
@@ -235,9 +231,7 @@ export default function HomeView({ layout, onStart }: { layout: LayoutProps; onS
                 ? nextLesson && nextLesson.exercise > 0
                   ? `Continue lesson ${next.id} →`
                   : `Start lesson ${next.id} →`
-                : next.kind === "remedial"
-                  ? "Start the fix-up →"
-                  : "Take the test →"}
+                : "Take the test →"}
             </button>
           }
           hint="Enter: start"

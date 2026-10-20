@@ -13,7 +13,8 @@ decisions, the 60-lesson scope and sequence, and implementation notes for each p
 - **Method:** on 2026-10-18 the user chose **Direct Instruction** (Engelmann), and decided:
   - Emoji and picture cues where they make meaning clear.
   - Keep every old screen as a **Practice** area: all content must stay reviewable at any time.
-  - **Hard mastery gates.**
+  - Mastery gates: **soft since 2026-10-20** (the user's change; hard gates failed a round for one miss
+    in 3). Every finished round moves on, a mastery test only has to be taken, and misses drive review.
   - Lessons of about 20 minutes, but content decides the length.
 - **Display rules:** no transliteration on study screens; English meanings are fine. Letter cards
   are the one exception.
@@ -77,7 +78,7 @@ All phases in PLAN.md are built. In order of value:
 | Area | Functions |
 |---|---|
 | Loading | Loads and validates lessons. Fills in distractors and spaced `"review": N` items, and gives every item its `src` ([lesson, exercise, item]). |
-| Lessons | Gates, rounds and the 90% pass rule. |
+| Lessons | Soft gates, rounds, and the 90% mark a round needs to count as passed. |
 | Units and tests | `build_test`, `build_remedial`, `Course.test` / `finish_test` / `remedial`, and placement |
 | Review | `Course.review_items`: recent misses first, then flashcards that are due, then spaced items |
 | Word links | `lesson_for`, plus starting the flashcard schedule of a passed lesson's words |
