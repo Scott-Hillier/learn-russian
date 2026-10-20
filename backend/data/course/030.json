@@ -28,9 +28,9 @@
     {
      "audio": "У неё есть соб+ака.",
      "options": [
-      "👧 ✅🐕",
-      "👦 ✅🐕",
-      "👧 🚫🐕"
+      "👧 ✅🐶",
+      "👦 ✅🐶",
+      "👧 🚫🐶"
      ],
      "correct": 0
     },
@@ -92,7 +92,7 @@
     },
     {
      "prompt": "У мен+я есть ___.",
-     "cue": "✅🐈",
+     "cue": "✅🐱",
      "english": "I have a cat.",
      "options": [
       "к+ошка",
@@ -104,7 +104,7 @@
     },
     {
      "prompt": "Я в+ижу ___.",
-     "cue": "👀 🐈",
+     "cue": "👀 🐱",
      "english": "I see a cat.",
      "options": [
       "к+ошка",
@@ -116,7 +116,7 @@
     },
     {
      "prompt": "+Это ___.",
-     "cue": "🐈🐈",
+     "cue": "🐱🐱",
      "english": "These are cats.",
      "options": [
       "к+ошка",
@@ -172,7 +172,7 @@
     },
     {
      "answer": "Нет, у мен+я нет к+ошки.",
-     "cue": "🚫🐈",
+     "cue": "🚫🐱",
      "english": "No, I don't have a cat.",
      "ask": "У теб+я есть к+ошка?",
      "distractors": [
@@ -246,12 +246,12 @@
     {
      "speaker": "partner",
      "line": "У теб+я есть соб+ака?",
-     "cue": "🐕❓",
+     "cue": "🐶❓",
      "english": "Do you have a dog?"
     },
     {
      "answer": "Нет, у мен+я нет соб+аки.",
-     "cue": "🚫🐕",
+     "cue": "🚫🐶",
      "english": "No, I don't have a dog.",
      "distractors": [
       "Да, у мен+я есть соб+ака."
@@ -267,32 +267,32 @@
    "items": [
     {
      "answer": "Сто.",
-     "cue": "1️⃣0️⃣0️⃣",
+     "cue": "100",
      "english": "a hundred"
     },
     {
      "answer": "Шестьдес+ят в+осемь.",
-     "cue": "6️⃣8️⃣",
+     "cue": "68",
      "english": "sixty-eight"
     },
     {
      "answer": "В+осемьдесят семь.",
-     "cue": "8️⃣7️⃣",
+     "cue": "87",
      "english": "eighty-seven"
     },
     {
      "answer": "Девян+осто три.",
-     "cue": "9️⃣3️⃣",
+     "cue": "93",
      "english": "ninety-three"
     },
     {
      "answer": "С+орок шесть.",
-     "cue": "4️⃣6️⃣",
+     "cue": "46",
      "english": "forty-six"
     },
     {
      "answer": "Дв+адцать од+ин.",
-     "cue": "2️⃣1️⃣",
+     "cue": "21",
      "english": "twenty-one"
     }
    ]

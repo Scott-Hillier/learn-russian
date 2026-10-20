@@ -52,7 +52,7 @@
     },
     {
      "answer": "+Это к+ошка.",
-     "cue": "🐈",
+     "cue": "🐱",
      "english": "This is a cat.",
      "ask": "Кто +это?"
     }
@@ -67,7 +67,7 @@
     {
      "audio": "Кто +это?",
      "options": [
-      "👤🐈 a person or animal",
+      "👤🐱 a person or animal",
       "📦 a thing"
      ],
      "correct": 0
@@ -75,7 +75,7 @@
     {
      "audio": "Что +это?",
      "options": [
-      "👤🐈 a person or animal",
+      "👤🐱 a person or animal",
       "📦 a thing"
      ],
      "correct": 1
@@ -83,7 +83,7 @@
     {
      "audio": "Что +это?",
      "options": [
-      "👤🐈 a person or animal",
+      "👤🐱 a person or animal",
       "📦 a thing"
      ],
      "correct": 1
@@ -91,7 +91,7 @@
     {
      "audio": "Кто +это?",
      "options": [
-      "👤🐈 a person or animal",
+      "👤🐱 a person or animal",
       "📦 a thing"
      ],
      "correct": 0
@@ -99,7 +99,7 @@
     {
      "audio": "Кто +это?",
      "options": [
-      "👤🐈 a person or animal",
+      "👤🐱 a person or animal",
       "📦 a thing"
      ],
      "correct": 0
@@ -107,7 +107,7 @@
     {
      "audio": "Что +это?",
      "options": [
-      "👤🐈 a person or animal",
+      "👤🐱 a person or animal",
       "📦 a thing"
      ],
      "correct": 1
@@ -140,7 +140,7 @@
     },
     {
      "answer": "+Это соб+ака.",
-     "cue": "🐕",
+     "cue": "🐶",
      "english": "This is a dog.",
      "ask": "Кто +это?"
     },
@@ -175,7 +175,7 @@
    "items": [
     {
      "answer": "Три.",
-     "cue": "🐈🐈🐈",
+     "cue": "🐱🐱🐱",
      "english": "three",
      "ask": "Ск+олько?"
     },
@@ -187,7 +187,7 @@
     },
     {
      "answer": "Пять.",
-     "cue": "🐕🐕🐕🐕🐕",
+     "cue": "🐶🐶🐶🐶🐶",
      "english": "five",
      "ask": "Ск+олько?"
     },

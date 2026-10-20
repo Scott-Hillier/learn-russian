@@ -23,7 +23,13 @@ exercise, the things you've missed lately, and your test results. Already know s
 and future tense, shopping, cafés and asking the way. Do one lesson at a time, in order:
 - **Mixed exercises:** each lesson has short exercises from different tracks: new words, sentence patterns,
   listening, numbers and a mini dialogue. Every lesson also reviews earlier ones.
-- **How new items are taught:** you hear it, say it after the voice, then say it on your own from a picture.
+- **How new items are taught:** you hear it, say it after the voice, then say it on your own from the English
+  and a picture.
+- **What's on the screen:** the Russian is always the largest thing, then the English, then the picture. The
+  Russian is hidden while it's the answer you're being asked for. A label at the top says what's happening
+  (listen and repeat, your turn, right, not quite). If an answer is marked wrong although the letters are
+  green, it says why (usually extra or missing words).
+- **Saying «Это …»:** for a single word like «соба́ка», «Это соба́ка.» counts as right too.
   It comes back again a few items later.
 - **When you get one wrong:** you hear the right answer and say it after the voice. The two items before it
   are asked again, and the missed one comes back a few items later.

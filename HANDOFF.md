@@ -17,7 +17,11 @@ decisions, the 60-lesson scope and sequence, and implementation notes for each p
     in 3). Every finished round moves on, a mastery test only has to be taken, and misses drive review.
   - Lessons of about 20 minutes, but content decides the length.
 - **Display rules:** no transliteration on study screens; English meanings are fine. Letter cards
-  are the one exception.
+  are the one exception. On lesson screens the order of importance is **Russian → English → picture**
+  (the user's rule, 2026-10-20). Russian is the largest, and it is hidden only while it's the answer
+  being asked for. The user works on a desktop only, so the lesson player is laid out wide
+  (`LessonPlayer.tsx` `StepView`). Numbers have no emoji, just digits. Pictures must be easy to tell
+  apart: 🐱/🐶, not 🐈/🐕.
 - **Answer checking:** the user's own recordings can't define what a right answer sounds like, because
   they aren't a native speaker (their words, 2026-10-20). The checker is tuned on simulated learner
   speech instead (`backend/scripts/learner_benchmark.py`). Don't ask the user for reference recordings.
@@ -64,7 +68,7 @@ All phases in PLAN.md are built. In order of value:
 | `backend/data/course/confusables.json` | Groups of words that must be introduced N lessons apart |
 | `backend/app/course.py` | See the next table. |
 | `backend/app/curriculum.py` | DI rule checker, run by `tests/test_curriculum.py`. Words are compared by lemma (pymorphy3, with fixes for participles and большая). `introductions()` maps each lemma to its first lesson. |
-| `backend/app/speech/answers.py` | Checks a spoken answer: forced choice on likelihood in learner mode (strict when learner mode makes a distractor sound the same), the fit gate (`MIN_FIT`), the letter score gate (`MIN_SCORE`), and `again` for borderline cases. |
+| `backend/app/speech/answers.py` | Returns `reason` on a miss (`other` / `fit` / `score`), so the player can explain green letters with a red verdict. Checks a spoken answer: forced choice on likelihood in learner mode (strict when learner mode makes a distractor sound the same), the fit gate (`MIN_FIT`), the letter score gate (`MIN_SCORE`), and `again` for borderline cases. |
 | `backend/app/speech/pronunciation.py` | `log_probs`, `likelihood(..., learner=)`, `free_likelihood`, `greedy_text` and `score(..., logp=, learner=)`: one model pass, many scorings. `LEARNER_VARIANTS` and `learner_form` live here. |
 | `backend/app/routes_course.py` | Endpoints:<br>• `/api/course`, `/{id}`, `/{id}/rounds`, `/{id}/restart`<br>• `/{src lesson}/check` (form fields `exercise`, `item`, optional `test`)<br>• `/stats`<br>• `/tests/{unit}`, `/tests/{unit}/finish`, `/tests/{unit}/remedial`, `/tests/{unit}/remedial/rounds` |
 | `backend/app/chat.py` | Conversation partner. Level `lessons` passes `Course.taught()` into the prompt, flags `unknown_words`, and retries replies that stray. |
@@ -73,6 +77,11 @@ All phases in PLAN.md are built. In order of value:
 | `frontend/src/CourseView.tsx` | Lesson and test list, the placement offer, and the fix-up lesson. Opens and starts what Today asks for (`start` prop). |
 | `backend/scripts/answer_check_experiment.py` | The Phase 8 experiment, plus `--lessons [--from N]`: a native-voice check of every course item |
 | `backend/scripts/learner_benchmark.py` | `collect`: simulated learner speech for every course item. `analyse`: replays decision rules. |
+
+Since 2026-10-20, a one-noun answer («соба́ка») also accepts «Это соба́ка.», with framed distractors so
+«Это ко́шка.» can't pass (`course._this_is`). Picture-only listening options get English `labels` from the
+vocabulary items that use the same picture (`_picture_words`). Only lessons 1–3 were re-simulated after the
+framed distractors were added. Run `answer_check_experiment --lessons` over the rest when there's time.
 
 **What `course.py` does:**
 

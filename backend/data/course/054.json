@@ -243,7 +243,7 @@
     },
     {
      "answer": "У мен+я м+аленькая к+ошка.",
-     "cue": "🙋 🔽 🐈",
+     "cue": "🙋 🔽 🐱",
      "english": "I have a small cat.",
      "distractors": [
       "У мен+я больш+ая к+ошка."
@@ -259,32 +259,32 @@
    "items": [
     {
      "answer": "Сто.",
-     "cue": "1️⃣0️⃣0️⃣",
+     "cue": "100",
      "english": "a hundred"
     },
     {
      "answer": "Дв+адцать чет+ыре.",
-     "cue": "2️⃣4️⃣",
+     "cue": "24",
      "english": "twenty-four"
     },
     {
      "answer": "Шестьдес+ят семь.",
-     "cue": "6️⃣7️⃣",
+     "cue": "67",
      "english": "sixty-seven"
     },
     {
      "answer": "В+осемьдесят од+ин.",
-     "cue": "8️⃣1️⃣",
+     "cue": "81",
      "english": "eighty-one"
     },
     {
      "answer": "Тр+идцать д+евять.",
-     "cue": "3️⃣9️⃣",
+     "cue": "39",
      "english": "thirty-nine"
     },
     {
      "answer": "Пятьдес+ят шесть.",
-     "cue": "5️⃣6️⃣",
+     "cue": "56",
      "english": "fifty-six"
     }
    ]

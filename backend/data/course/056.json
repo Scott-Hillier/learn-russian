@@ -36,7 +36,7 @@
     },
     {
      "answer": "Он+а л+юбит соб+ак.",
-     "cue": "👧 ❤️❤️ 🐕🐕",
+     "cue": "👧 ❤️❤️ 🐶🐶",
      "english": "She loves dogs."
     }
    ]
@@ -135,8 +135,8 @@
     {
      "audio": "Он+а л+юбит к+ошек.",
      "options": [
-      "🐈🐈",
-      "🐕🐕",
+      "🐱🐱",
+      "🐶🐶",
       "🐟🐟"
      ],
      "correct": 0
@@ -221,7 +221,7 @@
     },
     {
      "answer": "Он л+юбит соб+ак.",
-     "cue": "👦 ❤️❤️ 🐕🐕",
+     "cue": "👦 ❤️❤️ 🐶🐶",
      "english": "He loves dogs.",
      "distractors": [
       "Он+а л+юбит соб+ак."
@@ -253,32 +253,32 @@
    "items": [
     {
      "answer": "Сто.",
-     "cue": "1️⃣0️⃣0️⃣",
+     "cue": "100",
      "english": "a hundred"
     },
     {
      "answer": "Од+иннадцать.",
-     "cue": "1️⃣1️⃣",
+     "cue": "11",
      "english": "eleven"
     },
     {
      "answer": "Тр+идцать пять.",
-     "cue": "3️⃣5️⃣",
+     "cue": "35",
      "english": "thirty-five"
     },
     {
      "answer": "Шестьдес+ят в+осемь.",
-     "cue": "6️⃣8️⃣",
+     "cue": "68",
      "english": "sixty-eight"
     },
     {
      "answer": "С+емьдесят чет+ыре.",
-     "cue": "7️⃣4️⃣",
+     "cue": "74",
      "english": "seventy-four"
     },
     {
      "answer": "Девян+осто д+евять.",
-     "cue": "9️⃣9️⃣",
+     "cue": "99",
      "english": "ninety-nine"
     }
    ]

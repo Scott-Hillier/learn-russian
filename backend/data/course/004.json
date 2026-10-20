@@ -140,17 +140,17 @@
    "items": [
     {
      "answer": "в+осемь",
-     "cue": "8️⃣",
+     "cue": "8",
      "english": "eight"
     },
     {
      "answer": "д+евять",
-     "cue": "9️⃣",
+     "cue": "9",
      "english": "nine"
     },
     {
      "answer": "д+есять",
-     "cue": "🔟",
+     "cue": "10",
      "english": "ten"
     }
    ]
@@ -163,32 +163,32 @@
    "items": [
     {
      "answer": "д+евять",
-     "cue": "9️⃣",
+     "cue": "9",
      "english": "nine"
     },
     {
      "answer": "три",
-     "cue": "3️⃣",
+     "cue": "3",
      "english": "three"
     },
     {
      "answer": "д+есять",
-     "cue": "🔟",
+     "cue": "10",
      "english": "ten"
     },
     {
      "answer": "семь",
-     "cue": "7️⃣",
+     "cue": "7",
      "english": "seven"
     },
     {
      "answer": "в+осемь",
-     "cue": "8️⃣",
+     "cue": "8",
      "english": "eight"
     },
     {
      "answer": "шесть",
-     "cue": "6️⃣",
+     "cue": "6",
      "english": "six"
     }
    ]

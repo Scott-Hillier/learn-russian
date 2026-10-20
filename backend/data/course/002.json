@@ -42,16 +42,16 @@
     {
      "audio": "+Это к+ошка.",
      "options": [
-      "✅ 🐈 It is a cat",
-      "❌ 🐈 It's not a cat"
+      "✅ 🐱 It is a cat",
+      "❌ 🐱 It's not a cat"
      ],
      "correct": 0
     },
     {
      "audio": "+Это не к+ошка.",
      "options": [
-      "✅ 🐈 It is a cat",
-      "❌ 🐈 It's not a cat"
+      "✅ 🐱 It is a cat",
+      "❌ 🐱 It's not a cat"
      ],
      "correct": 1
     },
@@ -97,13 +97,13 @@
    "items": [
     {
      "answer": "Да, +это к+ошка.",
-     "cue": "🐈",
+     "cue": "🐱",
      "english": "Yes, it's a cat.",
      "ask": "+Это к+ошка?"
     },
     {
      "answer": "Нет, +это не к+ошка, +это соб+ака.",
-     "cue": "🐕",
+     "cue": "🐶",
      "english": "No, it's not a cat, it's a dog.",
      "ask": "+Это к+ошка?",
      "distractors": [
@@ -167,7 +167,7 @@
     },
     {
      "answer": "Нет, +это не соб+ака, +это к+ошка.",
-     "cue": "🐈",
+     "cue": "🐱",
      "english": "No, it's not a dog, it's a cat.",
      "ask": "+Это соб+ака?",
      "distractors": [
@@ -185,12 +185,12 @@
    "items": [
     {
      "answer": "чет+ыре",
-     "cue": "4️⃣",
+     "cue": "4",
      "english": "four"
     },
     {
      "answer": "пять",
-     "cue": "5️⃣",
+     "cue": "5",
      "english": "five"
     }
    ]
@@ -203,27 +203,27 @@
    "items": [
     {
      "answer": "три",
-     "cue": "3️⃣",
+     "cue": "3",
      "english": "three"
     },
     {
      "answer": "пять",
-     "cue": "5️⃣",
+     "cue": "5",
      "english": "five"
     },
     {
      "answer": "од+ин",
-     "cue": "1️⃣",
+     "cue": "1",
      "english": "one"
     },
     {
      "answer": "чет+ыре",
-     "cue": "4️⃣",
+     "cue": "4",
      "english": "four"
     },
     {
      "answer": "два",
-     "cue": "2️⃣",
+     "cue": "2",
      "english": "two"
     }
    ]

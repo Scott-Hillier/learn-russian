@@ -136,7 +136,7 @@
     },
     {
      "answer": "Я в+ижу соб+аку.",
-     "cue": "👀 🐕",
+     "cue": "👀 🐶",
      "english": "Say what you see.",
      "distractors": [
       "Я в+ижу соб+ака."
@@ -261,32 +261,32 @@
    "items": [
     {
      "answer": "Дв+адцать шесть.",
-     "cue": "2️⃣6️⃣",
+     "cue": "26",
      "english": "twenty-six"
     },
     {
      "answer": "Од+иннадцать.",
-     "cue": "1️⃣1️⃣",
+     "cue": "11",
      "english": "eleven"
     },
     {
      "answer": "Тр+идцать.",
-     "cue": "3️⃣0️⃣",
+     "cue": "30",
      "english": "thirty"
     },
     {
      "answer": "Пятн+адцать.",
-     "cue": "1️⃣5️⃣",
+     "cue": "15",
      "english": "fifteen"
     },
     {
      "answer": "Дв+адцать в+осемь.",
-     "cue": "2️⃣8️⃣",
+     "cue": "28",
      "english": "twenty-eight"
     },
     {
      "answer": "Семн+адцать.",
-     "cue": "1️⃣7️⃣",
+     "cue": "17",
      "english": "seventeen"
     }
    ]

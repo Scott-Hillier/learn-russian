@@ -31,7 +31,7 @@
    "items": [
     {
      "answer": "К+ошка в д+оме.",
-     "cue": "🐈 📥🏠",
+     "cue": "🐱 📥🏠",
      "english": "The cat is in the house.",
      "ask": "Где к+ошка?",
      "distractors": [
@@ -108,7 +108,7 @@
     },
     {
      "prompt": "Соб+ака в ___.",
-     "cue": "🐕 📥🚗",
+     "cue": "🐶 📥🚗",
      "english": "The dog is in the car.",
      "options": [
       "маш+ина",
@@ -215,7 +215,7 @@
     },
     {
      "answer": "Соб+ака в маш+ине.",
-     "cue": "🐕 📥🚗",
+     "cue": "🐶 📥🚗",
      "english": "The dog is in the car.",
      "ask": "Где соб+ака?",
      "distractors": [
@@ -239,7 +239,7 @@
     },
     {
      "answer": "К+ошка на ст+уле.",
-     "cue": "🐈 🔝🪑",
+     "cue": "🐱 🔝🪑",
      "english": "The cat is on the chair.",
      "ask": "Где к+ошка?",
      "distractors": [
@@ -265,32 +265,32 @@
    "items": [
     {
      "answer": "С+орок.",
-     "cue": "4️⃣0️⃣",
+     "cue": "40",
      "english": "forty"
     },
     {
      "answer": "Пятьдес+ят.",
-     "cue": "5️⃣0️⃣",
+     "cue": "50",
      "english": "fifty"
     },
     {
      "answer": "С+орок чет+ыре.",
-     "cue": "4️⃣4️⃣",
+     "cue": "44",
      "english": "forty-four"
     },
     {
      "answer": "Пятьдес+ят од+ин.",
-     "cue": "5️⃣1️⃣",
+     "cue": "51",
      "english": "fifty-one"
     },
     {
      "answer": "Тр+идцать д+евять.",
-     "cue": "3️⃣9️⃣",
+     "cue": "39",
      "english": "thirty-nine"
     },
     {
      "answer": "С+орок в+осемь.",
-     "cue": "4️⃣8️⃣",
+     "cue": "48",
      "english": "forty-eight"
     }
    ]

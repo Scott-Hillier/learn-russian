@@ -26,7 +26,7 @@
     },
     {
      "answer": "У мен+я нет к+ошки.",
-     "cue": "🙋 🚫🐈",
+     "cue": "🙋 🚫🐱",
      "english": "I don't have a cat.",
      "distractors": [
       "У мен+я есть к+ошка."
@@ -39,7 +39,7 @@
     },
     {
      "answer": "Нет, у мен+я нет соб+аки.",
-     "cue": "🚫🐕",
+     "cue": "🚫🐶",
      "english": "No, I don't have a dog.",
      "ask": "У теб+я есть соб+ака?",
      "distractors": [
@@ -245,32 +245,32 @@
    "items": [
     {
      "answer": "Девян+осто.",
-     "cue": "9️⃣0️⃣",
+     "cue": "90",
      "english": "ninety"
     },
     {
      "answer": "С+емьдесят семь.",
-     "cue": "7️⃣7️⃣",
+     "cue": "77",
      "english": "seventy-seven"
     },
     {
      "answer": "В+осемьдесят од+ин.",
-     "cue": "8️⃣1️⃣",
+     "cue": "81",
      "english": "eighty-one"
     },
     {
      "answer": "Сто.",
-     "cue": "1️⃣0️⃣0️⃣",
+     "cue": "100",
      "english": "a hundred"
     },
     {
      "answer": "Шестьдес+ят пять.",
-     "cue": "6️⃣5️⃣",
+     "cue": "65",
      "english": "sixty-five"
     },
     {
      "answer": "С+орок три.",
-     "cue": "4️⃣3️⃣",
+     "cue": "43",
      "english": "forty-three"
     }
    ]

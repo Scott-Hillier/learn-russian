@@ -2,7 +2,7 @@
 import pytest
 from fastapi.testclient import TestClient
 
-from app.course import Course, LessonLocked, item_key, lessons, validate_lesson
+from app.course import Course, LessonLocked, _expand, item_at, item_key, lessons, validate_lesson
 
 
 @pytest.fixture
@@ -36,6 +36,24 @@ def test_validation_catches_missing_stress_and_bad_choice():
     errors = validate_lesson(lesson)
     assert any("'собака' has no stress mark" in e for e in errors)
     assert any("'correct' must index into options" in e for e in errors)
+
+
+def test_one_noun_answers_also_accept_the_this_is_frame():
+    lesson = _expand(lessons()[0])
+    dog = next(i for i in lesson["exercises"][0]["items"] if i["answer"]["plain"] == "собака")
+    spec = item_at(dog["src"])
+    assert "+Это соб+ака." in spec["accept"]
+    # framed wrong answers compete with the framed right one, so «Это кошка.» can't pass as «Это собака.»
+    assert {"к+ошка", "+Это к+ошка."} <= set(spec["distractors"])
+    assert not any("Это" in a for a in item_at([1, 3, 0]).get("accept", []))  # sentences stay as written
+    numbers = next(e for e in lessons()[0]["exercises"] if e["track"] == "numbers")
+    assert not any(i.get("accept") for i in numbers["items"])
+
+
+def test_picture_options_are_labelled_in_english():
+    choose = next(e for e in _expand(lessons()[0])["exercises"] if e["type"] == "choose")
+    item = choose["items"][0]
+    assert dict(zip(item["options"], item["labels"])) == {"🏠": "house", "🐱": "cat", "🐶": "dog"}
 
 
 def test_item_keys_ignore_stress_marks():

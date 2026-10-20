@@ -18,7 +18,7 @@
    "items": [
     {
      "answer": "У мен+я есть к+ошка.",
-     "cue": "🙋 🐈",
+     "cue": "🙋 🐱",
      "english": "I have a cat.",
      "distractors": [
       "У мен+я есть к+ошку."
@@ -50,7 +50,7 @@
    "items": [
     {
      "prompt": "У мен+я есть ___.",
-     "cue": "🙋 🐈",
+     "cue": "🙋 🐱",
      "english": "I have a cat.",
      "options": [
       "к+ошка",
@@ -61,7 +61,7 @@
     },
     {
      "prompt": "Я в+ижу ___.",
-     "cue": "👀 🐈",
+     "cue": "👀 🐱",
      "english": "I see a cat.",
      "options": [
       "к+ошка",
@@ -183,7 +183,7 @@
     },
     {
      "answer": "У теб+я есть соб+ака?",
-     "cue": "❓🫵 🐕",
+     "cue": "❓🫵 🐶",
      "english": "Ask a friend: Do you have a dog?",
      "distractors": [
       "У мен+я есть соб+ака."
@@ -224,32 +224,32 @@
    "items": [
     {
      "answer": "С+емьдесят.",
-     "cue": "7️⃣0️⃣",
+     "cue": "70",
      "english": "seventy"
     },
     {
      "answer": "В+осемьдесят.",
-     "cue": "8️⃣0️⃣",
+     "cue": "80",
      "english": "eighty"
     },
     {
      "answer": "С+емьдесят чет+ыре.",
-     "cue": "7️⃣4️⃣",
+     "cue": "74",
      "english": "seventy-four"
     },
     {
      "answer": "В+осемьдесят в+осемь.",
-     "cue": "8️⃣8️⃣",
+     "cue": "88",
      "english": "eighty-eight"
     },
     {
      "answer": "Пятьдес+ят д+евять.",
-     "cue": "5️⃣9️⃣",
+     "cue": "59",
      "english": "fifty-nine"
     },
     {
      "answer": "Сто.",
-     "cue": "1️⃣0️⃣0️⃣",
+     "cue": "100",
      "english": "a hundred"
     }
    ]
@@ -263,12 +263,12 @@
     {
      "speaker": "partner",
      "line": "У теб+я есть соб+ака?",
-     "cue": "🐕❓",
+     "cue": "🐶❓",
      "english": "Do you have a dog?"
     },
     {
      "answer": "Нет. У мен+я есть к+ошка.",
-     "cue": "🚫🐕 🐈",
+     "cue": "🚫🐶 🐱",
      "english": "No. I have a cat.",
      "distractors": [
       "Да, у мен+я есть соб+ака."
@@ -277,7 +277,7 @@
     {
      "speaker": "partner",
      "line": "Где он+а?",
-     "cue": "🐈❓",
+     "cue": "🐱❓",
      "english": "Where is it?"
     },
     {

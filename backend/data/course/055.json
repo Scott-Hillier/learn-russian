@@ -28,9 +28,9 @@
     {
      "audio": "+Это больш+ая соб+ака.",
      "options": [
-      "🔼 🐕",
-      "🔽 🐕",
-      "🔼 🐈"
+      "🔼 🐶",
+      "🔽 🐶",
+      "🔼 🐱"
      ],
      "correct": 0
     },
@@ -247,32 +247,32 @@
    "items": [
     {
      "answer": "Сто.",
-     "cue": "1️⃣0️⃣0️⃣",
+     "cue": "100",
      "english": "a hundred"
     },
     {
      "answer": "Восемн+адцать.",
-     "cue": "1️⃣8️⃣",
+     "cue": "18",
      "english": "eighteen"
     },
     {
      "answer": "С+орок три.",
-     "cue": "4️⃣3️⃣",
+     "cue": "43",
      "english": "forty-three"
     },
     {
      "answer": "Шестьдес+ят д+евять.",
-     "cue": "6️⃣9️⃣",
+     "cue": "69",
      "english": "sixty-nine"
     },
     {
      "answer": "В+осемьдесят семь.",
-     "cue": "8️⃣7️⃣",
+     "cue": "87",
      "english": "eighty-seven"
     },
     {
      "answer": "Девян+осто два.",
-     "cue": "9️⃣2️⃣",
+     "cue": "92",
      "english": "ninety-two"
     }
    ]

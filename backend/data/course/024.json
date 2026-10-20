@@ -36,7 +36,7 @@
     },
     {
      "answer": "+Это к+ошки.",
-     "cue": "🐈🐈",
+     "cue": "🐱🐱",
      "english": "These are cats.",
      "ask": "Кто +это?",
      "distractors": [
@@ -78,7 +78,7 @@
     },
     {
      "prompt": "+Это ___.",
-     "cue": "🐕",
+     "cue": "🐶",
      "english": "This is a dog.",
      "options": [
       "соб+ака",
@@ -142,56 +142,56 @@
     {
      "audio": "+Это соб+аки.",
      "options": [
-      "1️⃣ one",
-      "🔢 more"
+      "one",
+      "more than one"
      ],
      "correct": 1
     },
     {
      "audio": "+Это кн+ига.",
      "options": [
-      "1️⃣ one",
-      "🔢 more"
+      "one",
+      "more than one"
      ],
      "correct": 0
     },
     {
      "audio": "+Это стол+ы.",
      "options": [
-      "1️⃣ one",
-      "🔢 more"
+      "one",
+      "more than one"
      ],
      "correct": 1
     },
     {
      "audio": "Где мой ключ?",
      "options": [
-      "1️⃣ one",
-      "🔢 more"
+      "one",
+      "more than one"
      ],
      "correct": 0
     },
     {
      "audio": "Где мо+и ключ+и?",
      "options": [
-      "1️⃣ one",
-      "🔢 more"
+      "one",
+      "more than one"
      ],
      "correct": 1
     },
     {
      "audio": "+Это маш+ина.",
      "options": [
-      "1️⃣ one",
-      "🔢 more"
+      "one",
+      "more than one"
      ],
      "correct": 0
     },
     {
      "audio": "Мой друг живёт в Л+ондоне.",
      "options": [
-      "1️⃣ one",
-      "🔢 more"
+      "one",
+      "more than one"
      ],
      "correct": 0
     }
@@ -214,7 +214,7 @@
     },
     {
      "answer": "+Это соб+аки.",
-     "cue": "🐕🐕",
+     "cue": "🐶🐶",
      "english": "These are dogs.",
      "ask": "Кто +это?",
      "distractors": [
@@ -277,17 +277,17 @@
    "items": [
     {
      "answer": "В+осемьдесят.",
-     "cue": "8️⃣0️⃣",
+     "cue": "80",
      "english": "eighty"
     },
     {
      "answer": "Девян+осто.",
-     "cue": "9️⃣0️⃣",
+     "cue": "90",
      "english": "ninety"
     },
     {
      "answer": "Сто.",
-     "cue": "1️⃣0️⃣0️⃣",
+     "cue": "100",
      "english": "a hundred"
     }
    ]
@@ -300,37 +300,37 @@
    "items": [
     {
      "answer": "В+осемьдесят.",
-     "cue": "8️⃣0️⃣",
+     "cue": "80",
      "english": "eighty"
     },
     {
      "answer": "Девян+осто.",
-     "cue": "9️⃣0️⃣",
+     "cue": "90",
      "english": "ninety"
     },
     {
      "answer": "Сто.",
-     "cue": "1️⃣0️⃣0️⃣",
+     "cue": "100",
      "english": "a hundred"
     },
     {
      "answer": "В+осемьдесят пять.",
-     "cue": "8️⃣5️⃣",
+     "cue": "85",
      "english": "eighty-five"
     },
     {
      "answer": "Девян+осто два.",
-     "cue": "9️⃣2️⃣",
+     "cue": "92",
      "english": "ninety-two"
     },
     {
      "answer": "С+емьдесят шесть.",
-     "cue": "7️⃣6️⃣",
+     "cue": "76",
      "english": "seventy-six"
     },
     {
      "answer": "Шестьдес+ят три.",
-     "cue": "6️⃣3️⃣",
+     "cue": "63",
      "english": "sixty-three"
     }
    ]

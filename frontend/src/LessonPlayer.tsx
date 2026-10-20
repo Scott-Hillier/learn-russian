@@ -747,6 +747,47 @@ export default function LessonPlayer({ lesson, onExit, onDone }: Props) {
   );
 }
 
+/** What's happening on this step, in a few words: the banner at the top of the card. */
+function stepMode(
+  step: Step,
+  item: CourseItem,
+  phase: Phase,
+  check: AnswerCheck | null,
+  isTest: boolean,
+): { text: string; tone?: "good" | "bad" | "live" } {
+  if (step.kind === "partner") return { text: "💬 Your friend says" };
+  if (step.kind === "choose") {
+    if (phase === "chosen") return { text: "✓ Right", tone: "good" };
+    if (phase === "wrong") return { text: "✗ Not quite", tone: "bad" };
+    return { text: item.prompt ? "✍️ Choose the word that fits" : "🔊 Listen. Which one did you hear?" };
+  }
+  if (phase === "checking") return { text: "Checking…" };
+  if (phase === "right")
+    return check?.correct ? { text: "✓ Right", tone: "good" } : { text: "Keep going →" };
+  if (phase === "wrong")
+    return { text: isTest ? "✗ Not quite. The answer was:" : "✗ Not quite. Listen:", tone: "bad" };
+  if (phase === "listening") return { text: "🎙 Listening…", tone: "live" };
+  if (step.kind === "lead")
+    return { text: step.step === "retest" ? "🔁 Say it after me" : "👂 Listen, then say it after me" };
+  return { text: item.ask ? "🎙 Your turn: answer in Russian" : "🎙 Your turn: say it in Russian" };
+}
+
+/** The Russian line is the largest thing on the card; whole sentences step down a size so they fit. */
+const ruClass = (text: string) => `tier-ru ${text.length > 16 ? "long" : ""}`;
+
+/** Why a spoken answer was marked wrong, when the coloured letters alone would not say. */
+function missReason(check: AnswerCheck | null): string | null {
+  if (!check || check.correct) return null;
+  if (check.heard) return `That sounded like «${check.heard}».`;
+  if (check.reason === "fit") return "The sounds were there, but it wasn't quite the answer: say exactly the words shown.";
+  return null;
+}
+
+/**
+ * One step of a lesson. What's shown follows one order of importance: the Russian (largest), then the
+ * English, then the picture. Whether the Russian is shown depends on the step: it is the answer, so it's
+ * hidden until the learner has answered, except when they're repeating after the voice.
+ */
 function StepView({
   step,
   item,
@@ -764,14 +805,19 @@ function StepView({
   onChoose: (i: number) => void;
   isTest: boolean;
 }) {
+  const mode = stepMode(step, item, phase, check, isTest);
+  const banner = <div className={`step-mode ${mode.tone ?? ""}`}>{mode.text}</div>;
+  const picture = item.cue ? <div className="tier-pic">{item.cue}</div> : null;
+
   if (step.kind === "partner")
     return (
       <div className="step partner">
-        <div className="cue">{item.cue}</div>
-        <div className="partner-line" lang="ru">
-          🗣 <Stressed text={item.line!.display} />
+        {banner}
+        <div className={ruClass(item.line!.plain)} lang="ru">
+          <Stressed text={item.line!.display} />
         </div>
-        <div className="english">{item.english}</div>
+        {item.english && <div className="tier-en">{item.english}</div>}
+        {picture}
       </div>
     );
 
@@ -779,24 +825,19 @@ function StepView({
     const answered = phase === "chosen" || phase === "wrong";
     return (
       <div className="step choose">
+        {banner}
         {item.prompt ? (
           <>
-            <div className="cue">{item.cue}</div>
-            <p className="step-label">Choose the right word:</p>
-            <div className="target" lang="ru">
+            <div className={ruClass(item.prompt.plain)} lang="ru">
               <Stressed text={answered && item.audio ? item.audio.display : item.prompt.display} />
             </div>
-            {item.english && <div className="english">{item.english}</div>}
+            {item.english && <div className="tier-en">{item.english}</div>}
+            {picture}
           </>
         ) : (
-          <>
-            <p className="step-label">🔊 Listen. What did you hear?</p>
-            {answered && (
-              <div className="target" lang="ru">
-                <Stressed text={item.audio!.display} />
-              </div>
-            )}
-          </>
+          <div className={`${ruClass(item.audio!.plain)} ${answered ? "" : "placeholder"}`} lang="ru">
+            {answered ? <Stressed text={item.audio!.display} /> : "🔊"}
+          </div>
         )}
         <div className="choose-options">
           {item.options!.map((o, i) => (
@@ -806,7 +847,11 @@ function StepView({
               onClick={() => onChoose(i)}
               disabled={answered}
             >
-              <span className="key">{i + 1}</span> {o}
+              <span className="key">{i + 1}</span>
+              <span className="option-main" lang={item.prompt ? "ru" : undefined}>
+                {o}
+              </span>
+              {item.labels?.[i] && <span className="option-label">{item.labels[i]}</span>}
             </button>
           ))}
         </div>
@@ -814,29 +859,18 @@ function StepView({
     );
   }
 
-  const showAnswer =
-    step.kind === "lead" || phase === "right" || phase === "wrong";
-  const label =
-    phase === "wrong"
-      ? isTest
-        ? "Not quite. The answer was:"
-        : "Not quite. Listen:"
-      : step.kind === "lead"
-        ? step.step === "retest"
-          ? "Say it after me:"
-          : "Listen, then say it after me:"
-        : "Your turn:";
+  const showAnswer = step.kind === "lead" || phase === "right" || phase === "wrong";
+  const reason = phase === "wrong" && step.kind === "test" ? missReason(check) : null;
   return (
     <div className="step say">
-      <div className="cue">{item.cue}</div>
+      {banner}
       {item.ask && (
         <div className="ask" lang="ru">
           🗣 <Stressed text={item.ask.display} />
         </div>
       )}
-      <p className="step-label">{label}</p>
       {showAnswer ? (
-        <div className="target" lang="ru">
+        <div className={ruClass(item.answer!.plain)} lang="ru">
           {check && check.words.length ? (
             check.words.map((w, i) => (
               <span key={i} className="word">
@@ -848,22 +882,13 @@ function StepView({
           )}
         </div>
       ) : (
-        <div className="target placeholder">
+        <div className={`tier-ru placeholder ${phase === "listening" ? "live" : ""}`} aria-label="your answer">
           {phase === "listening" ? "🎙 …" : "?"}
         </div>
       )}
-      <div className="english">{item.english}</div>
-      {phase === "right" &&
-        (check?.correct ? (
-          <div className="verdict good">✓</div>
-        ) : (
-          <div className="verdict">Keep going →</div>
-        ))}
-      {phase === "wrong" && check?.heard && step.kind === "test" && (
-        <div className="verdict bad">
-          That sounded like <span lang="ru">{check.heard}</span>
-        </div>
-      )}
+      {item.english && <div className="tier-en">{item.english}</div>}
+      {picture}
+      {reason && <div className="verdict bad">{reason}</div>}
     </div>
   );
 }

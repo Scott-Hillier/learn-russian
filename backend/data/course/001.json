@@ -16,12 +16,12 @@
     },
     {
      "answer": "к+ошка",
-     "cue": "🐈",
+     "cue": "🐱",
      "english": "cat"
     },
     {
      "answer": "соб+ака",
-     "cue": "🐕",
+     "cue": "🐶",
      "english": "dog"
     }
    ]
@@ -36,8 +36,8 @@
      "audio": "соб+ака",
      "options": [
       "🏠",
-      "🐈",
-      "🐕"
+      "🐱",
+      "🐶"
      ],
      "correct": 2
     },
@@ -45,8 +45,8 @@
      "audio": "дом",
      "options": [
       "🏠",
-      "🐈",
-      "🐕"
+      "🐱",
+      "🐶"
      ],
      "correct": 0
     },
@@ -54,8 +54,8 @@
      "audio": "к+ошка",
      "options": [
       "🏠",
-      "🐈",
-      "🐕"
+      "🐱",
+      "🐶"
      ],
      "correct": 1
     },
@@ -63,8 +63,8 @@
      "audio": "дом",
      "options": [
       "🏠",
-      "🐈",
-      "🐕"
+      "🐱",
+      "🐶"
      ],
      "correct": 0
     },
@@ -72,8 +72,8 @@
      "audio": "соб+ака",
      "options": [
       "🏠",
-      "🐈",
-      "🐕"
+      "🐱",
+      "🐶"
      ],
      "correct": 2
     },
@@ -81,8 +81,8 @@
      "audio": "к+ошка",
      "options": [
       "🏠",
-      "🐈",
-      "🐕"
+      "🐱",
+      "🐶"
      ],
      "correct": 1
     }
@@ -105,7 +105,7 @@
     },
     {
      "answer": "+Это к+ошка.",
-     "cue": "🐈",
+     "cue": "🐱",
      "english": "This is a cat.",
      "ask": "Что +это?",
      "distractors": [
@@ -122,7 +122,7 @@
    "items": [
     {
      "answer": "+Это соб+ака.",
-     "cue": "🐕",
+     "cue": "🐶",
      "english": "This is a dog.",
      "ask": "Что +это?",
      "distractors": [
@@ -140,7 +140,7 @@
     },
     {
      "answer": "+Это к+ошка.",
-     "cue": "🐈",
+     "cue": "🐱",
      "english": "This is a cat.",
      "ask": "Что +это?",
      "distractors": [
@@ -149,7 +149,7 @@
     },
     {
      "answer": "+Это соб+ака.",
-     "cue": "🐕",
+     "cue": "🐶",
      "english": "This is a dog.",
      "ask": "Что +это?"
     },
@@ -169,17 +169,17 @@
    "items": [
     {
      "answer": "од+ин",
-     "cue": "1️⃣",
+     "cue": "1",
      "english": "one"
     },
     {
      "answer": "два",
-     "cue": "2️⃣",
+     "cue": "2",
      "english": "two"
     },
     {
      "answer": "три",
-     "cue": "3️⃣",
+     "cue": "3",
      "english": "three"
     }
    ]
@@ -193,12 +193,12 @@
     {
      "speaker": "partner",
      "line": "Что +это?",
-     "cue": "🐕",
+     "cue": "🐶",
      "english": "What is this?"
     },
     {
      "answer": "+Это соб+ака.",
-     "cue": "🐕",
+     "cue": "🐶",
      "english": "This is a dog.",
      "distractors": [
       "Соб+ака."

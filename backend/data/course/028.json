@@ -18,7 +18,7 @@
    "items": [
     {
      "answer": "У нег+о есть соб+ака.",
-     "cue": "👦 🐕",
+     "cue": "👦 🐶",
      "english": "He has a dog.",
      "distractors": [
       "У неё есть соб+ака."
@@ -66,7 +66,7 @@
     },
     {
      "prompt": "У ___ нет к+ошки.",
-     "cue": "👧 🚫🐈",
+     "cue": "👧 🚫🐱",
      "english": "She doesn't have a cat.",
      "options": [
       "он+а",
@@ -191,7 +191,7 @@
    "items": [
     {
      "answer": "У нег+о есть соб+ака.",
-     "cue": "👦 🐕",
+     "cue": "👦 🐶",
      "english": "He has a dog.",
      "distractors": [
       "У неё есть соб+ака.",
@@ -251,32 +251,32 @@
    "items": [
     {
      "answer": "Сто.",
-     "cue": "1️⃣0️⃣0️⃣",
+     "cue": "100",
      "english": "a hundred"
     },
     {
      "answer": "С+емьдесят два.",
-     "cue": "7️⃣2️⃣",
+     "cue": "72",
      "english": "seventy-two"
     },
     {
      "answer": "В+осемьдесят шесть.",
-     "cue": "8️⃣6️⃣",
+     "cue": "86",
      "english": "eighty-six"
     },
     {
      "answer": "Девян+осто чет+ыре.",
-     "cue": "9️⃣4️⃣",
+     "cue": "94",
      "english": "ninety-four"
     },
     {
      "answer": "Пятьдес+ят семь.",
-     "cue": "5️⃣7️⃣",
+     "cue": "57",
      "english": "fifty-seven"
     },
     {
      "answer": "Тр+идцать од+ин.",
-     "cue": "3️⃣1️⃣",
+     "cue": "31",
      "english": "thirty-one"
     }
    ]
@@ -318,12 +318,12 @@
     {
      "speaker": "partner",
      "line": "У нег+о есть соб+ака?",
-     "cue": "🐕❓",
+     "cue": "🐶❓",
      "english": "Does he have a dog?"
     },
     {
      "answer": "Нет, у нег+о нет соб+аки. У нег+о есть к+ошка.",
-     "cue": "🚫🐕 🐈",
+     "cue": "🚫🐶 🐱",
      "english": "No, he doesn't have a dog. He has a cat."
     }
    ]

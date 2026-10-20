@@ -34,7 +34,7 @@
     },
     {
      "answer": "Вчер+а я в+идел к+ошку.",
-     "cue": "👨 Иван ⬅️📅 👀 🐈",
+     "cue": "👨 Иван ⬅️📅 👀 🐱",
      "english": "Yesterday I saw a cat. (Ivan)"
     },
     {
@@ -66,7 +66,7 @@
     },
     {
      "prompt": "Ив+ан ___ соб+аку.",
-     "cue": "👨 Иван 👀 🐕",
+     "cue": "👨 Иван 👀 🐶",
      "english": "Ivan saw a dog.",
      "options": [
       "в+идел",
@@ -195,7 +195,7 @@
     },
     {
      "answer": "Я в+идел соб+аку.",
-     "cue": "👨 Иван ⬅️📅 👀 🐕",
+     "cue": "👨 Иван ⬅️📅 👀 🐶",
      "english": "I saw a dog.",
      "ask": "Что ты в+идел?",
      "distractors": [
@@ -247,32 +247,32 @@
    "items": [
     {
      "answer": "Сто.",
-     "cue": "1️⃣0️⃣0️⃣",
+     "cue": "100",
      "english": "a hundred"
     },
     {
      "answer": "Дв+адцать в+осемь.",
-     "cue": "2️⃣8️⃣",
+     "cue": "28",
      "english": "twenty-eight"
     },
     {
      "answer": "Шестьдес+ят пять.",
-     "cue": "6️⃣5️⃣",
+     "cue": "65",
      "english": "sixty-five"
     },
     {
      "answer": "С+орок три.",
-     "cue": "4️⃣3️⃣",
+     "cue": "43",
      "english": "forty-three"
     },
     {
      "answer": "Девян+осто семь.",
-     "cue": "9️⃣7️⃣",
+     "cue": "97",
      "english": "ninety-seven"
     },
     {
      "answer": "Пятьдес+ят.",
-     "cue": "5️⃣0️⃣",
+     "cue": "50",
      "english": "fifty"
     }
    ]

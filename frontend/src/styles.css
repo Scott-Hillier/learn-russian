@@ -196,7 +196,7 @@ main:has(.action-bar) { padding-bottom: 150px; }
 .action-bar .segmented button { border: 0; border-radius: 0; padding: 10px 14px; }
 .action-bar .segmented button.active { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
 .action-inner > .ratings { grid-column: 1 / -1; margin: 0; }
-.action-hint { max-width: 760px; margin: 8px auto 0; text-align: center; font-size: 0.78rem; color: var(--muted); }
+.action-hint { max-width: 760px; margin: 8px auto 0; text-align: center; font-size: 0.85rem; color: var(--muted); }
 .action-hint kbd { color: var(--ink); }
 .action-bar button.toggle {
   border: 0; background: none; padding: 0 2px; font-size: inherit; color: var(--accent); text-decoration: underline;
@@ -588,36 +588,52 @@ circle.viz-s2 { fill: var(--viz-s2); }
 .exercise-list li.done .exercise-mark { background: var(--good); color: white; }
 .exercise-list li.now .exercise-mark { background: var(--accent); color: var(--on-accent); }
 
-.lesson-player { width: 100%; max-width: 720px; display: flex; flex-direction: column; gap: 12px; }
+/* Desktop-first: the lesson takes the room it has, and the Russian is the largest thing on the card. */
+.lesson-player { width: 100%; max-width: 1080px; display: flex; flex-direction: column; gap: 14px; }
+.lesson-player .card, .lesson-player .banner { max-width: none; }
 .player-progress { display: flex; gap: 4px; }
-.player-progress span { flex: 1; height: 6px; border-radius: 3px; background: var(--line); }
+.player-progress span { flex: 1; height: 8px; border-radius: 4px; background: var(--line); }
 .player-progress span.done { background: var(--good); }
 .player-progress span.now { background: var(--accent); }
-.player-title { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
-.player-title .muted { margin-left: auto; font-size: 0.85rem; }
-.player-instruction { margin: 6px 0 0; }
-.player-card { min-height: 320px; display: flex; flex-direction: column; justify-content: center; }
+.player-title { display: flex; align-items: center; gap: 12px; margin-top: 12px; font-size: 1.3rem; }
+.player-title .muted { margin-left: auto; font-size: 1rem; }
+.player-instruction { margin: 6px 0 0; font-size: 1.1rem; }
+.player-card { min-height: 540px; padding: 32px 48px; display: flex; flex-direction: column; justify-content: center; }
 .player-card.right { border-color: var(--good); }
 .player-card.wrong { border-color: var(--bad); }
-.step .cue { font-size: 4.5rem; line-height: 1.1; }
-.step .ask, .partner-line { font-size: 1.5rem; margin-top: 10px; }
-.step-label { color: var(--muted); margin: 14px 0 0; }
-.target.placeholder { color: var(--muted); }
-.verdict { font-weight: 700; margin-top: 10px; }
-.verdict.good { color: var(--good); font-size: 2rem; }
+.step { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.step-mode {
+  font-size: 1.15rem; font-weight: 600; color: var(--muted); background: var(--bg);
+  border-radius: 999px; padding: 6px 18px; margin-bottom: 8px;
+}
+.step-mode.good { color: var(--good); background: color-mix(in srgb, var(--good) 14%, var(--panel)); }
+.step-mode.bad { color: var(--bad); background: color-mix(in srgb, var(--bad) 12%, var(--panel)); }
+.step-mode.live { color: var(--accent); background: var(--accent-soft); }
+.step .ask { font-size: 1.9rem; color: var(--muted); }
+.tier-ru { font-size: 4.6rem; font-weight: 600; line-height: 1.2; }
+.tier-ru.long { font-size: 3.2rem; }
+.tier-ru.placeholder { color: var(--muted); min-width: 5em; border-bottom: 3px dashed var(--line); }
+.tier-ru.placeholder.live { color: var(--accent); border-color: var(--accent); }
+.step.choose .tier-ru.placeholder { border: 0; }
+.tier-en { font-size: 2rem; }
+.tier-pic { font-size: 3.2rem; line-height: 1.1; }
+.verdict { font-weight: 700; margin-top: 4px; font-size: 1.15rem; }
 .verdict.bad { color: var(--bad); font-weight: 600; }
 .choose-options {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; max-width: 560px;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px; max-width: 900px;
   margin: 18px auto 0; width: 100%;
 }
 .choose-option {
-  border: 2px solid var(--line); background: var(--panel); border-radius: 12px; padding: 12px 14px; font-size: 2rem;
+  position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+  border: 2px solid var(--line); background: var(--panel); border-radius: 14px; padding: 20px 16px; font-size: 1.5rem;
 }
+.choose-option:has(.option-label) .option-main { font-size: 3rem; line-height: 1.1; }
+.option-label { font-size: 1.3rem; }
 .choose-option:hover:not(:disabled) { border-color: var(--accent); }
 .choose-option:disabled { opacity: 1; cursor: default; }
 .choose-option.good { border-color: var(--good); background: color-mix(in srgb, var(--good) 15%, var(--panel)); }
 .choose-option.bad { border-color: var(--bad); background: color-mix(in srgb, var(--bad) 15%, var(--panel)); }
-.choose-option .key { font-size: 0.75rem; color: var(--muted); margin-right: 4px; vertical-align: middle; }
+.choose-option .key { position: absolute; top: 8px; left: 12px; font-size: 0.8rem; color: var(--muted); }
 .player-summary h2 { margin: 8px 0 4px; }
 .summary-mark { font-size: 3rem; font-weight: 700; }
 .summary-mark.good { color: var(--good); }

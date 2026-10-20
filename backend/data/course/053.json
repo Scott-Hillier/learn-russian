@@ -23,7 +23,7 @@
     },
     {
      "answer": "+Это м+аленькая к+ошка.",
-     "cue": "🔽 🐈",
+     "cue": "🔽 🐱",
      "english": "This is a small cat."
     },
     {
@@ -58,7 +58,7 @@
     },
     {
      "prompt": "___ соб+ака",
-     "cue": "🔼 🐕",
+     "cue": "🔼 🐶",
      "english": "a big dog",
      "options": [
       "больш+ой",
@@ -143,8 +143,8 @@
     {
      "audio": "У мен+я больш+ая соб+ака.",
      "options": [
-      "🔼 🐕",
-      "🔽 🐕"
+      "🔼 🐶",
+      "🔽 🐶"
      ],
      "correct": 0
     },
@@ -167,8 +167,8 @@
     {
      "audio": "У неё м+аленькая к+ошка.",
      "options": [
-      "🔼 🐈",
-      "🔽 🐈"
+      "🔼 🐱",
+      "🔽 🐱"
      ],
      "correct": 1
     }
@@ -182,7 +182,7 @@
    "items": [
     {
      "answer": "+Это больш+ая соб+ака.",
-     "cue": "🔼 🐕",
+     "cue": "🔼 🐶",
      "english": "This is a big dog.",
      "ask": "Что +это?",
      "distractors": [
@@ -238,32 +238,32 @@
    "items": [
     {
      "answer": "Сто.",
-     "cue": "1️⃣0️⃣0️⃣",
+     "cue": "100",
      "english": "a hundred"
     },
     {
      "answer": "Девятн+адцать.",
-     "cue": "1️⃣9️⃣",
+     "cue": "19",
      "english": "nineteen"
     },
     {
      "answer": "С+орок шесть.",
-     "cue": "4️⃣6️⃣",
+     "cue": "46",
      "english": "forty-six"
     },
     {
      "answer": "С+емьдесят пять.",
-     "cue": "7️⃣5️⃣",
+     "cue": "75",
      "english": "seventy-five"
     },
     {
      "answer": "В+осемьдесят три.",
-     "cue": "8️⃣3️⃣",
+     "cue": "83",
      "english": "eighty-three"
     },
     {
      "answer": "Пятьдес+ят два.",
-     "cue": "5️⃣2️⃣",
+     "cue": "52",
      "english": "fifty-two"
     }
    ]
@@ -291,12 +291,12 @@
     {
      "speaker": "partner",
      "line": "А +это тво+я соб+ака?",
-     "cue": "🐕❓",
+     "cue": "🐶❓",
      "english": "And is this your dog?"
     },
     {
      "answer": "Да, +это мо+я соб+ака. Он+а больш+ая!",
-     "cue": "✅ 🐕 🔼",
+     "cue": "✅ 🐶 🔼",
      "english": "Yes, that's my dog. She's big!",
      "distractors": [
       "Нет, +это не мо+я соб+ака."

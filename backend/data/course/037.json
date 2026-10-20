@@ -235,32 +235,32 @@
    "items": [
     {
      "answer": "Сто.",
-     "cue": "1️⃣0️⃣0️⃣",
+     "cue": "100",
      "english": "a hundred"
     },
     {
      "answer": "Дв+адцать три.",
-     "cue": "2️⃣3️⃣",
+     "cue": "23",
      "english": "twenty-three"
     },
     {
      "answer": "Пятьдес+ят в+осемь.",
-     "cue": "5️⃣8️⃣",
+     "cue": "58",
      "english": "fifty-eight"
     },
     {
      "answer": "С+емьдесят од+ин.",
-     "cue": "7️⃣1️⃣",
+     "cue": "71",
      "english": "seventy-one"
     },
     {
      "answer": "В+осемьдесят д+евять.",
-     "cue": "8️⃣9️⃣",
+     "cue": "89",
      "english": "eighty-nine"
     },
     {
      "answer": "С+орок чет+ыре.",
-     "cue": "4️⃣4️⃣",
+     "cue": "44",
      "english": "forty-four"
     }
    ]

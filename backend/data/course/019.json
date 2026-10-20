@@ -26,7 +26,7 @@
     },
     {
      "answer": "Я в+ижу к+ошку.",
-     "cue": "👀 🐈",
+     "cue": "👀 🐱",
      "english": "I see a cat.",
      "distractors": [
       "Я в+ижу к+ошка."
@@ -66,7 +66,7 @@
     },
     {
      "prompt": "Я в+ижу ___.",
-     "cue": "👀 🐕",
+     "cue": "👀 🐶",
      "english": "I see a dog.",
      "options": [
       "соб+ака",
@@ -110,7 +110,7 @@
     },
     {
      "prompt": "+Это ___.",
-     "cue": "🐈",
+     "cue": "🐱",
      "english": "This is a cat.",
      "options": [
       "к+ошка",
@@ -130,8 +130,8 @@
     {
      "audio": "Я в+ижу соб+аку.",
      "options": [
-      "🐕",
-      "🐈",
+      "🐶",
+      "🐱",
       "🏠"
      ],
      "correct": 0
@@ -139,8 +139,8 @@
     {
      "audio": "Я в+ижу дом.",
      "options": [
-      "🐕",
-      "🐈",
+      "🐶",
+      "🐱",
       "🏠"
      ],
      "correct": 2
@@ -148,8 +148,8 @@
     {
      "audio": "Я в+ижу к+ошку.",
      "options": [
-      "🐕",
-      "🐈",
+      "🐶",
+      "🐱",
       "🏠"
      ],
      "correct": 1
@@ -208,7 +208,7 @@
     },
     {
      "answer": "Я в+ижу соб+аку.",
-     "cue": "👀 🐕",
+     "cue": "👀 🐶",
      "english": "I see a dog.",
      "distractors": [
       "Я в+ижу соб+ака."
@@ -265,17 +265,17 @@
    "items": [
     {
      "answer": "Тр+идцать.",
-     "cue": "3️⃣0️⃣",
+     "cue": "30",
      "english": "thirty"
     },
     {
      "answer": "Дв+адцать од+ин.",
-     "cue": "2️⃣1️⃣",
+     "cue": "21",
      "english": "twenty-one"
     },
     {
      "answer": "Дв+адцать пять.",
-     "cue": "2️⃣5️⃣",
+     "cue": "25",
      "english": "twenty-five"
     }
    ]
@@ -288,32 +288,32 @@
    "items": [
     {
      "answer": "Дв+адцать два.",
-     "cue": "2️⃣2️⃣",
+     "cue": "22",
      "english": "twenty-two"
     },
     {
      "answer": "Тр+идцать.",
-     "cue": "3️⃣0️⃣",
+     "cue": "30",
      "english": "thirty"
     },
     {
      "answer": "Дв+адцать семь.",
-     "cue": "2️⃣7️⃣",
+     "cue": "27",
      "english": "twenty-seven"
     },
     {
      "answer": "Девятн+адцать.",
-     "cue": "1️⃣9️⃣",
+     "cue": "19",
      "english": "nineteen"
     },
     {
      "answer": "Дв+адцать д+евять.",
-     "cue": "2️⃣9️⃣",
+     "cue": "29",
      "english": "twenty-nine"
     },
     {
      "answer": "Дв+адцать три.",
-     "cue": "2️⃣3️⃣",
+     "cue": "23",
      "english": "twenty-three"
     }
    ]
@@ -332,7 +332,7 @@
     },
     {
      "answer": "Я в+ижу к+ошку.",
-     "cue": "👀 🐈",
+     "cue": "👀 🐱",
      "english": "I see a cat.",
      "distractors": [
       "Я в+ижу к+ошка.",
@@ -342,12 +342,12 @@
     {
      "speaker": "partner",
      "line": "Где он+а?",
-     "cue": "🐈❓",
+     "cue": "🐱❓",
      "english": "Where is it?"
     },
     {
      "answer": "Он+а там.",
-     "cue": "👉 🐈",
+     "cue": "👉 🐱",
      "english": "It's there.",
      "distractors": [
       "Он там.",
@@ -357,12 +357,12 @@
     {
      "speaker": "partner",
      "line": "Ты в+идишь соб+аку?",
-     "cue": "🐕❓",
+     "cue": "🐶❓",
      "english": "Do you see a dog?"
     },
     {
      "answer": "Нет, я не в+ижу соб+аку.",
-     "cue": "🚫🐕",
+     "cue": "🚫🐶",
      "english": "No, I don't see a dog.",
      "distractors": [
       "Да, я в+ижу соб+аку."

@@ -125,7 +125,7 @@
     },
     {
      "prompt": "Он+и ___ к+ошку.",
-     "cue": "👥 👀 🐈",
+     "cue": "👥 👀 🐱",
      "english": "They saw a cat.",
      "options": [
       "в+идели",
@@ -261,32 +261,32 @@
    "items": [
     {
      "answer": "Сто.",
-     "cue": "1️⃣0️⃣0️⃣",
+     "cue": "100",
      "english": "a hundred"
     },
     {
      "answer": "С+емьдесят чет+ыре.",
-     "cue": "7️⃣4️⃣",
+     "cue": "74",
      "english": "seventy-four"
     },
     {
      "answer": "Тр+идцать шесть.",
-     "cue": "3️⃣6️⃣",
+     "cue": "36",
      "english": "thirty-six"
     },
     {
      "answer": "Пятьдес+ят д+евять.",
-     "cue": "5️⃣9️⃣",
+     "cue": "59",
      "english": "fifty-nine"
     },
     {
      "answer": "В+осемьдесят в+осемь.",
-     "cue": "8️⃣8️⃣",
+     "cue": "88",
      "english": "eighty-eight"
     },
     {
      "answer": "Дв+адцать од+ин.",
-     "cue": "2️⃣1️⃣",
+     "cue": "21",
      "english": "twenty-one"
     }
    ]

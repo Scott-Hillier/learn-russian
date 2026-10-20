@@ -96,7 +96,7 @@
    "items": [
     {
      "prompt": "Я любл+ю ___.",
-     "cue": "❤️❤️ 🐈",
+     "cue": "❤️❤️ 🐱",
      "english": "I love my cat.",
      "options": [
       "к+ошка",
@@ -108,7 +108,7 @@
     },
     {
      "prompt": "У мен+я нет ___.",
-     "cue": "🚫🐈",
+     "cue": "🚫🐱",
      "english": "I don't have a cat.",
      "options": [
       "к+ошка",
@@ -285,32 +285,32 @@
    "items": [
     {
      "answer": "Сто.",
-     "cue": "1️⃣0️⃣0️⃣",
+     "cue": "100",
      "english": "a hundred"
     },
     {
      "answer": "Шестьдес+ят.",
-     "cue": "6️⃣0️⃣",
+     "cue": "60",
      "english": "sixty"
     },
     {
      "answer": "Тр+идцать.",
-     "cue": "3️⃣0️⃣",
+     "cue": "30",
      "english": "thirty"
     },
     {
      "answer": "Девян+осто.",
-     "cue": "9️⃣0️⃣",
+     "cue": "90",
      "english": "ninety"
     },
     {
      "answer": "Пятн+адцать.",
-     "cue": "1️⃣5️⃣",
+     "cue": "15",
      "english": "fifteen"
     },
     {
      "answer": "С+орок в+осемь.",
-     "cue": "4️⃣8️⃣",
+     "cue": "48",
      "english": "forty-eight"
     }
    ]

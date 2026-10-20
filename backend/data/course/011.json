@@ -246,12 +246,12 @@
    "items": [
     {
      "answer": "Од+иннадцать.",
-     "cue": "1️⃣1️⃣",
+     "cue": "11",
      "english": "eleven"
     },
     {
      "answer": "Двен+адцать.",
-     "cue": "1️⃣2️⃣",
+     "cue": "12",
      "english": "twelve"
     }
    ]

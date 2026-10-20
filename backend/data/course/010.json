@@ -24,7 +24,7 @@
     },
     {
      "answer": "+Это мо+я к+ошка.",
-     "cue": "🐈 🙋",
+     "cue": "🐱 🙋",
      "english": "This is my cat.",
      "ask": "Кто +это?"
     },
@@ -218,12 +218,12 @@
     {
      "speaker": "partner",
      "line": "Кто +это?",
-     "cue": "🐈",
+     "cue": "🐱",
      "english": "Who is this?"
     },
     {
      "answer": "+Это мо+я к+ошка.",
-     "cue": "🐈 🙋",
+     "cue": "🐱 🙋",
      "english": "This is my cat."
     },
     {

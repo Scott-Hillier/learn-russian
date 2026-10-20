@@ -258,12 +258,12 @@
    "items": [
     {
      "answer": "Шестьдес+ят.",
-     "cue": "6️⃣0️⃣",
+     "cue": "60",
      "english": "sixty"
     },
     {
      "answer": "С+емьдесят.",
-     "cue": "7️⃣0️⃣",
+     "cue": "70",
      "english": "seventy"
     }
    ]
@@ -276,32 +276,32 @@
    "items": [
     {
      "answer": "Шестьдес+ят.",
-     "cue": "6️⃣0️⃣",
+     "cue": "60",
      "english": "sixty"
     },
     {
      "answer": "С+емьдесят.",
-     "cue": "7️⃣0️⃣",
+     "cue": "70",
      "english": "seventy"
     },
     {
      "answer": "Шестьдес+ят шесть.",
-     "cue": "6️⃣6️⃣",
+     "cue": "66",
      "english": "sixty-six"
     },
     {
      "answer": "С+емьдесят три.",
-     "cue": "7️⃣3️⃣",
+     "cue": "73",
      "english": "seventy-three"
     },
     {
      "answer": "Пятьдес+ят в+осемь.",
-     "cue": "5️⃣8️⃣",
+     "cue": "58",
      "english": "fifty-eight"
     },
     {
      "answer": "С+орок од+ин.",
-     "cue": "4️⃣1️⃣",
+     "cue": "41",
      "english": "forty-one"
     }
    ]

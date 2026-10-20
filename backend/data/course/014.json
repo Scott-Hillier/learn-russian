@@ -177,12 +177,12 @@
    "items": [
     {
      "answer": "Восемн+адцать.",
-     "cue": "1️⃣8️⃣",
+     "cue": "18",
      "english": "eighteen"
     },
     {
      "answer": "Девятн+адцать.",
-     "cue": "1️⃣9️⃣",
+     "cue": "19",
      "english": "nineteen"
     }
    ]
@@ -195,25 +195,25 @@
    "items": [
     {
      "answer": "Восемн+адцать.",
-     "cue": "1️⃣8️⃣ 🍎",
+     "cue": "18 🍎",
      "english": "eighteen",
      "ask": "Ск+олько?"
     },
     {
      "answer": "Чет+ырнадцать.",
-     "cue": "1️⃣4️⃣ 🔑",
+     "cue": "14 🔑",
      "english": "fourteen",
      "ask": "Ск+олько?"
     },
     {
      "answer": "Девятн+адцать.",
-     "cue": "1️⃣9️⃣ 📖",
+     "cue": "19 📖",
      "english": "nineteen",
      "ask": "Ск+олько?"
     },
     {
      "answer": "Шестн+адцать.",
-     "cue": "1️⃣6️⃣ 🐟",
+     "cue": "16 🐟",
      "english": "sixteen",
      "ask": "Ск+олько?"
     },
@@ -225,7 +225,7 @@
     },
     {
      "answer": "Семн+адцать.",
-     "cue": "1️⃣7️⃣ 🪑",
+     "cue": "17 🪑",
      "english": "seventeen",
      "ask": "Ск+олько?"
     }

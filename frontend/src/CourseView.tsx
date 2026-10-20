@@ -133,8 +133,8 @@ export default function CourseView({
   const sidebar = (
     <>
       <p className="sidebar-note">
-        One lesson at a time. Pass every exercise to unlock the next lesson; every {overview?.unit_size ?? 5} lessons
-        a short test checks it's all solid. Everything else is in the Practice screens above.
+        One lesson at a time. Finish every exercise to unlock the next lesson; every {overview?.unit_size ?? 5} lessons
+        a short test shows what's solid. Everything else is in the Practice screens above.
       </p>
       <ul className="lesson-list">
         {overview?.lessons.map((l) => {

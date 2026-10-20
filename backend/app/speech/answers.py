@@ -61,6 +61,10 @@ def check_answer(answer: str, accept: list[str], distractors: list[str], pcm: np
     correct = said_answer and gate >= MIN_SCORE and fit >= MIN_FIT
     again = fit >= AGAIN_FIT and ((said_answer and not correct and gate >= MIN_SCORE)
                                   or (not said_answer and -gap < AGAIN_MARGIN))
+    # Why a miss was a miss, so the learner isn't left with green letters and a red verdict:
+    # "other": another answer fitted better; "fit": the answer's sounds were there, but so was more (or less);
+    # "score": too many sounds were off.
+    reason = None if correct else "other" if not said_answer else "score" if gate < MIN_SCORE else "fit"
     heard = None
     if not said_answer:
         # Forced choice always names the closest candidate. Only report it when the model's own unsteered
@@ -71,6 +75,7 @@ def check_answer(answer: str, accept: list[str], distractors: list[str], pcm: np
     return {
         "correct": correct,
         "again": again,
+        "reason": reason,
         "silent": False,
         "heard": heard,
         "score": feedback["score"],

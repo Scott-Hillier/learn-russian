@@ -283,17 +283,17 @@
    "items": [
     {
      "answer": "Трин+адцать.",
-     "cue": "1️⃣3️⃣",
+     "cue": "13",
      "english": "thirteen"
     },
     {
      "answer": "Чет+ырнадцать.",
-     "cue": "1️⃣4️⃣",
+     "cue": "14",
      "english": "fourteen"
     },
     {
      "answer": "Пятн+адцать.",
-     "cue": "1️⃣5️⃣",
+     "cue": "15",
      "english": "fifteen"
     }
    ]
@@ -306,13 +306,13 @@
    "items": [
     {
      "answer": "Трин+адцать.",
-     "cue": "1️⃣3️⃣ 🍎",
+     "cue": "13 🍎",
      "english": "thirteen",
      "ask": "Ск+олько?"
     },
     {
      "answer": "Пятн+адцать.",
-     "cue": "1️⃣5️⃣ 📖",
+     "cue": "15 📖",
      "english": "fifteen",
      "ask": "Ск+олько?"
     },
@@ -324,7 +324,7 @@
     },
     {
      "answer": "Чет+ырнадцать.",
-     "cue": "1️⃣4️⃣ 🐟",
+     "cue": "14 🐟",
      "english": "fourteen",
      "ask": "Ск+олько?"
     },

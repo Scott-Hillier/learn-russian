@@ -64,9 +64,9 @@
     {
      "audio": "Сто.",
      "options": [
-      "1️⃣0️⃣0️⃣",
-      "1️⃣0️⃣",
-      "9️⃣0️⃣"
+      "100",
+      "10",
+      "90"
      ],
      "correct": 0
     }
@@ -137,7 +137,7 @@
    "items": [
     {
      "prompt": "К+ошка в ___.",
-     "cue": "🐈 📥🚗",
+     "cue": "🐱 📥🚗",
      "english": "The cat is in the car.",
      "options": [
       "маш+ина",
@@ -266,32 +266,32 @@
    "items": [
     {
      "answer": "Сто.",
-     "cue": "1️⃣0️⃣0️⃣",
+     "cue": "100",
      "english": "a hundred"
     },
     {
      "answer": "Шестьдес+ят чет+ыре.",
-     "cue": "6️⃣4️⃣",
+     "cue": "64",
      "english": "sixty-four"
     },
     {
      "answer": "В+осемьдесят три.",
-     "cue": "8️⃣3️⃣",
+     "cue": "83",
      "english": "eighty-three"
     },
     {
      "answer": "Девян+осто д+евять.",
-     "cue": "9️⃣9️⃣",
+     "cue": "99",
      "english": "ninety-nine"
     },
     {
      "answer": "С+емьдесят од+ин.",
-     "cue": "7️⃣1️⃣",
+     "cue": "71",
      "english": "seventy-one"
     },
     {
      "answer": "Двен+адцать.",
-     "cue": "1️⃣2️⃣",
+     "cue": "12",
      "english": "twelve"
     }
    ]

@@ -161,32 +161,32 @@
    "items": [
     {
      "answer": "д+есять",
-     "cue": "🔟",
+     "cue": "10",
      "english": "ten"
     },
     {
      "answer": "чет+ыре",
-     "cue": "4️⃣",
+     "cue": "4",
      "english": "four"
     },
     {
      "answer": "в+осемь",
-     "cue": "8️⃣",
+     "cue": "8",
      "english": "eight"
     },
     {
      "answer": "од+ин",
-     "cue": "1️⃣",
+     "cue": "1",
      "english": "one"
     },
     {
      "answer": "д+евять",
-     "cue": "9️⃣",
+     "cue": "9",
      "english": "nine"
     },
     {
      "answer": "пять",
-     "cue": "5️⃣",
+     "cue": "5",
      "english": "five"
     }
    ]

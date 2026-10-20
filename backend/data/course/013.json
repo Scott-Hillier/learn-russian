@@ -190,12 +190,12 @@
    "items": [
     {
      "answer": "Шестн+адцать.",
-     "cue": "1️⃣6️⃣",
+     "cue": "16",
      "english": "sixteen"
     },
     {
      "answer": "Семн+адцать.",
-     "cue": "1️⃣7️⃣",
+     "cue": "17",
      "english": "seventeen"
     }
    ]
@@ -208,25 +208,25 @@
    "items": [
     {
      "answer": "Шестн+адцать.",
-     "cue": "1️⃣6️⃣ 🍎",
+     "cue": "16 🍎",
      "english": "sixteen",
      "ask": "Ск+олько?"
     },
     {
      "answer": "Трин+адцать.",
-     "cue": "1️⃣3️⃣ 🔑",
+     "cue": "13 🔑",
      "english": "thirteen",
      "ask": "Ск+олько?"
     },
     {
      "answer": "Семн+адцать.",
-     "cue": "1️⃣7️⃣ 📖",
+     "cue": "17 📖",
      "english": "seventeen",
      "ask": "Ск+олько?"
     },
     {
      "answer": "Пятн+адцать.",
-     "cue": "1️⃣5️⃣ 🐟",
+     "cue": "15 🐟",
      "english": "fifteen",
      "ask": "Ск+олько?"
     },

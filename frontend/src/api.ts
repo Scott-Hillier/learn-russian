@@ -208,6 +208,7 @@ export interface CourseItem {
   audio?: Described; // choose: what is played (before answering, or after it when there's a prompt)
   prompt?: Described; // choose: written sentence with a blank, e.g. "___ дом" (options are Russian forms)
   options?: string[]; // choose
+  labels?: string[]; // listening choose: the English word for an option that is only a picture ("" if none)
   correct?: number; // choose
   speaker?: "partner" | "you"; // dialogue
   line?: Described; // dialogue partner turn
@@ -283,6 +284,7 @@ export interface AnswerCheck {
   score: number; // pronunciation of the expected answer, 0–100
   words: WordResult[];
   silent: boolean; // nothing was said
+  reason?: "other" | "fit" | "score" | null; // why a miss was a miss: another answer, more or less than it, or sounds off
 }
 
 export type ResultStep = "first" | "practice" | "retest" | "delayed";

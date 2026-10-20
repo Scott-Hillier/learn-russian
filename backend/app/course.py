@@ -131,6 +131,21 @@ def strip_punct(text: str) -> str:
     return "".join(c if c.isalpha() or c in "+- " else " " for c in text)
 
 
+def _this_is(answer: str) -> str | None:
+    """«Это соба́ка.» for a one-noun answer like «соба́ка»: saying the word in the «Это …» frame still shows
+    the learner knows it, so it counts as right too."""
+    from .curriculum import _morph
+
+    words = strip_punct(answer).split()
+    if len(words) != 1 or answer.rstrip().endswith("!"):  # «Приве́т!» is a greeting, not a thing
+        return None
+    parses = _morph().parse(strip_stress(words[0]).lower())
+    if (parses[0].tag.POS != "NOUN" or any(p.tag.POS == "NUMR" for p in parses)  # «сто» is a number here
+            or not any(p.tag.POS == "NOUN" and p.tag.case == "nomn" for p in parses[:2])):
+        return None
+    return f"+Это {words[0]}."
+
+
 def _with_distractors(ex: dict) -> dict:
     """Check each spoken answer against the other answers in its exercise too (plus any listed)."""
     if ex["type"] not in ("teach", "say", "dialogue") or "items" not in ex:
@@ -139,6 +154,10 @@ def _with_distractors(ex: dict) -> dict:
     items = []
     for item in ex["items"]:
         if "answer" in item:
+            frame = _this_is(item["answer"])
+            listed = {strip_stress(t).lower() for t in [item["answer"], *item.get("distractors", []), *answers]}
+            if frame and strip_stress(frame).lower() not in listed:
+                item = {**item, "accept": [*item.get("accept", []), frame]}
             taken = {strip_stress(t).lower() for t in [item["answer"], *item.get("accept", [])]}
             extra = []
             for other in [*item.get("distractors", []), *answers]:
@@ -147,7 +166,11 @@ def _with_distractors(ex: dict) -> dict:
                     taken.add(key)
                     extra.append(other)
             n_listed = len(item.get("distractors", []))
-            item = {**item, "distractors": extra[:max(n_listed, MAX_AUTO_DISTRACTORS)]}
+            extra = extra[:max(n_listed, MAX_AUTO_DISTRACTORS)]
+            if frame in item.get("accept", []):  # «Это ко́шка.» must compete with «Это дом.», not just «ко́шка»
+                framed = [f for f in map(_this_is, extra) if f and strip_stress(f).lower() not in taken]
+                extra += framed
+            item = {**item, "distractors": extra}
         items.append(item)
     return {**ex, "items": items}
 
@@ -337,6 +360,24 @@ def build_remedial(unit: int, missed: list[str]) -> dict:
             "exercises": exercises}
 
 
+@lru_cache(maxsize=1)
+def _picture_words() -> dict[str, str]:
+    """The English word for each picture a one-word answer is taught with (🏠 → "house"), to label listening
+    options that are only a picture."""
+    out: dict[str, str] = {}
+    for lesson in lessons():
+        for ex, item in own_items(lesson):
+            if item.get("cue") and item.get("english") and len(strip_punct(item.get("answer", "")).split()) == 1:
+                out.setdefault(item["cue"], item["english"])
+    return out
+
+
+def _option_label(option: str) -> str:
+    if any(c.isascii() and c.isalnum() for c in option):  # already says it: "✅ 🐱 It is a cat", "100"
+        return ""
+    return _picture_words().get(option, "")
+
+
 def _expand(lesson: dict) -> dict:
     """Lesson content as the client needs it: display forms and item keys filled in."""
     exercises = []
@@ -350,6 +391,8 @@ def _expand(lesson: dict) -> dict:
                         out[field] = _describe(item[field])
                 if "prompt" in item:  # written Russian forms to choose from
                     out["options"] = [display_stress(o) for o in item["options"]]
+                else:
+                    out["labels"] = [_option_label(o) for o in item["options"]]
             elif ex["type"] == "dialogue" and item.get("speaker") == "partner":
                 out["line"] = _describe(item["line"])
             else:
