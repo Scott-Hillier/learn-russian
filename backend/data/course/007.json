@@ -174,39 +174,54 @@
   },
   {
    "track": "numbers",
-   "type": "say",
-   "title": "«Сколько?»",
-   "instruction": "Count and say the number.",
+   "type": "teach",
+   "title": "«Сколько?» — 1 and 2–4",
+   "instruction": "After 2, 3 and 4, an он-word like «ключ» adds «-а»: два ключа, три стула. After 1 it stays as it is: один дом. After 5 and up it's like before: десять кошек.",
    "items": [
     {
-     "answer": "Шесть.",
-     "cue": "🪑🪑🪑🪑🪑🪑",
-     "english": "six",
-     "ask": "Ск+олько?"
+     "answer": "Тут два ключ+а.",
+     "cue": "🔑🔑",
+     "english": "There are two keys here.",
+     "ask": "Ск+олько ключ+ей?",
+     "distractors": [
+      "Тут два ключ."
+     ]
     },
     {
-     "answer": "В+осемь.",
-     "cue": "🧃🧃🧃🧃🧃🧃🧃🧃",
-     "english": "eight",
-     "ask": "Ск+олько?"
+     "answer": "Тут три ст+ула.",
+     "cue": "🪑🪑🪑",
+     "english": "There are three chairs here.",
+     "ask": "Ск+олько ст+ульев?",
+     "distractors": [
+      "Тут три стул."
+     ]
     },
     {
-     "answer": "Д+есять.",
-     "cue": "🔑🔑🔑🔑🔑🔑🔑🔑🔑🔑",
-     "english": "ten",
-     "ask": "Ск+олько?"
+     "answer": "Тут чет+ыре телеф+она.",
+     "cue": "📱📱📱📱",
+     "english": "There are four phones here.",
+     "ask": "Ск+олько телеф+онов?",
+     "distractors": [
+      "Тут чет+ыре телеф+он."
+     ]
     },
     {
-     "answer": "Три.",
-     "cue": "👦👦👦",
-     "english": "three",
-     "ask": "Ск+олько?"
+     "answer": "Тут од+ин дом.",
+     "cue": "🏠",
+     "english": "There is one house here.",
+     "ask": "Ск+олько дом+ов?",
+     "distractors": [
+      "Тут од+ин д+ома."
+     ]
     },
     {
-     "answer": "Пять.",
-     "cue": "🧑‍🤝‍🧑🧑‍🤝‍🧑🧑‍🤝‍🧑🧑‍🤝‍🧑🧑‍🤝‍🧑",
-     "english": "five",
-     "ask": "Ск+олько?"
+     "answer": "Тут д+есять к+ошек.",
+     "cue": "🐱🐱🐱🐱🐱🐱🐱🐱🐱🐱",
+     "english": "There are ten cats here.",
+     "ask": "Ск+олько к+ошек?",
+     "distractors": [
+      "Тут д+есять к+ошка."
+     ]
     }
    ]
   },

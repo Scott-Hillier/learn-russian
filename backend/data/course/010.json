@@ -164,37 +164,52 @@
    "track": "numbers",
    "type": "say",
    "title": "«Сколько?»",
-   "instruction": "Count and say the number.",
+   "instruction": "Count, and answer with «Тут …». Is it 1, 2–4, or 5 and up?",
    "items": [
     {
-     "answer": "Д+есять.",
+     "answer": "Тут д+есять +яблок.",
      "cue": "🍎🍎🍎🍎🍎🍎🍎🍎🍎🍎",
-     "english": "ten",
-     "ask": "Ск+олько?"
+     "english": "There are ten apples here.",
+     "ask": "Ск+олько +яблок?",
+     "distractors": [
+      "Тут д+есять +яблока."
+     ]
     },
     {
-     "answer": "Чет+ыре.",
+     "answer": "Тут чет+ыре кн+иги.",
      "cue": "📖📖📖📖",
-     "english": "four",
-     "ask": "Ск+олько?"
+     "english": "There are four books here.",
+     "ask": "Ск+олько кн+иг?",
+     "distractors": [
+      "Тут чет+ыре книг."
+     ]
     },
     {
-     "answer": "Шесть.",
-     "cue": "🥛🥛🥛🥛🥛🥛",
-     "english": "six",
-     "ask": "Ск+олько?"
-    },
-    {
-     "answer": "Од+ин.",
+     "answer": "Тут од+ин телеф+он.",
      "cue": "📱",
-     "english": "one",
-     "ask": "Ск+олько?"
+     "english": "There is one phone here.",
+     "ask": "Ск+олько телеф+онов?",
+     "distractors": [
+      "Тут од+ин телеф+она."
+     ]
     },
     {
-     "answer": "Д+евять.",
-     "cue": "🪑🪑🪑🪑🪑🪑🪑🪑🪑",
-     "english": "nine",
-     "ask": "Ск+олько?"
+     "answer": "Тут д+евять маш+ин.",
+     "cue": "🚗🚗🚗🚗🚗🚗🚗🚗🚗",
+     "english": "There are nine cars here.",
+     "ask": "Ск+олько маш+ин?",
+     "distractors": [
+      "Тут д+евять маш+ины."
+     ]
+    },
+    {
+     "answer": "Тут два ст+ула.",
+     "cue": "🪑🪑",
+     "english": "There are two chairs here.",
+     "ask": "Ск+олько ст+ульев?",
+     "distractors": [
+      "Тут два стул."
+     ]
     }
    ]
   },

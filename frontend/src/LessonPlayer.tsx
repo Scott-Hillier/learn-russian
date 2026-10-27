@@ -46,6 +46,14 @@ const BACK_UP = 2; // items re-tested after a correction
 const DELAY = 3; // steps until a missed item is tested again
 const ADVANCE_MS = 900;
 const PASS_PERCENT = 90; // mirrors PASS_ACCURACY in backend/app/course.py
+const FAR_OFF_SCORE = 50; // a miss scoring below this is far off: the answer is sounded out slowly first
+const FAR_OFF_HOLD_MS = 2000; // and stays on screen this long after the model
+
+/** A miss that wasn't close: another answer altogether, or most of the sounds off (usually a forgotten word). */
+const farOff = (check: AnswerCheck | null) =>
+  !!check && !check.correct && (check.reason === "other" || check.score < FAR_OFF_SCORE);
+
+const pause = (ms: number) => new Promise((resolve) => window.setTimeout(resolve, ms));
 
 function shuffled<T>(xs: T[]): T[] {
   const out = [...xs];
@@ -409,18 +417,31 @@ export default function LessonPlayer({ lesson, onExit, onDone }: Props) {
     if (!step) return;
     let timer: number | undefined;
     let live = true;
-    if (phase === "right") timer = window.setTimeout(next, ADVANCE_MS);
+    if (phase === "right" && step.kind === "lead" && check && !check.correct && item)
+      // "Say it after me" moves on after two misses: hear it once more first.
+      void clip.play(api.ttsUrl(item.answer!.text, "normal")).then(() => {
+        if (live) timer = window.setTimeout(next, ADVANCE_MS);
+      });
+    else if (phase === "right") timer = window.setTimeout(next, ADVANCE_MS);
     if (phase === "wrong" && isTest) timer = window.setTimeout(next, 2 * ADVANCE_MS); // a test doesn't teach
     else if (phase === "wrong" && item) {
       const text = step.kind === "choose" ? item.audio?.text : item.answer!.text;
-      const played = text ? clip.play(api.ttsUrl(text, "normal")) : Promise.resolve(true);
-      void played.then(() => {
+      const slow = step.kind !== "choose" && farOff(check);
+      const model = async () => {
+        if (!text) return;
+        if (slow) {
+          await clip.play(api.ttsUrl(text, "slow"));
+          if (live) await pause(400);
+        }
+        if (live) await clip.play(api.ttsUrl(text, "normal"));
+      };
+      void model().then(() => {
         if (!live) return;
         if (step.kind === "lead") {
           setCheck(null);
           setPhase("ready");
           if (listenFirst) void recorder.start();
-        } else timer = window.setTimeout(next, 1200);
+        } else timer = window.setTimeout(next, slow ? FAR_OFF_HOLD_MS : 1200);
       });
     }
     if (phase === "chosen" && item?.prompt && item.audio)
@@ -765,8 +786,9 @@ function stepMode(
   if (phase === "checking") return { text: "Checking…" };
   if (phase === "right")
     return check?.correct ? { text: "✓ Right", tone: "good" } : { text: "Keep going →" };
+  if (phase === "wrong" && isTest) return { text: "✗ Not quite. The answer was:", tone: "bad" };
   if (phase === "wrong")
-    return { text: isTest ? "✗ Not quite. The answer was:" : "✗ Not quite. Listen:", tone: "bad" };
+    return { text: farOff(check) ? "✗ Not quite. Listen slowly, then again:" : "✗ Not quite. Listen:", tone: "bad" };
   if (phase === "listening") return { text: "🎙 Listening…", tone: "live" };
   if (step.kind === "lead")
     return { text: step.step === "retest" ? "🔁 Say it after me" : "👂 Listen, then say it after me" };

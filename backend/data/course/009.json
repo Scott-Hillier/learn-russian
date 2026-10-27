@@ -191,39 +191,48 @@
   },
   {
    "track": "numbers",
-   "type": "say",
-   "title": "«Сколько?»",
-   "instruction": "Count and say the number.",
+   "type": "teach",
+   "title": "«Сколько?» — одно",
+   "instruction": "Оно-words like «яблоко» say «одно»: одно яблоко. After 2, 3 and 4 the «-о» becomes «-а»: два яблока, три окна. After 5 and up it goes: семь окон. And «ключ» after 5: пять ключей.",
    "items": [
     {
-     "answer": "Два.",
+     "answer": "Тут одн+о +яблоко.",
+     "cue": "🍎",
+     "english": "There is one apple here.",
+     "ask": "Ск+олько +яблок?"
+    },
+    {
+     "answer": "Тут два +яблока.",
      "cue": "🍎🍎",
-     "english": "two",
-     "ask": "Ск+олько?"
+     "english": "There are two apples here.",
+     "ask": "Ск+олько +яблок?"
     },
     {
-     "answer": "Семь.",
-     "cue": "🥛🥛🥛🥛🥛🥛🥛",
-     "english": "seven",
-     "ask": "Ск+олько?"
+     "answer": "Тут три окн+а.",
+     "cue": "🪟🪟🪟",
+     "english": "There are three windows here.",
+     "ask": "Ск+олько +окон?",
+     "distractors": [
+      "Тут три окн+о."
+     ]
     },
     {
-     "answer": "Пять.",
-     "cue": "🪟🪟🪟🪟🪟",
-     "english": "five",
-     "ask": "Ск+олько?"
+     "answer": "Тут семь +окон.",
+     "cue": "🪟🪟🪟🪟🪟🪟🪟",
+     "english": "There are seven windows here.",
+     "ask": "Ск+олько +окон?",
+     "distractors": [
+      "Тут семь окн+а."
+     ]
     },
     {
-     "answer": "В+осемь.",
-     "cue": "🐟🐟🐟🐟🐟🐟🐟🐟",
-     "english": "eight",
-     "ask": "Ск+олько?"
-    },
-    {
-     "answer": "Три.",
-     "cue": "💧💧💧",
-     "english": "three",
-     "ask": "Ск+олько?"
+     "answer": "Тут пять ключ+ей.",
+     "cue": "🔑🔑🔑🔑🔑",
+     "english": "There are five keys here.",
+     "ask": "Ск+олько ключ+ей?",
+     "distractors": [
+      "Тут пять ключ+а."
+     ]
     }
    ]
   },

@@ -260,37 +260,37 @@
    "track": "numbers",
    "type": "say",
    "title": "«Сколько?»",
-   "instruction": "Count and say the number.",
+   "instruction": "11 to 20 work like 5 and up: одиннадцать кошек, двенадцать книг.",
    "items": [
     {
-     "answer": "Од+иннадцать.",
+     "answer": "Тут од+иннадцать +яблок.",
      "cue": "🍎🍎🍎🍎🍎🍎🍎🍎🍎🍎🍎",
-     "english": "eleven",
-     "ask": "Ск+олько?"
+     "english": "There are eleven apples here.",
+     "ask": "Ск+олько +яблок?"
     },
     {
-     "answer": "Семь.",
+     "answer": "Тут семь ключ+ей.",
      "cue": "🔑🔑🔑🔑🔑🔑🔑",
-     "english": "seven",
-     "ask": "Ск+олько?"
+     "english": "There are seven keys here.",
+     "ask": "Ск+олько ключ+ей?"
     },
     {
-     "answer": "Двен+адцать.",
+     "answer": "Тут двен+адцать книг.",
      "cue": "📖📖📖📖📖📖📖📖📖📖📖📖",
-     "english": "twelve",
-     "ask": "Ск+олько?"
+     "english": "There are twelve books here.",
+     "ask": "Ск+олько кн+иг?"
     },
     {
-     "answer": "Д+есять.",
+     "answer": "Тут д+есять р+ыб.",
      "cue": "🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟",
-     "english": "ten",
-     "ask": "Ск+олько?"
+     "english": "There are ten fish here.",
+     "ask": "Ск+олько р+ыб?"
     },
     {
-     "answer": "Од+иннадцать.",
-     "cue": "🥛🥛🥛🥛🥛🥛🥛🥛🥛🥛🥛",
-     "english": "eleven",
-     "ask": "Ск+олько?"
+     "answer": "Тут од+иннадцать к+ошек.",
+     "cue": "🐱🐱🐱🐱🐱🐱🐱🐱🐱🐱🐱",
+     "english": "There are eleven cats here.",
+     "ask": "Ск+олько к+ошек?"
     }
    ]
   },

@@ -204,37 +204,40 @@
    "track": "numbers",
    "type": "say",
    "title": "«Сколько?»",
-   "instruction": "Count and say the number.",
+   "instruction": "Count, and answer with «Тут …».",
    "items": [
     {
-     "answer": "Шестн+адцать.",
+     "answer": "Тут шестн+адцать +яблок.",
      "cue": "16 🍎",
-     "english": "sixteen",
-     "ask": "Ск+олько?"
+     "english": "There are sixteen apples here.",
+     "ask": "Ск+олько +яблок?"
     },
     {
-     "answer": "Трин+адцать.",
+     "answer": "Тут трин+адцать ключ+ей.",
      "cue": "13 🔑",
-     "english": "thirteen",
-     "ask": "Ск+олько?"
+     "english": "There are thirteen keys here.",
+     "ask": "Ск+олько ключ+ей?"
     },
     {
-     "answer": "Семн+адцать.",
-     "cue": "17 📖",
-     "english": "seventeen",
-     "ask": "Ск+олько?"
+     "answer": "Тут семн+адцать маш+ин.",
+     "cue": "17 🚗",
+     "english": "There are seventeen cars here.",
+     "ask": "Ск+олько маш+ин?"
     },
     {
-     "answer": "Пятн+адцать.",
+     "answer": "Тут пятн+адцать р+ыб.",
      "cue": "15 🐟",
-     "english": "fifteen",
-     "ask": "Ск+олько?"
+     "english": "There are fifteen fish here.",
+     "ask": "Ск+олько р+ыб?"
     },
     {
-     "answer": "Двен+адцать.",
-     "cue": "🥛🥛🥛🥛🥛🥛🥛🥛🥛🥛🥛🥛",
-     "english": "twelve",
-     "ask": "Ск+олько?"
+     "answer": "Тут три окн+а.",
+     "cue": "🪟🪟🪟",
+     "english": "There are three windows here.",
+     "ask": "Ск+олько +окон?",
+     "distractors": [
+      "Тут три +окон."
+     ]
     }
    ]
   },

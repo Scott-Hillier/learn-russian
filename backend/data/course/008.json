@@ -174,39 +174,51 @@
   },
   {
    "track": "numbers",
-   "type": "say",
-   "title": "«Сколько?»",
-   "instruction": "Count and say the number.",
+   "type": "teach",
+   "title": "«Сколько?» — одна, две",
+   "instruction": "Она-words like «кошка» say «одна» and «две»: одна кошка, две книги. After 2, 3 and 4 their «-а» becomes «-и» or «-ы»: три собаки, четыре рыбы.",
    "items": [
     {
-     "answer": "Чет+ыре.",
-     "cue": "🐟🐟🐟🐟",
-     "english": "four",
-     "ask": "Ск+олько?"
-    },
-    {
-     "answer": "Д+евять.",
-     "cue": "💧💧💧💧💧💧💧💧💧",
-     "english": "nine",
-     "ask": "Ск+олько?"
-    },
-    {
-     "answer": "Од+ин.",
+     "answer": "Тут одн+а к+ошка.",
      "cue": "🐱",
-     "english": "one",
-     "ask": "Ск+олько?"
+     "english": "There is one cat here.",
+     "ask": "Ск+олько к+ошек?"
     },
     {
-     "answer": "Шесть.",
+     "answer": "Тут две кн+иги.",
+     "cue": "📖📖",
+     "english": "There are two books here.",
+     "ask": "Ск+олько кн+иг?",
+     "distractors": [
+      "Тут два кн+иги."
+     ]
+    },
+    {
+     "answer": "Тут три соб+аки.",
+     "cue": "🐶🐶🐶",
+     "english": "There are three dogs here.",
+     "ask": "Ск+олько соб+ак?",
+     "distractors": [
+      "Тут три соб+ака."
+     ]
+    },
+    {
+     "answer": "Тут чет+ыре р+ыбы.",
+     "cue": "🐟🐟🐟🐟",
+     "english": "There are four fish here.",
+     "ask": "Ск+олько р+ыб?",
+     "distractors": [
+      "Тут чет+ыре р+ыба."
+     ]
+    },
+    {
+     "answer": "Тут шесть с+умок.",
      "cue": "👜👜👜👜👜👜",
-     "english": "six",
-     "ask": "Ск+олько?"
-    },
-    {
-     "answer": "Д+есять.",
-     "cue": "🧃🧃🧃🧃🧃🧃🧃🧃🧃🧃",
-     "english": "ten",
-     "ask": "Ск+олько?"
+     "english": "There are six bags here.",
+     "ask": "Ск+олько с+умок?",
+     "distractors": [
+      "Тут шесть с+умки."
+     ]
     }
    ]
   },

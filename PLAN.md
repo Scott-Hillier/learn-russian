@@ -284,6 +284,14 @@ written by hand.
     - **Also new:** «Ещё раз, пожалуйста», хорошо, тоже, пока, очень приятно, and numbers 11–30.
     - **Stress fixes:** lessons 3–10 had молоко and телефон stressed wrongly (мол+око, тел+ефон). They are
       now молоко́ and телефо́н. The number speller had четыр+надцать; it's now четы́рнадцать.
+    - **Counting in sentences (2026-10-27, the learner's request):** the «Сколько?» items in lessons 6–18
+      used to take a bare number. They now ask «Сколько кошек?» and take «Тут пять кошек.», using taught
+      countable nouns only. The noun forms come in with the gender lessons: 5 and up (L6), он-words with 1
+      and 2–4 (L7), она-words (L8), оно-words (L9), then mixed. Lessons 6–9 are teach exercises, so each
+      form is modelled first. Wrong-form distractors are used only where the checker can hear the
+      difference. один/одна/одно is not graded, and neither is яблоко/яблока, which sound the same. Native
+      voices: 1448/1460 judged as expected. Of the 12 misses, 5 were right answers that got "say it
+      again", and 6 were those two inaudible distractors, now removed.
 
 ### Scope and sequence
 Each new item comes in only after what it depends on is firm. Confusable items are introduced
@@ -297,11 +305,11 @@ and a dialogue.
 | 3 | «Где …?» — «… тут» | ключ, телефон | 6–7 |
 | 4 | Greetings: привет / здравствуйте, спасибо, пожалуйста | | 8–10 |
 | 5 | «… там», then тут/там contrasted | паспорт, сумка | 1–10 mixed |
-| 6 | «Кто это?» (people and animals) vs «Что это?» | мама, брат, сестра, друг | «Сколько?» counting |
-| 7 | он (consonant ending) | стул, сок | counting |
-| 8 | она (-а), then он/она contrasted | рыба, вода | counting |
-| 9 | оно (-о), then all three contrasted | молоко, яблоко, окно | counting |
-| 10 | мой / моя / моё (form choice, plus whole sentences) | | counting |
+| 6 | «Кто это?» (people and animals) vs «Что это?» | мама, брат, сестра, друг | «Сколько кошек?» — «Тут пять кошек.» (5 and up) |
+| 7 | он (consonant ending) | стул, сок | counting: один дом, два ключа (он-words, 1–4) |
+| 8 | она (-а), then он/она contrasted | рыба, вода | counting: одна кошка, две книги (она-words) |
+| 9 | оно (-о), then all three contrasted | молоко, яблоко, окно | counting: одно яблоко, два яблока, семь окон |
+| 10 | мой / моя / моё (form choice, plus whole sentences) | | counting, 1 / 2–4 / 5+ mixed |
 | 11 | твой / твоя / твоё; «Это твой …?» — «Да, это мой …» | | 11–12 |
 | 12 | Gender to learn with the word: папа (он), дверь (она) | папа, дверь | 13–15 |
 | 13 | «Как тебя зовут?» — «Меня зовут …»; я / ты (played as Анна / Иван) | | 16–17 |

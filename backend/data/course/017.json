@@ -252,37 +252,40 @@
    "track": "numbers",
    "type": "say",
    "title": "«Сколько?»",
-   "instruction": "Count and say the number.",
+   "instruction": "Count, and answer with «Тут …».",
    "items": [
     {
-     "answer": "Девятн+адцать.",
+     "answer": "Тут девятн+адцать +яблок.",
      "cue": "19 🍎",
-     "english": "nineteen",
-     "ask": "Ск+олько?"
+     "english": "There are nineteen apples here.",
+     "ask": "Ск+олько +яблок?"
     },
     {
-     "answer": "Двен+адцать.",
-     "cue": "🔑🔑🔑🔑🔑🔑🔑🔑🔑🔑🔑🔑",
-     "english": "twelve",
-     "ask": "Ск+олько?"
+     "answer": "Тут семн+адцать ключ+ей.",
+     "cue": "17 🔑",
+     "english": "There are seventeen keys here.",
+     "ask": "Ск+олько ключ+ей?"
     },
     {
-     "answer": "Дв+адцать.",
+     "answer": "Тут дв+адцать книг.",
      "cue": "20 📖",
-     "english": "twenty",
-     "ask": "Ск+олько?"
+     "english": "There are twenty books here.",
+     "ask": "Ск+олько кн+иг?"
     },
     {
-     "answer": "Чет+ырнадцать.",
+     "answer": "Тут чет+ырнадцать р+ыб.",
      "cue": "14 🐟",
-     "english": "fourteen",
-     "ask": "Ск+олько?"
+     "english": "There are fourteen fish here.",
+     "ask": "Ск+олько р+ыб?"
     },
     {
-     "answer": "Восемн+адцать.",
-     "cue": "18 🥛",
-     "english": "eighteen",
-     "ask": "Ск+олько?"
+     "answer": "Тут три маш+ины.",
+     "cue": "🚗🚗🚗",
+     "english": "There are three cars here.",
+     "ask": "Ск+олько маш+ин?",
+     "distractors": [
+      "Тут три маш+ин."
+     ]
     }
    ]
   },

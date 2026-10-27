@@ -191,43 +191,43 @@
    "track": "numbers",
    "type": "say",
    "title": "«Сколько?»",
-   "instruction": "Count and say the number.",
+   "instruction": "Count, and answer with «Тут …».",
    "items": [
     {
-     "answer": "Восемн+адцать.",
+     "answer": "Тут восемн+адцать +яблок.",
      "cue": "18 🍎",
-     "english": "eighteen",
-     "ask": "Ск+олько?"
+     "english": "There are eighteen apples here.",
+     "ask": "Ск+олько +яблок?"
     },
     {
-     "answer": "Чет+ырнадцать.",
-     "cue": "14 🔑",
-     "english": "fourteen",
-     "ask": "Ск+олько?"
+     "answer": "Тут од+иннадцать с+умок.",
+     "cue": "👜👜👜👜👜👜👜👜👜👜👜",
+     "english": "There are eleven bags here.",
+     "ask": "Ск+олько с+умок?"
     },
     {
-     "answer": "Девятн+адцать.",
+     "answer": "Тут девятн+адцать книг.",
      "cue": "19 📖",
-     "english": "nineteen",
-     "ask": "Ск+олько?"
+     "english": "There are nineteen books here.",
+     "ask": "Ск+олько кн+иг?"
     },
     {
-     "answer": "Шестн+адцать.",
-     "cue": "16 🐟",
-     "english": "sixteen",
-     "ask": "Ск+олько?"
+     "answer": "Тут шестн+адцать к+ошек.",
+     "cue": "16 🐱",
+     "english": "There are sixteen cats here.",
+     "ask": "Ск+олько к+ошек?"
     },
     {
-     "answer": "Од+иннадцать.",
-     "cue": "🥛🥛🥛🥛🥛🥛🥛🥛🥛🥛🥛",
-     "english": "eleven",
-     "ask": "Ск+олько?"
+     "answer": "Тут одн+а р+ыба.",
+     "cue": "🐟",
+     "english": "There is one fish here.",
+     "ask": "Ск+олько р+ыб?"
     },
     {
-     "answer": "Семн+адцать.",
-     "cue": "17 🪑",
-     "english": "seventeen",
-     "ask": "Ск+олько?"
+     "answer": "Тут чет+ырнадцать ключ+ей.",
+     "cue": "14 🔑",
+     "english": "There are fourteen keys here.",
+     "ask": "Ск+олько ключ+ей?"
     }
    ]
   },

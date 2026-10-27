@@ -169,45 +169,54 @@
   },
   {
    "track": "numbers",
-   "type": "say",
+   "type": "teach",
    "title": "«Сколько?» — How many?",
-   "instruction": "«Сколько?» means “how many?”. Count and say the number.",
+   "instruction": "«Сколько …?» means “how many …?”. Answer with «Тут …» (“here there are …”) and the number. After 5 and up, a word like «кошка» drops its «-а»: пять кошек, семь книг.",
    "items": [
     {
-     "answer": "Три.",
-     "cue": "🐱🐱🐱",
-     "english": "three",
-     "ask": "Ск+олько?"
+     "answer": "Тут пять к+ошек.",
+     "cue": "🐱🐱🐱🐱🐱",
+     "english": "There are five cats here.",
+     "ask": "Ск+олько к+ошек?",
+     "distractors": [
+      "Тут пять к+ошка."
+     ]
     },
     {
-     "answer": "Два.",
-     "cue": "🔑🔑",
-     "english": "two",
-     "ask": "Ск+олько?"
-    },
-    {
-     "answer": "Пять.",
-     "cue": "🐶🐶🐶🐶🐶",
-     "english": "five",
-     "ask": "Ск+олько?"
-    },
-    {
-     "answer": "Семь.",
+     "answer": "Тут семь книг.",
      "cue": "📖📖📖📖📖📖📖",
-     "english": "seven",
-     "ask": "Ск+олько?"
+     "english": "There are seven books here.",
+     "ask": "Ск+олько кн+иг?",
+     "distractors": [
+      "Тут семь кн+ига."
+     ]
     },
     {
-     "answer": "Чет+ыре.",
-     "cue": "🍞🍞🍞🍞",
-     "english": "four",
-     "ask": "Ск+олько?"
+     "answer": "Тут шесть соб+ак.",
+     "cue": "🐶🐶🐶🐶🐶🐶",
+     "english": "There are six dogs here.",
+     "ask": "Ск+олько соб+ак?",
+     "distractors": [
+      "Тут шесть соб+ака."
+     ]
     },
     {
-     "answer": "Д+евять.",
-     "cue": "📱📱📱📱📱📱📱📱📱",
-     "english": "nine",
-     "ask": "Ск+олько?"
+     "answer": "Тут д+евять маш+ин.",
+     "cue": "🚗🚗🚗🚗🚗🚗🚗🚗🚗",
+     "english": "There are nine cars here.",
+     "ask": "Ск+олько маш+ин?",
+     "distractors": [
+      "Тут д+евять маш+ина."
+     ]
+    },
+    {
+     "answer": "Тут в+осемь с+умок.",
+     "cue": "👜👜👜👜👜👜👜👜",
+     "english": "There are eight bags here.",
+     "ask": "Ск+олько с+умок?",
+     "distractors": [
+      "Тут в+осемь с+умка."
+     ]
     }
    ]
   },

@@ -269,37 +269,40 @@
    "track": "numbers",
    "type": "say",
    "title": "«Сколько?»",
-   "instruction": "Count and say the number.",
+   "instruction": "Count, and answer with «Тут …».",
    "items": [
     {
-     "answer": "Дв+адцать.",
+     "answer": "Тут дв+адцать книг.",
      "cue": "20 📖",
-     "english": "twenty",
-     "ask": "Ск+олько?"
+     "english": "There are twenty books here.",
+     "ask": "Ск+олько кн+иг?"
     },
     {
-     "answer": "Трин+адцать.",
+     "answer": "Тут трин+адцать +яблок.",
      "cue": "13 🍎",
-     "english": "thirteen",
-     "ask": "Ск+олько?"
+     "english": "There are thirteen apples here.",
+     "ask": "Ск+олько +яблок?"
     },
     {
-     "answer": "Семн+адцать.",
-     "cue": "17 🔑",
-     "english": "seventeen",
-     "ask": "Ск+олько?"
+     "answer": "Тут семн+адцать +окон.",
+     "cue": "17 🪟",
+     "english": "There are seventeen windows here.",
+     "ask": "Ск+олько +окон?"
     },
     {
-     "answer": "Од+иннадцать.",
-     "cue": "🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟",
-     "english": "eleven",
-     "ask": "Ск+олько?"
+     "answer": "Тут од+иннадцать соб+ак.",
+     "cue": "🐶🐶🐶🐶🐶🐶🐶🐶🐶🐶🐶",
+     "english": "There are eleven dogs here.",
+     "ask": "Ск+олько соб+ак?"
     },
     {
-     "answer": "Шестн+адцать.",
-     "cue": "16 🥛",
-     "english": "sixteen",
-     "ask": "Ск+олько?"
+     "answer": "Тут два ключ+а.",
+     "cue": "🔑🔑",
+     "english": "There are two keys here.",
+     "ask": "Ск+олько ключ+ей?",
+     "distractors": [
+      "Тут два ключ+ей."
+     ]
     }
    ]
   },

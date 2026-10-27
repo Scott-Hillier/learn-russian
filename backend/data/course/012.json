@@ -302,37 +302,40 @@
    "track": "numbers",
    "type": "say",
    "title": "«Сколько?»",
-   "instruction": "Count and say the number.",
+   "instruction": "Count, and answer with «Тут …».",
    "items": [
     {
-     "answer": "Трин+адцать.",
-     "cue": "13 🍎",
-     "english": "thirteen",
-     "ask": "Ск+олько?"
+     "answer": "Тут трин+адцать соб+ак.",
+     "cue": "13 🐶",
+     "english": "There are thirteen dogs here.",
+     "ask": "Ск+олько соб+ак?"
     },
     {
-     "answer": "Пятн+адцать.",
+     "answer": "Тут пятн+адцать книг.",
      "cue": "15 📖",
-     "english": "fifteen",
-     "ask": "Ск+олько?"
+     "english": "There are fifteen books here.",
+     "ask": "Ск+олько кн+иг?"
     },
     {
-     "answer": "Двен+адцать.",
+     "answer": "Тут двен+адцать ключ+ей.",
      "cue": "🔑🔑🔑🔑🔑🔑🔑🔑🔑🔑🔑🔑",
-     "english": "twelve",
-     "ask": "Ск+олько?"
+     "english": "There are twelve keys here.",
+     "ask": "Ск+олько ключ+ей?"
     },
     {
-     "answer": "Чет+ырнадцать.",
+     "answer": "Тут чет+ырнадцать р+ыб.",
      "cue": "14 🐟",
-     "english": "fourteen",
-     "ask": "Ск+олько?"
+     "english": "There are fourteen fish here.",
+     "ask": "Ск+олько р+ыб?"
     },
     {
-     "answer": "Од+иннадцать.",
-     "cue": "🥛🥛🥛🥛🥛🥛🥛🥛🥛🥛🥛",
-     "english": "eleven",
-     "ask": "Ск+олько?"
+     "answer": "Тут две к+ошки.",
+     "cue": "🐱🐱",
+     "english": "There are two cats here.",
+     "ask": "Ск+олько к+ошек?",
+     "distractors": [
+      "Тут два к+ошки."
+     ]
     }
    ]
   },

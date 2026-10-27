@@ -255,37 +255,37 @@
    "track": "numbers",
    "type": "say",
    "title": "«Сколько?»",
-   "instruction": "Count and say the number.",
+   "instruction": "Count, and answer with «Тут …».",
    "items": [
     {
-     "answer": "Дв+адцать.",
+     "answer": "Тут дв+адцать +яблок.",
      "cue": "20 🍎",
-     "english": "twenty",
-     "ask": "Ск+олько?"
+     "english": "There are twenty apples here.",
+     "ask": "Ск+олько +яблок?"
     },
     {
-     "answer": "Пятн+адцать.",
+     "answer": "Тут пятн+адцать ключ+ей.",
      "cue": "15 🔑",
-     "english": "fifteen",
-     "ask": "Ск+олько?"
+     "english": "There are fifteen keys here.",
+     "ask": "Ск+олько ключ+ей?"
     },
     {
-     "answer": "Восемн+адцать.",
+     "answer": "Тут восемн+адцать книг.",
      "cue": "18 📖",
-     "english": "eighteen",
-     "ask": "Ск+олько?"
+     "english": "There are eighteen books here.",
+     "ask": "Ск+олько кн+иг?"
     },
     {
-     "answer": "Двен+адцать.",
+     "answer": "Тут двен+адцать р+ыб.",
      "cue": "🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟",
-     "english": "twelve",
-     "ask": "Ск+олько?"
+     "english": "There are twelve fish here.",
+     "ask": "Ск+олько р+ыб?"
     },
     {
-     "answer": "Девятн+адцать.",
-     "cue": "19 🥛",
-     "english": "nineteen",
-     "ask": "Ск+олько?"
+     "answer": "Тут чет+ыре телеф+она.",
+     "cue": "📱📱📱📱",
+     "english": "There are four phones here.",
+     "ask": "Ск+олько телеф+онов?"
     }
    ]
   },
