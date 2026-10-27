@@ -170,46 +170,31 @@
      "answer": "Тут д+есять +яблок.",
      "cue": "🍎🍎🍎🍎🍎🍎🍎🍎🍎🍎",
      "english": "There are ten apples here.",
-     "ask": "Ск+олько +яблок?",
-     "distractors": [
-      "Тут д+есять +яблока."
-     ]
+     "ask": "Ск+олько +яблок?"
     },
     {
      "answer": "Тут чет+ыре кн+иги.",
      "cue": "📖📖📖📖",
      "english": "There are four books here.",
-     "ask": "Ск+олько кн+иг?",
-     "distractors": [
-      "Тут чет+ыре книг."
-     ]
+     "ask": "Ск+олько кн+иг?"
     },
     {
      "answer": "Тут од+ин телеф+он.",
      "cue": "📱",
      "english": "There is one phone here.",
-     "ask": "Ск+олько телеф+онов?",
-     "distractors": [
-      "Тут од+ин телеф+она."
-     ]
+     "ask": "Ск+олько телеф+онов?"
     },
     {
      "answer": "Тут д+евять маш+ин.",
      "cue": "🚗🚗🚗🚗🚗🚗🚗🚗🚗",
      "english": "There are nine cars here.",
-     "ask": "Ск+олько маш+ин?",
-     "distractors": [
-      "Тут д+евять маш+ины."
-     ]
+     "ask": "Ск+олько маш+ин?"
     },
     {
      "answer": "Тут два ст+ула.",
      "cue": "🪑🪑",
      "english": "There are two chairs here.",
-     "ask": "Ск+олько ст+ульев?",
-     "distractors": [
-      "Тут два стул."
-     ]
+     "ask": "Ск+олько ст+ульев?"
     }
    ]
   },

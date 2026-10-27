@@ -280,12 +280,11 @@ export interface CourseLesson {
 
 export interface AnswerCheck {
   correct: boolean;
-  again?: boolean; // unclear: probably the answer, but ask for it again rather than mark it wrong
   heard: string | null; // the candidate answer that matched best (display form)
   score: number; // pronunciation of the expected answer, 0–100
   words: WordResult[];
   silent: boolean; // nothing was said
-  reason?: "other" | "fit" | "score" | null; // why a miss was a miss: another answer, more or less than it, or sounds off
+  reason?: "other" | "fit" | null; // why a miss was a miss: another answer, or more or less than it
 }
 
 export type ResultStep = "first" | "practice" | "retest" | "delayed";

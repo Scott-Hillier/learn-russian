@@ -25,6 +25,11 @@ decisions, the 60-lesson scope and sequence, and implementation notes for each p
 - **Answer checking:** the user's own recordings can't define what a right answer sounds like, because
   they aren't a native speaker (their words, 2026-10-20). The checker is tuned on simulated learner
   speech instead (`backend/scripts/learner_benchmark.py`). Don't ask the user for reference recordings.
+- **Right words, not pronunciation (the user's rule, 2026-10-27):** "if I get the word right then we
+  can move on … it's more important that I learn many words than a few I can say perfectly". The
+  checker grades which answer was said, not how well, and there's no "say it again". A miss is corrected
+  once (model, say it after me, one delayed re-test) and then left to review. Don't add spoken
+  distractors that hinge on a short ending.
 - **Workflow:** after finishing a phase, update PLAN.md's implementation note, commit to `main`, and
   push to `origin` (github.com/Scott-Hillier/learn-russian). The user has authorised this. Commit
   messages end with the Co-Authored-By line used in the existing history.
@@ -56,7 +61,7 @@ All phases in PLAN.md are built. In order of value:
    - «Мне воду, пожалуйста»
    - the age and price agreement items
 3. **Known gaps in the player:**
-   - A "say it after me" step moves on after 2 tries even if both were wrong.
+   - A "say it after me" step has one try by design; a miss hears the model and moves on.
    - The N/M counter only counts the cold final pass during teach exercises.
 4. **Beyond lesson 60:** the next obvious steps are more cases (dative: «мне нужно», «брату»), verbs of
    motion with «на», «потому что», and «который». Extend the scope table first, then the curriculum
@@ -69,12 +74,12 @@ All phases in PLAN.md are built. In order of value:
 | `backend/data/course/confusables.json` | Groups of words that must be introduced N lessons apart |
 | `backend/app/course.py` | See the next table. |
 | `backend/app/curriculum.py` | DI rule checker, run by `tests/test_curriculum.py`. Words are compared by lemma (pymorphy3, with fixes for participles and большая). `introductions()` maps each lemma to its first lesson. |
-| `backend/app/speech/answers.py` | Returns `reason` on a miss (`other` / `fit` / `score`), so the player can explain green letters with a red verdict. Checks a spoken answer: forced choice on likelihood in learner mode (strict when learner mode makes a distractor sound the same), the fit gate (`MIN_FIT`), the letter score gate (`MIN_SCORE`), and `again` for borderline cases. |
+| `backend/app/speech/answers.py` | Returns `reason` on a miss (`other` / `fit`), so the player can explain green letters with a red verdict. Checks a spoken answer for the right words: forced choice on likelihood in learner mode (strict when learner mode makes a distractor sound the same), near ties (`TIE_MARGIN`) go to the learner, and a loose fit gate (`MIN_FIT`) rejects unrelated speech. Letter scores only colour the feedback. |
 | `backend/app/speech/pronunciation.py` | `log_probs`, `likelihood(..., learner=)`, `free_likelihood`, `greedy_text` and `score(..., logp=, learner=)`: one model pass, many scorings. `LEARNER_VARIANTS` and `learner_form` live here. |
 | `backend/app/routes_course.py` | Endpoints:<br>• `/api/course`, `/{id}`, `/{id}/rounds`, `/{id}/restart`<br>• `/{src lesson}/check` (form fields `exercise`, `item`, optional `test`)<br>• `/stats`<br>• `/tests/{unit}`, `/tests/{unit}/finish`, `/tests/{unit}/remedial`, `/tests/{unit}/remedial/rounds` |
 | `backend/app/chat.py` | Conversation partner. Level `lessons` passes `Course.taught()` into the prompt, flags `unknown_words`, and retries replies that stray. |
 | `frontend/src/HomeView.tsx` | 🏠 Today: next step, path, accuracy per track, items to work on, tests |
-| `frontend/src/LessonPlayer.tsx` | Step queue: model, lead, test, and the correction procedure. Handles firm-up rounds, the hands-free mic and "say it again". Test mode (`lesson.kind === "test"`): one try per item, no corrections, one result at the end. |
+| `frontend/src/LessonPlayer.tsx` | Step queue: model, lead, test, and the correction procedure. Handles firm-up rounds and the hands-free mic. A far-off miss (another answer, or score < 50) is modelled slowly, then at normal speed. Test mode (`lesson.kind === "test"`): one try per item, no corrections, one result at the end. |
 | `frontend/src/CourseView.tsx` | Lesson and test list, the placement offer, and the fix-up lesson. Opens and starts what Today asks for (`start` prop). |
 | `backend/scripts/answer_check_experiment.py` | The Phase 8 experiment, plus `--lessons [--from N]`: a native-voice check of every course item |
 | `backend/scripts/learner_benchmark.py` | `collect`: simulated learner speech for every course item. `analyse`: replays decision rules. |
@@ -125,7 +130,7 @@ framed distractors were added. Run `answer_check_experiment --lessons` over the 
    - confusable items kept apart
    - no distractor that differs from the answer only by a contrast speech can't judge
 2. `cd backend && .venv/bin/python -m scripts.answer_check_experiment --lessons --from N`. Every
-   check should come out "as expected", and a rare "say it again" on a right answer is acceptable.
+   check should come out "as expected".
    It takes about 4 minutes per lesson, so run it in the background.
 3. **Contrasts speech can't judge** go in `form` or listening exercises, never as the only
    difference between a spoken answer and a distractor:
@@ -167,8 +172,8 @@ framed distractors were added. Run `answer_check_experiment --lessons` over the 
   only one at a time on the 8 GB machine.
 
 ## Known gaps and quirks
-- **Repeat steps don't block:** a "say it after me" step moves on after 2 tries, even if both
-  were wrong.
+- **Repeat steps don't block:** a "say it after me" step has one try; a miss hears the model and
+  moves on.
 - **Counter during teaching:** the "N/M" counter only counts the cold final pass, so it shows 0/M
   while a teach exercise is introducing items.
 - **Content quality:** see "What's left" item 2.

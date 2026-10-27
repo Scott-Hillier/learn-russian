@@ -294,10 +294,7 @@
      "answer": "Тут три ст+ула.",
      "cue": "🪑🪑🪑",
      "english": "There are three chairs here.",
-     "ask": "Ск+олько ст+ульев?",
-     "distractors": [
-      "Тут три ст+ульев."
-     ]
+     "ask": "Ск+олько ст+ульев?"
     }
    ]
   },

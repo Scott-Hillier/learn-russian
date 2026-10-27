@@ -182,46 +182,31 @@
      "answer": "Тут два ключ+а.",
      "cue": "🔑🔑",
      "english": "There are two keys here.",
-     "ask": "Ск+олько ключ+ей?",
-     "distractors": [
-      "Тут два ключ."
-     ]
+     "ask": "Ск+олько ключ+ей?"
     },
     {
      "answer": "Тут три ст+ула.",
      "cue": "🪑🪑🪑",
      "english": "There are three chairs here.",
-     "ask": "Ск+олько ст+ульев?",
-     "distractors": [
-      "Тут три стул."
-     ]
+     "ask": "Ск+олько ст+ульев?"
     },
     {
      "answer": "Тут чет+ыре телеф+она.",
      "cue": "📱📱📱📱",
      "english": "There are four phones here.",
-     "ask": "Ск+олько телеф+онов?",
-     "distractors": [
-      "Тут чет+ыре телеф+он."
-     ]
+     "ask": "Ск+олько телеф+онов?"
     },
     {
      "answer": "Тут од+ин дом.",
      "cue": "🏠",
      "english": "There is one house here.",
-     "ask": "Ск+олько дом+ов?",
-     "distractors": [
-      "Тут од+ин д+ома."
-     ]
+     "ask": "Ск+олько дом+ов?"
     },
     {
      "answer": "Тут д+есять к+ошек.",
      "cue": "🐱🐱🐱🐱🐱🐱🐱🐱🐱🐱",
      "english": "There are ten cats here.",
-     "ask": "Ск+олько к+ошек?",
-     "distractors": [
-      "Тут д+есять к+ошка."
-     ]
+     "ask": "Ск+олько к+ошек?"
     }
    ]
   },

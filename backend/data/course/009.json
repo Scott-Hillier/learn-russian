@@ -211,28 +211,19 @@
      "answer": "Тут три окн+а.",
      "cue": "🪟🪟🪟",
      "english": "There are three windows here.",
-     "ask": "Ск+олько +окон?",
-     "distractors": [
-      "Тут три окн+о."
-     ]
+     "ask": "Ск+олько +окон?"
     },
     {
      "answer": "Тут семь +окон.",
      "cue": "🪟🪟🪟🪟🪟🪟🪟",
      "english": "There are seven windows here.",
-     "ask": "Ск+олько +окон?",
-     "distractors": [
-      "Тут семь окн+а."
-     ]
+     "ask": "Ск+олько +окон?"
     },
     {
      "answer": "Тут пять ключ+ей.",
      "cue": "🔑🔑🔑🔑🔑",
      "english": "There are five keys here.",
-     "ask": "Ск+олько ключ+ей?",
-     "distractors": [
-      "Тут пять ключ+а."
-     ]
+     "ask": "Ск+олько ключ+ей?"
     }
    ]
   },

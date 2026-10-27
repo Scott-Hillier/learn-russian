@@ -79,7 +79,7 @@ DI is Engelmann and Becker's design method. It is not the Berlitz "Direct Method
 | Faultless communication: examples allow only one interpretation; learner errors mean the lesson needs fixing | Example sets are designed by sameness/difference; item error stats point to content to revise |
 | Sameness and minimum difference | Positive examples vary widely; non-examples differ by one feature (Это кошка / Я вижу кошку) |
 | Model → Lead → Test, plus a delayed test | Hear it, say it along with the native voice, answer alone, get tested again later |
-| Fixed correction procedure | On an error: model, lead, retest, back up 2 items, queue a delayed test |
+| Fixed correction procedure | On an error: model, lead, queue a delayed test (no back-up since 2026-10-27; a miss on the delayed test goes to review) |
 | Firm-up to mastery | An exercise repeats until about 90% is right on the first try. Mastery tests every 5 lessons. Placement test on first launch |
 | Track design | Each lesson mixes 4–6 short exercises from different tracks; about 10–20% new, the rest firm-up and cumulative review |
 | Separate confusable items | Confusable items are introduced at least 5 lessons apart and contrasted only once each is firm |
@@ -288,10 +288,18 @@ written by hand.
       used to take a bare number. They now ask «Сколько кошек?» and take «Тут пять кошек.», using taught
       countable nouns only. The noun forms come in with the gender lessons: 5 and up (L6), он-words with 1
       and 2–4 (L7), она-words (L8), оно-words (L9), then mixed. Lessons 6–9 are teach exercises, so each
-      form is modelled first. Wrong-form distractors are used only where the checker can hear the
-      difference. один/одна/одно is not graded, and neither is яблоко/яблока, which sound the same. Native
-      voices: 1448/1460 judged as expected. Of the 12 misses, 5 were right answers that got "say it
-      again", and 6 were those two inaudible distractors, now removed.
+      form is modelled first. The forms aren't graded by speech: the first version had wrong-form
+      distractors (две/два книги, три собаки/собака), and on most of them the difference is a short
+      ending. In lesson 8 that made the learner repeat phrases they had said right (34 tries for 5
+      items), so those distractors are gone. Native voices: 1344/1344 judged as expected.
+    - **Right words, not pronunciation (2026-10-27, the learner's rule):** "if I get the word right then
+      we can move on". The checker no longer has a letter-score floor or "say it again". A wrong answer
+      that wins the forced choice by less than `TIE_MARGIN` counts as right, and `MIN_FIT` is loosened
+      to −55. The player's correction no longer backs up 2 items, a miss on the delayed re-test isn't
+      corrected again, and teach steps say each item 3 times, not 4. Benchmark (100 items, 2,093
+      simulated recordings): learner-like speech accepted 98.8%, and no longer asked again; closest
+      wrong answer accepted 1.4%, unrelated sentence 1%; heavy English accent accepted 73% (was 67% plus
+      3% "say it again").
 
 ### Scope and sequence
 Each new item comes in only after what it depends on is firm. Confusable items are introduced

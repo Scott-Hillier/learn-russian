@@ -282,10 +282,7 @@
      "answer": "Тут три маш+ины.",
      "cue": "🚗🚗🚗",
      "english": "There are three cars here.",
-     "ask": "Ск+олько маш+ин?",
-     "distractors": [
-      "Тут три маш+ин."
-     ]
+     "ask": "Ск+олько маш+ин?"
     }
    ]
   },

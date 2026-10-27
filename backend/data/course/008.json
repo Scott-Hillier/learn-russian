@@ -188,37 +188,25 @@
      "answer": "Тут две кн+иги.",
      "cue": "📖📖",
      "english": "There are two books here.",
-     "ask": "Ск+олько кн+иг?",
-     "distractors": [
-      "Тут два кн+иги."
-     ]
+     "ask": "Ск+олько кн+иг?"
     },
     {
      "answer": "Тут три соб+аки.",
      "cue": "🐶🐶🐶",
      "english": "There are three dogs here.",
-     "ask": "Ск+олько соб+ак?",
-     "distractors": [
-      "Тут три соб+ака."
-     ]
+     "ask": "Ск+олько соб+ак?"
     },
     {
      "answer": "Тут чет+ыре р+ыбы.",
      "cue": "🐟🐟🐟🐟",
      "english": "There are four fish here.",
-     "ask": "Ск+олько р+ыб?",
-     "distractors": [
-      "Тут чет+ыре р+ыба."
-     ]
+     "ask": "Ск+олько р+ыб?"
     },
     {
      "answer": "Тут шесть с+умок.",
      "cue": "👜👜👜👜👜👜",
      "english": "There are six bags here.",
-     "ask": "Ск+олько с+умок?",
-     "distractors": [
-      "Тут шесть с+умки."
-     ]
+     "ask": "Ск+олько с+умок?"
     }
    ]
   },

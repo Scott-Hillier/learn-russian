@@ -157,7 +157,7 @@ def lesson_items(first: int = 1) -> int:
     from app.course import lessons
     from app.speech.answers import check_answer
 
-    ok = total = unclear = 0
+    ok = total = 0
     seen = set()
     for lesson in lessons():
         if lesson["id"] < first:
@@ -176,13 +176,11 @@ def lesson_items(first: int = 1) -> int:
                         good = result["correct"] == expect
                         ok += good
                         total += 1
-                        unclear += expect and result.get("again", False)
                         if not good:
                             print(f"  ✗ lesson {lesson['id']} ex {e_idx + 1}: answer {strip_stress(item['answer'])!r} "
                                   f"[{spk}] said {strip_stress(spoken)!r} → correct={result['correct']} "
-                                  f"score={result['score']} heard={result['heard']} again={result.get('again')}")
-    print(f"lesson items: {ok}/{total} judged as expected "
-          f"({unclear} of the misses were 'say it again' rather than marked wrong)")
+                                  f"score={result['score']} heard={result['heard']} reason={result['reason']}")
+    print(f"lesson items: {ok}/{total} judged as expected")
     return 0
 
 

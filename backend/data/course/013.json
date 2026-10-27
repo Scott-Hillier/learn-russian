@@ -234,10 +234,7 @@
      "answer": "Тут три окн+а.",
      "cue": "🪟🪟🪟",
      "english": "There are three windows here.",
-     "ask": "Ск+олько +окон?",
-     "distractors": [
-      "Тут три +окон."
-     ]
+     "ask": "Ск+олько +окон?"
     }
    ]
   },

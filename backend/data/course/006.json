@@ -177,46 +177,31 @@
      "answer": "Тут пять к+ошек.",
      "cue": "🐱🐱🐱🐱🐱",
      "english": "There are five cats here.",
-     "ask": "Ск+олько к+ошек?",
-     "distractors": [
-      "Тут пять к+ошка."
-     ]
+     "ask": "Ск+олько к+ошек?"
     },
     {
      "answer": "Тут семь книг.",
      "cue": "📖📖📖📖📖📖📖",
      "english": "There are seven books here.",
-     "ask": "Ск+олько кн+иг?",
-     "distractors": [
-      "Тут семь кн+ига."
-     ]
+     "ask": "Ск+олько кн+иг?"
     },
     {
      "answer": "Тут шесть соб+ак.",
      "cue": "🐶🐶🐶🐶🐶🐶",
      "english": "There are six dogs here.",
-     "ask": "Ск+олько соб+ак?",
-     "distractors": [
-      "Тут шесть соб+ака."
-     ]
+     "ask": "Ск+олько соб+ак?"
     },
     {
      "answer": "Тут д+евять маш+ин.",
      "cue": "🚗🚗🚗🚗🚗🚗🚗🚗🚗",
      "english": "There are nine cars here.",
-     "ask": "Ск+олько маш+ин?",
-     "distractors": [
-      "Тут д+евять маш+ина."
-     ]
+     "ask": "Ск+олько маш+ин?"
     },
     {
      "answer": "Тут в+осемь с+умок.",
      "cue": "👜👜👜👜👜👜👜👜",
      "english": "There are eight bags here.",
-     "ask": "Ск+олько с+умок?",
-     "distractors": [
-      "Тут в+осемь с+умка."
-     ]
+     "ask": "Ск+олько с+умок?"
     }
    ]
   },

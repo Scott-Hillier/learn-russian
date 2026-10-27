@@ -9,11 +9,12 @@ The candidates are scored in learner mode: sounds an English speaker commonly us
 (ы → и, щ → ш, х → к, no ь softness) count towards the answer, since a lesson asks *which* answer was said.
 If that would make the answer and a distractor sound the same (был / бил), the strict spelling is used.
 
-Forced choice alone would accept anything closer to the answer than to the distractors, including a
-different sentence altogether, so the answer must also fit the audio: its forced alignment can't fall far
-below the model's own unsteered reading (FIT, per 2 s of audio), and its letter score must reach MIN_SCORE.
-A borderline fit, or a wrong answer that only just beats the right one, asks the learner to say it again
-instead of marking it wrong.
+The check is for the right words, not good pronunciation (the learner's call, 2026-10-27: learning many
+words matters more than saying a few perfectly). The letter scores only colour the feedback. Forced choice
+alone would accept anything closer to the answer than to the distractors, including a different sentence
+altogether, so the answer must also roughly fit the audio: its forced alignment can't fall far below the
+model's own unsteered reading (MIN_FIT, per 2 s of audio). A wrong answer that only just beats the right
+one (TIE_MARGIN) is a near tie, and the learner gets the benefit of the doubt.
 
 The thresholds come from scripts/learner_benchmark.py: every course item said by native voices and by
 simulated learners (slow, pausing, sounding out, wrong stress, English-speaker substitutions, a heavy English
@@ -27,20 +28,13 @@ from ..text import display_stress, normalize_words, target_words
 from .compare import build_feedback
 from .pronunciation import learner_form, scorer
 
-MIN_SCORE = 30  # learner-mode letter score (0–100) the expected answer needs as well as winning the forced choice
-MIN_FIT = -40  # how far (log-likelihood per 100 frames) the answer may fall below the free reading and still count
-AGAIN_FIT = -55  # between this and MIN_FIT: unclear, so the learner is asked to say it again
-AGAIN_MARGIN = 2.5  # a wrong answer winning by less than this (per 100 frames) is too close to call: ask again
+MIN_FIT = -55  # how far (log-likelihood per 100 frames) the answer may fall below the free reading and still count
+TIE_MARGIN = 1.0  # a wrong answer winning by less than this (per 100 frames) is a near tie: counted as right
 HEARD_MATCH = 0.7  # how closely a wrong candidate must match the model's unsteered reading to be named
 
 
 def _plain(text: str) -> str:
     return " ".join(normalize_words(text))
-
-
-def _overall(words: list[dict]) -> int:
-    vals = [l["score"] for w in words for l in w["letters"] if l["score"] is not None]
-    return round(100 * sum(vals) / len(vals)) if vals else 100
 
 
 def check_answer(answer: str, accept: list[str], distractors: list[str], pcm: np.ndarray) -> dict:
@@ -56,17 +50,14 @@ def check_answer(answer: str, accept: list[str], distractors: list[str], pcm: np
     fit = (best_right - scorer.free_likelihood(logp)) * per_100
     gap = (best_right - max(likelihoods[len(accept) + 1:], default=-np.inf)) * per_100
     letters = scorer.score(target_words(answer), pcm, logp=logp)  # strict: the feedback shows every slip
-    gate = _overall(scorer.score(target_words(answer), pcm, logp=logp, learner=True)) if learner else _overall(letters)
     feedback = build_feedback(answer, "", letters)
-    correct = said_answer and gate >= MIN_SCORE and fit >= MIN_FIT
-    again = fit >= AGAIN_FIT and ((said_answer and not correct and gate >= MIN_SCORE)
-                                  or (not said_answer and -gap < AGAIN_MARGIN))
+    won = said_answer or -gap < TIE_MARGIN
+    correct = won and fit >= MIN_FIT
     # Why a miss was a miss, so the learner isn't left with green letters and a red verdict:
-    # "other": another answer fitted better; "fit": the answer's sounds were there, but so was more (or less);
-    # "score": too many sounds were off.
-    reason = None if correct else "other" if not said_answer else "score" if gate < MIN_SCORE else "fit"
+    # "other": another answer fitted better; "fit": the answer's sounds were there, but so was more (or less).
+    reason = None if correct else "other" if not won else "fit"
     heard = None
-    if not said_answer:
+    if not won:
         # Forced choice always names the closest candidate. Only report it when the model's own unsteered
         # reading of the audio agrees, so "дом" said for "Это собака" isn't reported as "Собака".
         free = scorer.greedy_text(logp)
@@ -74,7 +65,6 @@ def check_answer(answer: str, accept: list[str], distractors: list[str], pcm: np
             heard = display_stress(candidates[best])
     return {
         "correct": correct,
-        "again": again,
         "reason": reason,
         "silent": False,
         "heard": heard,

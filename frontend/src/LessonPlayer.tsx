@@ -21,13 +21,15 @@ import { Letters } from "./WordFeedback";
 /**
  * Runs a Direct Instruction lesson, one exercise at a time.
  *
- * - teach: each new item is modelled and repeated ("lead"), tested straight away and again after the next
- *   item, then all items are tested cold in a shuffled final pass (those are the tries that count).
+ * - teach: each new item is modelled and repeated once ("lead") and tested after the next item, then all
+ *   items are tested cold in a shuffled final pass (those are the tries that count).
  * - say / dialogue: each item is tested once (dialogue partner turns are just played).
  * - choose: hear it, pick the picture.
- * A wrong answer gets the correction procedure: model the answer, repeat it, back up two items, and test the
- * missed item again a few steps later. A round passes at the lesson's pass accuracy on first tries. The gate
- * is soft: every finished round moves on, and below the mark the learner may go again (a shuffled round).
+ * A wrong answer gets the correction procedure: model the answer, repeat it once, and test the missed item
+ * again a few steps later. A miss on that re-test is modelled and left to review, so one item can't hold up
+ * the lesson (the learner's call, 2026-10-27: learn many words rather than a few perfectly). A round passes
+ * at the lesson's pass accuracy on first tries. The gate is soft: every finished round moves on, and below
+ * the mark the learner may go again (a shuffled round).
  *
  * A mastery test (lesson.kind "test") runs every exercise straight through: one try per item, no modelling and
  * no corrections, and one result for the whole test at the end. A fix-up lesson ("remedial") runs like a lesson.
@@ -42,7 +44,6 @@ type Step =
 type Phase =
   "prompt" | "ready" | "listening" | "checking" | "right" | "wrong" | "chosen";
 
-const BACK_UP = 2; // items re-tested after a correction
 const DELAY = 3; // steps until a missed item is tested again
 const ADVANCE_MS = 900;
 const PASS_PERCENT = 90; // mirrors PASS_ACCURACY in backend/app/course.py
@@ -83,12 +84,10 @@ export function buildRound(ex: CourseExercise, round: number, test = false): Ste
   if (ex.type === "teach" && round === 0) {
     const steps: Step[] = [];
     for (const i of idx) {
-      steps.push(
-        { kind: "lead", item: i, step: "practice" },
-        { kind: "test", item: i, step: "practice" },
-      );
+      steps.push({ kind: "lead", item: i, step: "practice" });
       if (i > 0) steps.push({ kind: "test", item: i - 1, step: "practice" });
     }
+    steps.push({ kind: "test", item: idx.length - 1, step: "practice" });
     return [
       ...steps,
       ...shuffled(idx).map((i): Step => ({
@@ -160,8 +159,6 @@ export default function LessonPlayer({ lesson, onExit, onDone }: Props) {
   const [testResult, setTestResult] = useState<TestResult | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [silentTries, setSilentTries] = useState(0);
-  const [unclear, setUnclear] = useState(false); // this step already got one "say it again"
-  const [leadTries, setLeadTries] = useState(0);
   const [handsFree, setHandsFree] = usePref("handsfree", true);
   const [paused, setPaused] = useState(false);
   const results = useRef<ItemResult[]>([]);
@@ -181,9 +178,7 @@ export default function LessonPlayer({ lesson, onExit, onDone }: Props) {
   const next = useCallback(() => {
     setCheck(null);
     setPicked(null);
-    setLeadTries(0);
     setSilentTries(0);
-    setUnclear(false);
     setPhase("prompt");
     setPos((p) => p + 1);
   }, []);
@@ -228,50 +223,23 @@ export default function LessonPlayer({ lesson, onExit, onDone }: Props) {
     startExercise(exIndex + 1, 0);
   };
 
-  // Insert the correction procedure after a miss: repeat it, back up, and a delayed re-test.
+  // Insert the correction procedure after a miss: repeat it once, and a delayed re-test. A miss on the
+  // re-test itself was just modelled; it's left to review rather than corrected again.
   const correct = (missedResult: number | null) => {
-    if (!step || step.kind === "partner" || isTest) return;
+    if (!step || step.kind === "partner" || isTest || step.step === "delayed") return;
     const tag = missedResult ?? -1;
-    const extra: Step[] = [];
-    if (step.kind === "choose") {
-      setQueue((q) => [
-        ...q.slice(0, pos + 1 + DELAY),
-        { kind: "choose", item: step.item, step: "delayed", correction: tag },
-        ...q.slice(pos + 1 + DELAY),
-      ]);
-      return;
-    }
-    extra.push({
-      kind: "lead",
-      item: step.item,
-      step: "retest",
-      correction: tag,
-    });
-    if (ex.type !== "dialogue") {
-      const earlier = queue
-        .slice(0, pos)
-        .filter(
-          (s): s is Extract<Step, { kind: "test" }> =>
-            s.kind === "test" && s.item !== step.item,
-        )
-        .slice(-BACK_UP)
-        .map((s): Step => ({
-          kind: "test",
-          item: s.item,
-          step: "practice",
-          correction: tag,
-        }));
-      extra.push(...earlier);
-    }
-    const delayed: Step = {
-      kind: "test",
-      item: step.item,
-      step: "delayed",
-      correction: tag,
-    };
+    const delayed: Step =
+      step.kind === "choose"
+        ? { kind: "choose", item: step.item, step: "delayed", correction: tag }
+        : { kind: "test", item: step.item, step: "delayed", correction: tag };
+    const extra: Step[] =
+      step.kind === "choose" ? [] : [{ kind: "lead", item: step.item, step: "retest", correction: tag }];
     setQueue((q) => {
-      const head = [...q.slice(0, pos + 1), ...extra];
+      // The item's own later steps (say, its cold test) stand in for the delayed re-test if one is close.
       const rest = q.slice(pos + 1);
+      const head = [...q.slice(0, pos + 1), ...extra];
+      if (rest.slice(0, DELAY + 1).some((s) => s.kind !== "partner" && s.item === step.item))
+        return [...head, ...rest];
       return [...head, ...rest.slice(0, DELAY), delayed, ...rest.slice(DELAY)];
     });
   };
@@ -317,13 +285,6 @@ export default function LessonPlayer({ lesson, onExit, onDone }: Props) {
         setPhase("ready");
         return;
       }
-      if (result.again && !unclear) {
-        // Borderline: probably right, but not clear enough to count either way. Ask once more.
-        setUnclear(true);
-        setPhase("ready");
-        if (listenFirst) void recorder.start();
-        return;
-      }
       setCheck(result);
       if (step.kind === "lead") {
         record({
@@ -332,12 +293,7 @@ export default function LessonPlayer({ lesson, onExit, onDone }: Props) {
           correct: result.correct,
           score: result.score,
         });
-        if (result.correct || leadTries >= 1) {
-          setPhase("right");
-        } else {
-          setLeadTries((n) => n + 1);
-          setPhase("wrong");
-        }
+        setPhase(result.correct ? "right" : "wrong"); // one try: a miss hears the model, then moves on
         return;
       }
       const at = record({
@@ -356,7 +312,7 @@ export default function LessonPlayer({ lesson, onExit, onDone }: Props) {
       }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [step, item, lesson.id, exIndex, leadTries, pos, queue, isTest, unclear, listenFirst],
+    [step, item, lesson.id, exIndex, pos, queue, isTest],
   );
 
   const recorder = useRecorder(onAudio);
@@ -417,12 +373,7 @@ export default function LessonPlayer({ lesson, onExit, onDone }: Props) {
     if (!step) return;
     let timer: number | undefined;
     let live = true;
-    if (phase === "right" && step.kind === "lead" && check && !check.correct && item)
-      // "Say it after me" moves on after two misses: hear it once more first.
-      void clip.play(api.ttsUrl(item.answer!.text, "normal")).then(() => {
-        if (live) timer = window.setTimeout(next, ADVANCE_MS);
-      });
-    else if (phase === "right") timer = window.setTimeout(next, ADVANCE_MS);
+    if (phase === "right") timer = window.setTimeout(next, ADVANCE_MS);
     if (phase === "wrong" && isTest) timer = window.setTimeout(next, 2 * ADVANCE_MS); // a test doesn't teach
     else if (phase === "wrong" && item) {
       const text = step.kind === "choose" ? item.audio?.text : item.answer!.text;
@@ -436,12 +387,7 @@ export default function LessonPlayer({ lesson, onExit, onDone }: Props) {
         if (live) await clip.play(api.ttsUrl(text, "normal"));
       };
       void model().then(() => {
-        if (!live) return;
-        if (step.kind === "lead") {
-          setCheck(null);
-          setPhase("ready");
-          if (listenFirst) void recorder.start();
-        } else timer = window.setTimeout(next, slow ? FAR_OFF_HOLD_MS : 1200);
+        if (live) timer = window.setTimeout(next, slow ? FAR_OFF_HOLD_MS : 1200);
       });
     }
     if (phase === "chosen" && item?.prompt && item.audio)
@@ -699,9 +645,6 @@ export default function LessonPlayer({ lesson, onExit, onDone }: Props) {
           />
           {silentTries > 0 && phase === "ready" && (
             <p className="hint">I didn't hear anything. Say it again.</p>
-          )}
-          {unclear && silentTries === 0 && (phase === "ready" || phase === "listening") && (
-            <p className="hint">I didn't catch that clearly. Say it again.</p>
           )}
         </div>
       )}
