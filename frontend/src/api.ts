@@ -210,6 +210,7 @@ export interface CourseItem {
   options?: string[]; // choose
   labels?: string[]; // listening choose: the English word for an option that is only a picture ("" if none)
   correct?: number; // choose
+  question?: string; // choose items in tests and fix-up lessons: the question their own exercise asked
   speaker?: "partner" | "you"; // dialogue
   line?: Described; // dialogue partner turn
 }

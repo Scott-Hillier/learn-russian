@@ -658,8 +658,8 @@ export default function LessonPlayer({ lesson, onExit, onDone }: Props) {
             {isTest ? results.current.length : firsts.filter((r) => r.correct).length}/{counted}
           </span>
         </div>
-        <p className={`player-instruction ${pos > 0 ? "muted" : ""}`}>
-          {ex.instruction}
+        <p className={`player-instruction ${pos > 0 && !item?.question ? "muted" : ""}`}>
+          {item?.question ?? ex.instruction}
         </p>
       </header>
       {error && <div className="banner error">{error}</div>}

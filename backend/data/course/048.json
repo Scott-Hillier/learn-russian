@@ -108,8 +108,8 @@
   {
    "track": "listening",
    "type": "choose",
-   "title": "What are they asking for?",
-   "instruction": "Listen and pick the picture.",
+   "title": "In the café",
+   "instruction": "Listen and pick what it means.",
    "items": [
     {
      "audio": "Мож+но счёт?",

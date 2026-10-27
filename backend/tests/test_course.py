@@ -56,6 +56,11 @@ def test_picture_options_are_labelled_in_english():
     assert dict(zip(item["options"], item["labels"])) == {"🏠": "house", "🐱": "cat", "🐶": "dog"}
 
 
+def test_listening_options_show_stress_marks():
+    choose = next(e for e in _expand(lessons()[8])["exercises"] if e["type"] == "choose")
+    assert choose["items"][0]["options"] == ["он", "она́", "оно́"]
+
+
 def test_item_keys_ignore_stress_marks():
     assert item_key("say", {"answer": "+Это к+ошка."}) == "say:это кошка."
     assert item_key("choose", {"audio": "К+ошка там."}) == "hear:кошка там."

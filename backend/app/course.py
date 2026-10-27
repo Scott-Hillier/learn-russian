@@ -308,6 +308,12 @@ def _unit_items(unit: int) -> dict[str, tuple[dict, dict]]:
     return out
 
 
+def _with_question(ex: dict, item: dict) -> dict:
+    """A choose item taken out of its exercise keeps the exercise's question ("Is it an «он» word?"):
+    under a generic instruction its options can't be told apart."""
+    return {**item, "question": ex["instruction"]} if ex["type"] == "choose" else item
+
+
 def build_test(unit: int, attempt: int, missed: set[str] = frozenset()) -> dict:
     """A mastery test for a unit: a few spoken and a few listening/reading items from each lesson, sentences
     first, always including the items missed last time. The sample is fixed for a given attempt."""
@@ -325,7 +331,7 @@ def build_test(unit: int, attempt: int, missed: set[str] = frozenset()) -> dict:
                 if key in seen or (taken >= want and key not in missed):
                     continue
                 seen.add(key)
-                bucket.append(item)
+                bucket.append(_with_question(ex, item))
                 taken += 1
     rng.shuffle(spoken)
     rng.shuffle(chosen)
@@ -345,7 +351,7 @@ def build_remedial(unit: int, missed: list[str]) -> dict:
     """Re-teach the items missed in a mastery test: spoken ones modelled and led again, the rest re-done."""
     items = _unit_items(unit)
     spoken = [items[k][1] for k in missed if k in items and items[k][0]["type"] != "choose"]
-    chosen = [items[k][1] for k in missed if k in items and items[k][0]["type"] == "choose"]
+    chosen = [_with_question(*items[k]) for k in missed if k in items and items[k][0]["type"] == "choose"]
     exercises = []
     for n in range(0, len(spoken), 5):
         exercises.append({"track": "review", "type": "teach", "title": "Let's fix these",
@@ -389,9 +395,8 @@ def _expand(lesson: dict) -> dict:
                 for field in ("audio", "prompt"):
                     if field in item:
                         out[field] = _describe(item[field])
-                if "prompt" in item:  # written Russian forms to choose from
-                    out["options"] = [display_stress(o) for o in item["options"]]
-                else:
+                out["options"] = [display_stress(o) for o in item["options"]]
+                if "prompt" not in item:  # listening: label options that are only a picture
                     out["labels"] = [_option_label(o) for o in item["options"]]
             elif ex["type"] == "dialogue" and item.get("speaker") == "partner":
                 out["line"] = _describe(item["line"])

@@ -51,41 +51,41 @@
    "track": "listening",
    "type": "choose",
    "title": "How are they?",
-   "instruction": "Listen and pick the face.",
+   "instruction": "Listen and pick what it means.",
    "items": [
     {
      "audio": "Хорош+о, спас+ибо!",
      "options": [
-      "🙂",
-      "😐",
-      "😞"
+      "🙂 good",
+      "😐 OK",
+      "😞 bad"
      ],
      "correct": 0
     },
     {
      "audio": "Норм+ально.",
      "options": [
-      "🙂",
-      "😐",
-      "😞"
+      "🙂 good",
+      "😐 OK",
+      "😞 bad"
      ],
      "correct": 1
     },
     {
      "audio": "Пл+охо.",
      "options": [
-      "🙂",
-      "😐",
-      "😞"
+      "🙂 good",
+      "😐 OK",
+      "😞 bad"
      ],
      "correct": 2
     },
     {
      "audio": "+Очень хорош+о!",
      "options": [
-      "🙂",
-      "😐",
-      "😞"
+      "🙂 good",
+      "😐 OK",
+      "😞 bad"
      ],
      "correct": 0
     },

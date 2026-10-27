@@ -58,53 +58,53 @@
    "track": "listening",
    "type": "choose",
    "title": "Он or она?",
-   "instruction": "Listen. Which thing could it be?",
+   "instruction": "Listen. Which thing could it be? Words that end in «-а» are «она».",
    "items": [
     {
      "audio": "Он+а тут.",
      "options": [
-      "🔑 key",
-      "🐱 cat"
+      "ключ 🔑 key",
+      "к+ошка 🐱 cat"
      ],
      "correct": 1
     },
     {
      "audio": "Он там.",
      "options": [
-      "👜 bag",
-      "🪑 chair"
+      "с+умка 👜 bag",
+      "стул 🪑 chair"
      ],
      "correct": 1
     },
     {
      "audio": "Он тут.",
      "options": [
-      "📱 phone",
-      "🐟 fish"
+      "телеф+он 📱 phone",
+      "р+ыба 🐟 fish"
      ],
      "correct": 0
     },
     {
      "audio": "Он+а там.",
      "options": [
-      "💧 water",
-      "🧃 juice"
+      "вод+а 💧 water",
+      "сок 🧃 juice"
      ],
      "correct": 0
     },
     {
      "audio": "Он+а тут.",
      "options": [
-      "👧 sister",
-      "👦 brother"
+      "сестр+а 👧 sister",
+      "брат 👦 brother"
      ],
      "correct": 0
     },
     {
      "audio": "Он там.",
      "options": [
-      "🚗 car",
-      "🏠 house"
+      "маш+ина 🚗 car",
+      "дом 🏠 house"
      ],
      "correct": 1
     }

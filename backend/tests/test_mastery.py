@@ -47,6 +47,13 @@ def test_tests_sample_each_lesson_of_the_unit():
     assert missed <= {item_key("say", i) for i in again["exercises"][0]["items"]}
 
 
+def test_test_items_keep_their_own_question():
+    # «он» / «not он» means nothing under the test's generic "Pick the right answer."
+    questions = {ex["instruction"] for lesson in unit_lessons(1) for ex in lesson["exercises"] if ex["type"] == "choose"}
+    chosen = next(ex for ex in build_test(1, 0)["exercises"] if ex["type"] == "choose")["items"]
+    assert chosen and all(item["question"] in questions for item in chosen)
+
+
 def test_finishing_a_unit_needs_its_mastery_test(course):
     _pass_lessons(course, UNIT_SIZE)
     overview = course.overview()
